@@ -1,0 +1,95 @@
+:root {
+  --gray-color: #515962;
+  --color-label: #69b03b;
+}
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 16px;
+  }
+  .header-top-mobile {
+    width: 100%;
+    margin: 0;
+    justify-content: space-between !important;
+  }
+  .header-menu li:not(:first-child) {
+    display: none;
+  }
+  .modal-menu {
+    display: none;
+    top: 3rem;
+    right: 0;
+    position: absolute;
+    z-index: 2;
+  }
+  .sub-bar {
+    display: block;
+  }
+  .bd-bt {
+    border: none;
+  }
+  .input-group {
+    flex-wrap: nowrap;
+  }
+  #container {
+    width: 100%;
+    margin: 0;
+  }
+  #search {
+    display: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  #right-container {
+    display: none;
+  }
+  #left-container {
+    display: block;
+    width: 100%;
+  }
+  #hot-news {
+    display: block !important;
+  }
+  #hot-new-news {
+    width: 100%;
+  }
+  label {
+    color: white !important;
+    background-color: var(--color-label);
+  }
+  #giftcode {
+    width: 100%;
+  }
+  .giftcode-category {
+    display: flex;
+    overflow: scroll;
+  }
+  .giftcode-info {
+    width: 50%;
+  }
+  .tab-game li a {
+    font-size: 0.8rem;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+  .news-title {
+    font-size: 1rem;
+  }
+  .news-decscript {
+    display: none;
+  }
+  .tab-game {
+    margin-top: 1rem;
+    border-top: 0.2rem solid var(--color-label);
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+  }
+  .tab-game li a {
+    color: black;
+  }
+  .news img {
+    width: 100%;
+    height: auto;
+  }
+}
