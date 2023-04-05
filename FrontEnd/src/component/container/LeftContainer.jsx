@@ -8,11 +8,11 @@ export default function LeftContainer() {
   return (
     <>
       <div id="left-container">
-        {/* <HotNews />
+        <HotNews />
         <HotNewsGame />
         <GameNew />
-        <Pagi/> */}
-        <News/>
+        <Pagi/>
+        {/* <News/> */}
       </div>
     </>
   );
