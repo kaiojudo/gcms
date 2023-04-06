@@ -1,7 +1,7 @@
 export default function Login() {
   return (
     <>
-      {/* Hello world */}
+      {/* GCMS */}
       <form id="log-in">
         <label htmlFor="" className="login-logo">GCMS</label>
         {/* Email input */}

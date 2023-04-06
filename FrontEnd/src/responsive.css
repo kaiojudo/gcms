@@ -37,6 +37,19 @@
   #search {
     display: none;
   }
+  p {
+    padding: 0;
+    margin-bottom: 0;
+  }
+  .news-decscript {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .news-title,
+  .news-date,
+  .news-decscript {
+    line-height: 1.5rem;
+  }
 }
 @media screen and (max-width: 600px) {
   #right-container {

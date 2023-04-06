@@ -1,6 +1,4 @@
 export default function HotNews() {
-
-    
   return (
     <div id="hot-news" className="d-flex">
       <div id="hot-new-news">

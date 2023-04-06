@@ -165,6 +165,9 @@ img {
 #left-container {
   width: 70%;
 }
+#left-container .news img{
+  height: 100%;
+}
 .giftcode-game{
   text-align: center;
 }

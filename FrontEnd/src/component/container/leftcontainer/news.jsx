@@ -1,4 +1,4 @@
-export default function News() {
+export default function News(id) {
   return (
     <>
       <div className="linkfrom">
