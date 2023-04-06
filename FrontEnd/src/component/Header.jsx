@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [dataTheLoai, setDataTheLoai] = useState({});
@@ -33,7 +34,9 @@ export default function Header() {
       <div id="header-top" className="w-80 d-flex header-top-mobile">
         <ul className="header-menu d-flex left-menu-top">
           <li className="logo">
-            <img src="../logo.png" alt="" />
+            <Link to={"/"}>
+              <img src="../logo.png" alt="" />
+            </Link>
           </li>
           {dataTheLoai?.result?.map((e) => (
             <li key={e.idTheLoai} className="menu-category">

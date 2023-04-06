@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import AllNews from "./leftcontainer/allnews";
-import News from "./leftcontainer/news";
+import AllNews from "./allnews";
+import News from "./news";
 
 export default function LeftContainer(props) {
   return (
