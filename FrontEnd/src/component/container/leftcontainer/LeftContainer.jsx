@@ -1,7 +1,5 @@
-import { Routes, Route } from "react-router-dom";
-import AllNews from "./allnews";
-import News from "./news";
 
+import AllNews from "./allnews";
 export default function LeftContainer(props) {
   return (
     <div id="left-container">
