@@ -7,6 +7,7 @@ import Post from "./Layout_Post";
 import Admin from "./Layout_Admin";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
+import AdminPost from "./component/admin/Post";
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="login" element={<Login />} />
         <Route path="post" element={<Post />} />
-        <Route path="admin" element={<Admin />} />
-
+        <Route path="admin" element={<Admin />}>
+          <Route path="post" element={<AdminPost />} />
+        </Route>
       </Routes>
       <Footer />
     </div>

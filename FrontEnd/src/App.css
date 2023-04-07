@@ -151,9 +151,8 @@ img {
   margin-top: 8rem;
 }
 #log-in {
-  margin:0 auto 8rem auto;
+  margin: 0 auto 8rem auto;
   width: 24rem;
-
 }
 .login-logo {
   font-size: 3rem;
@@ -165,13 +164,13 @@ img {
 #left-container {
   width: 70%;
 }
-#left-container .news img{
+#left-container .news img {
   height: 100%;
 }
-.giftcode-game{
+.giftcode-game {
   text-align: center;
 }
-.linkfrom i{
+.linkfrom i {
   padding: 0 0.5rem;
 }
 #hot-news {
@@ -416,6 +415,15 @@ img {
 .review img {
   width: 40%;
 }
+.select-form{
+  width: 20%;
+}
+.select-form a{
+  display: block;
+}
+.form-add{
+  width: 80%;
+}
 @keyframes slidetoLeft {
   0% {
     transform: translateX(100%);
@@ -436,6 +444,6 @@ img {
     opacity: 1;
   }
 }
-footer{
+footer {
   margin-top: 1rem;
 }
