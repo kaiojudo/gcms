@@ -1,7 +1,7 @@
 import { useState } from "react";
-
+import Axios from "axios";
 export default function Register() {
-  const url = "";
+  const url = "http://localhost:3030/user/add";
   const [data, setData] = useState({
     id_thanhvien: "",
     hoten: "",
@@ -12,7 +12,7 @@ export default function Register() {
     id_nguyenquan: "",
     username: "",
     password: "",
-    accesslevel: "",
+    accesslevel: 1,
     active: "",
   });
 
@@ -20,8 +20,25 @@ export default function Register() {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
-    console.log(newdata);
   }
+  function submit(e) {
+    e.preventDefault();
+    Axios.post(url, {
+      hoten: data.hoten,
+      sex: data.sex,
+      email: data.email,
+      phone: data.phone,
+      address: data.address,
+      id_nguyenquan: data.id_nguyenquan,
+      username: data.username,
+      password: data.password,
+      accesslevel: 1,
+      active: 1,
+    }).then((res) => {
+      console.log(res.data);
+    });
+  }
+
   return (
     <>
       <section className="gradient-custom w-100">
@@ -34,7 +51,7 @@ export default function Register() {
               >
                 <div className="card-body p-4 p-md-5">
                   <h3 className=" pb-2 pb-md-0 mb-md-5">Đăng ký</h3>
-                  <form>
+                  <form onSubmit={(e) => submit(e)}>
                     <div className="row">
                       <div className="col-md-6 ">
                         <div className="form-outline">
@@ -160,9 +177,10 @@ export default function Register() {
                         </label>
                       </div>
                     </div>
-                    <div className="mt-4 pt-2">
-                      <button>Xác Nhận</button>
-                    </div>
+
+                    <button className="btn btn-danger" type="submit">
+                      Xác Nhận
+                    </button>
                   </form>
                 </div>
               </div>

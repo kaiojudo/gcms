@@ -16,7 +16,6 @@ const Tintuc = function (tintuc) {
     this.kiemduyet = tintuc.kiemduyet;
 }
 Tintuc.get_by_id = function(id,result){
-    console.log(id);
     db.query(`SELECT * FROM tintuc WHERE idtintuc = ? `,id, function (err, child) {
         if (err) {
             result(err);

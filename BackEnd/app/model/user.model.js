@@ -16,13 +16,16 @@ const User = function (user) {
 User.register = function (data, result) {
     db.query(`INSERT INTO thanhvien SET ? `, data, function (err, res) {
         if (err) {
-            console.log(err.message);
+            result(err)
         } else {
-            console.log("Success");
+            result({
+                id_thanhvien: res.insertId,
+                ...data
+            })
         }
-    })
+    });
 }
-User.get_all = function(result) {
+User.get_all = function (result) {
     db.query(`SELECT * FROM thanhvien `, function (err, data) {
         if (err) {
             result(err);
