@@ -36,6 +36,7 @@ export default function Register() {
       active: 1,
     }).then((res) => {
       console.log(res.data);
+      alert("Thêm thành công !")
     });
   }
 
