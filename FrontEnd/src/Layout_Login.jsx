@@ -1,9 +1,9 @@
-import Login from "./component/Login";
+import { Outlet } from "react-router-dom";
 
 export default function Layout_Login() {
   return (
-      <div id="container" className="w-80 d-flex">
-        <Login />
+      <div className="w-80 d-flex">
+        <Outlet/>
       </div>
   );
 }

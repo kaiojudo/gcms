@@ -53,8 +53,11 @@ export default function Header() {
           <span className="log-in">
             <i className="fa-solid fa-user" />
             <div className="modal-log">
-              <Link to={"/login"}>Sign in</Link>
-              <Link to={"/admin"}>Register</Link>
+              <div className="login-logo">
+                <img src="../ayaka.ico" alt="" />
+              </div>
+              <Link to={"/login/signin"}>Sign in</Link>
+              <Link to={"/login/register"}>Register</Link>
             </div>
           </span>
           <div className="sub-bar js-header-mobile-bar" onClick={ShowMenu}>
