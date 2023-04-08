@@ -12,7 +12,9 @@ body {
   font-family: "Roboto", sans-serif;
   color: var(--gray-color);
 }
-
+textarea {
+  resize: none;
+}
 a {
   text-decoration: none;
   color: #000;
@@ -20,6 +22,7 @@ a {
 a:hover {
   text-decoration: none;
 }
+
 .w-80 {
   width: 80%;
   margin: 0 10%;
@@ -125,6 +128,10 @@ img {
   padding: 1rem;
   background-color: #ccc;
   right: 0;
+  position: relative;
+}
+.log-in:hover .modal-log {
+  display: flex;
 }
 #sub-header {
   height: 2.5rem;
@@ -146,9 +153,36 @@ img {
 #search {
   padding: 0.5rem 0;
 }
+.modal-log {
+  position: absolute;
+  width: 10rem;
+  background-color: rgb(11, 242, 238);
+  left: -125%;
+  top: 100%;
+  display: none;
+}
+.modal-log a {
+  padding: 0.5rem;
+  display: inline-block;
+  width: 5rem;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+}
+.modal-log a:hover {
+  opacity: 0.8;
+  background-color: #ccc;
+}
 /* Container */
 #container {
   margin-top: 8rem;
+}
+#container-admin {
+  min-height: 100vh;
+  background-image: url("../public/admin.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 #log-in {
   margin: 0 auto 8rem auto;
@@ -157,9 +191,13 @@ img {
 .login-logo {
   font-size: 3rem;
 }
-#log-in label:first-child {
+#log-in .login-logo {
   width: 100%;
   text-align: center;
+}
+#log-in .form-label {
+  display: inline-block;
+  margin: 0.5rem 0;
 }
 #left-container {
   width: 70%;
@@ -415,13 +453,15 @@ img {
 .review img {
   width: 40%;
 }
-.select-form{
+.select-form {
   width: 20%;
 }
-.select-form a{
+.select-form a {
   display: block;
+  font-size: 1.5rem;
+  font-weight: bolder;
 }
-.form-add{
+.form-add {
   width: 80%;
 }
 @keyframes slidetoLeft {

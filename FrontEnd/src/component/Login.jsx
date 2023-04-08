@@ -3,20 +3,32 @@ export default function Login() {
     <>
       {/* GCMS */}
       <form id="log-in">
-        <label htmlFor="" className="login-logo">GCMS</label>
+        <label htmlFor="" className="login-logo">
+          GCMS
+        </label>
         {/* Email input */}
         <div className="form-outline ">
-          <input type="email" id="form2Example1" className="form-control" />
           <label className="form-label" htmlFor="form2Example1">
-            Email address
+            Tên tài khoản
           </label>
+          <input
+            type="text"
+            id="form2Example1"
+            className="form-control"
+            placeholder="Username..."
+          />
         </div>
         {/* Password input */}
         <div className="form-outline ">
-          <input type="password" id="form2Example2" className="form-control" />
           <label className="form-label" htmlFor="form2Example2">
-            Password
+            Mật khẩu
           </label>
+          <input
+            type="password"
+            id="form2Example2"
+            className="form-control"
+            placeholder="Password..."
+          />
         </div>
         {/* 2 column grid layout for inline styling */}
         <div className="row mb-4">

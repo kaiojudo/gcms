@@ -52,6 +52,10 @@ export default function Header() {
         <div className="right-menu-top">
           <span className="log-in">
             <i className="fa-solid fa-user" />
+            <div className="modal-log">
+              <Link to={"/login"}>Sign in</Link>
+              <Link to={"/admin"}>Register</Link>
+            </div>
           </span>
           <div className="sub-bar js-header-mobile-bar" onClick={ShowMenu}>
             <i className="fa-solid fa-bars fa-xl" />
