@@ -51,17 +51,17 @@ export default function Register() {
                           />
                         </div>
                       </div>
-                      <div className="col-md-6 ">
-                        <label className="form-label" htmlFor="phoneNumber">
-                          Giới tính
-                        </label>
-                        <select className="select form-control-lg">
-                          <option value={1} disabled="">
-                            Chọn Giới tính
-                          </option>
-                          <option value={2}>Nam</option>
-                          <option value={3}>Nữ</option>
-                        </select>
+                      <div className="col-md-6  pb-2">
+                        <div className="form-outline">
+                          <label className="form-label" htmlFor="address">
+                            
+                          </label>
+                          <input
+                            type="tel"
+                            id="address"
+                            className="form-control form-control-lg"
+                          />
+                        </div>
                       </div>
                     </div>
                     <div className="row">
@@ -89,9 +89,25 @@ export default function Register() {
                           />
                         </div>
                       </div>
+                      <div className="col-md-6  pb-2">
+                        <div className="form-outline">
+                          <label className="form-label" htmlFor="address">
+                            Địa chỉ hiện tại
+                          </label>
+                          <input
+                            type="tel"
+                            id="address"
+                            className="form-control form-control-lg"
+                          />
+                        </div>
+                      </div>
                     </div>
                     <div className="row">
                       <div className="col-12">
+                        <label className="form-label" htmlFor="address">
+                          Nguyên quán
+                        </label>
+                        <br />
                         <select className="select form-control-lg">
                           <option value={1} disabled="">
                             Tỉnh
@@ -105,37 +121,6 @@ export default function Register() {
                         </label>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <select className="select form-control-lg">
-                          <option value={1} disabled="">
-                            Choose option
-                          </option>
-                          <option value={2}>Subject 1</option>
-                          <option value={3}>Subject 2</option>
-                          <option value={4}>Subject 3</option>
-                        </select>
-                        <label className="form-label select-label">
-                          Choose option
-                        </label>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <select className="select form-control-lg">
-                          <option value={1} disabled="">
-                            Choose option
-                          </option>
-                          <option value={2}>Subject 1</option>
-                          <option value={3}>Subject 2</option>
-                          <option value={4}>Subject 3</option>
-                        </select>
-                        <label className="form-label select-label">
-                          Choose option
-                        </label>
-                      </div>
-                    </div>
-
                     <div className="mt-4 pt-2">
                       <input
                         className="btn btn-primary btn-lg"

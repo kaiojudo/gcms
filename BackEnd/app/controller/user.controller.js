@@ -8,3 +8,10 @@ exports.addUser = function (req, res) {
         });
     })
 }
+exports.showUser = function (req, res) {
+    User.get_all(function (data) {
+        res.send({
+            result: data
+        });
+    })
+}

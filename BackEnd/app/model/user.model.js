@@ -22,4 +22,13 @@ User.register = function (data, result) {
         }
     })
 }
+User.get_all = function(result) {
+    db.query(`SELECT * FROM thanhvien `, function (err, data) {
+        if (err) {
+            result(err);
+        } else {
+            result(data);
+        }
+    });
+}
 module.exports = User;
