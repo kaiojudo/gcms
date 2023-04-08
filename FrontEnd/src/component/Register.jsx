@@ -1,4 +1,27 @@
+import { useState } from "react";
+
 export default function Register() {
+  const url = "";
+  const [data, setData] = useState({
+    id_thanhvien: "",
+    hoten: "",
+    sex: "",
+    email: "",
+    phone: "",
+    address: "",
+    id_nguyenquan: "",
+    username: "",
+    password: "",
+    accesslevel: "",
+    active: "",
+  });
+
+  function handle(e) {
+    const newdata = { ...data };
+    newdata[e.target.id] = e.target.value;
+    setData(newdata);
+    console.log(newdata);
+  }
   return (
     <>
       <section className="gradient-custom w-100">
@@ -15,24 +38,26 @@ export default function Register() {
                     <div className="row">
                       <div className="col-md-6 ">
                         <div className="form-outline">
-                          <label className="form-label" htmlFor="firstName">
+                          <label className="form-label" htmlFor="username">
                             Tên tài khoản
                           </label>
                           <input
+                            onChange={(e) => handle(e)}
                             type="text"
-                            id="firstName"
+                            id="username"
                             className="form-control form-control-lg"
                           />
                         </div>
                       </div>
                       <div className="col-md-6 ">
                         <div className="form-outline">
-                          <label className="form-label" htmlFor="lastName">
+                          <label className="form-label" htmlFor="hoten">
                             Tên người dùng
                           </label>
                           <input
+                            onChange={(e) => handle(e)}
                             type="text"
-                            id="lastName"
+                            id="hoten"
                             className="form-control form-control-lg"
                           />
                         </div>
@@ -42,49 +67,58 @@ export default function Register() {
                       <div className="col-md-6  d-flex align-items-center">
                         <div className="form-outline datepicker w-100">
                           <label htmlFor="birthdayDate" className="form-label">
-                            Ngày sinh
+                            Mật khẩu
                           </label>
                           <input
-                            type="datetime"
+                            onChange={(e) => handle(e)}
+                            type="password"
                             className="form-control form-control-lg"
                             id="birthdayDate"
                           />
                         </div>
                       </div>
-                      <div className="col-md-6  pb-2">
-                        <div className="form-outline">
-                          <label className="form-label" htmlFor="address">
-                            
+                      <div className="col-md-6 align-items-center">
+                        <div className="form-outline datepicker w-100">
+                          <label className="form-label" htmlFor="sex">
+                            Giới tính
                           </label>
-                          <input
-                            type="tel"
-                            id="address"
-                            className="form-control form-control-lg"
-                          />
+                          <select
+                            onChange={(e) => handle(e)}
+                            id="sex"
+                            className="select form-control-lg w-100"
+                          >
+                            <option value={1} disabled="">
+                              Giới tính
+                            </option>
+                            <option value={"Nam"}>Nam</option>
+                            <option value={"Nữ"}>Nữ</option>
+                          </select>
                         </div>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-md-6  pb-2">
                         <div className="form-outline">
-                          <label className="form-label" htmlFor="emailAddress">
+                          <label className="form-label" htmlFor="email">
                             Email
                           </label>
                           <input
+                            onChange={(e) => handle(e)}
                             type="email"
-                            id="emailAddress"
+                            id="email"
                             className="form-control form-control-lg"
                           />
                         </div>
                       </div>
                       <div className="col-md-6  pb-2">
                         <div className="form-outline">
-                          <label className="form-label" htmlFor="phoneNumber">
+                          <label className="form-label" htmlFor="phone">
                             Phone Number
                           </label>
                           <input
+                            onChange={(e) => handle(e)}
                             type="tel"
-                            id="phoneNumber"
+                            id="phone"
                             className="form-control form-control-lg"
                           />
                         </div>
@@ -95,6 +129,7 @@ export default function Register() {
                             Địa chỉ hiện tại
                           </label>
                           <input
+                            onChange={(e) => handle(e)}
                             type="tel"
                             id="address"
                             className="form-control form-control-lg"
@@ -104,17 +139,21 @@ export default function Register() {
                     </div>
                     <div className="row">
                       <div className="col-12">
-                        <label className="form-label" htmlFor="address">
+                        <label className="form-label" htmlFor="id_nguyenquan">
                           Nguyên quán
                         </label>
                         <br />
-                        <select className="select form-control-lg">
+                        <select
+                          onChange={(e) => handle(e)}
+                          id="id_nguyenquan"
+                          className="select form-control-lg"
+                        >
                           <option value={1} disabled="">
                             Tỉnh
                           </option>
-                          <option value={2}>Hải Dương</option>
-                          <option value={3}>Hà Nội</option>
-                          <option value={4}>Hà Nam</option>
+                          <option value={34}>Hải Dương</option>
+                          <option value={29}>Hà Nội</option>
+                          <option value={99}>Bắc Ninh</option>
                         </select>
                         <label className="form-label select-label">
                           Chọn tỉnh
@@ -122,11 +161,7 @@ export default function Register() {
                       </div>
                     </div>
                     <div className="mt-4 pt-2">
-                      <input
-                        className="btn btn-primary btn-lg"
-                        type="submit"
-                        defaultValue="Submit"
-                      />
+                      <button>Xác Nhận</button>
                     </div>
                   </form>
                 </div>
