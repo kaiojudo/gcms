@@ -12,6 +12,7 @@ require('./app/router/theloai.router')(app);
 require('./app/router/child_theloai.router')(app);
 require('./app/router/user.router')(app);
 require('./app/router/tintuc.router')(app);
+require('./app/router/tinh.router')(app);
 var port = 3030;
 app.listen(port, function () {
     console.log("this server is listening on port " + port);

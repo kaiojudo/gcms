@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 export default function Register() {
   const url = "http://localhost:3030/user/add";
+  const urltinh = "http://localhost:3030/tinh/showlist";
   const [data, setData] = useState({
     id_thanhvien: "",
     hoten: "",
@@ -15,7 +16,14 @@ export default function Register() {
     accesslevel: 1,
     active: "",
   });
-
+  const [tinh, setDataTinh] = useState({});
+  useEffect(() => {
+    fetch(urltinh)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataTinh(data);
+      });
+  }, []);
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
@@ -36,7 +44,6 @@ export default function Register() {
       active: 1,
     }).then((res) => {
       console.log(res.data);
-      alert("Thêm thành công !")
     });
   }
 
@@ -135,7 +142,7 @@ export default function Register() {
                           </label>
                           <input
                             onChange={(e) => handle(e)}
-                            type="tel"
+                            type="number"
                             id="phone"
                             className="form-control form-control-lg"
                           />
@@ -154,28 +161,27 @@ export default function Register() {
                           />
                         </div>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <label className="form-label" htmlFor="id_nguyenquan">
-                          Nguyên quán
-                        </label>
-                        <br />
-                        <select
-                          onChange={(e) => handle(e)}
-                          id="id_nguyenquan"
-                          className="select form-control-lg"
-                        >
-                          <option value={1} disabled="">
-                            Tỉnh
-                          </option>
-                          <option value={34}>Hải Dương</option>
-                          <option value={29}>Hà Nội</option>
-                          <option value={99}>Bắc Ninh</option>
-                        </select>
-                        <label className="form-label select-label">
-                          Chọn tỉnh
-                        </label>
+                      <div className="col-md-6  pb-2">
+                        <div className="form-outline">
+                          <label className="form-label" htmlFor="id_nguyenquan">
+                            Nguyên quán
+                          </label>
+                          <br />
+                          <select
+                            onChange={(e) => handle(e)}
+                            id="id_nguyenquan"
+                            className="select form-control-lg w-100"
+                          >
+                            <option value={-1} disabled="">
+                              Tỉnh
+                            </option>
+                            {tinh?.result?.map((e) => (
+                              <option key={e.idtinh} value={e.idtinh}>
+                                {e.tentinh}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                     </div>
 
