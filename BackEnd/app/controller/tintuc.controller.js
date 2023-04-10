@@ -2,14 +2,14 @@ var Tintuc = require('../model/tintuc.model');
 
 exports.addTintuc = function (req, res) {
     var data = req.body;
-    User.add_new(data, function (response) {
+    Tintuc.add_new(data, function (response) {
         res.send({
             result: response
         });
     })
 }
 exports.showTintuc = function (req, res) {
-    User.get_by_id(function (data) {
+    Tintuc.get_all(function (data) {
         res.send({
             result: data
         });

@@ -5,7 +5,6 @@ const Tintuc = function (tintuc) {
     this.tieudetin = tintuc.tieudetin;
     this.hinhtrichdan = tintuc.hinhtrichdan;
     this.trichdantin = tintuc.trichdantin;
-    this.noidungtin = tintuc.noidungtin;
     this.ID_child_theloai = tintuc.ID_child_theloai;
     this.id_nhomtin = tintuc.id_nhomtin;
     this.id_phanloaitin = tintuc.id_phanloaitin;
@@ -22,11 +21,11 @@ const Tintuc = function (tintuc) {
     this.doan4 = tintuc.doan4;
 }
 Tintuc.get_by_id = function(id,result){
-    db.query(`SELECT * FROM tintuc WHERE idtintuc = ? `,id, function (err, child) {
+    db.query(`SELECT * FROM tintuc WHERE idtintuc = ? `,id, function (err, tintuc) {
         if (err) {
             result(err);
         } else {
-            result(child);
+            result(tintuc);
         }
     });
 };
@@ -43,7 +42,7 @@ Tintuc.add_new = function(data,result){
     });
 }
 Tintuc.get_all = function (result) {
-    db.query(`SELECT * FROM tintuc `, function (err, data) {
+    db.query(`SELECT * FROM tintuc`, function (err, data) {
         if (err) {
             result(err);
         } else {
