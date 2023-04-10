@@ -12,7 +12,6 @@ const ChildTheLoai = function (child) {
     this.img_child_theloai = child.img_child_theloai;
 }
 ChildTheLoai.getbyID = function (idTheloai, result) {
-    console.log(idTheloai);
     db.query(`SELECT * FROM child_theloai WHERE idTheLoai = ? `,idTheloai, function (err, child) {
         if (err) {
             result(err);
