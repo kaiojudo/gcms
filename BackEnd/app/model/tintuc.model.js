@@ -6,7 +6,6 @@ const Tintuc = function (tintuc) {
     this.hinhtrichdan = tintuc.hinhtrichdan;
     this.trichdantin = tintuc.trichdantin;
     this.noidungtin = tintuc.noidungtin;
-    this.idTheLoai = tintuc.idTheLoai;
     this.ID_child_theloai = tintuc.ID_child_theloai;
     this.id_nhomtin = tintuc.id_nhomtin;
     this.id_phanloaitin = tintuc.id_phanloaitin;
@@ -14,6 +13,13 @@ const Tintuc = function (tintuc) {
     this.ngaycapnhat = tintuc.ngaycapnhat;
     this.solandoc = tintuc.solandoc;
     this.kiemduyet = tintuc.kiemduyet;
+    this.anh1 = tintuc.anh1;
+    this.anh2 = tintuc.anh2;
+    this.anh3 = tintuc.anh3;
+    this.doan1 = tintuc.doan1;
+    this.doan2 = tintuc.doan2;
+    this.doan3 = tintuc.doan3;
+    this.doan4 = tintuc.doan4;
 }
 Tintuc.get_by_id = function(id,result){
     db.query(`SELECT * FROM tintuc WHERE idtintuc = ? `,id, function (err, child) {
@@ -24,3 +30,26 @@ Tintuc.get_by_id = function(id,result){
         }
     });
 };
+Tintuc.add_new = function(data,result){
+    db.query(`INSERT INTO tintuc SET ? `, data, function (err, res) {
+        if (err) {
+            result(err)
+        } else {
+            result({
+                idtintuc: res.insertId,
+                ...data
+            })
+        }
+    });
+}
+Tintuc.get_all = function (result) {
+    db.query(`SELECT * FROM tintuc `, function (err, data) {
+        if (err) {
+            result(err);
+        } else {
+            result(data);
+        }
+    });
+}
+
+module.exports = Tintuc;

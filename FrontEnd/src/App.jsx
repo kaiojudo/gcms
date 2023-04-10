@@ -7,7 +7,7 @@ import Post from "./Layout_Post";
 import Admin from "./Layout_Admin";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import AdminPost from "./component/admin/Post";
+import AdminPost from "./component/admin/AddPost";
 import FormLog from "./component/Login";
 import Register from "./component/Register";
 

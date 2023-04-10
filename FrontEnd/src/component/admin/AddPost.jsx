@@ -1,4 +1,6 @@
-export default function Post() {
+export default function AddPost() {
+
+  
   return (
     <form className="form-baiviet">
       <h2>Bài viết</h2>
@@ -97,8 +99,8 @@ export default function Post() {
       <div className="form-group">
         <label htmlFor="exampleFormControlFile1">Nhập nội dung đoạn 1</label>
         <textarea
-        placeholder="Nội dung đoạn 1..."
-        rows={4}
+          placeholder="Nội dung đoạn 1..."
+          rows={4}
           className="form-control-file"
           id="exampleFormControlFile1"
         ></textarea>
@@ -114,8 +116,8 @@ export default function Post() {
       <div className="form-group">
         <label htmlFor="exampleFormControlFile1">Nhập nội dung đoạn 2</label>
         <textarea
-        placeholder="Nội dung đoạn 2..."
-        rows={4}
+          placeholder="Nội dung đoạn 2..."
+          rows={4}
           className="form-control-file"
           id="exampleFormControlFile1"
         ></textarea>
@@ -131,8 +133,8 @@ export default function Post() {
       <div className="form-group">
         <label htmlFor="exampleFormControlFile1">Nhập nội dung đoạn 3</label>
         <textarea
-        placeholder="Nội dung đoạn 3..."
-        rows={4}
+          placeholder="Nội dung đoạn 3..."
+          rows={4}
           className="form-control-file"
           id="exampleFormControlFile1"
         ></textarea>
@@ -148,13 +150,15 @@ export default function Post() {
       <div className="form-group">
         <label htmlFor="exampleFormControlFile1">Nhập nội dung đoạn 4</label>
         <textarea
-        placeholder="Nội dung đoạn 4..."
-        rows={4}
+          placeholder="Nội dung đoạn 4..."
+          rows={4}
           className="form-control-file"
           id="exampleFormControlFile1"
         ></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Đăng bài</button>
+      <button type="submit" class="btn btn-primary">
+        Đăng bài
+      </button>
     </form>
   );
 }
