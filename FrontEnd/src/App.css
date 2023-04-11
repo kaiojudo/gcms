@@ -90,10 +90,7 @@ img {
   cursor: pointer;
   opacity: 0.8;
 }
-.header-menu li:hover .menu-sub-cat {
-  display: flex;
-}
-.header-menu > li:hover .menu-sub-cat {
+.header-menu .menu-category:hover + .menu-sub-cat {
   min-width: 36rem;
   display: flex;
   text-transform: none;
@@ -135,14 +132,12 @@ img {
 }
 #sub-header {
   height: 2.5rem;
-  display: flex;
-  justify-content: flex-end;
 }
 .menu-sub-cat {
   display: none;
-  bottom: -2.5rem;
+  margin-left: 9rem;
   z-index: 3;
-  position: absolute;
+  position: relative;
 }
 
 .menu-sub-cat li {
@@ -152,11 +147,12 @@ img {
 }
 #search {
   padding: 0.5rem 0;
+  right: 10%;
+  position: absolute;
 }
 .modal-log {
   position: absolute;
   width: 10rem;
-
   left: -125%;
   top: 100%;
   display: none;

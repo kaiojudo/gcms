@@ -29,6 +29,15 @@ export default function Header() {
       modal.style.display = "none";
     }
   }
+  function HoverFa(e) {
+    console.log(e.target);
+    const child = document.querySelector(".menu-sub-cat");
+    child.classList.add("d-flex");
+  }
+  function onMouseOver(e) {
+    const child = document.querySelector(".menu-sub-cat");
+    child.classList.remove("d-flex");
+  }
   return (
     <div id="header" className="w-100">
       <div id="header-top" className="w-80 d-flex header-top-mobile">
@@ -39,13 +48,13 @@ export default function Header() {
             </Link>
           </li>
           {dataTheLoai?.result?.map((e) => (
-            <li key={e.idTheLoai} className="menu-category">
+            <li
+              key={e.idTheLoai}
+              className="menu-category"
+              onMouseOver={HoverFa}
+              onMouseOut={onMouseOver}
+            >
               <a href={e.url}>{e.tenTheLoai}</a>
-              <ul className="menu-sub-cat">
-                {dataChildTheLoai?.result?.map((e) => (
-                  <li key={e.ID_child_theloai}>{e.ten_child_theloai}</li>
-                ))}
-              </ul>
             </li>
           ))}
         </ul>
@@ -76,6 +85,11 @@ export default function Header() {
       </div>
       <div className="bd-bt" />
       <div id="sub-header" className="w-80 d-flex">
+        <ul className="menu-sub-cat">
+          {dataChildTheLoai?.result?.map((e) => (
+            <li key={e.ID_child_theloai}>{e.ten_child_theloai}</li>
+          ))}
+        </ul>
         <div id="search">
           <input type="text" name="search" placeholder="Tìm kiếm" />
         </div>
