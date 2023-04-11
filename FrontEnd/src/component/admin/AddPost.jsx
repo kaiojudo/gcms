@@ -28,7 +28,7 @@ export default function AddPost() {
     console.log(newdata);
   }
   function submit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     Axios.post(url, {
       tieudetin: data.tieudetin,
       hinhtrichdan: data.hinhtrichdan,

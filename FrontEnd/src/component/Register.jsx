@@ -30,7 +30,6 @@ export default function Register() {
     setData(newdata);
   }
   function submit(e) {
-    e.preventDefault();
     Axios.post(url, {
       hoten: data.hoten,
       sex: data.sex,
