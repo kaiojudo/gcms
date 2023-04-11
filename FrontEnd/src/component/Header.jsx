@@ -9,9 +9,17 @@ export default function Header() {
       .then((response) => response.json())
       .then((data) => {
         setDataTheLoai(data);
+        
       });
   }, []);
-
+  const url2 = "http://localhost:3030/childtheloai/child/1";
+  useEffect(() => {
+    fetch(url2)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataChildTheLoai(data);
+      });
+  }, []);
   function ShowMenu() {
     const modal = document.querySelector(".modal-menu");
     var style = modal.style.display;
@@ -26,17 +34,10 @@ export default function Header() {
     child.classList.add("d-flex");
     console.log(e.target.id);
   }
-  const url2 = "http://localhost:3030/childtheloai/child/1";
-  useEffect(() => {
-    fetch(url2)
-      .then((response) => response.json())
-      .then((data) => {
-        setDataChildTheLoai(data);
-      });
-  }, []);
+
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
 
-  function onMouseOver(e) {
+  function onMouseOut(e) {
     const child = document.querySelector(".menu-sub-cat");
     child.classList.remove("d-flex");
   }
@@ -53,8 +54,7 @@ export default function Header() {
             <li
               key={e.idTheLoai}
               className="menu-category"
-              onMouseOver={HoverFa}
-              onMouseOut={onMouseOver}
+              onMouseMove={HoverFa}   
             >
               <a href={e.url} id={e.idTheLoai}>
                 {e.tenTheLoai}
