@@ -8,8 +8,7 @@ export default function Header() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setDataTheLoai(data);      
-        
+        setDataTheLoai(data);
       });
   }, []);
   function ShowMenu() {
@@ -24,14 +23,13 @@ export default function Header() {
   function HoverFa(e) {
     const child = document.querySelector(".menu-sub-cat");
     child.classList.add("d-flex");
-    const url2 = "http://localhost:3030/childtheloai/child/" + e.target.id; 
-          fetch(url2)
-          .then((response) => response.json())
-          .then((data) => {
-            setDataChildTheLoai(data);
-  });
-}
-        
+    const url2 = "http://localhost:3030/childtheloai/child/" + e.target.id;
+    fetch(url2)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataChildTheLoai(data);
+      });
+  }
 
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
 
@@ -90,7 +88,8 @@ export default function Header() {
         <ul className="menu-sub-cat">
           {dataChildTheLoai?.result?.map((e) => (
             <li key={e.ID_child_theloai} id={e.ID_child_theloai}>
-              {e.ten_child_theloai}
+              <a href="demo.vn">{e.ten_child_theloai}</a>
+              
             </li>
           ))}
         </ul>
