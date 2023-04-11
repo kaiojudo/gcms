@@ -11,15 +11,7 @@ export default function Header() {
         setDataTheLoai(data);
       });
   }, []);
-  const url2 = "http://localhost:3030/childtheloai/child/2";
-  const [dataChildTheLoai, setDataChildTheLoai] = useState({});
-  useEffect(() => {
-    fetch(url2)
-      .then((response) => response.json())
-      .then((data) => {
-        setDataChildTheLoai(data);
-      });
-  }, []);
+
   function ShowMenu() {
     const modal = document.querySelector(".modal-menu");
     var style = modal.style.display;
@@ -30,10 +22,20 @@ export default function Header() {
     }
   }
   function HoverFa(e) {
-    console.log(e.target);
     const child = document.querySelector(".menu-sub-cat");
     child.classList.add("d-flex");
+    console.log(e.target.id);
   }
+  const url2 = "http://localhost:3030/childtheloai/child/1";
+  useEffect(() => {
+    fetch(url2)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataChildTheLoai(data);
+      });
+  }, []);
+  const [dataChildTheLoai, setDataChildTheLoai] = useState({});
+
   function onMouseOver(e) {
     const child = document.querySelector(".menu-sub-cat");
     child.classList.remove("d-flex");
@@ -54,7 +56,9 @@ export default function Header() {
               onMouseOver={HoverFa}
               onMouseOut={onMouseOver}
             >
-              <a href={e.url}>{e.tenTheLoai}</a>
+              <a href={e.url} id={e.idTheLoai}>
+                {e.tenTheLoai}
+              </a>
             </li>
           ))}
         </ul>
@@ -87,7 +91,9 @@ export default function Header() {
       <div id="sub-header" className="w-80 d-flex">
         <ul className="menu-sub-cat">
           {dataChildTheLoai?.result?.map((e) => (
-            <li key={e.ID_child_theloai}>{e.ten_child_theloai}</li>
+            <li key={e.ID_child_theloai} id={e.ID_child_theloai}>
+              {e.ten_child_theloai}
+            </li>
           ))}
         </ul>
         <div id="search">
