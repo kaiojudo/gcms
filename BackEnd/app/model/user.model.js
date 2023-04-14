@@ -16,7 +16,7 @@ const User = function (user) {
 User.register = function (data, result) {
     db.query(`INSERT INTO thanhvien SET ? `, data, function (err, res) {
         if (err) {
-            result(err)
+            result(err);
         } else {
             result({
                 id_thanhvien: res.insertId,
@@ -34,4 +34,13 @@ User.get_all = function (result) {
         }
     });
 }
+User.findOne = function (username,password,result) {
+    db.query(`SELECT * FROM thanhvien WHERE username = "${username}" AND password = "${password}" `, function (err, data) {
+        if (err) {
+            result(err);
+        } else {
+            result(data);
+        }
+    });
+};
 module.exports = User;

@@ -15,3 +15,10 @@ exports.showUser = function (req, res) {
         });
     })
 }
+exports.findUser = function (req, res) {
+    User.findOne(function (data) {
+        res.send({
+            result: data
+        });
+    })
+}

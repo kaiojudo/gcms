@@ -75,8 +75,9 @@ export default function AddPost() {
       doan3: data.doan3,
       doan4: data.doan4,
     }).then((res) => {
-      console.log(res.data);
-    });
+      console.log("Xin chờ xét duyệt");
+    })
+    .catch((err) => {alert("Nhập thông tin sai !");});
   }
   return (
     <form className="form-baiviet" onSubmit={(e) => submit(e)}>

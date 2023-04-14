@@ -30,6 +30,7 @@ export default function Register() {
     setData(newdata);
   }
   function submit(e) {
+    e.preventDefault();
     Axios.post(url, {
       hoten: data.hoten,
       sex: data.sex,
@@ -41,9 +42,11 @@ export default function Register() {
       password: data.password,
       accesslevel: 1,
       active: 1,
-    }).then((res) => {
-      console.log(res.data);
-    });
+    })
+    .then((res) => {
+      console.log(res.data); 
+    })
+    .catch((err) => {alert("Error User: " + err.message)});
   }
 
   return (

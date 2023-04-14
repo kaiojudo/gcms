@@ -1,7 +1,8 @@
 var express = require('express');
 var cors = require('cors')
 var app = express()
-var bodyParser = require('body-parser');
+// var session = require('express-session')
+var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -15,6 +16,12 @@ require('./app/router/tintuc.router')(app);
 require('./app/router/tinh.router')(app);
 require('./app/router/danhmuc.router')(app);
 
+
+// app.use(session({
+// secret: process.env.SESSION_SECRET,
+// resave:true,
+// saveUninitialized:true
+// }));
 
 var port = 3030;
 app.listen(port, function () {
