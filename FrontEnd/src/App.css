@@ -201,7 +201,9 @@ img {
   width: 24rem;
 }
 .login-logo {
+  z-index: 3;
   font-size: 3rem;
+  position: relative;
 }
 #log-in .login-logo {
   width: 100%;

@@ -22,15 +22,33 @@ export default function AddPost() {
     doan4: "",
   });
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
-  const urlchild = "http://localhost:3030/childtheloai/showlist";
+  const urlChild = "http://localhost:3030/childtheloai/showlist";
   useEffect(() => {
-    fetch(urlchild)
+    fetch(urlChild)
       .then((response) => response.json())
       .then((data) => {
         setDataChildTheLoai(data);
       });
   }, []);
+  const [dataUser, setDataUser] = useState({});
+  const urlUser = "http://localhost:3030/user/showlist";
+  useEffect(() => {
+    fetch(urlUser)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataUser(data);
+      });
+  }, []);
+  const [dataDanhmuc, setDataDanhmuc] = useState({});
 
+  const urlphanloaitin = "http://localhost:3030/danhmuc/showlist";
+  useEffect(() => {
+    fetch(urlphanloaitin)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataDanhmuc(data);
+      });
+  }, []);
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
@@ -100,8 +118,8 @@ export default function AddPost() {
           onChange={(e) => handle(e)}
         >
           {dataChildTheLoai?.result?.map((e) => (
-            <option key={e.id_phanloaitin} value={e.id_phanloaitin}>
-              {e.ten_phanloaitin}
+            <option key={e.ID_child_theloai} value={e.ten_child_theloai}>
+              {e.ten_child_theloai}
             </option>
           ))}
         </select>
@@ -114,11 +132,11 @@ export default function AddPost() {
           className="form-control"
           id="id_phanloaitin"
         >
-          <option value={1}>Tin mới</option>
-          <option value={2}>PC/Console</option>
-          <option value={3}>Mobile</option>
-          <option value={4}>Cosplay</option>
-          <option value={5}>Độc lạ Teyvat</option>
+          {dataDanhmuc?.result?.map((e) => (
+            <option key={e.id_phanloaitin} value={e.id_phanloaitin}>
+              {e.ten_phanloaitin}
+            </option>
+          ))}
         </select>
       </div>
       <div className="form-group">
@@ -129,12 +147,13 @@ export default function AddPost() {
           className="form-control"
           id="id_tacgia"
         >
-          <option value={1}>Hiếu</option>
-          <option value={2}>Kaos</option>
-          <option value={3}>Linh</option>
-          <option value={4}>Demo 4</option>
-          <option value={5}>Hiếu 5</option>
-          <option value={6}>Hiếu 6</option>
+          <option value="Demo">Chọn tác giả</option>
+
+          {dataUser?.result?.map((e) => (
+            <option key={e.id_thanhvien} value={e.id_thanhvien}>
+              {e.hoten}
+            </option>
+          ))}
         </select>
       </div>
       <div className="form-group">

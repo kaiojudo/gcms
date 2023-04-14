@@ -20,8 +20,8 @@ ChildTheLoai.getbyID = function (idTheloai, result) {
         }
     });
 };
-ChildTheLoai.getAll = function (idTheloai, result) {
-    db.query(`SELECT * FROM child_theloai? `,idTheloai, function (err, child) {
+ChildTheLoai.getAll = function (result) {
+    db.query(`SELECT * FROM child_theloai `, function (err, child) {
         if (err) {
             result(err);
         } else {
