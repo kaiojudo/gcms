@@ -1,7 +1,7 @@
 export default function Pagi() {
   return (
     <div id="pagination" className="bd-t">
-      <ul className="">
+      <ul className="pagi">
         <li>1</li>
         <li>2</li>
         <li>3</li>

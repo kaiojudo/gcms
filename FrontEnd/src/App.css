@@ -2,14 +2,13 @@
   padding: 0;
   margin: 0;
   font-size: 16px;
-  box-sizing: border-box;
 }
 :root {
   --gray-color: #515962;
   --color-label: #69b03b;
 }
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
   color: var(--gray-color);
 }
 textarea {
@@ -32,7 +31,7 @@ a:hover {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1.2rem;
-  display: block;
+  display: inline-block;
   border-top: 0.2rem solid var(--color-label);
   border-bottom: 1px solid #ccc;
 
@@ -236,7 +235,6 @@ img {
 }
 .description {
   position: absolute;
-  bottom: 1rem;
   overflow: hidden;
   width: 100%;
 }

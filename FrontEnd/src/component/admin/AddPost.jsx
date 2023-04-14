@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 
 export default function AddPost() {
@@ -21,11 +21,21 @@ export default function AddPost() {
     doan3: "",
     doan4: "",
   });
+  const [dataChildTheLoai, setDataChildTheLoai] = useState({});
+  const urlchild = "http://localhost:3030/childtheloai/showlist";
+  useEffect(() => {
+    fetch(urlchild)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataChildTheLoai(data);
+      });
+  }, []);
+
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
-    console.log(newdata);
+    // console.log(newdata);
   }
   function submit(e) {
     // e.preventDefault();
@@ -51,7 +61,7 @@ export default function AddPost() {
     });
   }
   return (
-    <form className="form-baiviet" onSubmit={(e)=>submit(e)}>
+    <form className="form-baiviet" onSubmit={(e) => submit(e)}>
       <h2>Bài viết</h2>
       <div className="form-group">
         <label htmlFor="tieudetin">Nhập tên bài viết</label>
@@ -64,9 +74,7 @@ export default function AddPost() {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="hinhtrichdan">
-          Chọn ảnh đại diện cho bài viết
-        </label>
+        <label htmlFor="hinhtrichdan">Chọn ảnh đại diện cho bài viết</label>
         <input
           onChange={(e) => handle(e)}
           type="file"
@@ -91,17 +99,15 @@ export default function AddPost() {
           id="ID_child_theloai"
           onChange={(e) => handle(e)}
         >
-          <option value={1}>Tin mới</option>
-          <option value={2}>PC/Console</option>
-          <option value={4}>Mobile</option>
-          <option value={5}>Cosplay</option>
-          <option value={6}>Độc lạ Teyvat</option>
+          {dataChildTheLoai?.result?.map((e) => (
+            <option key={e.id_phanloaitin} value={e.id_phanloaitin}>
+              {e.ten_phanloaitin}
+            </option>
+          ))}
         </select>
       </div>
       <div className="form-group">
-        <label htmlFor="id_phanloaitin">
-          Lựa chọn phân loại tin
-        </label>
+        <label htmlFor="id_phanloaitin">Lựa chọn phân loại tin</label>
         <select
           onChange={(e) => handle(e)}
           multiple=""

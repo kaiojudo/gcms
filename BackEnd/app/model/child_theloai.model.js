@@ -20,4 +20,13 @@ ChildTheLoai.getbyID = function (idTheloai, result) {
         }
     });
 };
+ChildTheLoai.getAll = function (idTheloai, result) {
+    db.query(`SELECT * FROM child_theloai? `,idTheloai, function (err, child) {
+        if (err) {
+            result(err);
+        } else {
+            result(child);
+        }
+    });
+};
 module.exports = ChildTheLoai;
