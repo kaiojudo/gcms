@@ -8,7 +8,7 @@
   --color-label: #69b03b;
 }
 body {
-  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  font-family: "Roboto", sans-serif;
   color: var(--gray-color);
 }
 textarea {
@@ -496,6 +496,21 @@ img {
     transform: translateX(0);
     opacity: 1;
   }
+}
+.show {
+  border: none;
+  background-color: #fff;
+  padding: 0 1rem;
+}
+.form-baiviet {
+  position: relative;
+}
+#preshow {
+  position: absolute;
+  width: 50%;
+  margin: auto;
+  display: none;
+  top: 3rem;
 }
 footer {
   margin-top: 1rem;
