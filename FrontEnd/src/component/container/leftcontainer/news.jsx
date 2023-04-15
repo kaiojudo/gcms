@@ -1,5 +1,15 @@
-export default function News(id) {
+import { useEffect,useState } from "react";
 
+export default function News(id) {
+  const urlPost = "http://localhost:3030/post/" + id; 
+  const [data, setDataPost] = useState({});
+  useEffect(() => {
+    fetch(urlPost)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataPost(data);
+      });
+  }, []);
   return (
     <>
       <div className="linkfrom">
