@@ -271,15 +271,48 @@ export default function AddPost() {
         </div>
       </form>
       <div id="preshow">
-        <label htmlFor="" id="preshow-name"></label>
-        <img src="" alt="" id="prehinhtrichdan"></img>
-        <p id="preshow-1"></p>
-        <img src="" alt="" id="img1" />
-        <p id="preshow-2"></p>
-        <img src="" alt="" id="img2" />
-        <p id="preshow-3"></p>
-        <img src="" alt="" id="img3" />
-        <p id="preshow-4"></p>
+        <div className="preshow-post">
+          <label htmlFor="" id="preshow-name">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
+            commodi? Incidunt voluptate eius eum molestiae a maiores mollitia
+            esse. Non delectus facere eum exercitationem consequuntur debitis,
+            repellat provident dolorem quod!
+          </label>
+          <img src="../demo.jpg" alt="" id="prehinhtrichdan"></img>
+          <p id="preshow-1">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
+            error, cupiditate praesentium quo iste ut impedit. Eveniet
+            repellendus laborum ipsa error quia at exercitationem reiciendis
+            consectetur qui illo. Totam, hic!
+          </p>
+          <img src="../demo.jpg" alt="" id="img1" />
+          <p id="preshow-2">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id quae
+            voluptatum voluptatem tenetur reiciendis sunt sit magni ab. Ex,
+            natus reprehenderit non labore ea nam nesciunt a accusamus deserunt
+            aliquid.
+          </p>
+          <img src="../demo.jpg" alt="" id="img2" />
+          <p id="preshow-3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+            aut temporibus labore dignissimos ducimus at, voluptatem nihil
+            cupiditate animi repellat suscipit quisquam nostrum beatae,
+            repudiandae impedit obcaecati minima necessitatibus ipsum.
+          </p>
+          <img src="../demo.jpg" alt="" id="img3" />
+          <p id="preshow-4">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
+            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
+            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
+            ipsa eum vero? Labore.
+          </p>
+          <p id="tacgia">Tác giả:
+            <i>Hiếu tóc dài</i>
+          </p>
+        </div>
+        <div className="close-modal">
+          <i className="fa-solid fa-rectangle-xmark fa-xl"></i>
+        </div>
       </div>
     </>
   );

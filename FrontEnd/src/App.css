@@ -509,8 +509,23 @@ img {
   position: absolute;
   width: 50%;
   margin: auto;
-  display: none;
-  top: 3rem;
+  top: 8rem;
+  background-color: #fff;
+  display: flex;
+}
+#preshow-name{
+  font-size: 1.5rem;
+  color: #000;
+  display: inline-block;
+  overflow: hidden;
+  font-weight: bold;
+}
+#tacgia{
+  text-align: right;
+  font-weight: bold;
+}
+#tacgia i{
+  color: red;
 }
 footer {
   margin-top: 1rem;
