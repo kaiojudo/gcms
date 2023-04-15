@@ -480,23 +480,13 @@ img {
 .form-add {
   width: 80%;
 }
-@keyframes slidetoLeft {
+@keyframes onShow {
   0% {
-    transform: translateX(100%);
+    transform: translateY(-100%);
     opacity: 0;
   }
   100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-@keyframes slidetoRight {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -517,6 +507,7 @@ img {
   display: none;
   border: 3px solid #000;
   border-radius: 5px;
+  animation: onShow 1s ease-in-out;
 }
 #preshow-name {
   font-size: 1.5rem;
