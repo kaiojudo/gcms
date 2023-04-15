@@ -55,6 +55,7 @@ export default function AddPost() {
     setData(newdata);
     // console.log(newdata);
   }
+  // Xem trước
   function CheckForm() {
     const tieudetin = document.getElementById("tieudetin").value;
     const hinhtrichdan = document
@@ -76,6 +77,17 @@ export default function AddPost() {
     document.getElementById("preshow-2").innerText = doan2;
     document.getElementById("preshow-3").innerText = doan3;
     document.getElementById("preshow-4").innerText = doan4;
+    const premenu = document.getElementById("preshow");
+    const form = document.getElementById("form-baiviet");
+    form.classList.add("op-5");
+    premenu.classList.add("d-block");
+  }
+  // Đóng mở menu xem trc
+  function Hiden() {
+    const premenu = document.getElementById("preshow");
+    premenu.classList.remove("d-block");
+    const form = document.getElementById("form-baiviet");
+    form.classList.remove("op-5");
   }
   function submit(e) {
     // e.preventDefault();
@@ -107,7 +119,7 @@ export default function AddPost() {
 
   return (
     <>
-      <form className="form-baiviet" onSubmit={(e) => submit(e)}>
+      <form id="form-baiviet" className="form-baiviet" onSubmit={(e) => submit(e)}>
         <h2>Bài viết</h2>
         <div className="form-group">
           <label htmlFor="tieudetin">Nhập tên bài viết</label>
@@ -265,7 +277,7 @@ export default function AddPost() {
           <button type="submit" className="btn btn-primary">
             Đăng bài
           </button>
-          <button className="show" type="button" onClick={CheckForm}>
+          <button className="show" type="button" onClick={CheckForm} >
             <i className="fa-solid fa-eye"></i>
           </button>
         </div>
@@ -310,7 +322,7 @@ export default function AddPost() {
             <i>Hiếu tóc dài</i>
           </p>
         </div>
-        <div className="close-modal">
+        <div className="close-modal" onClick={Hiden}>
           <i className="fa-solid fa-rectangle-xmark fa-xl"></i>
         </div>
       </div>

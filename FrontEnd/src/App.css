@@ -11,6 +11,9 @@ body {
   font-family: "Roboto", sans-serif;
   color: var(--gray-color);
 }
+.op-5 {
+  opacity: 0.5;
+}
 textarea {
   resize: none;
 }
@@ -511,20 +514,27 @@ img {
   margin: auto;
   top: 8rem;
   background-color: #fff;
-  display: flex;
+  display: none;
+  border: 3px solid #000;
+  border-radius: 5px;
 }
-#preshow-name{
+#preshow-name {
   font-size: 1.5rem;
   color: #000;
   display: inline-block;
   overflow: hidden;
   font-weight: bold;
 }
-#tacgia{
+.close-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#tacgia {
   text-align: right;
   font-weight: bold;
 }
-#tacgia i{
+#tacgia i {
   color: red;
 }
 footer {
