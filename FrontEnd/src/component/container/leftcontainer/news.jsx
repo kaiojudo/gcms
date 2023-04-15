@@ -1,4 +1,5 @@
 export default function News(id) {
+
   return (
     <>
       <div className="linkfrom">
@@ -17,7 +18,7 @@ export default function News(id) {
       <p>
         <a href="" className="">
           Cửu thiên Mobile
-        </a>{" "}
+        </a>
         được đánh giá là ngọn gió mát lành "đúng người đúng thời điểm" trên thị
         trường game hiện nay. Dù sở hữu toàn bộ những yếu tố tiêu chuẩn về đồ
         họa và gameplay chuẩn chỉ của dòng game nhập vai nhưng Cửu Thiên Mobile

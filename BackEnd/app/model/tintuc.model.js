@@ -20,12 +20,12 @@ const Tintuc = function (tintuc) {
     this.doan3 = tintuc.doan3;
     this.doan4 = tintuc.doan4;
 }
-Tintuc.get_by_id = function(id,result){
-    db.query(`SELECT * FROM tintuc WHERE idtintuc = ? `,id, function (err, tintuc) {
+Tintuc.get_by_id = function(idtintuc,result){
+    db.query(`SELECT * from tintuc WHERE idtintuc = ?`, idtintuc, function (err, tintuc) {
         if (err) {
             result(err);
         } else {
-            result(tintuc);
+            result(tintuc[0]);
         }
     });
 };

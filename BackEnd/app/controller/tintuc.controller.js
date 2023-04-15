@@ -8,10 +8,18 @@ exports.addTintuc = function (req, res) {
         });
     })
 }
-exports.showTintuc = function (req, res) {
+exports.showAllTintuc = function (req, res) {
     Tintuc.get_all(function (data) {
         res.send({
             result: data
+        });
+    })
+}
+
+exports.getbyId = function (req, res) {
+    Tintuc.get_by_id(req.params.id, function (tintuc) {
+        res.send({
+            result: tintuc
         });
     })
 }

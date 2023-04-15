@@ -90,30 +90,27 @@ export default function AddPost() {
     form.classList.remove("op-5");
   }
   function submit(e) {
-    // e.preventDefault();
+    e.preventDefault();
     Axios.post(url, {
       tieudetin: data.tieudetin,
       hinhtrichdan: data.hinhtrichdan,
-      trichdantin: data.trichdantin,
+      trichdantin: data.trichdantin.split("fakepath\\")[1],
       ID_child_theloai: data.ID_child_theloai,
       id_phanloaitin: data.id_phanloaitin,
       id_tacgia: data.id_tacgia,
       ngaycapnhat: data.ngaycapnhat,
       solandoc: 0,
       kiemduyet: 1,
-      anh1: data.anh1,
-      anh2: data.anh2,
-      anh3: data.anh3,
+      anh1: data.anh1.split("fakepath\\")[1],
+      anh2: data.anh2.split("fakepath\\")[1],
+      anh3: data.anh3.split("fakepath\\")[1],
       doan1: data.doan1,
       doan2: data.doan2,
       doan3: data.doan3,
       doan4: data.doan4,
     })
       .then((res) => {
-        console.log("Xin chờ xét duyệt");
-      })
-      .catch((err) => {
-        alert("Nhập thông tin sai !");
+        console.log(res.data);
       });
   }
 
@@ -158,7 +155,7 @@ export default function AddPost() {
             onChange={(e) => handle(e)}
           >
             {dataChildTheLoai?.result?.map((e) => (
-              <option key={e.ID_child_theloai} value={e.ten_child_theloai}>
+              <option key={e.ID_child_theloai} value={e.ID_child_theloai}>
                 {e.ten_child_theloai}
               </option>
             ))}
