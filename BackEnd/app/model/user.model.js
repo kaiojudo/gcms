@@ -43,4 +43,13 @@ User.findOne = function (username,password,result) {
         }
     });
 };
+User.get_by_id = function (id_thanhvien, result){
+    db.query(`SELECT * from thanhvien WHERE id_thanhvien = ?`, id_thanhvien, function (err, thanhvien) {
+        if (err) {
+            result(err);
+        } else {
+            result(thanhvien[0]);
+        }
+    });
+}
 module.exports = User;

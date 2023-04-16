@@ -22,3 +22,10 @@ exports.findUser = function (req, res) {
         });
     })
 }
+exports.findbyID = function (req, res) {
+    User.get_by_id(req.params.id,function (data) {
+        res.send({
+            result: data
+        });
+    });
+}

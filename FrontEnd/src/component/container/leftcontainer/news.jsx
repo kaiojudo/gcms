@@ -2,21 +2,53 @@ import { useEffect, useState } from "react";
 
 export default function News() {
   const [datapost, setDataPost] = useState({});
+  const [dataTacgia, setDataTacgia] = useState({});
+  const [dataChild, setDataChild] = useState({});
+  const [dataTheLoai, setDataTheLoai] = useState({});
+
+
   const urlPost = "http://localhost:3030/post/7";
   useEffect(() => {
     fetch(urlPost)
       .then((response) => response.json())
       .then((data) => {
         setDataPost(data);
+        const urlTacgia =
+          "http://localhost:3030/user/findbyid/" + data.result.id_tacgia;
+        console.log(urlTacgia);
+        fetch(urlTacgia)
+          .then((response) => response.json())
+          .then((dataTacgia) => {
+            setDataTacgia(dataTacgia);
+          });
+        const urlchild =
+          "http://localhost:3030/childtheloai/child/" +
+          data.result.ID_child_theloai;
+          console.log(urlchild);
+        fetch(urlchild)
+          .then((response) => response.json())
+          .then((datachild) => {
+            setDataChild(datachild); 
+            const urlTheLoai =
+          "http://localhost:3030/theloai/details/" + datachild.result.idTheLoai
+          console.log(urlTheLoai);
+        fetch(urlTheLoai)
+          .then((response) => response.json())
+          .then((datatheloai) => {
+            setDataTheLoai(datatheloai); 
+            
+          });
+          });
       });
   }, []);
-  console.log(datapost?.result?.tieudetin);
   return (
     <>
       <div className="linkfrom">
         <i className="fa-solid fa-house"></i>
         <i className="fa-solid fa-caret-right"></i>
-        <span>Game</span>
+        <span>{dataTheLoai?.result?.tenTheLoai}</span>
+        <i className="fa-solid fa-caret-right"></i>
+        <span>{dataChild?.result?.ten_child_theloai}</span>
       </div>
 
       <div className="post-details">
@@ -37,7 +69,7 @@ export default function News() {
         <p id="preshow-4">{datapost?.result?.doan4}</p>
         <p id="tacgia">
           Tác giả:
-          <i></i>
+          <i>{dataTacgia?.result?.hoten}</i>
         </p>
       </div>
     </>
