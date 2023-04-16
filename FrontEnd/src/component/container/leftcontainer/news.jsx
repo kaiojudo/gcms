@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export default function News() {
+export default function News(props) {
+  const params = useParams();
   const [datapost, setDataPost] = useState({});
   const [dataTacgia, setDataTacgia] = useState({});
   const [dataChild, setDataChild] = useState({});
   const [dataTheLoai, setDataTheLoai] = useState({});
 
-
-  const urlPost = "http://localhost:3030/post/7";
+  const urlPost = `http://localhost:3030/post/${params.id}`;
   useEffect(() => {
     fetch(urlPost)
       .then((response) => response.json())
@@ -24,23 +25,24 @@ export default function News() {
         const urlchild =
           "http://localhost:3030/childtheloai/child/" +
           data.result.ID_child_theloai;
-          console.log(urlchild);
+        console.log(urlchild);
         fetch(urlchild)
           .then((response) => response.json())
           .then((datachild) => {
-            setDataChild(datachild); 
+            setDataChild(datachild);
             const urlTheLoai =
-          "http://localhost:3030/theloai/details/" + datachild.result.idTheLoai
-          console.log(urlTheLoai);
-        fetch(urlTheLoai)
-          .then((response) => response.json())
-          .then((datatheloai) => {
-            setDataTheLoai(datatheloai); 
-            
-          });
+              "http://localhost:3030/theloai/details/" +
+              datachild.result.idTheLoai;
+            console.log(urlTheLoai);
+            fetch(urlTheLoai)
+              .then((response) => response.json())
+              .then((datatheloai) => {
+                setDataTheLoai(datatheloai);
+              });
           });
       });
-  }, []);
+  }, [params.id]);
+  
   return (
     <>
       <div className="linkfrom">

@@ -11,7 +11,7 @@ import AdminPost from "./component/admin/AddPost";
 import FormLog from "./component/Login";
 import Register from "./component/Register";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <Header />
@@ -21,7 +21,7 @@ function App() {
           <Route path="signin" element={<FormLog />} />
           <Route path="register" element={<Register />} />
         </Route>
-        <Route path="post" element={<Post />} />
+        <Route path="post/:id" element={<Post />} />
         <Route path="admin" element={<Admin />}>
           <Route path="post" element={<AdminPost />} />
         </Route>

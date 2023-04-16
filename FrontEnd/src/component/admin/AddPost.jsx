@@ -93,30 +93,33 @@ export default function AddPost() {
     e.preventDefault();
     Axios.post(url, {
       tieudetin: data.tieudetin,
-      hinhtrichdan: data.hinhtrichdan,
-      trichdantin: data.trichdantin.split("fakepath\\")[1],
+      hinhtrichdan: "../" + data.hinhtrichdan.split("fakepath\\")[1],
+      trichdantin: data.trichdantin,
       ID_child_theloai: data.ID_child_theloai,
       id_phanloaitin: data.id_phanloaitin,
       id_tacgia: data.id_tacgia,
       ngaycapnhat: data.ngaycapnhat,
       solandoc: 0,
       kiemduyet: 1,
-      anh1: data.anh1.split("fakepath\\")[1],
-      anh2: data.anh2.split("fakepath\\")[1],
-      anh3: data.anh3.split("fakepath\\")[1],
+      anh1: "../" + data.anh1.split("fakepath\\")[1],
+      anh2: "../" + data.anh2.split("fakepath\\")[1],
+      anh3: "../" + data.anh3.split("fakepath\\")[1],
       doan1: data.doan1,
       doan2: data.doan2,
       doan3: data.doan3,
       doan4: data.doan4,
-    })
-      .then((res) => {
-        console.log(res.data);
-      });
+    }).then((res) => {
+      console.log(res.data);
+    });
   }
 
   return (
     <>
-      <form id="form-baiviet" className="form-baiviet" onSubmit={(e) => submit(e)}>
+      <form
+        id="form-baiviet"
+        className="form-baiviet"
+        onSubmit={(e) => submit(e)}
+      >
         <h2>Bài viết</h2>
         <div className="form-group">
           <label htmlFor="tieudetin">Nhập tên bài viết</label>
@@ -274,7 +277,7 @@ export default function AddPost() {
           <button type="submit" className="btn btn-primary">
             Đăng bài
           </button>
-          <button className="show" type="button" onClick={CheckForm} >
+          <button className="show" type="button" onClick={CheckForm}>
             <i className="fa-solid fa-eye"></i>
           </button>
         </div>
@@ -315,7 +318,8 @@ export default function AddPost() {
             optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
             ipsa eum vero? Labore.
           </p>
-          <p id="tacgia">Tác giả:
+          <p id="tacgia">
+            Tác giả:
             <i>Hiếu tóc dài</i>
           </p>
         </div>
