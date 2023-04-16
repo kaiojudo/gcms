@@ -64,19 +64,38 @@ export default function AddPost() {
     const anh1 = document.getElementById("anh1").value.split("fakepath\\")[1];
     const anh2 = document.getElementById("anh2").value.split("fakepath\\")[1];
     const anh3 = document.getElementById("anh3").value.split("fakepath\\")[1];
+    const anh4 = document.getElementById("anh4").value.split("fakepath\\")[1];
+    const anh5 = document.getElementById("anh5").value.split("fakepath\\")[1];
+    const anh6 = document.getElementById("anh6").value.split("fakepath\\")[1];
+    const anh7 = document.getElementById("anh7").value.split("fakepath\\")[1];
+    const anh8 = document.getElementById("anh8").value.split("fakepath\\")[1];
     const doan1 = document.getElementById("doan1").value;
     const doan2 = document.getElementById("doan2").value;
     const doan3 = document.getElementById("doan3").value;
     const doan4 = document.getElementById("doan4").value;
+    const doan5 = document.getElementById("doan5").value;
+    const doan6 = document.getElementById("doan6").value;
+    const doan7 = document.getElementById("doan7").value;
+    const doan8 = document.getElementById("doan8").value;
+
     document.getElementById("preshow-name").innerText = tieudetin;
     document.getElementById("prehinhtrichdan").src = "../" + hinhtrichdan;
     document.getElementById("img1").src = "../" + anh1;
     document.getElementById("img2").src = "../" + anh2;
     document.getElementById("img3").src = "../" + anh3;
+    document.getElementById("img4").src = "../" + anh4;
+    document.getElementById("img5").src = "../" + anh5;
+    document.getElementById("img6").src = "../" + anh6;
+    document.getElementById("img7").src = "../" + anh7;
+    document.getElementById("img8").src = "../" + anh8;
     document.getElementById("preshow-1").innerText = doan1;
     document.getElementById("preshow-2").innerText = doan2;
     document.getElementById("preshow-3").innerText = doan3;
     document.getElementById("preshow-4").innerText = doan4;
+    document.getElementById("preshow-5").innerText = doan5;
+    document.getElementById("preshow-6").innerText = doan6;
+    document.getElementById("preshow-7").innerText = doan7;
+    document.getElementById("preshow-8").innerText = doan8;
     const premenu = document.getElementById("preshow");
     const form = document.getElementById("form-baiviet");
     form.classList.add("op-5");
@@ -104,10 +123,19 @@ export default function AddPost() {
       anh1: "../" + data.anh1.split("fakepath\\")[1],
       anh2: "../" + data.anh2.split("fakepath\\")[1],
       anh3: "../" + data.anh3.split("fakepath\\")[1],
+      anh4: "../" + data.anh4.split("fakepath\\")[1],
+      anh5: "../" + data.anh5.split("fakepath\\")[1],
+      anh6: "../" + data.anh6.split("fakepath\\")[1],
+      anh7: "../" + data.anh7.split("fakepath\\")[1],
+      anh8: "../" + data.anh8.split("fakepath\\")[1],
       doan1: data.doan1,
       doan2: data.doan2,
       doan3: data.doan3,
       doan4: data.doan4,
+      doan5: data.doan5,
+      doan6: data.doan6,
+      doan7: data.doan7,
+      doan8: data.doan8,
     }).then((res) => {
       console.log(res.data);
     });
@@ -273,6 +301,91 @@ export default function AddPost() {
             id="doan4"
           ></textarea>
         </div>
+        <div className="form-group">
+          <label htmlFor="anh4">Chọn ảnh số 4</label>
+          <input
+            onChange={(e) => handle(e)}
+            type="file"
+            className="form-control-file"
+            id="anh4"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="doan5">Nhập nội dung đoạn 5</label>
+          <textarea
+            onChange={(e) => handle(e)}
+            placeholder="Nội dung đoạn 5..."
+            rows={4}
+            className="form-control-file"
+            id="doan5"
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="anh5">Chọn ảnh số 5</label>
+          <input
+            onChange={(e) => handle(e)}
+            type="file"
+            className="form-control-file"
+            id="anh5"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="doan6">Nhập nội dung đoạn 6</label>
+          <textarea
+            onChange={(e) => handle(e)}
+            placeholder="Nội dung đoạn 6..."
+            rows={4}
+            className="form-control-file"
+            id="doan6"
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="anh6">Chọn ảnh số 6</label>
+          <input
+            onChange={(e) => handle(e)}
+            type="file"
+            className="form-control-file"
+            id="anh6"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="doan7">Nhập nội dung đoạn 7</label>
+          <textarea
+            onChange={(e) => handle(e)}
+            placeholder="Nội dung đoạn 7..."
+            rows={4}
+            className="form-control-file"
+            id="doan7"
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="anh4">Chọn ảnh số 7</label>
+          <input
+            onChange={(e) => handle(e)}
+            type="file"
+            className="form-control-file"
+            id="anh7"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="doan8">Nhập nội dung đoạn 8</label>
+          <textarea
+            onChange={(e) => handle(e)}
+            placeholder="Nội dung đoạn 8..."
+            rows={4}
+            className="form-control-file"
+            id="doan4"
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="anh8">Chọn ảnh số 8</label>
+          <input
+            onChange={(e) => handle(e)}
+            type="file"
+            className="form-control-file"
+            id="anh8"
+          />
+        </div>
         <div className="d-flex">
           <button type="submit" className="btn btn-primary">
             Đăng bài
@@ -290,34 +403,67 @@ export default function AddPost() {
             esse. Non delectus facere eum exercitationem consequuntur debitis,
             repellat provident dolorem quod!
           </label>
-          <img src="../demo.jpg" alt="" id="prehinhtrichdan"></img>
+          <img
+            src="../demo.jpg"
+            alt="Sai đường dẫn rồi bạn êi"
+            id="prehinhtrichdan"
+          ></img>
           <p id="preshow-1">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
             error, cupiditate praesentium quo iste ut impedit. Eveniet
             repellendus laborum ipsa error quia at exercitationem reiciendis
             consectetur qui illo. Totam, hic!
           </p>
-          <img src="../demo.jpg" alt="" id="img1" />
+          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img1" />
           <p id="preshow-2">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id quae
             voluptatum voluptatem tenetur reiciendis sunt sit magni ab. Ex,
             natus reprehenderit non labore ea nam nesciunt a accusamus deserunt
             aliquid.
           </p>
-          <img src="../demo.jpg" alt="" id="img2" />
+          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img2" />
           <p id="preshow-3">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
             aut temporibus labore dignissimos ducimus at, voluptatem nihil
             cupiditate animi repellat suscipit quisquam nostrum beatae,
             repudiandae impedit obcaecati minima necessitatibus ipsum.
           </p>
-          <img src="../demo.jpg" alt="" id="img3" />
+          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img3" />
           <p id="preshow-4">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
             sunt veniam aspernatur temporibus sed corporis id, deleniti officia
             optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
             ipsa eum vero? Labore.
           </p>
+          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img4" />
+          <p id="preshow-5">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
+            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
+            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
+            ipsa eum vero? Labore.
+          </p>
+          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img5" />
+          <p id="preshow-6">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
+            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
+            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
+            ipsa eum vero? Labore.
+          </p>
+          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img6" />
+          <p id="preshow-7">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
+            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
+            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
+            ipsa eum vero? Labore.
+          </p>
+          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img7" />
+          <p id="preshow-8">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
+            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
+            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
+            ipsa eum vero? Labore.
+          </p>
+          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img8" />
           <p id="tacgia">
             Tác giả:
             <i>Hiếu tóc dài</i>

@@ -16,7 +16,7 @@ export default function News(props) {
         setDataPost(data);
         const urlTacgia =
           "http://localhost:3030/user/findbyid/" + data.result.id_tacgia;
-        console.log(urlTacgia);
+        // console.log(urlTacgia);
         fetch(urlTacgia)
           .then((response) => response.json())
           .then((dataTacgia) => {
@@ -25,7 +25,7 @@ export default function News(props) {
         const urlchild =
           "http://localhost:3030/childtheloai/child/" +
           data.result.ID_child_theloai;
-        console.log(urlchild);
+        // console.log(urlchild);
         fetch(urlchild)
           .then((response) => response.json())
           .then((datachild) => {
@@ -33,7 +33,7 @@ export default function News(props) {
             const urlTheLoai =
               "http://localhost:3030/theloai/details/" +
               datachild.result.idTheLoai;
-            console.log(urlTheLoai);
+            // console.log(urlTheLoai);
             fetch(urlTheLoai)
               .then((response) => response.json())
               .then((datatheloai) => {
@@ -41,6 +41,7 @@ export default function News(props) {
               });
           });
       });
+      // eslint-disable-next-line
   }, [params.id]);
   
   return (
