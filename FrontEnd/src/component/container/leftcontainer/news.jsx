@@ -10,6 +10,7 @@ export default function News() {
         setDataPost(data);
       });
   }, []);
+  console.log(datapost);
   return (
     <>
       <div className="linkfrom">
@@ -17,10 +18,10 @@ export default function News() {
         <i className="fa-solid fa-caret-right"></i>
         <span>Game</span>
       </div>
-      {datapost?.result?.map((e) => (
+      
         <div className="post-details">
           <label htmlFor="" className="tieude">
-            {e.tieudetin}
+            tiêu đề tin
           </label>
           <p className="tacgia">Hiếu vũ</p>
           <p className="gioithieu">
@@ -105,7 +106,7 @@ export default function News() {
             đến cho game thủ những trải nghiệm đặc sắc và khó quên.​
           </p>
         </div>
-      ))}
+     
     </>
   );
 }
