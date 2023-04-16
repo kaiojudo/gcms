@@ -61,14 +61,14 @@ export default function AddPost() {
     const hinhtrichdan = document
       .getElementById("hinhtrichdan")
       .value.split("fakepath\\")[1];
-    const anh1 = document.getElementById("anh1").value.split("fakepath\\")[1];
-    const anh2 = document.getElementById("anh2").value.split("fakepath\\")[1];
-    const anh3 = document.getElementById("anh3").value.split("fakepath\\")[1];
-    const anh4 = document.getElementById("anh4").value.split("fakepath\\")[1];
-    const anh5 = document.getElementById("anh5").value.split("fakepath\\")[1];
-    const anh6 = document.getElementById("anh6").value.split("fakepath\\")[1];
-    const anh7 = document.getElementById("anh7").value.split("fakepath\\")[1];
-    const anh8 = document.getElementById("anh8").value.split("fakepath\\")[1];
+    const anh1 = document.getElementById("anh1").value?.split("fakepath\\")[1];
+    const anh2 = document.getElementById("anh2").value?.split("fakepath\\")[1];
+    const anh3 = document.getElementById("anh3").value?.split("fakepath\\")[1];
+    const anh4 = document.getElementById("anh4").value?.split("fakepath\\")[1];
+    const anh5 = document.getElementById("anh5").value?.split("fakepath\\")[1];
+    const anh6 = document.getElementById("anh6").value?.split("fakepath\\")[1];
+    const anh7 = document.getElementById("anh7").value?.split("fakepath\\")[1];
+    const anh8 = document.getElementById("anh8").value?.split("fakepath\\")[1];
     const doan1 = document.getElementById("doan1").value;
     const doan2 = document.getElementById("doan2").value;
     const doan3 = document.getElementById("doan3").value;
@@ -112,7 +112,7 @@ export default function AddPost() {
     e.preventDefault();
     Axios.post(url, {
       tieudetin: data.tieudetin,
-      hinhtrichdan: "../" + data.hinhtrichdan.split("fakepath\\")[1],
+      hinhtrichdan:data.hinhtrichdan,
       trichdantin: data.trichdantin,
       ID_child_theloai: data.ID_child_theloai,
       id_phanloaitin: data.id_phanloaitin,
@@ -120,14 +120,14 @@ export default function AddPost() {
       ngaycapnhat: data.ngaycapnhat,
       solandoc: 0,
       kiemduyet: 1,
-      anh1: "../" + data.anh1.split("fakepath\\")[1],
-      anh2: "../" + data.anh2.split("fakepath\\")[1],
-      anh3: "../" + data.anh3.split("fakepath\\")[1],
-      anh4: "../" + data.anh4.split("fakepath\\")[1],
-      anh5: "../" + data.anh5.split("fakepath\\")[1],
-      anh6: "../" + data.anh6.split("fakepath\\")[1],
-      anh7: "../" + data.anh7.split("fakepath\\")[1],
-      anh8: "../" + data.anh8.split("fakepath\\")[1],
+      anh1: data.anh1,
+      anh2: data.anh2,
+      anh3: data.anh3,
+      anh4: data.anh4,
+      anh5: data.anh5,
+      anh6: data.anh6,
+      anh7: data.anh7,
+      anh8:  data.anh8,
       doan1: data.doan1,
       doan2: data.doan2,
       doan3: data.doan3,
@@ -138,6 +138,7 @@ export default function AddPost() {
       doan8: data.doan8,
     }).then((res) => {
       console.log(res.data);
+      console.log(data);
     });
   }
 
@@ -185,6 +186,9 @@ export default function AddPost() {
             id="ID_child_theloai"
             onChange={(e) => handle(e)}
           >
+            <option>
+                Chọn thể loại 
+              </option>
             {dataChildTheLoai?.result?.map((e) => (
               <option key={e.ID_child_theloai} value={e.ID_child_theloai}>
                 {e.ten_child_theloai}
@@ -200,6 +204,9 @@ export default function AddPost() {
             className="form-control"
             id="id_phanloaitin"
           >
+            <option>
+                Chọn phân loại tin
+              </option>
             {dataDanhmuc?.result?.map((e) => (
               <option key={e.id_phanloaitin} value={e.id_phanloaitin}>
                 {e.ten_phanloaitin}
@@ -374,7 +381,7 @@ export default function AddPost() {
             placeholder="Nội dung đoạn 8..."
             rows={4}
             className="form-control-file"
-            id="doan4"
+            id="doan8"
           ></textarea>
         </div>
         <div className="form-group">
@@ -405,7 +412,7 @@ export default function AddPost() {
           </label>
           <img
             src="../demo.jpg"
-            alt="Sai đường dẫn rồi bạn êi"
+            alt="Chưa có ảnh rồi :))"
             id="prehinhtrichdan"
           ></img>
           <p id="preshow-1">
@@ -414,56 +421,56 @@ export default function AddPost() {
             repellendus laborum ipsa error quia at exercitationem reiciendis
             consectetur qui illo. Totam, hic!
           </p>
-          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img1" />
+          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img1" />
           <p id="preshow-2">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id quae
             voluptatum voluptatem tenetur reiciendis sunt sit magni ab. Ex,
             natus reprehenderit non labore ea nam nesciunt a accusamus deserunt
             aliquid.
           </p>
-          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img2" />
+          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img2" />
           <p id="preshow-3">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
             aut temporibus labore dignissimos ducimus at, voluptatem nihil
             cupiditate animi repellat suscipit quisquam nostrum beatae,
             repudiandae impedit obcaecati minima necessitatibus ipsum.
           </p>
-          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img3" />
+          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img3" />
           <p id="preshow-4">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
             sunt veniam aspernatur temporibus sed corporis id, deleniti officia
             optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
             ipsa eum vero? Labore.
           </p>
-          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img4" />
+          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img4" />
           <p id="preshow-5">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
             sunt veniam aspernatur temporibus sed corporis id, deleniti officia
             optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
             ipsa eum vero? Labore.
           </p>
-          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img5" />
+          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img5" />
           <p id="preshow-6">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
             sunt veniam aspernatur temporibus sed corporis id, deleniti officia
             optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
             ipsa eum vero? Labore.
           </p>
-          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img6" />
+          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img6" />
           <p id="preshow-7">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
             sunt veniam aspernatur temporibus sed corporis id, deleniti officia
             optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
             ipsa eum vero? Labore.
           </p>
-          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img7" />
+          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img7" />
           <p id="preshow-8">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
             sunt veniam aspernatur temporibus sed corporis id, deleniti officia
             optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
             ipsa eum vero? Labore.
           </p>
-          <img src="../demo.jpg" alt="Sai đường dẫn rồi bạn êi" id="img8" />
+          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img8" />
           <p id="tacgia">
             Tác giả:
             <i>Hiếu tóc dài</i>

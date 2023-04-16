@@ -64,12 +64,21 @@ export default function News(props) {
           id="prehinhtrichdan"
         ></img>
         <p id="preshow-1">{datapost?.result?.doan1}</p>
-        <img src={datapost?.result?.anh1} alt="" id="img1" />
+        <img src={"../" + datapost?.result?.anh1?.split("\\fakepath")[1]} alt="" id="img1" />
         <p id="preshow-2">{datapost?.result?.doan2}</p>
-        <img src={datapost?.result?.anh2} alt="" id="img2" />
+        <img src={"../" + datapost?.result?.anh2?.split("\\fakepath")[1]} alt="" id="img2" />
         <p id="preshow-3">{datapost?.result?.doan3}</p>
-        <img src={datapost?.result?.anh3} alt="" id="img3" />
+        <img src={"../" + datapost?.result?.anh3?.split("\\fakepath")[1]} alt="" id="img3" />
         <p id="preshow-4">{datapost?.result?.doan4}</p>
+        <img src={"../" + datapost?.result?.anh4?.split("\\fakepath")[1]} alt="" id="img4" />
+        <p id="preshow-5">{datapost?.result?.doan5}</p>
+        <img src={"../" + datapost?.result?.anh5?.split("\\fakepath")[1]} alt="" id="img5" />
+        <p id="preshow-6">{datapost?.result?.doan6}</p>
+        <img src={"../" + datapost?.result?.anh6?.split("\\fakepath")[1]} alt="" id="img6" />
+        <p id="preshow-7">{datapost?.result?.doan7}</p>
+        <img src={"../" + datapost?.result?.anh7?.split("\\fakepath")[1]} alt="" id="img7" />
+        <p id="preshow-8">{datapost?.result?.doan8}</p>
+        <img src={"../" + datapost?.result?.anh8?.split("\\fakepath")[1]} alt="" id="img8" />
         <p id="tacgia">
           Tác giả:
           <i>{dataTacgia?.result?.hoten}</i>
