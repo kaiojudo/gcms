@@ -1,15 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
-GameNew.propTypes = {
-  post: PropTypes.array,
-};
-GameNew.defaultProps = {
-  post: [],
-};
+
 export default function GameNew(props) {
-  const { post } = props;
   return (
     <div id="game-news">
       <label className="label label-hot-news"> Tin tức về game</label>
@@ -33,7 +25,7 @@ export default function GameNew(props) {
             <img src="../thelastofus.jpg" alt="" />
           </a>
           <div>
-            <a href="" className="news-title">
+            <a href="demo.vn" className="news-title">
               Game thủ quay lưng với The Last of Us bản PC
             </a>
             <p className="news-date">Hôm qua, lúc 09:12</p>
