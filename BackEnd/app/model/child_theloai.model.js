@@ -20,6 +20,15 @@ ChildTheLoai.getbyID = function (idTheloai, result) {
         }
     });
 };
+ChildTheLoai.getbyIDCha = function (idTheloai, result) {
+    db.query(`SELECT * FROM child_theloai WHERE idTheLoai = ? `,idTheloai, function (err, child) {
+        if (err) {
+            result(err);
+        } else {
+            result(child);
+        }
+    });
+};
 ChildTheLoai.getAll = function (result) {
     db.query(`SELECT * FROM child_theloai `, function (err, child) {
         if (err) {

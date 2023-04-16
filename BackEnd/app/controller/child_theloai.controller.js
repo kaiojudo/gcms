@@ -7,6 +7,13 @@ exports.get_listchild = function (req, res) {
         });
     });
 }
+exports.get_listchildbyidcha = function (req, res) {
+    ChildTheloai.getbyIDCha(req.params.id, function (child) {
+        res.send({
+            result: child
+        });
+    });
+}
 exports.get_all = function (req, res) {
     ChildTheloai.getAll(function (child) {
         res.send({

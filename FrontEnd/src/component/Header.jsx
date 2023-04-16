@@ -23,7 +23,8 @@ export default function Header() {
   function HoverFa(e) {
     const child = document.querySelector(".menu-sub-cat");
     child.classList.add("d-flex");
-    const url2 = "http://localhost:3030/childtheloai/child/" + e.target.id;
+    const url2 = "http://localhost:3030/childtheloai/childbyfather/" + e.target.id;
+    console.log(url2);
     fetch(url2)
       .then((response) => response.json())
       .then((data) => {
