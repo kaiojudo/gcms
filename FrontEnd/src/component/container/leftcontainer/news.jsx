@@ -59,7 +59,7 @@ export default function News(props) {
           {datapost?.result?.tieudetin}
         </label>
         <img
-          src={datapost?.result?.hinhtrichdan}
+          src={"../" + datapost?.result?.hinhtrichdan?.split("\\fakepath")[1]}
           alt=""
           id="prehinhtrichdan"
         ></img>
