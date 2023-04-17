@@ -1,4 +1,4 @@
-export default function HotNewsGame() {
+export default function NewGame() {
   return (
     <div id="hot-news-game" className="bd-bt">
       <ul className="tab-game d-flex bd-t-green bd-bt">

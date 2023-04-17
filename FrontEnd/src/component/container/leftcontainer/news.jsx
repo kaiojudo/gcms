@@ -62,6 +62,7 @@ export default function News(props) {
           alt=""
           id="prehinhtrichdan"
         ></img>
+        <p id="trichdantin">{datapost?.result?.trichdantin}</p>
         <p id="preshow-1">{datapost?.result?.doan1}</p>
         <img src={"../" + datapost?.result?.anh1?.split("\\fakepath")[1]} alt="" id="img1" />
         <p id="preshow-2">{datapost?.result?.doan2}</p>

@@ -1,4 +1,16 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 export default function HotNews() {
+  const [dataGiftcode, setDataGiftcode] = useState({});
+  const urlgiftcode = "http://localhost:3030/post/giftcode/showall";
+  useEffect(() => {
+    fetch(urlgiftcode)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataGiftcode(data);
+      });
+  }, []);
   return (
     <div id="hot-news" className="d-flex">
       <div id="hot-new-news">
@@ -118,104 +130,21 @@ export default function HotNews() {
           Giftcode
         </label>
         <ul className="giftcode-category">
-          <li className="giftcode-item">
-            <img src="../appimg.jpg" alt="" />
-            <div className="giftcode-info">
-              <div className="giftcode-name">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias quidem, iure ex hic autem architecto tempore nobis
-                  repellendus rem eius reprehenderit, pariatur alias possimus
-                  beatae fuga corporis reiciendis veritatis sapiente?
-                </p>
-              </div>
-              <p className="giftcode-quantity">100/100</p>
-            </div>
-          </li>
-          <li className="giftcode-item">
-            <img src="../appimg.jpg" alt="" />
-            <div className="giftcode-info">
-              <div className="giftcode-name">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias quidem, iure ex hic autem architecto tempore nobis
-                  repellendus rem eius reprehenderit, pariatur alias possimus
-                  beatae fuga corporis reiciendis veritatis sapiente?
-                </p>
-              </div>
-              <p className="giftcode-quantity">100/100</p>
-            </div>
-          </li>
-          <li className="giftcode-item">
-            <img src="../appimg.jpg" alt="" />
-            <div className="giftcode-info">
-              <div className="giftcode-name">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias quidem, iure ex hic autem architecto tempore nobis
-                  repellendus rem eius reprehenderit, pariatur alias possimus
-                  beatae fuga corporis reiciendis veritatis sapiente?
-                </p>
-              </div>
-              <p className="giftcode-quantity">100/100</p>
-            </div>
-          </li>
-          <li className="giftcode-item">
-            <img src="../appimg.jpg" alt="" />
-            <div className="giftcode-info">
-              <div className="giftcode-name">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias quidem, iure ex hic autem architecto tempore nobis
-                  repellendus rem eius reprehenderit, pariatur alias possimus
-                  beatae fuga corporis reiciendis veritatis sapiente?
-                </p>
-              </div>
-              <p className="giftcode-quantity">100/100</p>
-            </div>
-          </li>
-          <li className="giftcode-item">
-            <img src="../appimg.jpg" alt="" />
-            <div className="giftcode-info">
-              <div className="giftcode-name">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias quidem, iure ex hic autem architecto tempore nobis
-                  repellendus rem eius reprehenderit, pariatur alias possimus
-                  beatae fuga corporis reiciendis veritatis sapiente?
-                </p>
-              </div>
-              <p className="giftcode-quantity">100/100</p>
-            </div>
-          </li>
-          <li className="giftcode-item">
-            <img src="../appimg.jpg" alt="" />
-            <div className="giftcode-info">
-              <div className="giftcode-name">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias quidem, iure ex hic autem architecto tempore nobis
-                  repellendus rem eius reprehenderit, pariatur alias possimus
-                  beatae fuga corporis reiciendis veritatis sapiente?
-                </p>
-              </div>
-              <p className="giftcode-quantity">100/100</p>
-            </div>
-          </li>
-          <li className="giftcode-item">
-            <img src="../appimg.jpg" alt="" />
-            <div className="giftcode-info">
-              <div className="giftcode-name">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias quidem, iure ex hic autem architecto tempore nobis
-                  repellendus rem eius reprehenderit, pariatur alias possimus
-                  beatae fuga corporis reiciendis veritatis sapiente?
-                </p>
-              </div>
-              <p className="giftcode-quantity">100/100</p>
-            </div>
-          </li>
+          {dataGiftcode?.result?.map((e) => (
+            <Link to={`/post/${e.idtintuc}`} key={e.idtintuc}>
+              <li className="giftcode-item">
+                <img
+                  src={"../" + e.hinhtrichdan?.split("\\fakepath")[1]}
+                  alt=""
+                />
+                <div className="giftcode-info">
+                  <div className="giftcode-name">
+                    <p>{e.tieudetin}</p>
+                  </div>
+                </div>
+              </li>
+            </Link>
+          ))}
         </ul>
       </div>
     </div>

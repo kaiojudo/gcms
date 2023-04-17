@@ -20,7 +20,7 @@ const Tintuc = function (tintuc) {
     this.doan3 = tintuc.doan3;
     this.doan4 = tintuc.doan4;
 }
-Tintuc.get_by_id = function(idtintuc,result){
+Tintuc.get_by_id = function (idtintuc, result) {
     db.query(`SELECT * from tintuc WHERE idtintuc = ?`, idtintuc, function (err, tintuc) {
         if (err) {
             result(err);
@@ -29,7 +29,7 @@ Tintuc.get_by_id = function(idtintuc,result){
         }
     });
 };
-Tintuc.add_new = function(data,result){
+Tintuc.add_new = function (data, result) {
     db.query(`INSERT INTO tintuc SET ? `, data, function (err, res) {
         if (err) {
             result(err)
@@ -50,12 +50,23 @@ Tintuc.get_all = function (result) {
         }
     });
 }
-Tintuc.teyvat = function(result){
-    db.query(`SELECT * from tintuc WHERE ID_child_theloai = 24 LIMIT 4`, function (err, teyvat) {
+Tintuc.teyvat = function (result) {
+    db.query(`SELECT * from tintuc WHERE ID_child_theloai = 24 order by ngaycapnhat LIMIT 4 `, function (err, teyvat) {
         if (err) {
             result(err);
         } else {
             result(teyvat);
+        }
+    });
+};
+Tintuc.giftcode = function (result) {
+    db.query(`SELECT * FROM tintuc
+    INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
+    where child_theloai.idTheLoai = 2 order by ngaycapnhat limit 4`, function (err, giftcode) {
+        if (err) {
+            result(err);
+        } else {
+            result(giftcode);
         }
     });
 };

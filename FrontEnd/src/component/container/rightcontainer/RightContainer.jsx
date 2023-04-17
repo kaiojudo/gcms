@@ -1,11 +1,11 @@
 import NewbieGuild from "./newbie-guild";
-import RightContentNews from "./right-content-news";
+import TeyvatNews from "./TeyvatNews";
 import TopGameReview from "./top-game-review";
 
 export default function RightContainer() {
   return (
     <div id="right-container">
-      <RightContentNews/>
+      <TeyvatNews/>
       <NewbieGuild/>
       <TopGameReview/>
     </div>

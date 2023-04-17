@@ -30,3 +30,10 @@ exports.showAllTeyvat = function (req, res) {
         });
     })
 }
+exports.showGiftcode = function (req, res) {
+    Tintuc.giftcode(function (datatv) {
+        res.send({
+            result: datatv
+        });
+    })
+}
