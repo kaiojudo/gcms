@@ -1,4 +1,17 @@
+import { useState,useEffect } from "react"
+import { Link } from "react-router-dom";
+
 export default function RightContentNews() {
+  const [teyvatNews, setDataTeyvatNews] = useState({});
+const url = "http://localhost:3030/post/teyvat/teyvatnews";
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataTeyvatNews(data);
+      });
+  }, []);
+
     return (
         <div id="right-content-news" className="right-list">
         <label htmlFor="" className="label label-right-content-news">
@@ -6,21 +19,11 @@ export default function RightContentNews() {
         </label>
         <img src="../teyvatlogo.jpg" alt="" />
         <ul className="right-content-news-list">
-          <li className="right-content-news bd-bt">
-            <a href="demo.vn">Bản tin teyvat - kỳ 1</a>
+          {teyvatNews?.result?.map((e) => (
+            <li className="right-content-news bd-bt"  key={e.tieudetin}>
+            <Link to={`/post/${e.idtintuc}`}>{e.tieudetin}</Link>
           </li>
-          <li className="right-content-news bd-bt">
-            <a href="demo.vn">Bản tin teyvat - kỳ 2</a>
-          </li>
-          <li className="right-content-news bd-bt">
-            <a href="demo.vn">Bản tin teyvat - kỳ 3</a>
-          </li>
-          <li className="right-content-news bd-bt">
-            <a href="demo.vn">Bản tin teyvat - kỳ 4</a>
-          </li>
-          <li className="right-content-news bd-bt">
-            <a href="demo.vn">Bản tin teyvat - kỳ 5</a>
-          </li>
+          ))}
         </ul>
       </div>
     )

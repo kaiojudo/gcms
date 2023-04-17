@@ -50,5 +50,14 @@ Tintuc.get_all = function (result) {
         }
     });
 }
+Tintuc.teyvat = function(result){
+    db.query(`SELECT * from tintuc WHERE ID_child_theloai = 24 LIMIT 4`, function (err, teyvat) {
+        if (err) {
+            result(err);
+        } else {
+            result(teyvat);
+        }
+    });
+};
 
 module.exports = Tintuc;

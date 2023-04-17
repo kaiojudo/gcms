@@ -23,3 +23,10 @@ exports.getbyId = function (req, res) {
         });
     })
 }
+exports.showAllTeyvat = function (req, res) {
+    Tintuc.teyvat(function (datatv) {
+        res.send({
+            result: datatv
+        });
+    })
+}
