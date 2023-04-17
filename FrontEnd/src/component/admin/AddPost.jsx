@@ -237,7 +237,7 @@ export default function AddPost() {
             type="datetime"
             className="form-control"
             id="ngaycapnhat"
-            placeholder="Trích dẫn ..."
+            placeholder="yyyy-mm-dd ..."
           />
         </div>
         <div className="form-group">
