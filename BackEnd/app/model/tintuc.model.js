@@ -62,7 +62,7 @@ Tintuc.teyvat = function (result) {
 Tintuc.giftcode = function (result) {
     db.query(`SELECT * FROM tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 2 order by ngaycapnhat limit 4`, function (err, giftcode) {
+    where child_theloai.idTheLoai = 2 order by ngaycapnhat limit 6`, function (err, giftcode) {
         if (err) {
             result(err);
         } else {
