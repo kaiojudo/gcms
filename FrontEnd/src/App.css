@@ -11,6 +11,13 @@ body {
   font-family: "Roboto", sans-serif;
   color: var(--gray-color);
 }
+p{
+  padding: 0;
+  margin: 0;
+}
+.d-none{
+  display: none;
+}
 .op-5 {
   opacity: 0.5;
 }
@@ -528,9 +535,12 @@ img {
 #tacgia i {
   color: red;
 }
-.post-details p {
+.pd-top-bottom {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+.post-details img{
+  margin: 0.5rem 0;
 }
 footer {
   margin-top: 1rem;

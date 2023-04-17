@@ -7,7 +7,6 @@ export default function News(props) {
   const [dataTacgia, setDataTacgia] = useState({});
   const [dataChild, setDataChild] = useState({});
   const [dataTheLoai, setDataTheLoai] = useState({});
-
   const urlPost = `http://localhost:3030/post/${params.id}`;
   useEffect(() => {
     fetch(urlPost)
