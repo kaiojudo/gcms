@@ -70,5 +70,14 @@ Tintuc.giftcode = function (result) {
         }
     });
 };
+Tintuc.slideNews = function (result) {
+    db.query(`SELECT * FROM tintuc where id_phanloaitin = 4; `, function (err, slidenews) {
+        if (err) {
+            result(err);
+        } else {
+            result(slidenews);
+        }
+    });
+};
 
 module.exports = Tintuc;

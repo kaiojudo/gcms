@@ -37,3 +37,10 @@ exports.showGiftcode = function (req, res) {
         });
     })
 }
+exports.showSlide = function (req, res) {
+    Tintuc.slideNews(function (slideitem) {
+        res.send({
+            result: slideitem
+        });
+    })
+}
