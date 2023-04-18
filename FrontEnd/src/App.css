@@ -240,6 +240,7 @@ img {
 }
 #hot-new-news {
   width: 55%;
+  min-height: 42rem;
 }
 .slide-main {
   position: relative;
@@ -249,6 +250,7 @@ img {
   position: absolute;
   overflow: hidden;
   width: 100%;
+  bottom: 0;
 }
 .description h2 {
   color: #fff;
@@ -446,16 +448,12 @@ img {
   margin-left: 2.5rem;
 }
 .right-list {
-  padding-bottom: 1rem;
+  min-height: 20.5rem;
 }
 .right-content-news {
   height: 2.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  
-}
-#right-content-news{
-  min-height: 23.7rem;
 }
 .right-content-news a:hover {
   color: var(--color-label);
