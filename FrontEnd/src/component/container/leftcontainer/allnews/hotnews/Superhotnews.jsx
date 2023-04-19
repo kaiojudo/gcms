@@ -11,7 +11,6 @@ export default function SuperHotNews() {
         setDataSlide(data);
       });
   }, []);
-  const ele = document.getElementById("1")
   return (
     <>
       <div id="hot-new-news">
@@ -37,8 +36,7 @@ export default function SuperHotNews() {
               <Link
                 to={`/post/${e.idtintuc}`}
                 key={e.idtintuc}
-                className="carousel-item slide-main"
-                id={e.idtintuc}
+                className={"carousel-item slide-main " + e?.isActive}
               >
                 <img
                   className="d-block w-100"
