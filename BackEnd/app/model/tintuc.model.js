@@ -6,19 +6,14 @@ const Tintuc = function (tintuc) {
     this.hinhtrichdan = tintuc.hinhtrichdan;
     this.trichdantin = tintuc.trichdantin;
     this.ID_child_theloai = tintuc.ID_child_theloai;
-    this.id_nhomtin = tintuc.id_nhomtin;
     this.id_phanloaitin = tintuc.id_phanloaitin;
     this.id_tacgia = tintuc.id_tacgia;
     this.ngaycapnhat = tintuc.ngaycapnhat;
+    this.content = tintuc.content;
     this.solandoc = tintuc.solandoc;
     this.kiemduyet = tintuc.kiemduyet;
-    this.anh1 = tintuc.anh1;
-    this.anh2 = tintuc.anh2;
-    this.anh3 = tintuc.anh3;
-    this.doan1 = tintuc.doan1;
-    this.doan2 = tintuc.doan2;
-    this.doan3 = tintuc.doan3;
-    this.doan4 = tintuc.doan4;
+    this.isActive = tintuc.isActive;
+   
 }
 Tintuc.get_by_id = function (idtintuc, result) {
     db.query(`SELECT * from tintuc WHERE idtintuc = ?`, idtintuc, function (err, tintuc) {
@@ -30,14 +25,17 @@ Tintuc.get_by_id = function (idtintuc, result) {
     });
 };
 Tintuc.add_new = function (data, result) {
-    db.query(`INSERT INTO tintuc SET ? `, data, function (err, res) {
+    const sql = `call tintuc(${data.idtintuc},${data.tieudetin},'${data.hinhtrichdan}',
+    '${data.trichdantin}','${data.ID_child_theloai}','${data.ngaycapnhat}'
+    ${data.id_phanloaitin},${data.id_tacgia}
+     '${JSON.stringify(content)}',0,1,'${data.isActive}');`;
+
+    database.query(sql, function (err) {
         if (err) {
-            result(err)
-        } else {
-            result({
-                idtintuc: res.insertId,
-                ...data
-            })
+            result(0);
+        }
+        else {
+            result(1); 
         }
     });
 }
