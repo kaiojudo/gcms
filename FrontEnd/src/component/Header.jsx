@@ -51,9 +51,9 @@ export default function Header() {
             <li
               key={e.idTheLoai}
               className="menu-category"
-              onMouseMove={HoverFa}
+             
             >
-              <a href={e.url} id={e.idTheLoai}>
+              <a href={e.url} id={e.idTheLoai}  onMouseMove={HoverFa}>
                 {e.tenTheLoai}
               </a>
             </li>
