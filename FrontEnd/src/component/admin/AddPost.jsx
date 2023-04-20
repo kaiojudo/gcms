@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import EditorJS from "@editorjs/editorjs";
+import Editor from "./EditorComponent";
 
 export default function AddPost() {
   const url = "http://localhost:3030/post/add";
@@ -112,7 +114,7 @@ export default function AddPost() {
     e.preventDefault();
     Axios.post(url, {
       tieudetin: data.tieudetin,
-      hinhtrichdan:data.hinhtrichdan,
+      hinhtrichdan: data.hinhtrichdan,
       trichdantin: data.trichdantin,
       ID_child_theloai: data.ID_child_theloai,
       id_phanloaitin: data.id_phanloaitin,
@@ -127,7 +129,7 @@ export default function AddPost() {
       anh5: data.anh5,
       anh6: data.anh6,
       anh7: data.anh7,
-      anh8:  data.anh8,
+      anh8: data.anh8,
       doan1: data.doan1,
       doan2: data.doan2,
       doan3: data.doan3,
@@ -185,9 +187,7 @@ export default function AddPost() {
             id="ID_child_theloai"
             onChange={(e) => handle(e)}
           >
-            <option>
-                Chọn thể loại 
-              </option>
+            <option>Chọn thể loại</option>
             {dataChildTheLoai?.result?.map((e) => (
               <option key={e.ID_child_theloai} value={e.ID_child_theloai}>
                 {e.ten_child_theloai}
@@ -203,9 +203,7 @@ export default function AddPost() {
             className="form-control"
             id="id_phanloaitin"
           >
-            <option>
-                Chọn phân loại tin
-              </option>
+            <option>Chọn phân loại tin</option>
             {dataDanhmuc?.result?.map((e) => (
               <option key={e.id_phanloaitin} value={e.id_phanloaitin}>
                 {e.ten_phanloaitin}
@@ -240,158 +238,7 @@ export default function AddPost() {
             placeholder="yyyy-mm-dd ..."
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="doan1">Nhập nội dung đoạn 1</label>
-          <textarea
-            onChange={(e) => handle(e)}
-            placeholder="Nội dung đoạn 1..."
-            rows={4}
-            className="form-control-file"
-            id="doan1"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="anh1">Chọn ảnh số 1</label>
-          <input
-            onChange={(e) => handle(e)}
-            type="file"
-            className="form-control-file"
-            id="anh1"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="doan2">Nhập nội dung đoạn 2</label>
-          <textarea
-            onChange={(e) => handle(e)}
-            placeholder="Nội dung đoạn 2..."
-            rows={4}
-            className="form-control-file"
-            id="doan2"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="anh2">Chọn ảnh số 2</label>
-          <input
-            onChange={(e) => handle(e)}
-            type="file"
-            className="form-control-file"
-            id="anh2"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="doan3">Nhập nội dung đoạn 3</label>
-          <textarea
-            onChange={(e) => handle(e)}
-            placeholder="Nội dung đoạn 3..."
-            rows={4}
-            className="form-control-file"
-            id="doan3"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="anh3">Chọn ảnh số 3</label>
-          <input
-            onChange={(e) => handle(e)}
-            type="file"
-            className="form-control-file"
-            id="anh3"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="doan4">Nhập nội dung đoạn 4</label>
-          <textarea
-            onChange={(e) => handle(e)}
-            placeholder="Nội dung đoạn 4..."
-            rows={4}
-            className="form-control-file"
-            id="doan4"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="anh4">Chọn ảnh số 4</label>
-          <input
-            onChange={(e) => handle(e)}
-            type="file"
-            className="form-control-file"
-            id="anh4"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="doan5">Nhập nội dung đoạn 5</label>
-          <textarea
-            onChange={(e) => handle(e)}
-            placeholder="Nội dung đoạn 5..."
-            rows={4}
-            className="form-control-file"
-            id="doan5"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="anh5">Chọn ảnh số 5</label>
-          <input
-            onChange={(e) => handle(e)}
-            type="file"
-            className="form-control-file"
-            id="anh5"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="doan6">Nhập nội dung đoạn 6</label>
-          <textarea
-            onChange={(e) => handle(e)}
-            placeholder="Nội dung đoạn 6..."
-            rows={4}
-            className="form-control-file"
-            id="doan6"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="anh6">Chọn ảnh số 6</label>
-          <input
-            onChange={(e) => handle(e)}
-            type="file"
-            className="form-control-file"
-            id="anh6"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="doan7">Nhập nội dung đoạn 7</label>
-          <textarea
-            onChange={(e) => handle(e)}
-            placeholder="Nội dung đoạn 7..."
-            rows={4}
-            className="form-control-file"
-            id="doan7"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="anh4">Chọn ảnh số 7</label>
-          <input
-            onChange={(e) => handle(e)}
-            type="file"
-            className="form-control-file"
-            id="anh7"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="doan8">Nhập nội dung đoạn 8</label>
-          <textarea
-            onChange={(e) => handle(e)}
-            placeholder="Nội dung đoạn 8..."
-            rows={4}
-            className="form-control-file"
-            id="doan8"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="anh8">Chọn ảnh số 8</label>
-          <input
-            onChange={(e) => handle(e)}
-            type="file"
-            className="form-control-file"
-            id="anh8"
-          />
-        </div>
+        <Editor />
         <div className="d-flex">
           <button type="submit" className="btn btn-primary">
             Đăng bài
@@ -401,7 +248,7 @@ export default function AddPost() {
           </button>
         </div>
       </form>
-      <div id="preshow">
+      {/* <div id="preshow">
         <div className="preshow-post">
           <label htmlFor="" id="preshow-name">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
@@ -478,7 +325,7 @@ export default function AddPost() {
         <div className="close-modal" onClick={Hiden}>
           <i className="fa-solid fa-rectangle-xmark fa-xl"></i>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

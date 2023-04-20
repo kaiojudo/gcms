@@ -36,5 +36,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@editorjs/header": "^2.7.0",
+    "@editorjs/image": "^2.8.1"
   }
 }
