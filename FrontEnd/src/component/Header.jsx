@@ -23,7 +23,8 @@ export default function Header() {
   function HoverFa(e) {
     const child = document.querySelector(".menu-sub-cat");
     child.classList.add("d-flex");
-    const url2 = "http://localhost:3030/childtheloai/childbyfather/" + e.target.id;
+    const url2 =
+      "http://localhost:3030/childtheloai/childbyfather/" + e.target.id;
     console.log(url2);
     fetch(url2)
       .then((response) => response.json())
@@ -48,12 +49,8 @@ export default function Header() {
             </Link>
           </li>
           {dataTheLoai?.result?.map((e) => (
-            <li
-              key={e.idTheLoai}
-              className="menu-category"
-              onMouseMove={HoverFa}
-            >
-              <a href={e.url} id={e.idTheLoai}>
+            <li key={e.idTheLoai} className="menu-category">
+              <a href={e.url} id={e.idTheLoai} onMouseMove={HoverFa}>
                 {e.tenTheLoai}
               </a>
             </li>
@@ -90,7 +87,6 @@ export default function Header() {
           {dataChildTheLoai?.result?.map((e) => (
             <li key={e.ID_child_theloai} id={e.ID_child_theloai}>
               <a href="demo.vn">{e.ten_child_theloai}</a>
-              
             </li>
           ))}
         </ul>
