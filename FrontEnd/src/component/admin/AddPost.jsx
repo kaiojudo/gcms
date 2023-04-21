@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect,useState, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
 import Axios from "axios";
@@ -136,7 +136,7 @@ export default function AddPost() {
       ngaycapnhat: data.ngaycapnhat,
       solandoc: 0,
       kiemduyet: 1,
-      content: data.content,
+      content : data.content
     }).then((res) => {
       console.log(res.data);
     });
@@ -237,15 +237,12 @@ export default function AddPost() {
             placeholder="yyyy-mm-dd ..."
           />
         </div>
-        <div className="form-group">
-          <h2>Viết bài ở đây</h2>
-          <div id="editorjs"></div>
-        </div>
+        <div id="editorjs"></div>
         <div className="d-flex">
           <button type="submit" className="btn btn-primary">
             Đăng bài
           </button>
-          <button className="show" type="button" onClick={CheckForm}>
+          <button className="show" type="button">
             <i className="fa-solid fa-eye"></i>
           </button>
         </div>
