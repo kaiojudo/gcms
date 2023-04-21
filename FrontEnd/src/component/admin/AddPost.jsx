@@ -1,8 +1,7 @@
-import React, { useEffect,useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
 import Axios from "axios";
-import Editor from "./EditorComponent";
 
 export default function AddPost() {
   const url = "http://localhost:3030/post/add";
@@ -137,7 +136,7 @@ export default function AddPost() {
       ngaycapnhat: data.ngaycapnhat,
       solandoc: 0,
       kiemduyet: 1,
-      content : data.content
+      content: data.content,
     }).then((res) => {
       console.log(res.data);
     });
@@ -238,7 +237,10 @@ export default function AddPost() {
             placeholder="yyyy-mm-dd ..."
           />
         </div>
-        <div id="editorjs"></div>
+        <div className="form-group">
+          <h2>Viết bài ở đây</h2>
+          <div id="editorjs"></div>
+        </div>
         <div className="d-flex">
           <button type="submit" className="btn btn-primary">
             Đăng bài
@@ -248,84 +250,6 @@ export default function AddPost() {
           </button>
         </div>
       </form>
-      {/* <div id="preshow">
-        <div className="preshow-post">
-          <label htmlFor="" id="preshow-name">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
-            commodi? Incidunt voluptate eius eum molestiae a maiores mollitia
-            esse. Non delectus facere eum exercitationem consequuntur debitis,
-            repellat provident dolorem quod!
-          </label>
-          <img
-            src="../demo.jpg"
-            alt="Chưa có ảnh rồi :))"
-            id="prehinhtrichdan"
-          ></img>
-          <p id="preshow-1">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
-            error, cupiditate praesentium quo iste ut impedit. Eveniet
-            repellendus laborum ipsa error quia at exercitationem reiciendis
-            consectetur qui illo. Totam, hic!
-          </p>
-          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img1" />
-          <p id="preshow-2">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id quae
-            voluptatum voluptatem tenetur reiciendis sunt sit magni ab. Ex,
-            natus reprehenderit non labore ea nam nesciunt a accusamus deserunt
-            aliquid.
-          </p>
-          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img2" />
-          <p id="preshow-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            aut temporibus labore dignissimos ducimus at, voluptatem nihil
-            cupiditate animi repellat suscipit quisquam nostrum beatae,
-            repudiandae impedit obcaecati minima necessitatibus ipsum.
-          </p>
-          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img3" />
-          <p id="preshow-4">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
-            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
-            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
-            ipsa eum vero? Labore.
-          </p>
-          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img4" />
-          <p id="preshow-5">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
-            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
-            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
-            ipsa eum vero? Labore.
-          </p>
-          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img5" />
-          <p id="preshow-6">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
-            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
-            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
-            ipsa eum vero? Labore.
-          </p>
-          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img6" />
-          <p id="preshow-7">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
-            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
-            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
-            ipsa eum vero? Labore.
-          </p>
-          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img7" />
-          <p id="preshow-8">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
-            sunt veniam aspernatur temporibus sed corporis id, deleniti officia
-            optio eaque, aliquid quidem necessitatibus. Provident dolorum ad
-            ipsa eum vero? Labore.
-          </p>
-          <img src="../demo.jpg" alt="Chưa có ảnh rồi :))" id="img8" />
-          <p id="tacgia">
-            Tác giả:
-            <i>Hiếu tóc dài</i>
-          </p>
-        </div>
-        <div className="close-modal" onClick={Hiden}>
-          <i className="fa-solid fa-rectangle-xmark fa-xl"></i>
-        </div>
-      </div> */}
     </>
   );
 }
