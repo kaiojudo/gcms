@@ -1,7 +1,7 @@
-import React, { useEffect,useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
-import Axios from "axios";
+// import Axios from "axios";
 
 export default function AddPost() {
   const url = "http://localhost:3030/post/add";
@@ -38,60 +38,7 @@ export default function AddPost() {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
-    // console.log(newdata);
-  }
-  // Xem trước
-  function CheckForm() {
-    const tieudetin = document.getElementById("tieudetin").value;
-    const hinhtrichdan = document
-      .getElementById("hinhtrichdan")
-      .value.split("fakepath\\")[1];
-    const anh1 = document.getElementById("anh1").value?.split("fakepath\\")[1];
-    const anh2 = document.getElementById("anh2").value?.split("fakepath\\")[1];
-    const anh3 = document.getElementById("anh3").value?.split("fakepath\\")[1];
-    const anh4 = document.getElementById("anh4").value?.split("fakepath\\")[1];
-    const anh5 = document.getElementById("anh5").value?.split("fakepath\\")[1];
-    const anh6 = document.getElementById("anh6").value?.split("fakepath\\")[1];
-    const anh7 = document.getElementById("anh7").value?.split("fakepath\\")[1];
-    const anh8 = document.getElementById("anh8").value?.split("fakepath\\")[1];
-    const doan1 = document.getElementById("doan1").value;
-    const doan2 = document.getElementById("doan2").value;
-    const doan3 = document.getElementById("doan3").value;
-    const doan4 = document.getElementById("doan4").value;
-    const doan5 = document.getElementById("doan5").value;
-    const doan6 = document.getElementById("doan6").value;
-    const doan7 = document.getElementById("doan7").value;
-    const doan8 = document.getElementById("doan8").value;
-
-    document.getElementById("preshow-name").innerText = tieudetin;
-    document.getElementById("prehinhtrichdan").src = "../" + hinhtrichdan;
-    document.getElementById("img1").src = "../" + anh1;
-    document.getElementById("img2").src = "../" + anh2;
-    document.getElementById("img3").src = "../" + anh3;
-    document.getElementById("img4").src = "../" + anh4;
-    document.getElementById("img5").src = "../" + anh5;
-    document.getElementById("img6").src = "../" + anh6;
-    document.getElementById("img7").src = "../" + anh7;
-    document.getElementById("img8").src = "../" + anh8;
-    document.getElementById("preshow-1").innerText = doan1;
-    document.getElementById("preshow-2").innerText = doan2;
-    document.getElementById("preshow-3").innerText = doan3;
-    document.getElementById("preshow-4").innerText = doan4;
-    document.getElementById("preshow-5").innerText = doan5;
-    document.getElementById("preshow-6").innerText = doan6;
-    document.getElementById("preshow-7").innerText = doan7;
-    document.getElementById("preshow-8").innerText = doan8;
-    const premenu = document.getElementById("preshow");
-    const form = document.getElementById("form-baiviet");
-    form.classList.add("op-5");
-    premenu.classList.add("d-block");
-  }
-  // Đóng mở menu xem trc
-  function Hiden() {
-    const premenu = document.getElementById("preshow");
-    premenu.classList.remove("d-block");
-    const form = document.getElementById("form-baiviet");
-    form.classList.remove("op-5");
+    console.log(newdata);
   }
   const editorRef = useRef();
   useEffect(() => {
@@ -124,22 +71,41 @@ export default function AddPost() {
       }
     };
   }, []);
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault();
-    Axios.post(url, {
-      tieudetin: data.tieudetin,
-      hinhtrichdan: data.hinhtrichdan,
-      trichdantin: data.trichdantin,
-      ID_child_theloai: data.ID_child_theloai,
-      id_phanloaitin: data.id_phanloaitin,
-      id_tacgia: data.id_tacgia,
-      ngaycapnhat: data.ngaycapnhat,
-      solandoc: 0,
-      kiemduyet: 1,
-      content : data.content
-    }).then((res) => {
-      console.log(res.data);
-    });
+    let content = {};
+    await editorRef.current
+      .save()
+      .then((outputData) => {
+        content = { ...outputData };
+      })
+      .catch((error) => {
+        console.log("Saving failed: ", error);
+      });
+    const postdata = { ...data, ...content };
+    console.log(postdata);
+    var myJsonString = JSON.stringify(postdata);
+    console.log(myJsonString);
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postdata),
+    })
+      .then((response) => response.json())
+      .then((e) => {
+        if (e.result === 0) {
+          alert(
+            "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
+          );
+        } else {
+          alert("Đăng bài thành công!");
+        }
+      })
+      .catch(() => {
+        alert("Đăng bài thất bại do lỗi hệ thống!");
+      });
   }
 
   return (
