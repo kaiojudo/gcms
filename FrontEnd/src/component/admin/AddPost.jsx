@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
+import Table from '@editorjs/table';
 // import Axios from "axios";
 
 export default function AddPost() {
@@ -48,6 +49,19 @@ export default function AddPost() {
         placeholder: "Ấn vào đây để tạo nội dung",
 
         tools: {
+          table: Table,
+          embed: {
+            class: Embed,
+            config: {
+              services: {
+                youtube: true,
+                coub: true,
+                facebook: true,
+                instagram: true,
+                twitter: true,
+              },
+            },
+          },
           image: {
             class: ImageTool,
             config: {
