@@ -1,28 +1,12 @@
-import { useState, useEffect } from "react";
-import Axios from "axios";
+import React, { useEffect,useState, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
+import ImageTool from "@editorjs/image";
+import Axios from "axios";
 import Editor from "./EditorComponent";
 
 export default function AddPost() {
   const url = "http://localhost:3030/post/add";
-  const [data, setData] = useState({
-    tieudetin: "",
-    hinhtrichdan: "",
-    trichdantin: "",
-    ID_child_theloai: "",
-    id_phanloaitin: "",
-    id_tacgia: "",
-    ngaycapnhat: "",
-    solandoc: "",
-    kiemduyet: "",
-    anh1: "",
-    anh2: "",
-    anh3: "",
-    doan1: "",
-    doan2: "",
-    doan3: "",
-    doan4: "",
-  });
+  const [data, setData] = useState({});
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
   const urlChild = "http://localhost:3030/childtheloai/showlist";
   useEffect(() => {
@@ -110,6 +94,37 @@ export default function AddPost() {
     const form = document.getElementById("form-baiviet");
     form.classList.remove("op-5");
   }
+  const editorRef = useRef();
+  useEffect(() => {
+    if (!editorRef.current) {
+      const editor = new EditorJS({
+        holder: "editorjs",
+        placeholder: "Ấn vào đây để tạo nội dung",
+
+        tools: {
+          image: {
+            class: ImageTool,
+            config: {
+              endpoints: {
+                byFile: "http://localhost:3030/upload_image_editorjs",
+                byUrl: "http://localhost:3030/upload_image_editorjs",
+              },
+
+              field: "image",
+              types: "image/*",
+            },
+          },
+        },
+      });
+
+      editorRef.current = editor;
+    }
+    return () => {
+      if (editorRef.current && editorRef.current.destroy) {
+        editorRef.current.destroy();
+      }
+    };
+  }, []);
   function submit(e) {
     e.preventDefault();
     Axios.post(url, {
@@ -122,22 +137,7 @@ export default function AddPost() {
       ngaycapnhat: data.ngaycapnhat,
       solandoc: 0,
       kiemduyet: 1,
-      anh1: data.anh1,
-      anh2: data.anh2,
-      anh3: data.anh3,
-      anh4: data.anh4,
-      anh5: data.anh5,
-      anh6: data.anh6,
-      anh7: data.anh7,
-      anh8: data.anh8,
-      doan1: data.doan1,
-      doan2: data.doan2,
-      doan3: data.doan3,
-      doan4: data.doan4,
-      doan5: data.doan5,
-      doan6: data.doan6,
-      doan7: data.doan7,
-      doan8: data.doan8,
+      content : data.content
     }).then((res) => {
       console.log(res.data);
     });
@@ -238,7 +238,7 @@ export default function AddPost() {
             placeholder="yyyy-mm-dd ..."
           />
         </div>
-        <Editor />
+        <div id="editorjs"></div>
         <div className="d-flex">
           <button type="submit" className="btn btn-primary">
             Đăng bài
