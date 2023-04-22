@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
-import Table from '@editorjs/table';
+import Table from "@editorjs/table";
+import Embed from "@editorjs/embed";
 // import Axios from "axios";
 
 export default function AddPost() {
@@ -91,37 +92,16 @@ export default function AddPost() {
     await editorRef.current
       .save()
       .then((outputData) => {
-        content = { ...outputData };
+        content = { ...outputData};
       })
       .catch((error) => {
         console.log("Saving failed: ", error);
       });
     const postdata = { ...data, ...content };
-    console.log(postdata);
+    console.log(postdata.ID_child_theloai);
     var myJsonString = JSON.stringify(postdata);
     console.log(myJsonString);
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postdata),
-    })
-      .then((response) => response.json())
-      .then((e) => {
-        if (e.result === 0) {
-          alert(
-            "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
-          );
-        } else {
-          alert("Đăng bài thành công!");
-        }
-      })
-      .catch(() => {
-        alert("Đăng bài thất bại do lỗi hệ thống!");
-      });
   }
-
   return (
     <>
       <form

@@ -15,12 +15,11 @@ exports.showUser = function (req, res) {
         });
     })
 }
-exports.findUser = function (req, res) {
-    User.findOne(function (data) {
-        res.send({
-            result: data
-        });
-    })
+exports.getUserByAccount = function(req, res) {
+    const data = req.params;
+    User.getUser(data, function (respond) {
+        res.send({ result: respond });
+    });
 }
 exports.findbyID = function (req, res) {
     User.get_by_id(req.params.id,function (data) {
