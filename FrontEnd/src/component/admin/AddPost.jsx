@@ -3,7 +3,7 @@ import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
 import Table from "@editorjs/table";
 import Embed from "@editorjs/embed";
-// import Axios from "axios";
+import Axios from "axios";
 
 export default function AddPost() {
   const url = "http://localhost:3030/post/add";
@@ -92,15 +92,28 @@ export default function AddPost() {
     await editorRef.current
       .save()
       .then((outputData) => {
-        content = { ...outputData};
+        content = { ...outputData };
       })
       .catch((error) => {
         console.log("Saving failed: ", error);
       });
     const postdata = { ...data, ...content };
-    console.log(postdata.ID_child_theloai);
+    console.log(postdata);
     var myJsonString = JSON.stringify(postdata);
     console.log(myJsonString);
+    Axios({
+      method: "post",
+      url: url,
+      data: myJsonString,
+    })
+      .then(function (response) {
+        console.log(response);
+        console.log("Succeeded");
+      })
+      .catch(function (response) {
+        console.log(response);
+        console.log("err");
+      });
   }
   return (
     <>
