@@ -11,11 +11,14 @@ export default function News(props) {
   useEffect(() => {
     fetch(urlPost)
       .then((response) => response.json())
-      .then((data) => {
-        setDataPost(data);
+      .then((e) => {
+        const content = JSON.parse(e.result.content);
+        e.content = content;
+        setDataPost(e);
+        console.log(e);
+        
         const urlTacgia =
-          "http://localhost:3030/user/findbyid/" + data.result.id_tacgia;
-        // console.log(urlTacgia);
+          "http://localhost:3030/user/findbyid/" + e.result.id_tacgia;
         fetch(urlTacgia)
           .then((response) => response.json())
           .then((dataTacgia) => {
@@ -23,7 +26,7 @@ export default function News(props) {
           });
         const urlchild =
           "http://localhost:3030/childtheloai/child/" +
-          data.result.ID_child_theloai;
+          e.result.ID_child_theloai;
         // console.log(urlchild);
         fetch(urlchild)
           .then((response) => response.json())
@@ -42,7 +45,36 @@ export default function News(props) {
       });
       // eslint-disable-next-line
   }, [params.id]);
-  
+  function handleRenderPostData(block) {
+    switch (block.type) {
+        case 'image':
+            return (
+                <img
+                    src={block.data.file.url}
+                    height='80%'
+                    alt="Err"
+                />
+            )
+
+        case 'paragraph':
+            return (
+                <p>{block.data.text}</p>
+            )
+        case 'list': {
+            let list = ``;
+            block.data.items.map((item, index) => (
+                list += `<p classname='content-list'>${index + 1}: ${item.content}</p>`
+            ))
+            return (
+                <div className="content-list-container" dangerouslySetInnerHTML={{ __html: list }} />
+            );
+        }
+
+
+
+        default:
+            break;
+    }}
   return (
     <>
       <div className="linkfrom">
@@ -63,22 +95,13 @@ export default function News(props) {
           id="prehinhtrichdan"
         ></img>
         <p id="trichdantin">{datapost?.result?.trichdantin}</p>
-        <p id="preshow-1">{datapost?.result?.doan1}</p>
-        <img src={"../" + datapost?.result?.anh1?.split("\\fakepath")[1]} alt="" id="img1" />
-        <p id="preshow-2">{datapost?.result?.doan2}</p>
-        <img src={"../" + datapost?.result?.anh2?.split("\\fakepath")[1]} alt="" id="img2" />
-        <p id="preshow-3">{datapost?.result?.doan3}</p>
-        <img src={"../" + datapost?.result?.anh3?.split("\\fakepath")[1]} alt="" id="img3" />
-        <p id="preshow-4">{datapost?.result?.doan4}</p>
-        <img src={"../" + datapost?.result?.anh4?.split("\\fakepath")[1]} alt="" id="img4" />
-        <p id="preshow-5">{datapost?.result?.doan5}</p>
-        <img src={"../" + datapost?.result?.anh5?.split("\\fakepath")[1]} alt="" id="img5" />
-        <p id="preshow-6">{datapost?.result?.doan6}</p>
-        <img src={"../" + datapost?.result?.anh6?.split("\\fakepath")[1]} alt="" id="img6" />
-        <p id="preshow-7">{datapost?.result?.doan7}</p>
-        <img src={"../" + datapost?.result?.anh7?.split("\\fakepath")[1]} alt="" id="img7" />
-        <p id="preshow-8">{datapost?.result?.doan8}</p>
-        <img src={"../" + datapost?.result?.anh8?.split("\\fakepath")[1]} alt="" id="img8" />
+        {
+                    datapost?.content?.blocks?.map(block => (
+                        <div className="col-12 block-content" key={block.id}>
+                            {handleRenderPostData(block)}
+                        </div>
+                    ))
+                }
         <p id="tacgia">
           Tác giả:
           <i>{dataTacgia?.result?.hoten}</i>
@@ -86,4 +109,5 @@ export default function News(props) {
       </div>
     </>
   );
+  
 }
