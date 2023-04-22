@@ -86,6 +86,8 @@ export default function AddPost() {
       }
     };
   }, []);
+
+  // submit posts
   async function submit(e) {
     e.preventDefault();
     let content = {};
@@ -98,13 +100,13 @@ export default function AddPost() {
         console.log("Saving failed: ", error);
       });
     const postdata = { ...data, ...content };
-    console.log(postdata);
+
     var myJsonString = JSON.stringify(postdata);
     console.log(myJsonString);
     Axios({
       method: "post",
       url: url,
-      data: myJsonString,
+      data: postdata,
     })
       .then(function (response) {
         console.log(response);

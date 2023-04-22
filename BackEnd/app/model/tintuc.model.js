@@ -78,9 +78,10 @@ Tintuc.slideNews = function (result) {
 };
 Tintuc.add_new = function (data, result) {
     var content = { blocks: data.blocks }
-    const sql = `call tintuc('${data.tieudetin}','${data.hinhtrichdan}','${data.trichdantin}',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},${data.ngaycapnhat},'${JSON.stringify(content)}',0,1,'none';`;
-    console.log('sql', sql);
-    database.query(sql, function (err) {
+
+    // console.log(typeof data.blocks);
+    const sql = `call SP_addPosts('${data.tieudetin}','${data.hinhtrichdan}','${data.trichdantin}',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},'${data.ngaycapnhat}','${JSON.stringify(content)}',0,1,'none');`;
+    db.query(sql, function (err) {
         if (err) {
             // throw err;
             result(0); // nếu thực hiện truy vấn KHÔNG thành công
