@@ -34,15 +34,18 @@ User.get_all = function (result) {
         }
     });
 }
-User.findOne = function (username,password,result) {
-    db.query(`SELECT * FROM thanhvien WHERE username = "${username}" AND password = "${password}" `, function (err, data) {
+User.getUser = function (data, result) {
+    const sql = `select * from thanhvien where username = '${data.account}' and password = '${data.password}';`;
+    db.query(sql, function (err, user) {
         if (err) {
-            result(err);
-        } else {
-            result(data);
+            throw err;
+        }
+
+        if (user) {
+            result(user);
         }
     });
-};
+}
 User.get_by_id = function (id_thanhvien, result){
     db.query(`SELECT * from thanhvien WHERE id_thanhvien = ?`, id_thanhvien, function (err, thanhvien) {
         if (err) {

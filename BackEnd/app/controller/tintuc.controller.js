@@ -2,6 +2,7 @@ var Tintuc = require('../model/tintuc.model');
 
 exports.addTintuc = function (req, res) {
     var data = req.body;
+    console.log(data);
     Tintuc.add_new(data, function (response) {
         res.send({
             result: response
