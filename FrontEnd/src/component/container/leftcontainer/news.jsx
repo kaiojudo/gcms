@@ -10,13 +10,17 @@ export default function News(props) {
   const [dataTheLoai, setDataTheLoai] = useState({});
   const urlPost = `http://localhost:3030/post/${params.id}`;
   useEffect(() => {
+    let headers = new Headers();
+
+    headers.append("Content-Type", "application/json");
+    headers.append("Accept", "application/json");
+    headers.append("Origin", "http://localhost:3000");
     fetch(urlPost)
       .then((response) => response.json())
       .then((e) => {
         const content = JSON.parse(e.result.content);
         e.content = content;
         setDataPost(e);
-        console.log(e);
 
         const urlTacgia =
           "http://localhost:3030/user/findbyid/" + e.result.id_tacgia;
@@ -77,9 +81,7 @@ export default function News(props) {
         let list = ``;
         block.data.items.map(
           (item, index) =>
-            (list += `<li classname='content-list'><strong> ${
-              item.content
-            }</strong></li>`)
+            (list += `<li classname='content-list'><strong> ${item.content}</strong></li>`)
         );
         return (
           <div
@@ -116,6 +118,8 @@ export default function News(props) {
       case "embed": {
         return (
           <iframe
+            className="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             src={`${block.data.embed}`}
             width="100%"
             height="500px"
@@ -138,9 +142,9 @@ export default function News(props) {
       </div>
 
       <div className="post-details">
-        <label htmlFor="" id="preshow-name">
+        <p id="preshow-name">
           {datapost?.result?.tieudetin}
-        </label>
+        </p>
         <img
           src={"../" + datapost?.result?.hinhtrichdan?.split("C:fakepath")[1]}
           alt=""
