@@ -79,7 +79,9 @@ Tintuc.slideNews = function (result) {
 
 Tintuc.newbieGuild = function (result) {
   db.query(
-    `SELECT * FROM tintuc where ID_child_theloai = 26 limit 4 `,
+    `SELECT * FROM gcms.tintuc
+    INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
+    where child_theloai.idTheLoai = 7 limit 4 `,
     function (err, newbieGuild) {
       if (err) {
         result(err);

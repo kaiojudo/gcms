@@ -21,6 +21,9 @@ p {
 .op-5 {
   opacity: 0.5;
 }
+h3 strong{
+  font-size: 1.75rem;
+}
 textarea {
   resize: none;
 }
@@ -44,7 +47,7 @@ a:hover {
   display: inline-block;
   border-top: 0.2rem solid var(--color-label);
   border-bottom: 1px solid #ccc;
-
+  margin: 0;
   padding: 0.5rem 0px;
   width: 100%;
 }
@@ -453,9 +456,7 @@ img {
   width: calc(30% - 2.5rem);
   margin-left: 2.5rem;
 }
-.right-list {
-  min-height: 20.5rem;
-}
+
 .right-content-news {
   height: 2.5rem;
   overflow: hidden;

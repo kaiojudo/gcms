@@ -5,6 +5,7 @@ import Table from "@editorjs/table";
 import Embed from "@editorjs/embed";
 import NestedList from "@editorjs/nested-list";
 import LinkTool from "@editorjs/link";
+import Header from "@editorjs/header";
 import Axios from "axios";
 
 export default function AddPost() {
@@ -53,17 +54,13 @@ export default function AddPost() {
         placeholder: "Ấn vào đây để tạo nội dung",
         tools: {
           table: Table,
-          embed: {
-            class: Embed,
+          header: {
+            class: Header,
             config: {
-              services: {
-                youtube: true,
-                coub: true,
-                facebook: true,
-                instagram: true,
-                twitter: true,
-              },
-            },
+              placeholder: 'Enter a header',
+              levels: [2, 3, 4],
+              defaultLevel: 3
+            }
           },
           image: {
             class: ImageTool,
@@ -76,20 +73,31 @@ export default function AddPost() {
               field: "image",
               types: "image/*",
             },
-            list: {
-              class: NestedList,
-              inlineToolbar: true,
-              config: {
-                  defaultStyle: 'ordered'
-              },
           },
-
+          list: {
+            class: NestedList,
+            inlineToolbar: true,
+            config: {
+              defaultStyle: "ordered",
+            },
+          },
           linkTool: {
-              class: LinkTool,
-              config: {
-                  endpoint: 'http://localhost:3001/fetchUrl', // Your backend endpoint for url data fetching,
-              }
+            class: LinkTool,
+            config: {
+              endpoint: "http://localhost:3030/fetchUrl", // Your backend endpoint for url data fetching,
+            },
           },
+          embed: {
+            class: Embed,
+            config: {
+              services: {
+                youtube: true,
+                coub: true,
+                facebook: true,
+                instagram: true,
+                twitter: true,
+              },
+            },
           },
         },
       });
@@ -127,8 +135,6 @@ export default function AddPost() {
       .then(function (response) {
         console.log(response);
         alert("Thêm thành công");
-        
-
       })
       .catch(function (response) {
         console.log(response);

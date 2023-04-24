@@ -17,7 +17,7 @@ export default function News(props) {
         e.content = content;
         setDataPost(e);
         console.log(e);
-        
+
         const urlTacgia =
           "http://localhost:3030/user/findbyid/" + e.result.id_tacgia;
         fetch(urlTacgia)
@@ -44,68 +44,89 @@ export default function News(props) {
               });
           });
       });
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [params.id]);
   function handleRenderPostData(block) {
     switch (block.type) {
-        case 'image':
-            return (
-                <img
-                    src={block.data.file.url}
-                    alt="Err"
-                />
-            )
+      case "image":
+        return <img src={block.data.file.url} alt="Err" />;
+      case "header": {
+        if (block.data.level === 2)
+          return (
+            <h2 className="text-data">
+              <strong>{block.data.text}</strong>
+            </h2>
+          );
+        if (block.data.level === 3)
+          return (
+            <h3 className="text-data">
+              <strong>{block.data.text}</strong>
+            </h3>
+          );
+        if (block.data.level === 4)
+          return (
+            <h4 className="text-data">
+              <strong>{block.data.text}</strong>
+              <strong></strong>
+            </h4>
+          );
+      } // eslint-disable-next-line
+      case "paragraph":
+        return <p className="text-data">{block.data.text}</p>;
+      case "list": {
+        let list = ``;
+        block.data.items.map(
+          (item, index) =>
+            (list += `<li classname='content-list'><strong> ${
+              item.content
+            }</strong></li>`)
+        );
+        return (
+          <div
+            className="content-list-container"
+            dangerouslySetInnerHTML={{ __html: list }}
+          />
+        );
+      }
 
-        case 'paragraph':
-            return (
-                <p className="text-data">{block.data.text}</p>
-            )
-        case 'list': {
-            let list = ``;
-            block.data.items.map((item, index) => (
-                list += `<p classname='content-list'>${index + 1}: ${item.content}</p>`
-            ))
-            return (
-                <div className="content-list-container" dangerouslySetInnerHTML={{ __html: list }} />
-            );
-        }
+      case "linkTool":
+        return <Link to={block.data.link}>{block.data.link}</Link>;
+      case "table": {
+        let table = ``;
+        block.data.content.map((e) => {
+          table += `<tr>`;
+          e.map((tr) => {
+            table += `<td>`;
+            table += `${tr}`;
+            table += `</td>`;
+            return 1;
+          });
+          table += `</tr>`;
+          console.log(table);
+          return 1;
+        });
+        return (
+          <table
+            className="content-table"
+            dangerouslySetInnerHTML={{ __html: table }}
+          />
+        );
+      }
 
-        case 'linkTool':
-            return (
-                <Link href={block.data.link}>{block.data.link}</Link>
-            )
-        case 'table': {
-            let table = ``;
-            block.data.content.map((e) => {
-                table += `<tr>`;
-                e.map((tr) => {
-                    table += `<td>`;
-                    table += `${tr}`;
-                    table += `</td>`;
-                    return 1;
-                })
-                table += `</tr>`;
-                console.log(table);
-                return 1;
-            })
-            return (
-                <table className="content-table" dangerouslySetInnerHTML={{ __html: table }} />
-            )
-        }
-
-        case 'embed': {
-            return (
-
-                <iframe src={`${block.data.embed}`} width="75%" height="500px" title={block.data.id}/>
-
-            )
-        }
-
-
-
-        default:
-            break;
-    }}
+      case "embed": {
+        return (
+          <iframe
+            src={`${block.data.embed}`}
+            width="100%"
+            height="500px"
+            title={block.data.id}
+          />
+        );
+      }
+      default:
+        break;
+    }
+  }
   return (
     <>
       <div className="linkfrom">
@@ -126,13 +147,11 @@ export default function News(props) {
           id="prehinhtrichdan"
         ></img>
         <p id="trichdantin">{datapost?.result?.trichdantin}</p>
-        {
-                    datapost?.content?.blocks?.map(block => (
-                        <div className="col-12 block-content" key={block.id}>
-                            {handleRenderPostData(block)}
-                        </div>
-                    ))
-                }
+        {datapost?.content?.blocks?.map((block) => (
+          <div className="col-12 block-content" key={block.id}>
+            {handleRenderPostData(block)}
+          </div>
+        ))}
         <p id="tacgia">
           Tác giả:
           <i>{dataTacgia?.result?.hoten}</i>
@@ -140,5 +159,4 @@ export default function News(props) {
       </div>
     </>
   );
-  
 }
