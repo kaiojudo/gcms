@@ -76,3 +76,15 @@ var port = 3030;
 app.listen(port, function () {
     console.log("this server is listening on port " + port);
 });
+app.get('/fetchUrl', (req, res) => {
+
+  res.send(
+    {
+      "success": 1,
+      "link": req.query.url,
+      "meta": {
+
+      }
+    }
+  )
+});

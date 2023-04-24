@@ -3,7 +3,7 @@ import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
 import Table from "@editorjs/table";
 import Embed from "@editorjs/embed";
-import NestedList from "@editorjs/nested";
+import NestedList from "@editorjs/nested-list";
 import LinkTool from "@editorjs/link";
 import Axios from "axios";
 
@@ -50,7 +50,6 @@ export default function AddPost() {
       const editor = new EditorJS({
         holder: "editorjs",
         placeholder: "Ấn vào đây để tạo nội dung",
-
         tools: {
           table: Table,
           embed: {
