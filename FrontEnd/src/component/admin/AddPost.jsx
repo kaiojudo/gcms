@@ -3,6 +3,8 @@ import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
 import Table from "@editorjs/table";
 import Embed from "@editorjs/embed";
+import NestedList from "@editorjs/nested";
+import LinkTool from "@editorjs/link";
 import Axios from "axios";
 
 export default function AddPost() {
@@ -74,6 +76,20 @@ export default function AddPost() {
               field: "image",
               types: "image/*",
             },
+            list: {
+              class: NestedList,
+              inlineToolbar: true,
+              config: {
+                  defaultStyle: 'ordered'
+              },
+          },
+
+          linkTool: {
+              class: LinkTool,
+              config: {
+                  endpoint: 'http://localhost:3001/fetchUrl', // Your backend endpoint for url data fetching,
+              }
+          },
           },
         },
       });

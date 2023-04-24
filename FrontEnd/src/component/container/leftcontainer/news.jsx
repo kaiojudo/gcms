@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function News(props) {
   const params = useParams();
@@ -67,6 +68,37 @@ export default function News(props) {
             return (
                 <div className="content-list-container" dangerouslySetInnerHTML={{ __html: list }} />
             );
+        }
+
+        case 'linkTool':
+            return (
+                <Link href={block.data.link}>{block.data.link}</Link>
+            )
+        case 'table': {
+            let table = ``;
+            block.data.content.map((e) => {
+                table += `<tr>`;
+                e.map((tr) => {
+                    table += `<td>`;
+                    table += `${tr}`;
+                    table += `</td>`;
+                    return 1;
+                })
+                table += `</tr>`;
+                console.log(table);
+                return 1;
+            })
+            return (
+                <table className="content-table" dangerouslySetInnerHTML={{ __html: table }} />
+            )
+        }
+
+        case 'embed': {
+            return (
+
+                <iframe src={`${block.data.embed}`} width="75%" height="500px" title={block.data.id}/>
+
+            )
         }
 
 
