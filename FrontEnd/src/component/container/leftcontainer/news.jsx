@@ -58,7 +58,7 @@ export default function News(props) {
 
         case 'paragraph':
             return (
-                <p>{block.data.text}</p>
+                <p className="text-data">{block.data.text}</p>
             )
         case 'list': {
             let list = ``;

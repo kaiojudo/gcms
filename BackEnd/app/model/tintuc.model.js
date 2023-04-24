@@ -66,12 +66,25 @@ Tintuc.giftcode = function (result) {
 };
 Tintuc.slideNews = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 4; `,
+    `SELECT * FROM tintuc where id_phanloaitin = 4 limit 3 `,
     function (err, slidenews) {
       if (err) {
         result(err);
       } else {
         result(slidenews);
+      }
+    }
+  );
+};
+
+Tintuc.newbieGuild = function (result) {
+  db.query(
+    `SELECT * FROM tintuc where ID_child_theloai = 26 limit 4 `,
+    function (err, newbieGuild) {
+      if (err) {
+        result(err);
+      } else {
+        result(newbieGuild);
       }
     }
   );

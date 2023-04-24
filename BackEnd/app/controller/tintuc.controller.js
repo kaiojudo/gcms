@@ -45,3 +45,10 @@ exports.showSlide = function (req, res) {
         });
     })
 }
+exports.showGuild = function (req, res) {
+    Tintuc.newbieGuild(function (guilditem) {
+        res.send({
+            result: guilditem
+        });
+    })
+}

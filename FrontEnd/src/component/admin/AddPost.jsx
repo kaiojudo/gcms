@@ -10,6 +10,7 @@ import Axios from "axios";
 export default function AddPost() {
   const url = "http://localhost:3030/post/add";
   const [data, setData] = useState({});
+
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
   const urlChild = "http://localhost:3030/childtheloai/showlist";
   useEffect(() => {
@@ -125,7 +126,9 @@ export default function AddPost() {
     })
       .then(function (response) {
         console.log(response);
-        console.log("Succeeded");
+        alert("Thêm thành công");
+        
+
       })
       .catch(function (response) {
         console.log(response);

@@ -557,6 +557,9 @@ img {
 .post-details img {
   margin: 0.5rem 0;
 }
+.block-content ~ .block-content{
+  padding-bottom: 0.5rem;
+}
 footer {
   margin-top: 1rem;
 }
