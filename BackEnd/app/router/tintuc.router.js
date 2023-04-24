@@ -7,6 +7,8 @@ module.exports = function (router) {
     router.get('/post/giftcode/showall',postcontroller.showGiftcode);
     router.get('/post/slide/showall',postcontroller.showSlide);
     router.get('/post/newbieguild/showall',postcontroller.showGuild);
+    router.get('/page/:id',postcontroller.getPagi);
+
 
 
 };

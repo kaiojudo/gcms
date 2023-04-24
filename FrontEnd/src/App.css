@@ -21,7 +21,7 @@ p {
 .op-5 {
   opacity: 0.5;
 }
-h3 strong{
+h3 strong {
   font-size: 1.75rem;
 }
 textarea {
@@ -232,6 +232,12 @@ img {
 #left-container .news img {
   height: 100%;
 }
+#left-container .news .img-tieude{
+  display: inline-block;
+  min-width: 13rem;
+  max-width: 13rem;
+  height: 8rem;
+}
 .giftcode-game {
   text-align: center;
 }
@@ -391,6 +397,8 @@ img {
   font-size: 1.5rem;
   font-weight: bold;
   display: inline-block;
+  overflow: hidden;
+  height: 1.8rem;
 }
 .news-title:hover {
   color: var(--color-label);
@@ -557,7 +565,7 @@ img {
 .post-details img {
   margin: 0.5rem 0;
 }
-.block-content ~ .block-content{
+.block-content ~ .block-content {
   padding-bottom: 0.5rem;
 }
 footer {

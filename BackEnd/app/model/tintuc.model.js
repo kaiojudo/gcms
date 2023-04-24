@@ -13,7 +13,6 @@ const Tintuc = function (tintuc) {
   this.solandoc = tintuc.solandoc;
   this.kiemduyet = tintuc.kiemduyet;
   this.blocks = tintuc.blocks;
-  
 };
 Tintuc.get_by_id = function (idtintuc, result) {
   db.query(
@@ -37,6 +36,18 @@ Tintuc.get_all = function (result) {
       result(data);
     }
   });
+};
+Tintuc.get_8_page = function (id, result) {
+  db.query(
+    `SELECT * FROM tintuc limit 5 offset ${id}`,
+    function (err, tintuc) {
+      if (err) {
+        result(err);
+      } else {
+        result(tintuc);
+      }
+    }
+  );
 };
 Tintuc.teyvat = function (result) {
   db.query(
@@ -92,18 +103,21 @@ Tintuc.newbieGuild = function (result) {
   );
 };
 Tintuc.add_new = function (data, result) {
-    var content = { blocks: data.blocks }
+  var content = { blocks: data.blocks };
 
-    // console.log(typeof data.blocks);
-    const sql = `call SP_addPosts('${data.tieudetin}','${data.hinhtrichdan}','${data.trichdantin}',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},'${data.ngaycapnhat}','${JSON.stringify(content)}',0,1,'none');`;
-    db.query(sql, function (err) {
-        if (err) {
-            // throw err;
-            result(0); // nếu thực hiện truy vấn KHÔNG thành công
-        }
-        else {
-            result(1); //nếu thực hiện truy vấn thành công
-        }
-    });
+  // console.log(typeof data.blocks);
+  const sql = `call SP_addPosts('${data.tieudetin}','${data.hinhtrichdan}','${
+    data.trichdantin
+  }',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},'${
+    data.ngaycapnhat
+  }','${JSON.stringify(content)}',0,1,'none');`;
+  db.query(sql, function (err) {
+    if (err) {
+      // throw err;
+      result(0); // nếu thực hiện truy vấn KHÔNG thành công
+    } else {
+      result(1); //nếu thực hiện truy vấn thành công
+    }
+  });
 };
 module.exports = Tintuc;

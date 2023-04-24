@@ -1,7 +1,15 @@
-import React from "react";
-
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 export default function GameNew(props) {
+  const [datapost, setDataPost] = useState({});
+  const url = "http://localhost:3030/page/0";
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataPost(data);
+      });
+  }, []);
   return (
     <div id="game-news">
       <label className="label label-hot-news"> Tin tức về game</label>
@@ -20,81 +28,22 @@ export default function GameNew(props) {
         </li>
       </ul>
       <ul className="news-list">
-        <li className="news d-flex bd-bt">
-          <a href="demo.vn">
-            <img src="../thelastofus.jpg" alt="" />
-          </a>
-          <div>
-            <a href="demo.vn" className="news-title">
-              Game thủ quay lưng với The Last of Us bản PC
-            </a>
-            <p className="news-date">Hôm qua, lúc 09:12</p>
-            <p className="news-decscript">
-              Nhiều người chơi bày tỏ thất vọng đối với phiên bản PC của The
-              Last of Us Part I.
-            </p>
-          </div>
-        </li>
-        <li className="news d-flex bd-bt">
-          <a href="demo.vn">
-            <img src="../thelastofus.jpg" alt="" />
-          </a>
-          <div>
-            <a href="demo.vn" className="news-title">
-              Game thủ quay lưng với The Last of Us bản PC
-            </a>
-            <p className="news-date">Hôm qua, lúc 09:12</p>
-            <p className="news-decscript">
-              Nhiều người chơi bày tỏ thất vọng đối với phiên bản PC của The
-              Last of Us Part I.
-            </p>
-          </div>
-        </li>
-        <li className="news d-flex bd-bt">
-          <a href="demo.vn">
-            <img src="../thelastofus.jpg" alt="" />
-          </a>
-          <div>
-            <a href="demo.vn" className="news-title">
-              Game thủ quay lưng với The Last of Us bản PC
-            </a>
-            <p className="news-date">Hôm qua, lúc 09:12</p>
-            <p className="news-decscript">
-              Nhiều người chơi bày tỏ thất vọng đối với phiên bản PC của The
-              Last of Us Part I.
-            </p>
-          </div>
-        </li>
-        <li className="news d-flex bd-bt">
-          <a href="demo.vn">
-            <img src="../thelastofus.jpg" alt="" />
-          </a>
-          <div>
-            <a href="demo.vn" className="news-title">
-              Game thủ quay lưng với The Last of Us bản PC
-            </a>
-            <p className="news-date">Hôm qua, lúc 09:12</p>
-            <p className="news-decscript">
-              Nhiều người chơi bày tỏ thất vọng đối với phiên bản PC của The
-              Last of Us Part I.
-            </p>
-          </div>
-        </li>
-        <li className="news d-flex bd-bt">
-          <a href="demo.vn">
-            <img src="../thelastofus.jpg" alt="" />
-          </a>
-          <div>
-            <a href="demo.vn" className="news-title">
-              Game thủ quay lưng với The Last of Us bản PC
-            </a>
-            <p className="news-date">Hôm qua, lúc 09:12</p>
-            <p className="news-decscript">
-              Nhiều người chơi bày tỏ thất vọng đối với phiên bản PC của The
-              Last of Us Part I.
-            </p>
-          </div>
-        </li>
+        {datapost?.result?.map((e) => (
+          <li className="news d-flex bd-bt" key={e.idtintuc}>
+            <Link to={e.idtintuc} className="img-tieude">
+              <img src={"../" + e.hinhtrichdan.split("C:fakepath")[1]} alt="" />
+            </Link>
+            <div>
+              <Link to={e.idtintuc} className="news-title">
+                {e.tieudetin}
+              </Link>
+              <p className="news-date">Ngày sửa đổi: {e.ngaycapnhat?.split("T17:00:00.000Z")[0]}</p>
+              <p className="news-decscript">
+                {e.trichdantin}
+              </p>
+            </div>
+          </li>
+        ))}
         <div className="clear" />
       </ul>
     </div>

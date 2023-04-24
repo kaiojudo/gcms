@@ -24,6 +24,13 @@ exports.getbyId = function (req, res) {
         });
     })
 }
+exports.getPagi = function (req, res) {
+    Tintuc.get_8_page(req.params.id, function (tintuc) {
+        res.send({
+            result: tintuc
+        });
+    })
+}
 exports.showAllTeyvat = function (req, res) {
     Tintuc.teyvat(function (datatv) {
         res.send({
