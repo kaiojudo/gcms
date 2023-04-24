@@ -25,7 +25,7 @@ exports.getbyId = function (req, res) {
     })
 }
 exports.getPagi = function (req, res) {
-    Tintuc.get_8_page(req.params.id, function (tintuc) {
+    Tintuc.get_page(req.params, function (tintuc) {
         res.send({
             result: tintuc
         });

@@ -37,9 +37,11 @@ Tintuc.get_all = function (result) {
     }
   });
 };
-Tintuc.get_8_page = function (id, result) {
+Tintuc.get_page = function (data, result) {
   db.query(
-    `SELECT * FROM tintuc limit 5 offset ${id}`,
+    `SELECT * FROM tintuc limit ${data.limit} offset ${
+      (data.offset - 1) * data.limit
+    }`,
     function (err, tintuc) {
       if (err) {
         result(err);
