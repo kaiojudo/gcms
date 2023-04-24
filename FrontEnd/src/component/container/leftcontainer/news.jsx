@@ -51,7 +51,6 @@ export default function News(props) {
             return (
                 <img
                     src={block.data.file.url}
-                    height='80%'
                     alt="Err"
                 />
             )
