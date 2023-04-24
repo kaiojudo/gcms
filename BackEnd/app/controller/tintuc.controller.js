@@ -24,6 +24,13 @@ exports.getbyId = function (req, res) {
         });
     })
 }
+exports.getPagi = function (req, res) {
+    Tintuc.get_8_page(req.params.id, function (tintuc) {
+        res.send({
+            result: tintuc
+        });
+    })
+}
 exports.showAllTeyvat = function (req, res) {
     Tintuc.teyvat(function (datatv) {
         res.send({
@@ -42,6 +49,13 @@ exports.showSlide = function (req, res) {
     Tintuc.slideNews(function (slideitem) {
         res.send({
             result: slideitem
+        });
+    })
+}
+exports.showGuild = function (req, res) {
+    Tintuc.newbieGuild(function (guilditem) {
+        res.send({
+            result: guilditem
         });
     })
 }

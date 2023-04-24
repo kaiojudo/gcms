@@ -13,7 +13,6 @@ const Tintuc = function (tintuc) {
   this.solandoc = tintuc.solandoc;
   this.kiemduyet = tintuc.kiemduyet;
   this.blocks = tintuc.blocks;
-  
 };
 Tintuc.get_by_id = function (idtintuc, result) {
   db.query(
@@ -37,6 +36,18 @@ Tintuc.get_all = function (result) {
       result(data);
     }
   });
+};
+Tintuc.get_8_page = function (id, result) {
+  db.query(
+    `SELECT * FROM tintuc limit 5 offset ${id}`,
+    function (err, tintuc) {
+      if (err) {
+        result(err);
+      } else {
+        result(tintuc);
+      }
+    }
+  );
 };
 Tintuc.teyvat = function (result) {
   db.query(
@@ -66,7 +77,7 @@ Tintuc.giftcode = function (result) {
 };
 Tintuc.slideNews = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 4; `,
+    `SELECT * FROM tintuc where id_phanloaitin = 4 limit 3 `,
     function (err, slidenews) {
       if (err) {
         result(err);
@@ -76,19 +87,37 @@ Tintuc.slideNews = function (result) {
     }
   );
 };
-Tintuc.add_new = function (data, result) {
-    var content = { blocks: data.blocks }
 
-    // console.log(typeof data.blocks);
-    const sql = `call SP_addPosts('${data.tieudetin}','${data.hinhtrichdan}','${data.trichdantin}',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},'${data.ngaycapnhat}','${JSON.stringify(content)}',0,1,'none');`;
-    db.query(sql, function (err) {
-        if (err) {
-            // throw err;
-            result(0); // nếu thực hiện truy vấn KHÔNG thành công
-        }
-        else {
-            result(1); //nếu thực hiện truy vấn thành công
-        }
-    });
+Tintuc.newbieGuild = function (result) {
+  db.query(
+    `SELECT * FROM gcms.tintuc
+    INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
+    where child_theloai.idTheLoai = 7 limit 4 `,
+    function (err, newbieGuild) {
+      if (err) {
+        result(err);
+      } else {
+        result(newbieGuild);
+      }
+    }
+  );
+};
+Tintuc.add_new = function (data, result) {
+  var content = { blocks: data.blocks };
+
+  // console.log(typeof data.blocks);
+  const sql = `call SP_addPosts('${data.tieudetin}','${data.hinhtrichdan}','${
+    data.trichdantin
+  }',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},'${
+    data.ngaycapnhat
+  }','${JSON.stringify(content)}',0,1,'none');`;
+  db.query(sql, function (err) {
+    if (err) {
+      // throw err;
+      result(0); // nếu thực hiện truy vấn KHÔNG thành công
+    } else {
+      result(1); //nếu thực hiện truy vấn thành công
+    }
+  });
 };
 module.exports = Tintuc;

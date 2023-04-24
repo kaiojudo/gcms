@@ -40,7 +40,7 @@ export default function SuperHotNews() {
               >
                 <img
                   className="d-block w-100"
-                  src={"../" + e?.hinhtrichdan?.split("\\fakepath")[1]}
+                  src={"../" + e?.hinhtrichdan?.split("C:fakepath")[1]}
                   alt="First slide"
                 />
                 <div className="description">

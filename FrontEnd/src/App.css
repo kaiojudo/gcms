@@ -21,6 +21,9 @@ p {
 .op-5 {
   opacity: 0.5;
 }
+h3 strong {
+  font-size: 1.75rem;
+}
 textarea {
   resize: none;
 }
@@ -44,7 +47,7 @@ a:hover {
   display: inline-block;
   border-top: 0.2rem solid var(--color-label);
   border-bottom: 1px solid #ccc;
-
+  margin: 0;
   padding: 0.5rem 0px;
   width: 100%;
 }
@@ -229,6 +232,12 @@ img {
 #left-container .news img {
   height: 100%;
 }
+#left-container .news .img-tieude{
+  display: inline-block;
+  min-width: 13rem;
+  max-width: 13rem;
+  height: 8rem;
+}
 .giftcode-game {
   text-align: center;
 }
@@ -388,6 +397,8 @@ img {
   font-size: 1.5rem;
   font-weight: bold;
   display: inline-block;
+  overflow: hidden;
+  height: 1.8rem;
 }
 .news-title:hover {
   color: var(--color-label);
@@ -453,9 +464,7 @@ img {
   width: calc(30% - 2.5rem);
   margin-left: 2.5rem;
 }
-.right-list {
-  min-height: 20.5rem;
-}
+
 .right-content-news {
   height: 2.5rem;
   overflow: hidden;
@@ -546,7 +555,6 @@ img {
   color: red;
 }
 .post-details #trichdantin {
-  font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
 }
@@ -556,6 +564,9 @@ img {
 }
 .post-details img {
   margin: 0.5rem 0;
+}
+.block-content ~ .block-content {
+  padding-bottom: 0.5rem;
 }
 footer {
   margin-top: 1rem;
