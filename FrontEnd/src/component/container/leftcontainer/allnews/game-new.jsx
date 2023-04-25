@@ -32,14 +32,14 @@ export default function GameNew(props) {
         <ul className="news-list">
           {datapost?.result?.map((e) => (
             <li className="news d-flex bd-bt" key={e.idtintuc}>
-              <Link to={e.idtintuc} className="img-tieude">
+              <Link to={`/post/${e.idtintuc}`} className="img-tieude">
                 <img
                   src={"../" + e.hinhtrichdan.split("C:fakepath")[1]}
                   alt=""
                 />
               </Link>
               <div>
-                <Link to={e.idtintuc} className="news-title">
+                <Link to={`/post/${e.idtintuc}`} className="news-title">
                   {e.tieudetin}
                 </Link>
                 <p className="news-date">
