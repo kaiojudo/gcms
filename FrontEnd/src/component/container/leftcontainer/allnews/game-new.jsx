@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Posts from "./gamenew/Posts";
+import { Pagination } from "./gamenew/Pagination";
+import axios from "axios";
 export default function GameNew(props) {
-  const [datapost, setDataPost] = useState({});
-  const url = "http://localhost:3030/page/1/limit/5";
+  const [posts, setDataPost] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
+
+  const url = "http://localhost:3030/post/showlist";
   useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setDataPost(data);
-      });
+    const fetchPosts = async () => {
+      setLoading(true);
+      const res = await axios.get(url);
+      setDataPost(res.data);
+      setLoading(false);
+    };
+    fetchPosts();
   }, []);
-  
+  // Get current posts
+  const lastIndexofPosts = currentPage * postsPerPage;
+  const firstIndexOfPosts = lastIndexofPosts - postsPerPage;
+  const currentPosts = posts?.result?.slice(firstIndexOfPosts,lastIndexofPosts);
+  // Change Page
+  const paginate = (pageNumber)=>setCurrentPage(pageNumber)
   return (
     <>
       <div id="game-news">
@@ -29,30 +42,9 @@ export default function GameNew(props) {
             <a href="demo.vn">PC/Console</a>
           </li>
         </ul>
-        <ul className="news-list">
-          {datapost?.result?.map((e) => (
-            <li className="news d-flex bd-bt" key={e.idtintuc}>
-              <Link to={`/post/${e.idtintuc}`} className="img-tieude">
-                <img
-                  src={"../" + e.hinhtrichdan.split("C:fakepath")[1]}
-                  alt=""
-                />
-              </Link>
-              <div>
-                <Link to={`/post/${e.idtintuc}`} className="news-title">
-                  {e.tieudetin}
-                </Link>
-                <p className="news-date">
-                  Ngày sửa đổi: {e.ngaycapnhat?.split("T17:00:00.000Z")[0]}
-                </p>
-                <p className="news-decscript">{e.trichdantin}</p>
-              </div>
-            </li>
-          ))}
-          <div className="clear" />
-        </ul>
+        <Posts posts = {currentPosts} loading={loading}/>
+        <Pagination postsPerPage={postsPerPage} totalPosts={posts?.result?.length} paginate={paginate}/>
       </div>
-      
     </>
   );
 }
