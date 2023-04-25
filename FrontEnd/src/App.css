@@ -238,6 +238,11 @@ img {
   max-width: 13rem;
   height: 8rem;
 }
+.lazy{
+  min-height:850px;
+  min-width: 100%;
+  margin: auto;
+}
 .giftcode-game {
   text-align: center;
 }

@@ -122,7 +122,6 @@ export default function News(props) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             src={`${block.data.embed}`}
             width="100%"
-            height="500px"
             title={block.data.id}
           />
         );
