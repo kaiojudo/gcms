@@ -242,7 +242,7 @@ img {
   height: 8rem;
 }
 .lazy{
-  min-height:850px;
+  min-height:550px;
   min-width: 100%;
   margin: auto;
 }
@@ -472,7 +472,13 @@ img {
   width: calc(30% - 2.5rem);
   margin-left: 2.5rem;
 }
-
+#right-container .img-review{
+  width: 40%;
+  height: 100%;
+}
+.tieudetin{
+  width: 60%;
+}
 .right-content-news {
   height: 2.5rem;
   overflow: hidden;
@@ -499,9 +505,6 @@ img {
 }
 .review span {
   font-size: 0.9rem;
-}
-.review img {
-  width: 40%;
 }
 .select-form {
   width: 20%;

@@ -7,6 +7,7 @@ module.exports = function (router) {
     router.get('/post/giftcode/showall',postcontroller.showGiftcode);
     router.get('/post/slide/showall',postcontroller.showSlide);
     router.get('/post/newbieguild/showall',postcontroller.showGuild);
+    router.get('/post/review/showall',postcontroller.showReview);
     router.get('/page/:offset/limit/:limit',postcontroller.getPagi);
 
 

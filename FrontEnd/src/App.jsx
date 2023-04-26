@@ -16,11 +16,8 @@ function App(props) {
     <div className="App">
       <Header />
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Index />} />
-        <Route path="login" element={<Login />}>
-          <Route path="signin" element={<FormLog />} />
-          <Route path="register" element={<Register />} />
-        </Route>
         <Route path="post/:id" element={<Post />} />
         <Route path="admin" element={<Admin />}>
           <Route path="post" element={<AdminPost />} />

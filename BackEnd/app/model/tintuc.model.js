@@ -77,6 +77,20 @@ Tintuc.giftcode = function (result) {
     }
   );
 };
+Tintuc.review = function (result) {
+  db.query(
+    `SELECT * FROM tintuc
+    INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
+    where child_theloai.idTheLoai = 4 order by ngaycapnhat limit 6`,
+    function (err, review) {
+      if (err) {
+        result(err);
+      } else {
+        result(review);
+      }
+    }
+  );
+};
 Tintuc.slideNews = function (result) {
   db.query(
     `SELECT * FROM tintuc where id_phanloaitin = 4 limit 3 `,

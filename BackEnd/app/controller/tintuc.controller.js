@@ -38,10 +38,17 @@ exports.showAllTeyvat = function (req, res) {
         });
     })
 }
-exports.showGiftcode = function (req, res) {
-    Tintuc.giftcode(function (datatv) {
+exports.showReview = function (req, res) {
+    Tintuc.review(function (datarv) {
         res.send({
-            result: datatv
+            result: datarv
+        });
+    })
+}
+exports.showGiftcode = function (req, res) {
+    Tintuc.giftcode(function (datagc) {
+        res.send({
+            result: datagc
         });
     })
 }
