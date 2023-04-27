@@ -81,7 +81,21 @@ Tintuc.review = function (result) {
   db.query(
     `SELECT * FROM tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 4 AND tintuc.kiemduyet = 1 order by ngaycapnhat limit 6`,
+    where child_theloai.idTheLoai = 10 AND tintuc.kiemduyet = 1 order by ngaycapnhat limit 6`,
+    function (err, review) {
+      if (err) {
+        result(err);
+      } else {
+        result(review);
+      }
+    }
+  );
+};
+Tintuc.newgame = function (result) {
+  db.query(
+    `SELECT * FROM tintuc
+    INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
+    where child_theloai.idTheLoai = 4 AND tintuc.kiemduyet = 1 order by ngaycapnhat`,
     function (err, review) {
       if (err) {
         result(err);
@@ -103,7 +117,18 @@ Tintuc.slideNews = function (result) {
     }
   );
 };
-
+Tintuc.bottom_Slide = function (result) {
+  db.query(
+    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 limit 4 offset 4 `,
+    function (err, btslidenews) {
+      if (err) {
+        result(err);
+      } else {
+        result(btslidenews);
+      }
+    }
+  );
+};
 Tintuc.newbieGuild = function (result) {
   db.query(
     `SELECT * FROM gcms.tintuc

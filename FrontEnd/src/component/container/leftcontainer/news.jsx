@@ -104,7 +104,6 @@ export default function News(props) {
             return 1;
           });
           table += `</tr>`;
-          console.log(table);
           return 1;
         });
         return (
@@ -117,13 +116,16 @@ export default function News(props) {
 
       case "embed": {
         return (
-          <iframe
-            className="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            src={`${block.data.embed}`}
-            width="100%"
-            title={block.data.id}
-          />
+          <>
+            <iframe
+              className="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              src={`${block.data.embed}`}
+              width="100%"
+              title={block.data.id}
+            />
+            <i className="caption-link">{block.data.caption}</i>
+          </>
         );
       }
       default:
@@ -141,9 +143,7 @@ export default function News(props) {
       </div>
 
       <div className="post-details">
-        <p id="preshow-name">
-          {datapost?.result?.tieudetin}
-        </p>
+        <p id="preshow-name">{datapost?.result?.tieudetin}</p>
         <img
           src={"../" + datapost?.result?.hinhtrichdan?.split("C:fakepath")[1]}
           alt=""

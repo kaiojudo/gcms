@@ -11,6 +11,15 @@ export default function SuperHotNews() {
         setDataSlide(data);
       });
   }, []);
+  const [databtSlide, setDatabtSlide] = useState({});
+  const urlbtSlide = "http://localhost:3030/post/btslide/showall";
+  useEffect(() => {
+    fetch(urlbtSlide)
+      .then((response) => response.json())
+      .then((data) => {
+        setDatabtSlide(data);
+      });
+  }, []);
   return (
     <>
       <div id="hot-new-news">
@@ -72,30 +81,19 @@ export default function SuperHotNews() {
         </div>
 
         <div className="hot-new-news-2">
-          <div className="hot-new-news-2-item">
-            <a href="demo.vn">
-              <img src="../batman.jpg" alt="" />
-              <p>MultiVersus đóng cửa các dịch vụ trực tuyến từ tháng 6</p>
-            </a>
-          </div>
-          <div className="hot-new-news-2-item">
-            <a href="demo.vn">
-              <img src="../batman.jpg" alt="" />
-              <p>MultiVersus đóng cửa các dịch vụ trực tuyến từ tháng 6</p>
-            </a>
-          </div>
-          <div className="hot-new-news-2-item">
-            <a href="demo.vn">
-              <img src="../batman.jpg" alt="" />
-              <p>MultiVersus đóng cửa các dịch vụ trực tuyến từ tháng 6</p>
-            </a>
-          </div>
-          <div className="hot-new-news-2-item">
-            <a href="demo.vn">
-              <img src="../batman.jpg" alt="" />
-              <p>MultiVersus đóng cửa các dịch vụ trực tuyến từ tháng 6</p>
-            </a>
-          </div>
+          {databtSlide?.result?.map((e) => (
+            <div className="hot-new-news-2-item" key={e.idtintuc}>
+              <Link to={`/post/${e.idtintuc}`} key={e.idtintuc}>
+                <div className="hot-2-img">
+                  <img
+                    src={"../" + e?.hinhtrichdan?.split("C:fakepath")[1]}
+                    alt="Err"
+                  />
+                </div>
+                <p>{e.tieudetin}</p>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </>

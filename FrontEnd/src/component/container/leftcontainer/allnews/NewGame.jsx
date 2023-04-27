@@ -1,138 +1,33 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 export default function NewGame() {
+  const [newgame, setnewGame] = useState({});
+  const url = "http://localhost:3030/post/newgames/showall";
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setnewGame(data);
+        console.log(data.result[0].tieudetin.split(" – "));
+      });
+  }, []);
   return (
     <div id="hot-news-game" className="bd-bt">
-      <ul className="tab-game d-flex bd-t-green bd-bt">
-        <li>
-          <a href="demo.vn">Game mới</a>
-        </li>
-        <li>
-          <a href="demo.vn">Mobile</a>
-        </li>
-        <li>
-          <a href="demo.vn">Game Online</a>
-        </li>
-        <li>
-          <a href="demo.vn">PC/Console</a>
-        </li>
-      </ul>
+      <label htmlFor="" className="label">
+        Game Mới
+      </label>
       <ul className="d-flex tab-game-list">
-        <li className="tab-game-item">
-          <a href="demo.vn">
-            <img src="../nhanhiep.jpg" alt="" />
-            <span>Kiếm thế Online</span>
-            <p className="game-item-vote">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-regular fa-star" />
-              <i className="fa-regular fa-star" />
-            </p>
-          </a>
-        </li>
-        <li className="tab-game-item">
-          <a href="demo.vn">
-            <img src="../kiemthe.jpg" alt="" />
-            <span>Kiếm thế Online</span>
-            <p className="game-item-vote">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-            </p>
-          </a>
-        </li>
-        <li className="tab-game-item">
-          <a href="demo.vn">
-            <img src="../antkingdom.jpg" alt="" />
-            <span>Kiếm thế Online</span>
-            <p className="game-item-vote">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-            </p>
-          </a>
-        </li>
-        <li className="tab-game-item">
-          <a href="demo.vn">
-            <img src="../antkingdom.jpg" alt="" />
-            <span>Kiếm thế Online</span>
-            <p className="game-item-vote">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-            </p>
-          </a>
-        </li>
-        <li className="tab-game-item">
-          <a href="demo.vn">
-            <img src="../antkingdom.jpg" alt="" />
-            <span>Kiếm thế Online</span>
-            <p className="game-item-vote">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-            </p>
-          </a>
-        </li>
-        <li className="tab-game-item">
-          <a href="demo.vn">
-            <img src="../nhanhiep.jpg" alt="" />
-            <span>Kiếm thế Online</span>
-            <p className="game-item-vote">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-            </p>
-          </a>
-        </li>
-        <li className="tab-game-item">
-          <a href="demo.vn">
-            <img src="../nhanhiep.jpg" alt="" />
-            <span>Kiếm thế Online</span>
-            <p className="game-item-vote">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-            </p>
-          </a>
-        </li>
-        <li className="tab-game-item">
-          <a href="demo.vn">
-            <img src="../nhanhiep.jpg" alt="" />
-            <span>Kiếm thế Online</span>
-            <p className="game-item-vote">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-            </p>
-          </a>
-        </li>
-        <li className="tab-game-item">
-          <a href="demo.vn">
-            <img src="../nhanhiep.jpg" alt="" />
-            <span>Kiếm thế Online</span>
-            <p className="game-item-vote">
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-              <i className="fa-solid fa-star" />
-            </p>
-          </a>
-        </li>
+        {newgame?.result?.map((e) => (
+          <li className="tab-game-item" key={e.idtintuc}>
+            <Link to={`/post/${e.idtintuc}`}>
+              <img
+                src={"../" + e?.hinhtrichdan?.split("C:fakepath")[1]}
+                alt=""
+              />
+              <div className="gamename">{e.tieudetin.split(" - ")[0]}</div>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

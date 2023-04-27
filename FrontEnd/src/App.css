@@ -7,7 +7,16 @@
   --gray-color: #515962;
   --color-label: #69b03b;
 }
-.page-link{
+.gamename {
+  max-height: 1.5rem;
+  overflow: hidden;
+}
+.hot-2-img {
+  max-height: 8rem;
+  overflow: hidden;
+  min-height: 8rem;
+}
+.page-link {
   cursor: pointer;
 }
 body {
@@ -235,14 +244,14 @@ img {
 #left-container .news img {
   height: 100%;
 }
-#left-container .news .img-tieude{
+#left-container .news .img-tieude {
   display: inline-block;
   min-width: 13rem;
   max-width: 13rem;
   height: 8rem;
 }
-.lazy{
-  min-height:550px;
+.lazy {
+  min-height: 550px;
   min-width: 100%;
   margin: auto;
 }
@@ -368,7 +377,7 @@ img {
 .tab-game-list li img {
   height: 7rem;
   width: 7rem;
-  border-radius: 1rem;
+  border-radius: 5rem;
 }
 .tab-game-list a {
   text-align: center;
@@ -377,6 +386,9 @@ img {
   font-size: 0.9rem;
   font-weight: bold;
   text-align: center;
+}
+.tab-game-item div {
+  max-height: 1.5rem;
 }
 .game-item-vote {
   text-align: center;
@@ -472,11 +484,11 @@ img {
   width: calc(30% - 2.5rem);
   margin-left: 2.5rem;
 }
-#right-container .img-review{
+#right-container .img-review {
   width: 40%;
   height: 100%;
 }
-.tieudetin{
+.tieudetin {
   width: 60%;
 }
 .right-content-news {
@@ -579,15 +591,21 @@ img {
 .block-content ~ .block-content {
   padding-bottom: 0.5rem;
 }
-.giftcode-category a:hover{
+.giftcode-category a:hover {
   color: var(--color-label);
 }
 /* Admin */
 
-.badge button{
+.badge button {
   margin: 0 0.5rem;
   min-width: 2rem;
 }
+.caption-link {
+  justify-content: center;
+  opacity: 0.8;
+  display: flex;
+}
 footer {
   margin-top: 1rem;
+  color: #fff;
 }

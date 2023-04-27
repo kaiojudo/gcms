@@ -45,6 +45,13 @@ exports.showReview = function (req, res) {
         });
     })
 }
+exports.showNewGame = function (req, res) {
+    Tintuc.newgame(function (datarv) {
+        res.send({
+            result: datarv
+        });
+    })
+}
 exports.showGiftcode = function (req, res) {
     Tintuc.giftcode(function (datagc) {
         res.send({
@@ -56,6 +63,13 @@ exports.showSlide = function (req, res) {
     Tintuc.slideNews(function (slideitem) {
         res.send({
             result: slideitem
+        });
+    })
+}
+exports.showbtSlide = function (req, res) {
+    Tintuc.bottom_Slide(function (btslideitem) {
+        res.send({
+            result: btslideitem
         });
     })
 }
