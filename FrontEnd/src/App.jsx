@@ -10,6 +10,7 @@ import Footer from "./component/Footer";
 import AdminPost from "./component/admin/AddPost";
 import FormLog from "./component/Login";
 import Register from "./component/Register";
+import { ShowAll } from "./component/admin/ShowAll";
 
 function App(props) {
   return (
@@ -20,6 +21,7 @@ function App(props) {
         <Route path="/" element={<Index />} />
         <Route path="post/:id" element={<Post />} />
         <Route path="admin" element={<Admin />}>
+          <Route path="" element={<ShowAll />} />
           <Route path="post" element={<AdminPost />} />
         </Route>
       </Routes>
