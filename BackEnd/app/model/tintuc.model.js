@@ -40,7 +40,7 @@ Tintuc.get_all = function (result) {
 Tintuc.get_page = function (data, result) {
   db.query(
     `SELECT * FROM tintuc Where kiemduyet = 1 limit ${data.limit} offset ${
-      (data.offset - 1) * data.limit 
+      (data.offset - 1) * data.limit
     } `,
     function (err, tintuc) {
       if (err) {
@@ -160,5 +160,19 @@ Tintuc.add_new = function (data, result) {
       result(1); //nếu thực hiện truy vấn thành công
     }
   });
+};
+
+Tintuc.delete = function (idtintuc, result) {
+  db.query(
+    `UPDATE gcms.tintuc SET kiemduyet = 0 WHERE idtintuc = ? `,
+    idtintuc,
+    function (err, data) {
+      if (err) {
+        result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
 };
 module.exports = Tintuc;

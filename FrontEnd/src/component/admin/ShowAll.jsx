@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+
 import axios from "axios";
 export const ShowAll = () => {
   const [posts, setDataPost] = useState([]);
   const url = "http://localhost:3030/post/showlist";
+  const refresh = () => window.location.reload(true)
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(url);
@@ -10,12 +12,28 @@ export const ShowAll = () => {
     };
     fetchPosts();
   }, []);
+
+  const handleDelete = async (e) => {
+    const deletePosts = async () => {
+      const res = await axios.patch(
+        `http://localhost:3030/post/delete/` + e.target.id.split("delete")[1]
+      );
+      return res;
+      
+    };
+    deletePosts();
+    alert("Xoá thành công !");
+    refresh();
+  };
   return (
     <>
       <label htmlFor="list-groip">All Post</label>
       <ul className="list-group">
         {posts?.result?.map((post) => (
-          <li className="list-group-item d-flex justify-content-between align-items-center" key={post.idtintuc}>
+          <li
+            className="list-group-item d-flex justify-content-between align-items-center"
+            key={post.idtintuc}
+          >
             {post.tieudetin}
             <span className="badge">
               <button type="button" className="btn btn-success">
@@ -24,8 +42,13 @@ export const ShowAll = () => {
               <button type="button" className="btn btn-warning">
                 Sửa
               </button>
-              <button type="button" className="btn btn-danger">
-                Xoá
+              <button
+                type="button"
+                className="btn btn-danger"
+                id={`delete${post.idtintuc}`}
+                onClick={handleDelete}
+              >
+                Xoá nè
               </button>
             </span>
           </li>
