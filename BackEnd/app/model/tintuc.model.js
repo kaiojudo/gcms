@@ -175,4 +175,19 @@ Tintuc.delete = function (idtintuc, result) {
     }
   );
 };
+Tintuc.get_by_idtheloai = function (idtheloai,result) {
+  db.query(
+    `SELECT * FROM gcms.tintuc
+    INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
+    where child_theloai.idTheLoai = ? AND tintuc.kiemduyet = 1 `,
+    idtheloai,
+    function (err, tintuc) {
+      if (err) {
+        result(err);
+      } else {
+        result(tintuc);
+      }
+    }
+  );
+};
 module.exports = Tintuc;

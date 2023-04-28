@@ -50,7 +50,7 @@ export default function Header() {
           </li>
           {dataTheLoai?.result?.map((e) => (
             <li key={e.idTheLoai} className="menu-category">
-              <a href={e.url} id={e.idTheLoai} onMouseMove={HoverFa}>
+              <a href={`/category/${e.idTheLoai}`} id={e.idTheLoai} onMouseOver={HoverFa}>
                 {e.tenTheLoai}
               </a>
             </li>

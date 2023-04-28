@@ -87,3 +87,12 @@ exports.delete = function (req, res) {
     });
   });
 };
+exports.get_by_idtheloai = function (req, res) {
+  Tintuc.get_by_idtheloai(req.params.id, function (item) {
+    res.send({
+      result: item,
+    });
+  });
+};
+
+

@@ -8,8 +8,9 @@ import Admin from "./Layout_Admin";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import AdminPost from "./component/admin/AddPost";
-import FormLog from "./component/Login";
-import Register from "./component/Register";
+// import FormLog from "./component/Login";
+// import Register from "./component/Register";
+import Category from "./Layout_Category";
 import { ShowAll } from "./component/admin/ShowAll";
 
 function App(props) {
@@ -24,6 +25,8 @@ function App(props) {
           <Route path="" element={<ShowAll />} />
           <Route path="post" element={<AdminPost />} />
         </Route>
+        <Route path="category/:id" element={<Category />}></Route>
+
       </Routes>
       <Footer />
     </div>
