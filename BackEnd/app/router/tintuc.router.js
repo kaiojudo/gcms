@@ -12,6 +12,6 @@ module.exports = function (router) {
   router.get("/page/:offset/limit/:limit", postcontroller.getPagi);
   router.get("/post/newgames/showall", postcontroller.showNewGame);
   router.patch("/post/delete/:id", postcontroller.delete);
+  router.patch("/post/solandoc/:id", postcontroller.luotdoc);
   router.get("/category/:id", postcontroller.get_by_idtheloai);
-
 };

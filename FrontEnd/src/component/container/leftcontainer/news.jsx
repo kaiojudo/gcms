@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function News(props) {
   const params = useParams();
@@ -9,12 +10,18 @@ export default function News(props) {
   const [dataChild, setDataChild] = useState({});
   const [dataTheLoai, setDataTheLoai] = useState({});
   const urlPost = `http://localhost:3030/post/${params.id}`;
+  const urlView = `http://localhost:3030/post/solandoc/${params.id}`;
   useEffect(() => {
     let headers = new Headers();
 
     headers.append("Content-Type", "application/json");
     headers.append("Accept", "application/json");
     headers.append("Origin", "http://localhost:3000");
+    const updateview = async () => {
+      const res = await axios.patch(urlView);
+      return res;
+    };
+    updateview();
     fetch(urlPost)
       .then((response) => response.json())
       .then((e) => {
@@ -155,6 +162,7 @@ export default function News(props) {
             {handleRenderPostData(block)}
           </div>
         ))}
+        <p id="soluotdoc"><i className="fa-solid fa-eye"></i> {datapost?.result?.solandoc}</p>
         <p id="tacgia">
           Tác giả:
           <i>{dataTacgia?.result?.hoten}</i>

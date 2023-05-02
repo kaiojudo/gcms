@@ -29,7 +29,7 @@ Tintuc.get_by_id = function (idtintuc, result) {
 };
 
 Tintuc.get_all = function (result) {
-  db.query(`SELECT * FROM tintuc WHERE kiemduyet = 1`, function (err, data) {
+  db.query(`SELECT * FROM tintuc WHERE kiemduyet = 1 order by solandoc desc`, function (err, data) {
     if (err) {
       result(err);
     } else {
@@ -169,6 +169,20 @@ Tintuc.delete = function (idtintuc, result) {
     function (err, data) {
       if (err) {
         result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
+Tintuc.solandoc = function (idtintuc, result) {
+  db.query(
+    `UPDATE gcms.tintuc SET solandoc = solandoc + 1 WHERE idtintuc = ?`,
+    idtintuc,
+    function (err, data) {
+      if (err) {
+        result(err);
+        console.log(idtintuc);
       } else {
         result(data);
       }
