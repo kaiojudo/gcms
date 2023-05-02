@@ -11,7 +11,6 @@ import Axios from "axios";
 export default function AddPost() {
   const url = "http://localhost:3030/post/add";
   const [data, setData] = useState({});
-  const refresh = () => window.location.reload(true);
 
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
   const urlChild = "http://localhost:3030/childtheloai/showlist";
@@ -58,10 +57,10 @@ export default function AddPost() {
           header: {
             class: Header,
             config: {
-              placeholder: "Enter a header",
+              placeholder: 'Enter a header',
               levels: [2, 3, 4],
-              defaultLevel: 3,
-            },
+              defaultLevel: 3
+            }
           },
           image: {
             class: ImageTool,
@@ -136,7 +135,6 @@ export default function AddPost() {
       .then(function (response) {
         console.log(response);
         alert("Thêm thành công");
-        refresh();
       })
       .catch(function (response) {
         console.log(response);
