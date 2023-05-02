@@ -77,6 +77,13 @@ export default function Header() {
                 className="form-control"
                 placeholder="Search..."
               />
+              {dataTheLoai?.result?.map((e) => (
+            <li key={e.idTheLoai} className="menu-category">
+              <a href={`/category/${e.idTheLoai}`} id={e.idTheLoai} >
+                {e.tenTheLoai}
+              </a>
+            </li>
+          ))}
             </div>
           </div>
         </div>
