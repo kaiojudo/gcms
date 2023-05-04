@@ -57,10 +57,10 @@ export default function AddPost() {
           header: {
             class: Header,
             config: {
-              placeholder: 'Enter a header',
+              placeholder: "Enter a header",
               levels: [2, 3, 4],
-              defaultLevel: 3
-            }
+              defaultLevel: 3,
+            },
           },
           image: {
             class: ImageTool,
@@ -132,13 +132,17 @@ export default function AddPost() {
       url: url,
       data: postdata,
     })
-      .then(function (response) {
-        console.log(response);
-        alert("Thêm thành công");
+      .then((e) => {
+        if (e.result === 0) {
+          alert(
+            "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
+          );
+        } else {
+          alert("Đăng bài thành công!");
+        }
       })
-      .catch(function (response) {
-        console.log(response);
-        console.log("err");
+      .catch(() => {
+        alert("Đăng bài thất bại do lỗi hệ thống!");
       });
   }
   return (

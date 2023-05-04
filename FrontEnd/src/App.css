@@ -344,6 +344,9 @@ img {
   width: 100%;
   height: 100%;
 }
+.news-list{
+  min-height: 51rem;
+}
 .hot-new-news-2 {
   margin-top: 1rem;
   display: flex;

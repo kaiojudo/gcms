@@ -12,7 +12,7 @@ const Theloai = function (theloai) {
 }
 
 Theloai.get_all = function (result) {
-    db.query(`SELECT * from theloai WHERE sapxep < 6`, function (err, theloai) {
+    db.query(`SELECT * from theloai WHERE sapxep <= 6`, function (err, theloai) {
         if (err) {
             result(err);
         } else {
