@@ -142,11 +142,11 @@ export default function News(props) {
   return (
     <>
       <div className="linkfrom">
-        <i className="fa-solid fa-house"></i>
+        <Link to={`/`}><i className="fa-solid fa-house"></i></Link>
         <i className="fa-solid fa-caret-right"></i>
-        <span>{dataTheLoai?.result?.tenTheLoai}</span>
+      <a href={`/category/${dataTheLoai?.result?.idTheLoai}`}>{dataTheLoai?.result?.tenTheLoai}</a>
         <i className="fa-solid fa-caret-right"></i>
-        <span>{dataChild?.result?.ten_child_theloai}</span>
+        <a href={`/categorybychild/${dataChild?.result?.ID_child_theloai}`}>{dataChild?.result?.ten_child_theloai}</a>
       </div>
 
       <div className="post-details">

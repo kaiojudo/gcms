@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Posts from "./component/container/leftcontainer/allnews/gamenew/Posts";
-import { Pagination } from "./component/container/leftcontainer/allnews/gamenew/Pagination";
+import Posts from "./leftcontainer/allnews/gamenew/Posts";
+import { Pagination } from "./leftcontainer/allnews/gamenew/Pagination";
 import axios from "axios";
-import RightContainer from "./component/container/rightcontainer/RightContainer";
+import RightContainer from "./rightcontainer/RightContainer";
 export default function Layout_Category() {
   const [posts, setDataPost] = useState([]);
   const [loading, setLoading] = useState(false);

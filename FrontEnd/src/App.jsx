@@ -10,7 +10,9 @@ import Footer from "./component/Footer";
 import AdminPost from "./component/admin/AddPost";
 import FormLog from "./component/Login";
 import Register from "./component/Register";
-import Category from "./Layout_Category";
+import Category from "./component/container/Category_byId";
+import Categorybychild  from "./component/container/Category_bychildId";
+
 import { ShowAll } from "./component/admin/ShowAll";
 
 function App(props) {
@@ -29,6 +31,8 @@ function App(props) {
           <Route path="post" element={<AdminPost />} />
         </Route>
         <Route path="category/:id" element={<Category />}></Route>
+        <Route path="categorybychild/:id" element={<Categorybychild />}></Route>
+
 
       </Routes>
       <Footer />

@@ -50,7 +50,7 @@ export default function Header() {
           </li>
           {dataTheLoai?.result?.map((e) => (
             <li key={e.idTheLoai} className="menu-category">
-              <a href={`/category/${e.idTheLoai}`} id={e.idTheLoai} onMouseOver={HoverFa}>
+              <a href={`/category/${e.idTheLoai}`} id={e.idTheLoai} onMouseOver={HoverFa} >
                 {e.tenTheLoai}
               </a>
             </li>
@@ -93,7 +93,7 @@ export default function Header() {
         <ul className="menu-sub-cat">
           {dataChildTheLoai?.result?.map((e) => (
             <li key={e.ID_child_theloai} id={e.ID_child_theloai}>
-              <a href="demo.vn">{e.ten_child_theloai}</a>
+              <a href={`/categorybychild/${e.ID_child_theloai}`}>{e.ten_child_theloai}</a>
             </li>
           ))}
         </ul>
