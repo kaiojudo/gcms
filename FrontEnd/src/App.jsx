@@ -10,8 +10,8 @@ import Footer from "./component/Footer";
 import AdminPost from "./component/admin/AddPost";
 import FormLog from "./component/Login";
 import Register from "./component/Register";
-import Category from "./component/container/Category_byId";
-import Categorybychild  from "./component/container/Category_bychildId";
+import Category from "./component/category/Category_byId";
+import Categorybychild  from "./component/category/Category_bychildId";
 
 import { ShowAll } from "./component/admin/ShowAll";
 

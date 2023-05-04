@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Posts from "./leftcontainer/allnews/gamenew/Posts";
-import { Pagination } from "./leftcontainer/allnews/gamenew/Pagination";
+import Posts from "../container/leftcontainer/allnews/gamenew/Posts";
+import { Pagination } from "../container/leftcontainer/allnews/gamenew/Pagination";
 import axios from "axios";
-import RightContainer from "./rightcontainer/RightContainer";
+import RightContainer from "../container/rightcontainer/RightContainer";
 export default function Layout_Category() {
   const [posts, setDataPost] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function Layout_Category() {
     const fetchPosts = async () => {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:3030/childcategory/${params.id}`
+        `http://localhost:3030/category/${params.id}`
       );
       setDataPost(res.data);
       setLoading(false);
@@ -24,7 +24,7 @@ export default function Layout_Category() {
     fetchPosts();
     const fetchtheloais = async () => {
       const res = await axios.get(
-        `http://localhost:3030/childtheloai/child/${params.id}`
+        `http://localhost:3030/theloai/details/${params.id}`
       );
       setTheloai(res.data);
     };
@@ -44,7 +44,7 @@ export default function Layout_Category() {
         <div id="left-container">
           <div id="game-news">
             <label className="label label-hot-news">
-              {theloai?.result?.ten_child_theloai}
+              {theloai?.result?.tenTheLoai}
             </label>
             <Posts posts={currentPosts} loading={loading} />
             <Pagination
