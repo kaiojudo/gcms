@@ -12,7 +12,7 @@ import FormLog from "./component/Login";
 import Register from "./component/Register";
 import Category from "./component/category/Category_byId";
 import Categorybychild  from "./component/category/Category_bychildId";
-
+import Notfound from "./component/Notfound";
 import { ShowAll } from "./component/admin/ShowAll";
 
 function App(props) {
@@ -33,7 +33,7 @@ function App(props) {
         <Route path="category/:id" element={<Category />}></Route>
         <Route path="categorybychild/:id" element={<Categorybychild />}></Route>
 
-
+        <Route path='*' element={<Notfound />}/>
       </Routes>
       <Footer />
     </div>
