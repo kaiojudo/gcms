@@ -63,8 +63,8 @@ export default function Header() {
               <div className="login-logo">
                 <img src="../ayaka.ico" alt="" />
               </div>
-              <Link to={"/login/signin"}>Sign in</Link>
-              <Link to={"/login/register"}>Register</Link>
+              <Link to={"/logsign/login"}>Sign in</Link>
+              <Link to={"/logsign/register"}>Register</Link>
             </div>
           </span>
           <div className="sub-bar js-header-mobile-bar" onClick={ShowMenu}>

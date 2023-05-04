@@ -8,8 +8,8 @@ import Admin from "./Layout_Admin";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import AdminPost from "./component/admin/AddPost";
-// import FormLog from "./component/Login";
-// import Register from "./component/Register";
+import FormLog from "./component/Login";
+import Register from "./component/Register";
 import Category from "./Layout_Category";
 import { ShowAll } from "./component/admin/ShowAll";
 
@@ -18,7 +18,10 @@ function App(props) {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="logsign" element = {<Login/>}>
+          <Route path="login" element = {<FormLog/>}/>
+          <Route path="register" element = {<Register/>}/>
+        </Route>
         <Route path="/" element={<Index />} />
         <Route path="post/:id" element={<Post />} />
         <Route path="admin" element={<Admin />}>
