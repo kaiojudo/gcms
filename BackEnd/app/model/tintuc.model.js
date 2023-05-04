@@ -204,4 +204,18 @@ Tintuc.get_by_idtheloai = function (idtheloai,result) {
     }
   );
 };
+Tintuc.get_by_idchildtheloai = function (idtheloai,result) {
+  db.query(
+    `SELECT * FROM gcms.tintuc
+    where ID_child_theloai = ? AND tintuc.kiemduyet = 1 `,
+    idtheloai,
+    function (err, tintuc) {
+      if (err) {
+        result(err);
+      } else {
+        result(tintuc);
+      }
+    }
+  );
+};
 module.exports = Tintuc;

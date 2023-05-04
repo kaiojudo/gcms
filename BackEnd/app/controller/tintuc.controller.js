@@ -94,6 +94,13 @@ exports.get_by_idtheloai = function (req, res) {
     });
   });
 };
+exports.get_by_idchildtheloai = function (req, res) {
+  Tintuc.get_by_idchildtheloai(req.params.id, function (item) {
+    res.send({
+      result: item,
+    });
+  });
+};
 exports.luotdoc = function (req, res) {
   Tintuc.solandoc(req.params.id, function (DOC) {
     res.send({
