@@ -8,7 +8,6 @@ export default function NewGame() {
       .then((response) => response.json())
       .then((data) => {
         setnewGame(data);
-        console.log(data.result[0].tieudetin.split(" – "));
       });
   }, []);
   return (
