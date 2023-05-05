@@ -15,6 +15,7 @@ module.exports = function (router) {
   router.patch("/post/solandoc/:id", postcontroller.luotdoc);
   router.patch("/post/duyet/:id", postcontroller.duyet);
   router.get("/category/:id", postcontroller.get_by_idtheloai);
-  router.get("/childcategory/:id", postcontroller.get_by_idchildtheloai);
+  router.get("/post/showlist", postcontroller.showAllTintuc);
+  router.get("/getnew/:id", postcontroller.shownew);
 
 };

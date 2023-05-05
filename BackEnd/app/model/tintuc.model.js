@@ -114,7 +114,7 @@ Tintuc.slideNews = function (result) {
 };
 Tintuc.bottom_Slide = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 AND isNull = 1 limit 4 offset 4 `,
+    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 AND isNull = 1 limit 4 offset 3 `,
     function (err, btslidenews) {
       if (err) {
         result(err);
@@ -216,6 +216,19 @@ Tintuc.get_by_idchildtheloai = function (idtheloai,result) {
   db.query(
     `SELECT * FROM gcms.tintuc
     where ID_child_theloai = ? AND tintuc.kiemduyet = 1 `,
+    idtheloai,
+    function (err, tintuc) {
+      if (err) {
+        result(err);
+      } else {
+        result(tintuc);
+      }
+    }
+  );
+};
+Tintuc.getnew = function (idtheloai,result) {
+  db.query(
+    `SELECT * FROM tintuc WHERE kiemduyet = 1 AND isNull = 1 AND id_phanloaitin != 1 AND idtintuc != ? order by ngaycapnhat desc limit 4 `,
     idtheloai,
     function (err, tintuc) {
       if (err) {

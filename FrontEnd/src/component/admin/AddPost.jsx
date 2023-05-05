@@ -138,7 +138,7 @@ export default function AddPost() {
           );
         }
         if (!postdata.tieudetin || !postdata.ID_child_theloai || !postdata.id_phanloaitin || !postdata.id_tacgia || !postdata.ngaycapnhat){
-          alert("Quên điền kìa")
+          alert("Vui lòng điền đầy đủ thông tin")
         } else {
           alert("Chờ duyệt nhé!");
         }

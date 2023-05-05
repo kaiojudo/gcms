@@ -114,6 +114,14 @@ exports.luotdoc = function (req, res) {
     });
   });
 };
+exports.shownew = function (req, res) {
+  Tintuc.getnew(req.params.id, function (item) {
+    res.send({
+      result: item,
+    });
+  });
+};
+
 
 
 
