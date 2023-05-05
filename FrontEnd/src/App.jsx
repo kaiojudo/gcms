@@ -14,6 +14,7 @@ import Category from "./component/category/Category_byId";
 import Categorybychild  from "./component/category/Category_bychildId";
 import Notfound from "./component/Notfound";
 import { ShowAll } from "./component/admin/ShowAll";
+import { DuyetBai } from "./component/admin/Duyetbai";
 
 function App(props) {
   return (
@@ -29,6 +30,7 @@ function App(props) {
         <Route path="admin" element={<Admin />}>
           <Route path="" element={<ShowAll />} />
           <Route path="post" element={<AdminPost />} />
+          <Route path="postchuaduyet" element={<DuyetBai />} />
         </Route>
         <Route path="category/:id" element={<Category />}></Route>
         <Route path="categorybychild/:id" element={<Categorybychild />}></Route>

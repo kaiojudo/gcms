@@ -105,7 +105,7 @@ export default function AddPost() {
       editorRef.current = editor;
     }
     return () => {
-      if (editorRef.current && editorRef.current.destroy) {
+      if (editorRef.current || editorRef.current.destroy) {
         editorRef.current.destroy();
       }
     };
@@ -124,7 +124,6 @@ export default function AddPost() {
         console.log("Saving failed: ", error);
       });
     const postdata = { ...data, ...content };
-
     var myJsonString = JSON.stringify(postdata);
     console.log(myJsonString);
     Axios({
@@ -137,8 +136,11 @@ export default function AddPost() {
           alert(
             "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
           );
+        }
+        if (!postdata.tieudetin || !postdata.ID_child_theloai || !postdata.id_phanloaitin || !postdata.id_tacgia || !postdata.ngaycapnhat){
+          alert("Quên điền kìa")
         } else {
-          alert("Đăng bài thành công!");
+          alert("Chờ duyệt nhé!");
         }
       })
       .catch(() => {
@@ -147,12 +149,14 @@ export default function AddPost() {
   }
   return (
     <>
+      <label htmlFor="" className="lable-admin">
+        Đăng bài
+      </label>
       <form
         id="form-baiviet"
         className="form-baiviet"
         onSubmit={(e) => submit(e)}
       >
-        <h2>Bài viết</h2>
         <div className="form-group">
           <label htmlFor="tieudetin">Nhập tên bài viết</label>
           <input

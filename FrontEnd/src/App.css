@@ -7,7 +7,7 @@
   --gray-color: #515962;
   --color-label: #69b03b;
 }
-a:hover{
+a:hover {
   color: var(--color-label);
 }
 .gamename {
@@ -138,13 +138,13 @@ img {
   position: absolute;
   opacity: 0.8;
 }
-.modal-menu .menu-category a{
+.modal-menu .menu-category a {
   color: #fff;
   padding: 0.5rem 0;
 }
-.modal-menu .menu-category{
+.modal-menu .menu-category {
   list-style: none;
-    padding: 0.3rem 0rem;
+  padding: 0.3rem 0rem;
 }
 .right-menu-top {
   display: flex;
@@ -344,7 +344,7 @@ img {
   width: 100%;
   height: 100%;
 }
-.news-list{
+.news-list {
   min-height: 51rem;
 }
 .hot-new-news-2 {
@@ -618,7 +618,11 @@ footer {
 }
 
 /* Admin */
-
+.lable-admin {
+  font-size: 2rem;
+  font-weight: bold;
+  color: green;
+}
 .badge button {
   margin: 0 0.5rem;
   min-width: 2rem;
@@ -641,7 +645,7 @@ footer {
   top: 9rem;
   text-align: center;
 }
-#menu-delete label{
+#menu-delete label {
   color: red;
   font-size: 1.5rem;
   font-weight: bolder;

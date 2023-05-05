@@ -16,16 +16,15 @@ exports.showAllTintuc = function (req, res) {
     });
   });
 };
-
-exports.getbyId = function (req, res) {
-  Tintuc.get_by_id(req.params.id, function (tintuc) {
+exports.showchuaduyet = function (req, res) {
+  Tintuc.getchuaduyet(function (data) {
     res.send({
-      result: tintuc,
+      result: data,
     });
   });
 };
-exports.getPagi = function (req, res) {
-  Tintuc.get_page(req.params, function (tintuc) {
+exports.getbyId = function (req, res) {
+  Tintuc.get_by_id(req.params.id, function (tintuc) {
     res.send({
       result: tintuc,
     });
@@ -84,6 +83,13 @@ exports.delete = function (req, res) {
   Tintuc.delete(req.params.id, function (deleteItem) {
     res.send({
       result: deleteItem,
+    });
+  });
+};
+exports.duyet = function (req, res) {
+  Tintuc.duyet(req.params.id, function (data) {
+    res.send({
+      result: data,
     });
   });
 };

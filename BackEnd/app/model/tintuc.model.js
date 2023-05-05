@@ -13,6 +13,7 @@ const Tintuc = function (tintuc) {
   this.solandoc = tintuc.solandoc;
   this.kiemduyet = tintuc.kiemduyet;
   this.blocks = tintuc.blocks;
+  this.isNull = tintuc.isNull;
 };
 Tintuc.get_by_id = function (idtintuc, result) {
   db.query(
@@ -27,9 +28,8 @@ Tintuc.get_by_id = function (idtintuc, result) {
     }
   );
 };
-
 Tintuc.get_all = function (result) {
-  db.query(`SELECT * FROM tintuc WHERE kiemduyet = 1 order by solandoc desc`, function (err, data) {
+  db.query(`SELECT * FROM tintuc WHERE kiemduyet = 1 AND isNull = 1 order by solandoc desc`, function (err, data) {
     if (err) {
       result(err);
     } else {
@@ -37,23 +37,18 @@ Tintuc.get_all = function (result) {
     }
   });
 };
-Tintuc.get_page = function (data, result) {
-  db.query(
-    `SELECT * FROM tintuc Where kiemduyet = 1 limit ${data.limit} offset ${
-      (data.offset - 1) * data.limit
-    } `,
-    function (err, tintuc) {
-      if (err) {
-        result(err);
-      } else {
-        result(tintuc);
-      }
+Tintuc.getchuaduyet = function (result) {
+  db.query(`SELECT * FROM tintuc WHERE kiemduyet = 0 AND isNull = 1`, function (err, data) {
+    if (err) {
+      result(err);
+    } else {
+      result(data);
     }
-  );
+  });
 };
 Tintuc.teyvat = function (result) {
   db.query(
-    `SELECT * from tintuc WHERE ID_child_theloai = 24 AND kiemduyet = 1 order by ngaycapnhat LIMIT 4 `,
+    `SELECT * from tintuc WHERE ID_child_theloai = 24 AND kiemduyet = 1 AND isNull = 1 order by ngaycapnhat LIMIT 4 `,
     function (err, teyvat) {
       if (err) {
         result(err);
@@ -67,7 +62,7 @@ Tintuc.giftcode = function (result) {
   db.query(
     `SELECT * FROM tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 2 AND tintuc.kiemduyet = 1 order by ngaycapnhat limit 6`,
+    where child_theloai.idTheLoai = 2 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 order by ngaycapnhat limit 6`,
     function (err, giftcode) {
       if (err) {
         result(err);
@@ -81,7 +76,7 @@ Tintuc.review = function (result) {
   db.query(
     `SELECT * FROM tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 10 AND tintuc.kiemduyet = 1 order by ngaycapnhat limit 6`,
+    where child_theloai.idTheLoai = 10 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 order by ngaycapnhat limit 6`,
     function (err, review) {
       if (err) {
         result(err);
@@ -95,7 +90,7 @@ Tintuc.newgame = function (result) {
   db.query(
     `SELECT * FROM tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 4 AND tintuc.kiemduyet = 1 order by ngaycapnhat`,
+    where child_theloai.idTheLoai = 4 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 order by ngaycapnhat`,
     function (err, review) {
       if (err) {
         result(err);
@@ -107,7 +102,7 @@ Tintuc.newgame = function (result) {
 };
 Tintuc.slideNews = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 limit 3 `,
+    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 AND isNull = 1 limit 3 `,
     function (err, slidenews) {
       if (err) {
         result(err);
@@ -119,7 +114,7 @@ Tintuc.slideNews = function (result) {
 };
 Tintuc.bottom_Slide = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 limit 4 offset 4 `,
+    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 AND isNull = 1 limit 4 offset 4 `,
     function (err, btslidenews) {
       if (err) {
         result(err);
@@ -133,7 +128,7 @@ Tintuc.newbieGuild = function (result) {
   db.query(
     `SELECT * FROM gcms.tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 7 AND tintuc.kiemduyet = 1 limit 4 `,
+    where child_theloai.idTheLoai = 7 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 limit 4 `,
     function (err, newbieGuild) {
       if (err) {
         result(err);
@@ -151,7 +146,7 @@ Tintuc.add_new = function (data, result) {
     data.trichdantin
   }',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},'${
     data.ngaycapnhat
-  }','${JSON.stringify(content)}',0,1,'none');`;
+  }','${JSON.stringify(content)}',0,1,'none',1);`;
   db.query(sql, function (err) {
     if (err) {
       // throw err;
@@ -164,7 +159,20 @@ Tintuc.add_new = function (data, result) {
 
 Tintuc.delete = function (idtintuc, result) {
   db.query(
-    `UPDATE gcms.tintuc SET kiemduyet = 0 WHERE idtintuc = ? `,
+    `UPDATE gcms.tintuc SET isNull = 0 WHERE idtintuc = ? `,
+    idtintuc,
+    function (err, data) {
+      if (err) {
+        result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
+Tintuc.duyet = function (idtintuc, result) {
+  db.query(
+    `UPDATE gcms.tintuc SET kiemduyet = 1 WHERE idtintuc = ? `,
     idtintuc,
     function (err, data) {
       if (err) {
