@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import axios from "axios";
 export const ShowAll = () => {
   const [posts, setDataPost] = useState([]);
@@ -37,7 +37,7 @@ export const ShowAll = () => {
             {post.tieudetin}
             <span className="badge">
               <button type="button" className="btn btn-success">
-                <i className="fa-solid fa-eye"></i>
+                <Link to={`/post/${post.idtintuc}`}> <i className="fa-solid fa-eye"></i></Link>
               </button>
               <button type="button" className="btn btn-warning">
                 Sửa
