@@ -70,17 +70,17 @@ export const ShowAll = () => {
               {post.isActive === "active" && (
                 <button
                   type="button"
-                  className="btn outline btn-outline-warning"
+                  className="btn outline btn-outline-success"
                   id={`none${post.idtintuc}`}
                   onClick={handleNone}
                 >
-                  No Active
+                  Active
                 </button>
               )}
               {post.isActive === "none" && (
                 <button
                   type="button"
-                  className="btn outline btn-outline-success"
+                  className="btn outline btn-outline-warning"
                   id={`active${post.idtintuc}`}
                   onClick={handleActive}
                 >
