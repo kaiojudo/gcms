@@ -14,6 +14,8 @@ module.exports = function (router) {
   router.patch("/post/delete/:id", postcontroller.delete);
   router.patch("/post/solandoc/:id", postcontroller.luotdoc);
   router.patch("/post/duyet/:id", postcontroller.duyet);
+  router.patch("/post/setactive/:id", postcontroller.setActive);
+  router.patch("/post/setnoactive/:id", postcontroller.setnoActive);
   router.get("/category/:id", postcontroller.get_by_idtheloai);
   router.get("/post/showlist", postcontroller.showAllTintuc);
   router.get("/getnew/:id", postcontroller.shownew);

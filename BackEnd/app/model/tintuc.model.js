@@ -102,7 +102,7 @@ Tintuc.newgame = function (result) {
 };
 Tintuc.slideNews = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 AND isNull = 1 limit 3 `,
+    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 AND isNull = 1 order by isActive limit 3 `,
     function (err, slidenews) {
       if (err) {
         result(err);
@@ -239,4 +239,32 @@ Tintuc.getnew = function (idtheloai,result) {
     }
   );
 };
+Tintuc.setActive = function (idtintuc, result) {
+  db.query(
+    `UPDATE gcms.tintuc SET isActive = "active" WHERE idtintuc = ? `,
+    idtintuc,
+    function (err, data) {
+      if (err) {
+        result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
+Tintuc.setnoActive = function (idtintuc, result) {
+  db.query(
+    `UPDATE gcms.tintuc SET isActive = "none" WHERE idtintuc = ? `,
+    idtintuc,
+    function (err, data) {
+      if (err) {
+        result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
+
 module.exports = Tintuc;
+

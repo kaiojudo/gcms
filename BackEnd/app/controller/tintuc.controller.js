@@ -121,6 +121,20 @@ exports.shownew = function (req, res) {
     });
   });
 };
+exports.setActive = function (req, res) {
+  Tintuc.setActive(req.params.id, function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
+exports.setnoActive = function (req, res) {
+  Tintuc.setnoActive(req.params.id, function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
 
 
 
