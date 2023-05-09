@@ -1,5 +1,7 @@
 module.exports = function (router) {
-    var theloaiController = require('../controller/theloai.controller');
-    router.get("/theloai/list", theloaiController.get_list);
-    router.get("/theloai/details/:id", theloaiController.details);
+  var theloaiController = require("../controller/theloai.controller");
+  router.get("/theloai/all", theloaiController.get_all);
+  router.get("/theloai/list", theloaiController.get_header);
+  router.get("/theloai/details/:id", theloaiController.details);
+  router.patch("/theloai/delete/:id", theloaiController.delete);
 };

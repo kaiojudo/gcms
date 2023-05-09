@@ -10,9 +10,17 @@ const Theloai = function (theloai) {
     this.target = theloai.target;
     this.url = theloai.url;
 }
-
 Theloai.get_all = function (result) {
-    db.query(`SELECT * from theloai WHERE sapxep <= 6`, function (err, theloai) {
+  db.query(`SELECT * from theloai WHERE isNull = 1`, function (err, theloai) {
+      if (err) {
+          result(err);
+      } else {
+          result(theloai);
+      }
+  });
+}
+Theloai.get_header = function (result) {
+    db.query(`SELECT * from theloai WHERE sapxep <= 6 AND isNull = 1`, function (err, theloai) {
         if (err) {
             result(err);
         } else {
@@ -21,7 +29,7 @@ Theloai.get_all = function (result) {
     });
 }
 Theloai.details = function (idTheloai, result) {
-    db.query(`SELECT * from theloai WHERE idTheloai = ?`, idTheloai, function (err, theloai) {
+    db.query(`SELECT * from theloai WHERE idTheloai = ? `, idTheloai, function (err, theloai) {
         if (err) {
             result(err);
         } else {
@@ -29,5 +37,17 @@ Theloai.details = function (idTheloai, result) {
         }
     });
 }
-
+Theloai.delete = function (idtheloai, result) {
+    db.query(
+      `UPDATE gcms.theloai SET isNull = 0 WHERE idtheloai = ? ;`,
+      idtheloai,
+      function (err, data) {
+        if (err) {
+          result(null);
+        } else {
+          result(data);
+        }
+      }
+    );
+  };
 module.exports = Theloai;

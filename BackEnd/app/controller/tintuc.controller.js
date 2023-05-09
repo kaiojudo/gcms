@@ -135,6 +135,20 @@ exports.setnoActive = function (req, res) {
     });
   });
 };
+exports.setAfterD = function (req, res) {
+  Tintuc.setAfterDelete(function (guilditem) {
+    res.send({
+      result: guilditem,
+    });
+  });
+};
+exports.setAfterDC = function (req, res) {
+  Tintuc.setAfterDeleteC(function (guilditem) {
+    res.send({
+      result: guilditem,
+    });
+  });
+};
 
 
 

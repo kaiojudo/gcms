@@ -17,7 +17,7 @@ const Tintuc = function (tintuc) {
 };
 Tintuc.get_by_id = function (idtintuc, result) {
   db.query(
-    `SELECT * from tintuc WHERE idtintuc = ?`,
+    `SELECT * from tintuc WHERE idtintuc = ? AND kiemduyet = 1 AND isNull = 1`,
     idtintuc,
     function (err, tintuc) {
       if (err) {
@@ -156,7 +156,6 @@ Tintuc.add_new = function (data, result) {
     }
   });
 };
-
 Tintuc.delete = function (idtintuc, result) {
   db.query(
     `UPDATE gcms.tintuc SET isNull = 0 WHERE idtintuc = ? `,
@@ -201,7 +200,7 @@ Tintuc.get_by_idtheloai = function (idtheloai,result) {
   db.query(
     `SELECT * FROM gcms.tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = ? AND tintuc.kiemduyet = 1 `,
+    where child_theloai.idTheLoai = ? AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1`,
     idtheloai,
     function (err, tintuc) {
       if (err) {
@@ -215,7 +214,7 @@ Tintuc.get_by_idtheloai = function (idtheloai,result) {
 Tintuc.get_by_idchildtheloai = function (idtheloai,result) {
   db.query(
     `SELECT * FROM gcms.tintuc
-    where ID_child_theloai = ? AND tintuc.kiemduyet = 1 `,
+    where ID_child_theloai = ? AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1`,
     idtheloai,
     function (err, tintuc) {
       if (err) {
@@ -265,6 +264,31 @@ Tintuc.setnoActive = function (idtintuc, result) {
     }
   );
 };
-
+Tintuc.setAfterDelete = function ( result) {
+  db.query(
+    `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai inner join theloai on theloai.idTheLoai = child_theloai.idTheLoai 
+    SET tintuc.isNull = 0  where theloai.isNull = 0; `,
+    function (err, data) {
+      if (err) {
+        result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
+Tintuc.setAfterDeleteC = function ( result) {
+  db.query(
+    `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
+    SET tintuc.isNull = 0  where child_theloai.isNull = 0; `,
+    function (err, data) {
+      if (err) {
+        result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
 module.exports = Tintuc;
 

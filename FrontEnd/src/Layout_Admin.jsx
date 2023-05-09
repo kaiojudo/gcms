@@ -8,6 +8,8 @@ export default function Layout_Admin() {
           <Link to={"/admin"}>Home</Link>
           <Link to={"/admin/post"}>Đăng bài</Link>
           <Link to={"/admin/postchuaduyet"}>Duyệt bài</Link>
+          <Link to={"/admin/theloai"}>Quản lý thể loại</Link>
+
         </div>
         <div className="form-add">
           <Outlet />
