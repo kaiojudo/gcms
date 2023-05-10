@@ -16,10 +16,10 @@ module.exports = function (router) {
   router.patch("/post/duyet/:id", postcontroller.duyet);
   router.patch("/post/setactive/:id", postcontroller.setActive);
   router.patch("/post/setnoactive/:id", postcontroller.setnoActive);
-  router.patch("/post/setafter", postcontroller.setAfterD);
+  router.patch("/post/setafterdelete", postcontroller.setAfterD);
+  router.patch("/post/return/:id", postcontroller.setAfterR);
   router.patch("/post/setafterc", postcontroller.setAfterDC);
   router.get("/category/:id", postcontroller.get_by_idtheloai);
   router.get("/post/showlist", postcontroller.showAllTintuc);
   router.get("/getnew/:id", postcontroller.shownew);
-
 };

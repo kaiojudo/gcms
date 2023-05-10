@@ -1,5 +1,4 @@
 var db = require("../common/connect");
-
 const Tintuc = function (tintuc) {
   this.idtintuc = tintuc.idtintuc;
   this.tieudetin = tintuc.tieudetin;
@@ -146,7 +145,7 @@ Tintuc.add_new = function (data, result) {
     data.trichdantin
   }',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},'${
     data.ngaycapnhat
-  }','${JSON.stringify(content)}',0,1,'none',1);`;
+  }','${JSON.stringify(content)}',0,0,'none',1);`;
   db.query(sql, function (err) {
     if (err) {
       // throw err;
@@ -268,6 +267,19 @@ Tintuc.setAfterDelete = function ( result) {
   db.query(
     `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai inner join theloai on theloai.idTheLoai = child_theloai.idTheLoai 
     SET tintuc.isNull = 0  where theloai.isNull = 0; `,
+    function (err, data) {
+      if (err) {
+        result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
+Tintuc.setAfterReturn = function (id, result) {
+  db.query(
+    `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai inner join theloai on theloai.idTheLoai = child_theloai.idTheLoai 
+    SET tintuc.isNull = 1  where theloai.idTheLoai = ?; `,id,
     function (err, data) {
       if (err) {
         result(null);

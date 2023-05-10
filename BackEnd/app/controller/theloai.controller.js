@@ -14,6 +14,13 @@ exports.get_all = function (req, res) {
     });
   });
 };
+exports.get_delete = function (req, res) {
+  Theloai.get_delete(function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
 exports.details = function (req, res) {
   Theloai.details(req.params.id, function (child) {
     res.send({
@@ -23,6 +30,13 @@ exports.details = function (req, res) {
 };
 exports.delete = function (req, res) {
   Theloai.delete(req.params.id, function (deleteItem) {
+    res.send({
+      result: deleteItem,
+    });
+  });
+};
+exports.return = function (req, res) {
+  Theloai.return(req.params.id, function (deleteItem) {
     res.send({
       result: deleteItem,
     });

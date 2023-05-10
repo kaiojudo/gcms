@@ -165,6 +165,7 @@ img {
 }
 .log-in:hover .modal-log {
   display: block;
+  z-index: 3;
 }
 #sub-header {
   height: 2.5rem;

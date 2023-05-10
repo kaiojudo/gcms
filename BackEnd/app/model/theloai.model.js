@@ -15,6 +15,15 @@ Theloai.get_all = function (result) {
     }
   });
 };
+Theloai.get_delete = function (result) {
+  db.query(`SELECT * from theloai WHERE isNull = 0`, function (err, theloai) {
+    if (err) {
+      result(err);
+    } else {
+      result(theloai);
+    }
+  });
+};
 Theloai.get_header = function (result) {
   db.query(
     `SELECT * from theloai WHERE sapxep <= 6 AND isNull = 1`,
@@ -43,6 +52,19 @@ Theloai.details = function (idTheloai, result) {
 Theloai.delete = function (idtheloai, result) {
   db.query(
     `UPDATE gcms.theloai SET isNull = 0 WHERE idtheloai = ? ;`,
+    idtheloai,
+    function (err, data) {
+      if (err) {
+        result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
+Theloai.return = function (idtheloai, result) {
+  db.query(
+    `UPDATE gcms.theloai SET isNull = 1 WHERE idtheloai = ? ;`,
     idtheloai,
     function (err, data) {
       if (err) {

@@ -33,7 +33,10 @@ export default function ShowTheloai() {
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
-       
+        <Link to={"/admin/theloaideleted"}>
+        <i className="fa-solid fa-trash fa-2xl"></i>
+          <span className="link-des">Đã xoá</span>
+        </Link>
       </div>
     <ul className="list-group">
       {theloais?.result?.map((e) => (
@@ -43,6 +46,7 @@ export default function ShowTheloai() {
         >
           {e.tenTheLoai}
           <span className="badge">
+            <span>Vị trí số : {e.sapxep}</span>
             <button type="button" className="btn btn-warning">
               Sửa
             </button>

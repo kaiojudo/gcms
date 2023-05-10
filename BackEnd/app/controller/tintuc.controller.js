@@ -142,6 +142,13 @@ exports.setAfterD = function (req, res) {
     });
   });
 };
+exports.setAfterR = function (req, res) {
+  Tintuc.setAfterReturn(req.params.id,function (guilditem) {
+    res.send({
+      result: guilditem,
+    });
+  });
+};
 exports.setAfterDC = function (req, res) {
   Tintuc.setAfterDeleteC(function (guilditem) {
     res.send({

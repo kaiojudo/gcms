@@ -18,10 +18,11 @@ import { DuyetBai } from "./component/admin/Post/Duyetbai";
 import axios from "axios";
 import ShowTheloai from "./component/admin/TheLoai/ShowTheloai";
 import AddTheLoai from "./component/admin/TheLoai/AddTheLoai";
+import TheloaiDeleted from "./component/admin/TheLoai/TheloaiDeleted";
 
 function App(props) {
   const updatePosts = async () => {
-    const res = await axios.patch(`http://localhost:3030/post/setafter`);
+    const res = await axios.patch(`http://localhost:3030/post/setafterdelete`);
     return res;
   };
   const updatePosts2 = async () => {
@@ -46,8 +47,7 @@ function App(props) {
           <Route path="postchuaduyet" element={<DuyetBai />} />
           <Route path="theloai" element={<ShowTheloai />} />
           <Route path="addtheloai" element={<AddTheLoai />} />
-
-
+          <Route path="theloaideleted" element={<TheloaiDeleted />} />
         </Route>
         <Route path="category/:id" element={<Category />}></Route>
         <Route path="categorybychild/:id" element={<Categorybychild />}></Route>
