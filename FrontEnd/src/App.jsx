@@ -19,6 +19,9 @@ import axios from "axios";
 import ShowTheloai from "./component/admin/TheLoai/ShowTheloai";
 import AddTheLoai from "./component/admin/TheLoai/AddTheLoai";
 import TheloaiDeleted from "./component/admin/TheLoai/TheloaiDeleted";
+import ShowChildTheLoai from "./component/admin/Child/ShowChildTheloai";
+import ChildTheLoaiDeleted from "./component/admin/Child/ChildTheloaiDeleted";
+
 
 function App(props) {
   const updatePosts = async () => {
@@ -48,6 +51,11 @@ function App(props) {
           <Route path="theloai" element={<ShowTheloai />} />
           <Route path="addtheloai" element={<AddTheLoai />} />
           <Route path="theloaideleted" element={<TheloaiDeleted />} />
+          <Route path="childtheloai" element={<ShowChildTheLoai />} />
+          <Route path="returnchildtheloai" element={<ChildTheLoaiDeleted />} />
+
+
+
         </Route>
         <Route path="category/:id" element={<Category />}></Route>
         <Route path="categorybychild/:id" element={<Categorybychild />}></Route>

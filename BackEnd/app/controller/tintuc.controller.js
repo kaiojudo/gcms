@@ -150,7 +150,14 @@ exports.setAfterR = function (req, res) {
   });
 };
 exports.setAfterDC = function (req, res) {
-  Tintuc.setAfterDeleteC(req.params.id,function (guilditem) {
+  Tintuc.setAfterDeleteC(function (guilditem) {
+    res.send({
+      result: guilditem,
+    });
+  });
+};
+exports.setAfterRC = function (req, res) {
+  Tintuc.setReturnC(req.params.id,function (guilditem) {
     res.send({
       result: guilditem,
     });

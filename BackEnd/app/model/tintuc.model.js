@@ -28,22 +28,28 @@ Tintuc.get_by_id = function (idtintuc, result) {
   );
 };
 Tintuc.get_all = function (result) {
-  db.query(`SELECT * FROM tintuc WHERE kiemduyet = 1 AND isNull = 1 order by solandoc desc`, function (err, data) {
-    if (err) {
-      result(err);
-    } else {
-      result(data);
+  db.query(
+    `SELECT * FROM tintuc WHERE kiemduyet = 1 AND isNull = 1 order by solandoc desc`,
+    function (err, data) {
+      if (err) {
+        result(err);
+      } else {
+        result(data);
+      }
     }
-  });
+  );
 };
 Tintuc.getchuaduyet = function (result) {
-  db.query(`SELECT * FROM tintuc WHERE kiemduyet = 0 AND isNull = 1`, function (err, data) {
-    if (err) {
-      result(err);
-    } else {
-      result(data);
+  db.query(
+    `SELECT * FROM tintuc WHERE kiemduyet = 0 AND isNull = 1`,
+    function (err, data) {
+      if (err) {
+        result(err);
+      } else {
+        result(data);
+      }
     }
-  });
+  );
 };
 Tintuc.teyvat = function (result) {
   db.query(
@@ -195,7 +201,7 @@ Tintuc.solandoc = function (idtintuc, result) {
     }
   );
 };
-Tintuc.get_by_idtheloai = function (idtheloai,result) {
+Tintuc.get_by_idtheloai = function (idtheloai, result) {
   db.query(
     `SELECT * FROM gcms.tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
@@ -210,7 +216,7 @@ Tintuc.get_by_idtheloai = function (idtheloai,result) {
     }
   );
 };
-Tintuc.get_by_idchildtheloai = function (idtheloai,result) {
+Tintuc.get_by_idchildtheloai = function (idtheloai, result) {
   db.query(
     `SELECT * FROM gcms.tintuc
     where ID_child_theloai = ? AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1`,
@@ -224,7 +230,7 @@ Tintuc.get_by_idchildtheloai = function (idtheloai,result) {
     }
   );
 };
-Tintuc.getnew = function (idtheloai,result) {
+Tintuc.getnew = function (idtheloai, result) {
   db.query(
     `SELECT * FROM tintuc WHERE kiemduyet = 1 AND isNull = 1 AND id_phanloaitin != 1 AND idtintuc != ? order by ngaycapnhat desc limit 4 `,
     idtheloai,
@@ -263,7 +269,7 @@ Tintuc.setnoActive = function (idtintuc, result) {
     }
   );
 };
-Tintuc.setAfterDelete = function ( result) {
+Tintuc.setAfterDelete = function (result) {
   db.query(
     `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai inner join theloai on theloai.idTheLoai = child_theloai.idTheLoai 
     SET tintuc.isNull = 0  where theloai.isNull = 0; `,
@@ -279,7 +285,8 @@ Tintuc.setAfterDelete = function ( result) {
 Tintuc.setReturn = function (id, result) {
   db.query(
     `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai inner join theloai on theloai.idTheLoai = child_theloai.idTheLoai 
-    SET tintuc.isNull = 1  where theloai.idTheLoai = ?; `,id,
+    SET tintuc.isNull = 1  where theloai.idTheLoai = ?; `,
+    id,
     function (err, data) {
       if (err) {
         result(null);
@@ -289,13 +296,27 @@ Tintuc.setReturn = function (id, result) {
     }
   );
 };
-Tintuc.setAfterDeleteC = function (id, result) {
+Tintuc.setAfterDeleteC = function (result) {
   db.query(
     `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    SET tintuc.isNull = 0  where child_theloai.id_child_theloai = ?; `,id,
+    SET tintuc.isNull = 0  where child_theloai.isNull_child_theloai = 0; `,
     function (err, data) {
       if (err) {
         result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
+Tintuc.setReturnC = function (id, result) {
+  db.query(
+    `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
+    SET tintuc.isNull = 1 where child_theloai.ID_child_theloai = ?; `,
+    id,
+    function (err, data) {
+      if (err) {
+        result(err);
       } else {
         result(data);
       }
@@ -303,4 +324,3 @@ Tintuc.setAfterDeleteC = function (id, result) {
   );
 };
 module.exports = Tintuc;
-
