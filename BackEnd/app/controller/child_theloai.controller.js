@@ -1,5 +1,12 @@
 var ChildTheloai = require("../model/child_theloai.model");
-
+exports.addTheLoai = function (req, res) {
+  var data = req.body;
+  ChildTheloai.add_new(data, function (response) {
+    res.send({
+      result: response,
+    });
+  });
+};
 exports.get_listchild = function (req, res) {
   ChildTheloai.getbyID(req.params.id, function (child) {
     res.send({

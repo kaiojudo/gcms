@@ -21,6 +21,7 @@ import AddTheLoai from "./component/admin/TheLoai/AddTheLoai";
 import TheloaiDeleted from "./component/admin/TheLoai/TheloaiDeleted";
 import ShowChildTheLoai from "./component/admin/Child/ShowChildTheloai";
 import ChildTheLoaiDeleted from "./component/admin/Child/ChildTheloaiDeleted";
+import AddChildTheLoai from "./component/admin/Child/AddChildTheLoai";
 
 
 function App(props) {
@@ -53,6 +54,8 @@ function App(props) {
           <Route path="theloaideleted" element={<TheloaiDeleted />} />
           <Route path="childtheloai" element={<ShowChildTheLoai />} />
           <Route path="returnchildtheloai" element={<ChildTheLoaiDeleted />} />
+          <Route path="addchildtheloai" element={<AddChildTheLoai />} />
+
 
 
 
