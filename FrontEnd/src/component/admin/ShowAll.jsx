@@ -51,6 +51,16 @@ export const ShowAll = () => {
       <label htmlFor="list-group" className="lable-admin">
         All Post
       </label>
+      <div className="post-selection">
+        <Link to={"/admin/post"}>
+          <i className="fa-solid fa-plus fa-2xl"></i>
+          <span className="link-des">Thêm mới</span>
+        </Link>
+        <Link to={"/admin/postchuaduyet"}>
+          <i className="fa-solid fa-check fa-2xl"></i>
+          <span className="link-des">Duyệt bài</span>
+        </Link>
+      </div>
       <ul className="list-group">
         {posts?.result?.map((post) => (
           <li

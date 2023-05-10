@@ -658,6 +658,24 @@ footer {
   height: 2rem;
   margin-top: 2rem;
 }
-.outline{
-  min-width: 6rem!important;
+.outline {
+  min-width: 6rem !important;
+}
+.post-selection a {
+  padding: 1rem 1rem 0 0;
+}
+.post-selection {
+  padding: 1rem 0;
+  position: relative;
+}
+.link-des {
+  z-index: 2;
+  background-color: #fff;
+  display: none;
+  position: absolute;
+  top: -16px;
+  left: 0;
+}
+.post-selection a:hover .link-des {
+  display: inline-block;
 }
