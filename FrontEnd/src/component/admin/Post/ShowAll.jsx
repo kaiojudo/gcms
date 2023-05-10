@@ -60,6 +60,10 @@ export const ShowAll = () => {
           <i className="fa-solid fa-check fa-2xl"></i>
           <span className="link-des">Duyệt bài</span>
         </Link>
+        <Link to={"/admin/postchuaduyet"}>
+        <i className="fa-solid fa-trash fa-2xl"></i>
+          <span className="link-des">Đã xoá</span>
+        </Link>
       </div>
       <ul className="list-group">
         {posts?.result?.map((post) => (
