@@ -276,7 +276,7 @@ Tintuc.setAfterDelete = function ( result) {
     }
   );
 };
-Tintuc.setAfterReturn = function (id, result) {
+Tintuc.setReturn = function (id, result) {
   db.query(
     `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai inner join theloai on theloai.idTheLoai = child_theloai.idTheLoai 
     SET tintuc.isNull = 1  where theloai.idTheLoai = ?; `,id,
@@ -289,10 +289,10 @@ Tintuc.setAfterReturn = function (id, result) {
     }
   );
 };
-Tintuc.setAfterDeleteC = function ( result) {
+Tintuc.setAfterDeleteC = function (id, result) {
   db.query(
     `UPDATE gcms.tintuc  INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    SET tintuc.isNull = 0  where child_theloai.isNull = 0; `,
+    SET tintuc.isNull = 0  where child_theloai.id_child_theloai = ?; `,id,
     function (err, data) {
       if (err) {
         result(null);

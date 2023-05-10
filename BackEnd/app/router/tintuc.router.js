@@ -18,7 +18,7 @@ module.exports = function (router) {
   router.patch("/post/setnoactive/:id", postcontroller.setnoActive);
   router.patch("/post/setafterdelete", postcontroller.setAfterD);
   router.patch("/post/return/:id", postcontroller.setAfterR);
-  router.patch("/post/setafterc", postcontroller.setAfterDC);
+  router.patch("/post/setafterc/:id", postcontroller.setAfterDC);
   router.get("/category/:id", postcontroller.get_by_idtheloai);
   router.get("/post/showlist", postcontroller.showAllTintuc);
   router.get("/getnew/:id", postcontroller.shownew);
