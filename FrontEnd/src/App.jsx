@@ -7,16 +7,17 @@ import Post from "./Layout_Post";
 import Admin from "./Layout_Admin";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import AdminPost from "./component/admin/AddPost";
+import AdminPost from "./component/admin/Post/AddPost";
 import FormLog from "./component/Login";
 import Register from "./component/Register";
 import Category from "./component/category/Category_byId";
 import Categorybychild from "./component/category/Category_bychildId";
 import Notfound from "./component/Notfound";
-import { ShowAll } from "./component/admin/ShowAll";
-import { DuyetBai } from "./component/admin/Duyetbai";
+import { ShowAll } from "./component/admin/Post/ShowAll";
+import { DuyetBai } from "./component/admin/Post/Duyetbai";
 import axios from "axios";
-import ShowTheloai from "./component/admin/ShowTheloai";
+import ShowTheloai from "./component/admin/TheLoai/ShowTheloai";
+import AddTheLoai from "./component/admin/TheLoai/AddTheLoai";
 
 function App(props) {
   const updatePosts = async () => {
@@ -41,9 +42,11 @@ function App(props) {
         <Route path="post/:id" element={<Post />} />
         <Route path="admin" element={<Admin />}>
           <Route path="" element={<ShowAll />} />
-          <Route path="post" element={<AdminPost />} />
+          <Route path="addpost" element={<AdminPost />} />
           <Route path="postchuaduyet" element={<DuyetBai />} />
           <Route path="theloai" element={<ShowTheloai />} />
+          <Route path="addtheloai" element={<AddTheLoai />} />
+
 
         </Route>
         <Route path="category/:id" element={<Category />}></Route>

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 export default function ShowTheloai() {
   const [theloais, setDataTheloai] = useState([]);
@@ -27,6 +28,13 @@ export default function ShowTheloai() {
     <label htmlFor="list-group" className="lable-admin">
       All Thể Loại
     </label>
+    <div className="post-selection">
+        <Link to={"/admin/addtheloai"}>
+          <i className="fa-solid fa-plus fa-2xl"></i>
+          <span className="link-des">Thêm mới</span>
+        </Link>
+       
+      </div>
     <ul className="list-group">
       {theloais?.result?.map((e) => (
         <li
@@ -38,27 +46,6 @@ export default function ShowTheloai() {
             <button type="button" className="btn btn-warning">
               Sửa
             </button>
-            {/* {e.isActive === "active" && (
-              <button
-                type="button"
-                className="btn outline btn-outline-success"
-      
-             
-              >
-                Active
-              </button>
-            )}
-            {e.isActive === "none" && (
-              <button
-                type="button"
-                className="btn outline btn-outline-warning"
-            
-   
-              >
-                Set Active
-              </button>
-            )} */}
-
             <button
               type="button"
               className="btn btn-danger"

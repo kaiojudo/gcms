@@ -52,7 +52,7 @@ export const ShowAll = () => {
         All Post
       </label>
       <div className="post-selection">
-        <Link to={"/admin/post"}>
+        <Link to={"/admin/addpost"}>
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
