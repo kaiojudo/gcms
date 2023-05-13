@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const refresh = () => window.location.reload(true);
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -26,6 +27,7 @@ export default function Login() {
           localStorage.setItem("AccessLevel", res.data.result.accesslevel);
           console.log(localStorage);
           navigate("/admin", { replace: true });
+         
         } else {
           alert("Login failed");
         }

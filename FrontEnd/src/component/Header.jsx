@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 export default function Header() {
+  // const refresh = () => window.location.reload(true);
   const [dataTheLoai, setDataTheLoai] = useState({});
   const url = "http://localhost:3030/theloai/list";
   useEffect(() => {
@@ -34,11 +35,13 @@ export default function Header() {
   }
 
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
-
-  // function onMouseOut(e) {
-  //   const child = document.querySelector(".menu-sub-cat");
-  //   child.classList.remove("d-flex");
-  // }
+  let navigate = useNavigate();
+  function LogOut() {
+    localStorage.setItem("AccessToken", false);
+    localStorage.setItem("UserName", "none");
+    localStorage.setItem("AccessLevel", "0");
+    navigate("/", { replace: true });
+  }
   return (
     <div id="header" className="w-100">
       <div id="header-top" className="w-80 d-flex header-top-mobile">
@@ -50,7 +53,11 @@ export default function Header() {
           </li>
           {dataTheLoai?.result?.map((e) => (
             <li key={e.idTheLoai} className="menu-category">
-              <a href={`/category/${e.idTheLoai}`} id={e.idTheLoai} onMouseOver={HoverFa} >
+              <a
+                href={`/category/${e.idTheLoai}`}
+                id={e.idTheLoai}
+                onMouseOver={HoverFa}
+              >
                 {e.tenTheLoai}
               </a>
             </li>
@@ -63,8 +70,13 @@ export default function Header() {
               <div className="login-logo">
                 <img src="../ayaka.ico" alt="" />
               </div>
-              <Link to={"/logsign/login"}>Sign in</Link>
               <Link to={"/logsign/register"}>Register</Link>
+              {localStorage.getItem("AccessToken") === "false" && (
+                <Link to={"/logsign/login"}>Sign in</Link>
+              )}
+              {localStorage.getItem("AccessToken") === "true" && (
+                <Link onClick={LogOut}>Log Out</Link>
+              )}
             </div>
           </span>
           <div className="sub-bar js-header-mobile-bar" onClick={ShowMenu}>
@@ -78,12 +90,12 @@ export default function Header() {
                 placeholder="Search..."
               />
               {dataTheLoai?.result?.map((e) => (
-            <li key={e.idTheLoai} className="menu-category">
-              <a href={`/category/${e.idTheLoai}`} id={e.idTheLoai} >
-                {e.tenTheLoai}
-              </a>
-            </li>
-          ))}
+                <li key={e.idTheLoai} className="menu-category">
+                  <a href={`/category/${e.idTheLoai}`} id={e.idTheLoai}>
+                    {e.tenTheLoai}
+                  </a>
+                </li>
+              ))}
             </div>
           </div>
         </div>
@@ -93,7 +105,9 @@ export default function Header() {
         <ul className="menu-sub-cat">
           {dataChildTheLoai?.result?.map((e) => (
             <li key={e.ID_child_theloai} id={e.ID_child_theloai}>
-              <a href={`/categorybychild/${e.ID_child_theloai}`}>{e.ten_child_theloai}</a>
+              <a href={`/categorybychild/${e.ID_child_theloai}`}>
+                {e.ten_child_theloai}
+              </a>
             </li>
           ))}
         </ul>

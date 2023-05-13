@@ -23,7 +23,6 @@ import ShowChildTheLoai from "./component/admin/Child/ShowChildTheloai";
 import ChildTheLoaiDeleted from "./component/admin/Child/ChildTheloaiDeleted";
 import AddChildTheLoai from "./component/admin/Child/AddChildTheLoai";
 
-
 function App(props) {
   const updatePosts = async () => {
     const res = await axios.patch(`http://localhost:3030/post/setafterdelete`);
@@ -46,24 +45,26 @@ function App(props) {
         </Route>
         <Route path="/" element={<Index />} />
         <Route path="post/:id" element={<Post />} />
-        <Route path="admin" element={<Admin />}>
-          <Route path="" element={<ShowAll />} />
-          <Route path="addpost" element={<AdminPost />} />
-          <Route path="postchuaduyet" element={<DuyetBai />} />
-          <Route path="theloai" element={<ShowTheloai />} />
-          <Route path="addtheloai" element={<AddTheLoai />} />
-          <Route path="theloaideleted" element={<TheloaiDeleted />} />
-          <Route path="childtheloai" element={<ShowChildTheLoai />} />
-          <Route path="returnchildtheloai" element={<ChildTheLoaiDeleted />} />
-          <Route path="addchildtheloai" element={<AddChildTheLoai />} />
-
-
-
-
-        </Route>
         <Route path="category/:id" element={<Category />}></Route>
         <Route path="categorybychild/:id" element={<Categorybychild />}></Route>
-
+        {localStorage.getItem("AccessLevel") === "1" && (
+          <>
+            <Route path="admin" element={<Admin />}>
+              <Route path="" element={<ShowAll />} />
+              <Route path="addpost" element={<AdminPost />} />
+              <Route path="postchuaduyet" element={<DuyetBai />} />
+              <Route path="theloai" element={<ShowTheloai />} />
+              <Route path="addtheloai" element={<AddTheLoai />} />
+              <Route path="theloaideleted" element={<TheloaiDeleted />} />
+              <Route path="childtheloai" element={<ShowChildTheLoai />} />
+              <Route
+                path="returnchildtheloai"
+                element={<ChildTheLoaiDeleted />}
+              />
+              <Route path="addchildtheloai" element={<AddChildTheLoai />} />
+            </Route>
+          </>
+        )}
         <Route path="*" element={<Notfound />} />
       </Routes>
       <Footer />
