@@ -2,57 +2,64 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function Login() {
-  const urlLogin = "localhost:3030/user/find";
-  const [user, setUser] = useState({
+  const [data, setData] = useState({
     username: "",
     password: "",
   });
-  function handleSubmit(e) {
+  function handleData(e) {
+    const newData = { ...data };
+    newData[e.target.id] = e.target.value;
+    setData(newData);
+  }
+  console.log(data);
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(urlLogin)
-      .then((res) => console.log(res))
+      .get(
+        `http://localhost:3030/account/${data.username}/password/${data.password}`
+      )
+      .then((res) => {
+        console.log(res.data.result);
+      })
       .catch((err) => console.log(err));
-  }
+  };
 
   return (
     <>
       {/* GCMS */}
-      <form id="log-in" onSubmit={handleSubmit}>
+      <form id="log-in" onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="" className="login-logo">
           GCMS
         </label>
         {/* Email input */}
         <div className="form-outline ">
-          <label className="form-label" htmlFor="form2Example1">
+          <label className="form-label" htmlFor="username">
             Tên tài khoản
           </label>
           <input
             type="text"
-            id="form2Example1"
+            id="username"
             className="form-control"
             placeholder="Username..."
-            onChange={(e) => setUser({ ...user, username: e.target.value })}
+            onChange={handleData}
           />
         </div>
         {/* Password input */}
         <div className="form-outline ">
-          <label className="form-label" htmlFor="form2Example2">
+          <label className="form-label" htmlFor="password">
             Mật khẩu
           </label>
           <input
             type="password"
-            id="form2Example2"
+            id="password"
             className="form-control"
             placeholder="Password..."
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
+            onChange={handleData}
           />
         </div>
         {/* Submit button */}
         <br />
-        <button type="submit" className="btn btn-primary btn-block mb-4 ">
-          Sign in
-        </button>
+        <button className="btn btn-primary btn-block mb-4 ">Sign in</button>
       </form>
     </>
   );

@@ -40,7 +40,6 @@ User.getUser = function (data, result) {
         if (err) {
             throw err;
         }
-
         if (user) {
             result(user);
         }
