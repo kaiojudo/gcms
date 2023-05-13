@@ -35,6 +35,7 @@ function App(props) {
   };
   updatePosts();
   updatePosts2();
+  console.log(localStorage.getItem("UserName"));
   return (
     <div className="App">
       <Header />

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [data, setData] = useState({
@@ -11,7 +12,7 @@ export default function Login() {
     newData[e.target.id] = e.target.value;
     setData(newData);
   }
-  console.log(data);
+  let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -19,7 +20,15 @@ export default function Login() {
         `http://localhost:3030/account/${data.username}/password/${data.password}`
       )
       .then((res) => {
-        console.log(res.data.result);
+        if (res.data.result) {
+          localStorage.setItem("AccessToken", true);
+          localStorage.setItem("UserName", data.username);
+          localStorage.setItem("AccessLevel", res.data.result.accesslevel);
+          console.log(localStorage);
+          navigate("/admin", { replace: true });
+        } else {
+          alert("Login failed");
+        }
       })
       .catch((err) => console.log(err));
   };

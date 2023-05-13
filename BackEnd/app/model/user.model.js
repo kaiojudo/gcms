@@ -41,7 +41,7 @@ User.getUser = function (data, result) {
             throw err;
         }
         if (user) {
-            result(user);
+            result(user[0]);
         }
     });
 }
