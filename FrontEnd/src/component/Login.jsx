@@ -26,8 +26,9 @@ export default function Login() {
           localStorage.setItem("UserName", data.username);
           localStorage.setItem("AccessLevel", res.data.result.accesslevel);
           console.log(localStorage);
+
           navigate("/admin", { replace: true });
-         
+          refresh();
         } else {
           alert("Login failed");
         }

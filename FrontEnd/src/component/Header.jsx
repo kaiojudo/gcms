@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 
 export default function Header() {
-  // const refresh = () => window.location.reload(true);
+  const refresh = () => window.location.reload(true);
   const [dataTheLoai, setDataTheLoai] = useState({});
   const url = "http://localhost:3030/theloai/list";
   useEffect(() => {
@@ -41,6 +41,7 @@ export default function Header() {
     localStorage.setItem("UserName", "none");
     localStorage.setItem("AccessLevel", "0");
     navigate("/", { replace: true });
+    refresh();
   }
   return (
     <div id="header" className="w-100">

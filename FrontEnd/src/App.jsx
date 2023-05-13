@@ -34,7 +34,7 @@ function App(props) {
   };
   updatePosts();
   updatePosts2();
-  console.log(localStorage.getItem("UserName"));
+  console.log(localStorage.getItem("AccessLevel"));
   return (
     <div className="App">
       <Header />
@@ -65,6 +65,27 @@ function App(props) {
             </Route>
           </>
         )}
+        {localStorage.getItem("AccessLevel") === "2" && (
+          <>
+            <Route path="admin" element={<Admin />}>
+              <Route path="" element={<ShowAll />} />
+              <Route path="addpost" element={<AdminPost />} />
+              <Route path="theloai" element={<ShowTheloai />} />
+              <Route path="addtheloai" element={<AddTheLoai />} />
+              <Route path="childtheloai" element={<ShowChildTheLoai />} />
+              <Route path="addchildtheloai" element={<AddChildTheLoai />} />
+            </Route>
+          </>
+        )}
+        {localStorage.getItem("AccessLevel") && (
+          <>
+            <Route path="admin" element={<Admin />}>
+             
+            </Route>
+          </>
+        )}
+       
+
         <Route path="*" element={<Notfound />} />
       </Routes>
       <Footer />
