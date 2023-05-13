@@ -30,6 +30,13 @@ exports.getbyId = function (req, res) {
     });
   });
 };
+exports.getbyId_admin = function (req, res) {
+  Tintuc.get_by_id_admin(req.params.id, function (tintuc) {
+    res.send({
+      result: tintuc,
+    });
+  });
+};
 exports.showAllTeyvat = function (req, res) {
   Tintuc.teyvat(function (datatv) {
     res.send({
@@ -163,7 +170,13 @@ exports.setAfterRC = function (req, res) {
     });
   });
 };
-
+exports.tacgia = function (req, res) {
+  Tintuc.get_by_tacgia(req.params.id, function (item) {
+    res.send({
+      result: item,
+    });
+  });
+};
 
 
 

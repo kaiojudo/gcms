@@ -9,7 +9,13 @@ export default function News(props) {
   const [dataTacgia, setDataTacgia] = useState({});
   const [dataChild, setDataChild] = useState({});
   const [dataTheLoai, setDataTheLoai] = useState({});
-  const urlPost = `http://localhost:3030/post/${params.id}`;
+  const level = localStorage.getItem("AccessLevel");
+  if (level === "2" || level === "1") {
+    var urlPost = `http://localhost:3030/postforrv/${params.id}`;
+  } else {
+    urlPost = `http://localhost:3030/post/${params.id}`;
+  }
+
   const urlView = `http://localhost:3030/post/solandoc/${params.id}`;
   useEffect(() => {
     let headers = new Headers();
@@ -142,11 +148,17 @@ export default function News(props) {
   return (
     <>
       <div className="linkfrom">
-        <Link to={`/`}><i className="fa-solid fa-house"></i></Link>
+        <Link to={`/`}>
+          <i className="fa-solid fa-house"></i>
+        </Link>
         <i className="fa-solid fa-caret-right"></i>
-      <a href={`/category/${dataTheLoai?.result?.idTheLoai}`}>{dataTheLoai?.result?.tenTheLoai}</a>
+        <a href={`/category/${dataTheLoai?.result?.idTheLoai}`}>
+          {dataTheLoai?.result?.tenTheLoai}
+        </a>
         <i className="fa-solid fa-caret-right"></i>
-        <a href={`/categorybychild/${dataChild?.result?.ID_child_theloai}`}>{dataChild?.result?.ten_child_theloai}</a>
+        <a href={`/categorybychild/${dataChild?.result?.ID_child_theloai}`}>
+          {dataChild?.result?.ten_child_theloai}
+        </a>
       </div>
 
       <div className="post-details">
@@ -162,7 +174,9 @@ export default function News(props) {
             {handleRenderPostData(block)}
           </div>
         ))}
-        <p id="soluotdoc"><i className="fa-solid fa-eye"></i> {datapost?.result?.solandoc}</p>
+        <p id="soluotdoc">
+          <i className="fa-solid fa-eye"></i> {datapost?.result?.solandoc}
+        </p>
         <p id="tacgia">
           Tác giả:
           <i>{dataTacgia?.result?.hoten}</i>

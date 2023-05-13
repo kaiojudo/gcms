@@ -34,7 +34,7 @@ function App(props) {
   };
   updatePosts();
   updatePosts2();
-  console.log(localStorage.getItem("AccessLevel"));
+  console.log(localStorage);
   return (
     <div className="App">
       <Header />
@@ -80,7 +80,6 @@ function App(props) {
         {localStorage.getItem("AccessLevel") && (
           <>
             <Route path="admin" element={<Admin />}>
-             
             </Route>
           </>
         )}

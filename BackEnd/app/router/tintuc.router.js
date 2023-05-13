@@ -4,6 +4,8 @@ module.exports = function (router) {
   router.get("/post/showlist", postcontroller.showAllTintuc);
   router.get("/post/showlistchuaduyet", postcontroller.showchuaduyet);
   router.get("/post/:id", postcontroller.getbyId);
+  router.get("/postforrv/:id", postcontroller.getbyId_admin);
+  router.get("/postbywriter/:id", postcontroller.tacgia);
   router.get("/post/teyvat/teyvatnews", postcontroller.showAllTeyvat);
   router.get("/post/giftcode/showall", postcontroller.showGiftcode);
   router.get("/post/slide/showall", postcontroller.showSlide);

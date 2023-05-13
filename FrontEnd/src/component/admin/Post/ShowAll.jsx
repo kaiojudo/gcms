@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 export const ShowAll = () => {
   const [posts, setDataPost] = useState([]);
-  const url = "http://localhost:3030/post/showlist";
+  const level = localStorage.getItem("AccessLevel");
+  const tacgia = localStorage.getItem("TacGia");
+
+  if (level === "2") {
+    var url = `http://localhost:3030/postbywriter/${tacgia}`;
+  } else {
+    url = "http://localhost:3030/post/showlist";
+  }
+  console.log(url);
   const refresh = () => window.location.reload(true);
   useEffect(() => {
     const fetchPosts = async () => {
@@ -11,6 +19,7 @@ export const ShowAll = () => {
       setDataPost(res.data);
     };
     fetchPosts();
+    // eslint-disable-next-line
   }, []);
 
   const handleDelete = async (e) => {
@@ -56,11 +65,12 @@ export const ShowAll = () => {
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
-        <Link to={"/admin/postchuaduyet"}>
-          <i className="fa-solid fa-check fa-2xl"></i>
-          <span className="link-des">Duyệt bài</span>
-        </Link>
-        
+        {localStorage.getItem("AccessLevel") === "1" && (
+          <Link to={"/admin/postchuaduyet"}>
+            <i className="fa-solid fa-check fa-2xl"></i>
+            <span className="link-des">Duyệt bài</span>
+          </Link>
+        )}
       </div>
       <ul className="list-group">
         {posts?.result?.map((post) => (
@@ -78,7 +88,7 @@ export const ShowAll = () => {
               <button type="button" className="btn btn-warning">
                 Sửa
               </button>
-              {post.isActive === "active" && (
+              {post.isActive === "active" && level === "1" && (
                 <button
                   type="button"
                   className="btn outline btn-outline-success"
@@ -88,7 +98,7 @@ export const ShowAll = () => {
                   Active
                 </button>
               )}
-              {post.isActive === "none" && (
+              {post.isActive === "none" && level === "1" && (
                 <button
                   type="button"
                   className="btn outline btn-outline-warning"

@@ -25,8 +25,7 @@ export default function Login() {
           localStorage.setItem("AccessToken", true);
           localStorage.setItem("UserName", data.username);
           localStorage.setItem("AccessLevel", res.data.result.accesslevel);
-          console.log(localStorage);
-
+          localStorage.setItem("TacGia", res.data.result.id_thanhvien);
           navigate("/admin", { replace: true });
           refresh();
         } else {

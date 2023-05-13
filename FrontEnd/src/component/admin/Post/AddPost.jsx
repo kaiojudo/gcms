@@ -10,7 +10,9 @@ import Axios from "axios";
 
 export default function AddPost() {
   const url = "http://localhost:3030/post/add";
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    id_tacgia: localStorage.getItem("TacGia"),
+  });
 
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
   const urlChild = "http://localhost:3030/childtheloai/showlist";
@@ -21,15 +23,15 @@ export default function AddPost() {
         setDataChildTheLoai(data);
       });
   }, []);
-  const [dataUser, setDataUser] = useState({});
-  const urlUser = "http://localhost:3030/user/showlist";
-  useEffect(() => {
-    fetch(urlUser)
-      .then((response) => response.json())
-      .then((data) => {
-        setDataUser(data);
-      });
-  }, []);
+  // const [dataUser, setDataUser] = useState({});
+  // const urlUser = "http://localhost:3030/user/showlist";
+  // useEffect(() => {
+  //   fetch(urlUser)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setDataUser(data);
+  //     });
+  // }, []);
   const [dataDanhmuc, setDataDanhmuc] = useState({});
 
   const urlphanloaitin = "http://localhost:3030/danhmuc/showlist";
@@ -40,6 +42,7 @@ export default function AddPost() {
         setDataDanhmuc(data);
       });
   }, []);
+
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
@@ -137,8 +140,14 @@ export default function AddPost() {
             "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
           );
         }
-        if (!postdata.tieudetin || !postdata.ID_child_theloai || !postdata.id_phanloaitin || !postdata.id_tacgia || !postdata.ngaycapnhat){
-          alert("Vui lòng điền đầy đủ thông tin")
+        if (
+          !postdata.tieudetin ||
+          !postdata.ID_child_theloai ||
+          !postdata.id_phanloaitin ||
+          !postdata.id_tacgia ||
+          !postdata.ngaycapnhat
+        ) {
+          alert("Vui lòng điền đầy đủ thông tin");
         } else {
           alert("Chờ duyệt nhé!");
         }
@@ -217,7 +226,7 @@ export default function AddPost() {
             ))}
           </select>
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="id_tacgia">Tên của bạn</label>
           <select
             onChange={(e) => handle(e)}
@@ -233,7 +242,7 @@ export default function AddPost() {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="ngaycapnhat">Ngày cập nhật</label>
           <input

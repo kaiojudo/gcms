@@ -27,6 +27,19 @@ Tintuc.get_by_id = function (idtintuc, result) {
     }
   );
 };
+Tintuc.get_by_id_admin = function (idtintuc, result) {
+  db.query(
+    `SELECT * from tintuc WHERE idtintuc = ?`,
+    idtintuc,
+    function (err, tintuc) {
+      if (err) {
+        result(err);
+      } else {
+        result(tintuc[0]);
+      }
+    }
+  );
+};
 Tintuc.get_all = function (result) {
   db.query(
     `SELECT * FROM tintuc WHERE kiemduyet = 1 AND isNull = 1 order by solandoc desc`,
@@ -319,6 +332,20 @@ Tintuc.setReturnC = function (id, result) {
         result(err);
       } else {
         result(data);
+      }
+    }
+  );
+};
+Tintuc.get_by_tacgia = function (id, result) {
+  db.query(
+    `SELECT * FROM gcms.tintuc
+    Where id_tacgia = ?`,
+    id,
+    function (err, tintuc) {
+      if (err) {
+        result(err);
+      } else {
+        result(tintuc);
       }
     }
   );
