@@ -622,14 +622,43 @@ footer {
 .your-info{
   margin-top: 1rem;
 }
-.your-info img{
-  width: 50%;
-  margin-left: 25%;
-}
 .your-info h2{
   text-align: center;
 }
-
+.user-img{
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
+  border-radius: 100px;
+  overflow: hidden;
+}
+.user-img img{
+  height: 100%;
+}
+.info-user{
+  text-align: center;
+  margin-top: 1rem;
+}
+.info-id{
+  color: #ccc;
+}
+.info-level{
+  font-weight: bold;
+  color: red;
+}
+.sub-info{
+  border: 1px solid #ccc;
+}
+.sub-info div{
+  min-width: 50%;
+}
+.sub-info p{
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+}
+.sub-info .title{
+  border-right: 1px solid #ccc;
+}
 .lable-admin {
   font-size: 2rem;
   font-weight: bold;
