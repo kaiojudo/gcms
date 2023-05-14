@@ -1,30 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-export const DuyetBai = () => {
+export const ShowDelete = () => {
   const [posts, setDataPost] = useState([]);
-  const url = "http://localhost:3030/post/showlistchuaduyet";
-  const refresh = () => window.location.reload(true)
+  const url = "http://localhost:3030/postbyadmin/showlistdelete";
+  const refresh = () => window.location.reload(true);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(url);
       setDataPost(res.data);
     };
     fetchPosts();
+    // eslint-disable-next-line
   }, []);
 
-  const handleDuyet = async (e) => {
-    const duyetPosts = async () => {
-      const res = await axios.patch(
-        `http://localhost:3030/post/duyet/` + e.target.id.split("duyet")[1]
-      );
-      return res;
-      
-    };
-    duyetPosts();
-    alert("Duyệt thành công !");
-    refresh();
-  };
   const handleDelete = async (e) => {
     const deletePosts = async () => {
       const res = await axios.delete(
@@ -38,7 +27,9 @@ export const DuyetBai = () => {
   };
   return (
     <>
-      <label htmlFor="list-group" className="lable-admin">Duyệt bài</label>
+      <label htmlFor="list-group" className="lable-admin">
+       Thùng rác
+      </label>
       <div className="post-selection">
         <Link to={"/admin/addpost"}>
           <i className="fa-solid fa-plus fa-2xl"></i>
@@ -66,15 +57,9 @@ export const DuyetBai = () => {
             {post.tieudetin}
             <span className="badge">
               <button type="button" className="btn btn-success">
-                <Link to={`/post/${post.idtintuc}`}> <i className="fa-solid fa-eye"></i></Link>
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                id={`duyet${post.idtintuc}`}
-                onClick={handleDuyet}
-              >
-                Duyệt nè
+                <Link to={`/post/${post.idtintuc}`}>
+                  <i className="fa-solid fa-eye"></i>
+                </Link>
               </button>
               <button
                 type="button"

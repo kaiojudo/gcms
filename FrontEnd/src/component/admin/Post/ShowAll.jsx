@@ -66,10 +66,16 @@ export const ShowAll = () => {
           <span className="link-des">Thêm mới</span>
         </Link>
         {localStorage.getItem("AccessLevel") === "1" && (
-          <Link to={"/admin/postchuaduyet"}>
-            <i className="fa-solid fa-check fa-2xl"></i>
-            <span className="link-des">Duyệt bài</span>
-          </Link>
+          <>
+            <Link to={"/admin/postchuaduyet"}>
+              <i className="fa-solid fa-check fa-2xl"></i>
+              <span className="link-des">Duyệt bài</span>
+            </Link>
+            <Link to={"/admin/admindelete"}>
+              <i className="fa-solid fa-trash fa-2xl"></i>
+              <span className="link-des">Bài đã xoá</span>
+            </Link>
+          </>
         )}
       </div>
       <ul className="list-group">

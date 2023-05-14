@@ -177,6 +177,21 @@ exports.tacgia = function (req, res) {
     });
   });
 };
+exports.admindelete = function (req, res) {
+  Tintuc.get_admin_delete(function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
+exports.deleteItem = function (req, res) {
+  Tintuc.remove(req.params.id,function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
+
 
 
 

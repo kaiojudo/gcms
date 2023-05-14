@@ -619,6 +619,17 @@ footer {
 }
 
 /* Admin */
+.your-info{
+  margin-top: 1rem;
+}
+.your-info img{
+  width: 50%;
+  margin-left: 25%;
+}
+.your-info h2{
+  text-align: center;
+}
+
 .lable-admin {
   font-size: 2rem;
   font-weight: bold;

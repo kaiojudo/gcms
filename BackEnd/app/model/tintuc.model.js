@@ -350,4 +350,26 @@ Tintuc.get_by_tacgia = function (id, result) {
     }
   );
 };
+Tintuc.get_admin_delete = function (result) {
+  db.query(
+    `SELECT * FROM gcms.tintuc where isNull = 0`,
+    function (err, data) {
+      if (err) {
+        result(err);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
+Tintuc.remove = function (id,result) {
+  db.query(`DELETE from tintuc where idtintuc = ${id}`, function(err, data) {
+    if (err) {
+      result(err);
+    }
+    else{
+      result("Xoá thành công");
+    }
+  });
+}
 module.exports = Tintuc;

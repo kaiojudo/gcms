@@ -24,7 +24,8 @@ module.exports = function (router) {
   router.patch("/post/returnc/:id", postcontroller.setAfterRC);
   router.get("/category/:id", postcontroller.get_by_idtheloai);
   router.get("/childcategory/:id", postcontroller.get_by_idchildtheloai);
-
   router.get("/post/showlist", postcontroller.showAllTintuc);
+  router.get("/postbyadmin/showlistdelete", postcontroller.admindelete);
   router.get("/getnew/:id", postcontroller.shownew);
+  router.delete("/deletebyadmin/:id", postcontroller.deleteItem);
 };

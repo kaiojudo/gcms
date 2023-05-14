@@ -40,6 +40,8 @@ export default function Header() {
     localStorage.setItem("AccessToken", false);
     localStorage.setItem("UserName", "none");
     localStorage.setItem("AccessLevel", "0");
+    localStorage.setItem("TacGia", "0");
+
     navigate("/", { replace: true });
     refresh();
   }
