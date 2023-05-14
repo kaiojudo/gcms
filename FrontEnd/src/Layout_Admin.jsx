@@ -6,11 +6,13 @@ export default function Layout_Admin() {
       <div id="container-admin" className="w-80 d-flex">
         <div className="select-form">
           <Link to={"/admin"}>Home</Link>
-       
           <Link to={"/admin/theloai"}>Quản lý thể loại</Link>
           <Link to={"/admin/childtheloai"}>Quản lý thể loại con</Link>
-
-
+          {localStorage.getItem("AccessLevel") === "1" && (
+            <Link to={"/admin/acceptuser"}>
+             Duyệt Người dùng mới
+            </Link>
+          )}
         </div>
         <div className="form-add">
           <Outlet />

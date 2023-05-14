@@ -7,3 +7,10 @@ exports.showTenTinh = function (req, res) {
         });
     })
 }
+exports.getbyId = function (req, res) {
+    Tinh.get_by_id(req.params.id, function (tinh) {
+      res.send({
+        result: tinh,
+      });
+    });
+  };

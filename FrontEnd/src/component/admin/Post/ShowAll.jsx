@@ -11,7 +11,6 @@ export const ShowAll = () => {
   } else {
     url = "http://localhost:3030/post/showlist";
   }
-  console.log(url);
   const refresh = () => window.location.reload(true);
   useEffect(() => {
     const fetchPosts = async () => {

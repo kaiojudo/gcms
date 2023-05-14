@@ -34,11 +34,20 @@ User.get_all = function (result) {
         }
     });
 }
+User.get_user_chuaduyet = function (result) {
+    db.query(`SELECT * FROM thanhvien where active = 0`, function (err, data) {
+        if (err) {
+            result(err);
+        } else {
+            result(data);
+        }
+    });
+}
 User.getUser = function (data, result) {
-    const sql = `select * from thanhvien where username = '${data.account}' and password = '${data.password}';`;
+    const sql = `select * from thanhvien where username = '${data.account}' and password = '${data.password}' and active = 1;`;
     db.query(sql, function (err, user) {
         if (err) {
-            throw err;
+            result("ERR");
         }
         if (user) {
             result(user[0]);
@@ -54,4 +63,27 @@ User.get_by_id = function (id_thanhvien, result){
         }
     });
 }
+User.remove = function (id,result) {
+    db.query(`DELETE from thanhvien where id_thanhvien = ${id}`, function(err, data) {
+      if (err) {
+        result(err);
+      }
+      else{
+        result("Xoá thành công");
+      }
+    });
+  }
+  User.accept = function (idtintuc, result) {
+    db.query(
+      `UPDATE gcms.thanhvien SET accesslevel = '2', active = '1' WHERE (id_thanhvien = ?); `,
+      idtintuc,
+      function (err, data) {
+        if (err) {
+          result(null);
+        } else {
+          result(data);
+        }
+      }
+    );
+  };
 module.exports = User;

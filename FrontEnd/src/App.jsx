@@ -24,6 +24,7 @@ import ChildTheLoaiDeleted from "./component/admin/Child/ChildTheloaiDeleted";
 import AddChildTheLoai from "./component/admin/Child/AddChildTheLoai";
 import { ShowDelete } from "./component/admin/Post/ShowDelete";
 import { ShowUser } from "./component/admin/User/ShowUser";
+import AcceptUser from "./component/admin/User/AcceptUser";
 
 function App(props) {
   const updatePosts = async () => {
@@ -65,8 +66,10 @@ function App(props) {
               />
               <Route path="addchildtheloai" element={<AddChildTheLoai />} />
               <Route path="admindelete" element={<ShowDelete />} />
-              <Route path="yourinfo" element={<ShowUser />} />
+              <Route path="acceptuser" element={<AcceptUser />} />
+
             </Route>
+            <Route path="yourinfo/:id" element={<ShowUser />} />
           </>
         )}
         {localStorage.getItem("AccessLevel") === "2" && (
@@ -78,16 +81,10 @@ function App(props) {
               <Route path="addtheloai" element={<AddTheLoai />} />
               <Route path="childtheloai" element={<ShowChildTheLoai />} />
               <Route path="addchildtheloai" element={<AddChildTheLoai />} />
-              <Route path="yourinfo" element={<ShowUser />} />
-            </Route>
+            </Route>{" "}
+            <Route path="yourinfo" element={<ShowUser />} />
           </>
         )}
-        {localStorage.getItem("AccessLevel") && (
-          <>
-            <Route path="admin" element={<Admin />}></Route>
-          </>
-        )}
-
         <Route path="*" element={<Notfound />} />
       </Routes>
       <Footer />

@@ -240,8 +240,18 @@ img {
 }
 .login-logo {
   z-index: 3;
-  font-size: 3rem;
+  min-height: 10rem;
+  text-align: center;
   position: relative;
+}
+.login-logo p{
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: var(--color-label);
+}
+.login-logo a{
+  display: inline-block;
+  width: 100%;
 }
 #log-in .login-logo {
   width: 100%;
@@ -631,6 +641,7 @@ footer {
   margin: auto;
   border-radius: 100px;
   overflow: hidden;
+  background-image: url("../public/unknown.jpg")
 }
 .user-img img{
   height: 100%;

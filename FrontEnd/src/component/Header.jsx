@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const refresh = () => window.location.reload(true);
   const [dataTheLoai, setDataTheLoai] = useState({});
   const url = "http://localhost:3030/theloai/list";
+  const level = localStorage.getItem("AccessLevel");
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
@@ -71,7 +72,23 @@ export default function Header() {
             <i className="fa-solid fa-user" />
             <div className="modal-log">
               <div className="login-logo">
-                <img src="../ayaka.ico" alt="" />
+                {localStorage.getItem("UserName") !== "none" && (
+                  <p>Hello:{localStorage.getItem("UserName")}</p>
+                )}
+                {level==="0" && <img src="../ayaka.ico" alt="" />}
+                {level === "1" && (
+                  <Link to={`/yourinfo/${localStorage.getItem("TacGia")}`}>
+                    {" "}
+                    <img src="../ayaka.ico" alt="" />
+                  </Link>
+                )}
+
+                {level === "2" && (
+                  <Link to={`/yourinfo`}>
+                    {" "}
+                    <img src="../ayaka.ico" alt="" />
+                  </Link>
+                )}
               </div>
               <Link to={"/logsign/register"}>Register</Link>
               {localStorage.getItem("AccessToken") === "false" && (

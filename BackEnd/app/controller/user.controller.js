@@ -1,30 +1,51 @@
-var User = require('../model/user.model');
+var User = require("../model/user.model");
 
 exports.addUser = function (req, res) {
-    var data = req.body;
-    User.register(data, function (response) {
-        res.send({
-            result: response
-        });
-    })
-}
+  var data = req.body;
+  User.register(data, function (response) {
+    res.send({
+      result: response,
+    });
+  });
+};
 exports.showUser = function (req, res) {
-    User.get_all(function (data) {
-        res.send({
-            result: data
-        });
-    })
-}
-exports.getUserByAccount = function(req, res) {
-    const data = req.params;
-    User.getUser(data, function (respond) {
-        res.send({ result: respond });
+  User.get_all(function (data) {
+    res.send({
+      result: data,
     });
-}
+  });
+};
+exports.showDuyet = function (req, res) {
+  User.get_user_chuaduyet(function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
+exports.getUserByAccount = function (req, res) {
+  const data = req.params;
+  User.getUser(data, function (respond) {
+    res.send({ result: respond });
+  });
+};
 exports.findbyID = function (req, res) {
-    User.get_by_id(req.params.id,function (data) {
-        res.send({
-            result: data
-        });
+  User.get_by_id(req.params.id, function (data) {
+    res.send({
+      result: data,
     });
-}
+  });
+};
+exports.deleteItem = function (req, res) {
+  User.remove(req.params.id, function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
+exports.accept = function (req, res) {
+  User.accept(req.params.id, function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};

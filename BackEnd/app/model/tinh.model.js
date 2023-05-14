@@ -13,4 +13,17 @@ Tinh.get_all = function (result) {
         }
     });
 }
+Tinh.get_by_id = function (id, result) {
+    db.query(
+      `SELECT * from tinh WHERE idtinh = ? `,
+      id,
+      function (err, tinh) {
+        if (err) {
+          result(err);
+        } else {
+          result(tinh[0]);
+        }
+      }
+    );
+  };
 module.exports = Tinh;

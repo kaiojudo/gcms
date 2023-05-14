@@ -13,8 +13,9 @@ export default function Register() {
     id_nguyenquan: "",
     username: "",
     password: "",
-    accesslevel: 1,
-    active: "",
+    accesslevel: 2,
+    active: 0
+    ,
   });
   const [tinh, setDataTinh] = useState({});
   useEffect(() => {
@@ -40,11 +41,12 @@ export default function Register() {
       id_nguyenquan: data.id_nguyenquan,
       username: data.username,
       password: data.password,
-      accesslevel: 1,
-      active: 1,
+      accesslevel: 0,
+      active: 0,
     })
     .then((res) => {
       console.log(res.data); 
+      alert("Thành công")
     })
     .catch((err) => {alert("Error User: " + err.message)});
   }
@@ -93,14 +95,14 @@ export default function Register() {
                     <div className="row">
                       <div className="col-md-6  d-flex align-items-center">
                         <div className="form-outline datepicker w-100">
-                          <label htmlFor="birthdayDate" className="form-label">
+                          <label htmlFor="password" className="form-label">
                             Mật khẩu
                           </label>
                           <input
                             onChange={(e) => handle(e)}
                             type="password"
                             className="form-control form-control-lg"
-                            id="birthdayDate"
+                            id="password"
                           />
                         </div>
                       </div>

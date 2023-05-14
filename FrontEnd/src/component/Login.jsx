@@ -21,7 +21,8 @@ export default function Login() {
         `http://localhost:3030/account/${data.username}/password/${data.password}`
       )
       .then((res) => {
-        if (res.data.result) {
+        // console.log(res.data.result);
+        if (res.data.result ) {
           localStorage.setItem("AccessToken", true);
           localStorage.setItem("UserName", data.username);
           localStorage.setItem("AccessLevel", res.data.result.accesslevel);
