@@ -174,6 +174,22 @@ Tintuc.add_new = function (data, result) {
     }
   });
 };
+Tintuc.updatePost = function (data, result) {
+  var content = { blocks: data.blocks };
+
+  const sql = `call SP_updatePost(${data.tieudetin}','${data.hinhtrichdan}','${
+    data.trichdantin
+  }',${data.ID_child_theloai},${data.id_phanloaitin},'${
+    data.ngaycapnhat
+  }','${JSON.stringify(content)}),0,0;`;
+  db.query(sql, function (err) {
+    if (err) {
+      result(0);
+    } else {
+      result(1);
+    }
+  });
+};
 Tintuc.delete = function (idtintuc, result) {
   db.query(
     `UPDATE gcms.tintuc SET isNull = 0 WHERE idtintuc = ? `,
@@ -351,39 +367,31 @@ Tintuc.get_by_tacgia = function (id, result) {
   );
 };
 Tintuc.get_admin_delete = function (result) {
-  db.query(
-    `SELECT * FROM gcms.tintuc where isNull = 0`,
-    function (err, data) {
-      if (err) {
-        result(err);
-      } else {
-        result(data);
-      }
-    }
-  );
-};
-Tintuc.remove = function (id,result) {
-  db.query(`DELETE from tintuc where idtintuc = ${id}`, function(err, data) {
+  db.query(`SELECT * FROM gcms.tintuc where isNull = 0`, function (err, data) {
     if (err) {
       result(err);
+    } else {
+      result(data);
     }
-    else{
+  });
+};
+Tintuc.remove = function (id, result) {
+  db.query(`DELETE from tintuc where idtintuc = ${id}`, function (err, data) {
+    if (err) {
+      result(err);
+    } else {
       result("Xoá thành công");
     }
   });
-}
+};
 Tintuc.search = function (search, result) {
-  const sql = `SELECT * FROM gcms.tintuc where tieudetin like "${search}%";`
-  db.query(
-    sql,
-    function (err, tintuc) {
-      if (err) {
-        result(err);
-      } else {
-        result(tintuc);
-        
-      }
+  const sql = `SELECT * FROM gcms.tintuc where tieudetin like "${search}%";`;
+  db.query(sql, function (err, tintuc) {
+    if (err) {
+      result(err);
+    } else {
+      result(tintuc);
     }
-  );
+  });
 };
 module.exports = Tintuc;

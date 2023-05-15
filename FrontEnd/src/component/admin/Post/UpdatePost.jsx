@@ -10,21 +10,92 @@ import Axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function Update() {
-  const url = "http://localhost:3030/post/add";
+  const url = "http://localhost:3030/post/update";
   const params = useParams();
   const [data, setData] = useState({
     id_tacgia: localStorage.getItem("TacGia"),
+    idtintuc:params.id,
   });
   const [post, setPost] = useState({});
   const urlpost = `http://localhost:3030/post/${params.id}`;
-  console.log(urlpost);
   useEffect(() => {
     fetch(urlpost)
       .then((response) => response.json())
       .then((data) => {
         setPost(data);
-        console.log(data);
-      });
+        
+        let content = {};
+        try {
+          content = { ...JSON.parse(data?.result?.content) };
+          console.log(content.blocks);
+        } catch {
+          console.log("ERR");
+        }
+        if (!editorRef.current) {
+          const editor = new EditorJS({
+            holder: "editorjs",
+            placeholder: "Ấn vào đây để tạo nội dung",
+            data: {
+              blocks: content.blocks,
+            },
+            tools: {
+              table: Table,
+              header: {
+                class: Header,
+                config: {
+                  placeholder: "Enter a header",
+                  levels: [2, 3, 4],
+                  defaultLevel: 3,
+                },
+              },
+              image: {
+                class: ImageTool,
+                config: {
+                  endpoints: {
+                    byFile: "http://localhost:3030/upload_image_editorjs",
+                    byUrl: "http://localhost:3030/upload_image_editorjs",
+                  },
+
+                  field: "image",
+                  types: "image/*",
+                },
+              },
+              list: {
+                class: NestedList,
+                inlineToolbar: true,
+                config: {
+                  defaultStyle: "ordered",
+                },
+              },
+              linkTool: {
+                class: LinkTool,
+                config: {
+                  endpoint: "http://localhost:3030/fetchUrl", // Your backend endpoint for url data fetching,
+                },
+              },
+              embed: {
+                class: Embed,
+                config: {
+                  services: {
+                    youtube: true,
+                    coub: true,
+                    facebook: true,
+                    instagram: true,
+                    twitter: true,
+                  },
+                },
+              },
+            },
+          });
+
+          editorRef.current = editor;
+        }
+        return () => {
+          if (editorRef.current || editorRef.current.destroy) {
+            editorRef.current.destroy();
+          }
+        };
+      }, []);
     // eslint-disable-next-line
   }, []);
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
@@ -46,77 +117,14 @@ export default function Update() {
         setDataDanhmuc(data);
       });
   }, []);
-
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
     console.log(newdata);
   }
+
   const editorRef = useRef();
-  useEffect(() => {
-    if (!editorRef.current) {
-      const editor = new EditorJS({
-        holder: "editorjs",
-        placeholder: "Ấn vào đây để tạo nội dung",
-        tools: {
-          table: Table,
-          header: {
-            class: Header,
-            config: {
-              placeholder: "Enter a header",
-              levels: [2, 3, 4],
-              defaultLevel: 3,
-            },
-          },
-          image: {
-            class: ImageTool,
-            config: {
-              endpoints: {
-                byFile: "http://localhost:3030/upload_image_editorjs",
-                byUrl: "http://localhost:3030/upload_image_editorjs",
-              },
-
-              field: "image",
-              types: "image/*",
-            },
-          },
-          list: {
-            class: NestedList,
-            inlineToolbar: true,
-            config: {
-              defaultStyle: "ordered",
-            },
-          },
-          linkTool: {
-            class: LinkTool,
-            config: {
-              endpoint: "http://localhost:3030/fetchUrl", // Your backend endpoint for url data fetching,
-            },
-          },
-          embed: {
-            class: Embed,
-            config: {
-              services: {
-                youtube: true,
-                coub: true,
-                facebook: true,
-                instagram: true,
-                twitter: true,
-              },
-            },
-          },
-        },
-      });
-
-      editorRef.current = editor;
-    }
-    return () => {
-      if (editorRef.current || editorRef.current.destroy) {
-        editorRef.current.destroy();
-      }
-    };
-  }, []);
 
   // submit posts
   async function submit(e) {
@@ -134,7 +142,7 @@ export default function Update() {
     var myJsonString = JSON.stringify(postdata);
     console.log(myJsonString);
     Axios({
-      method: "post",
+      method: "put",
       url: url,
       data: postdata,
     })
@@ -188,6 +196,7 @@ export default function Update() {
             type="file"
             className="form-control-file"
             id="hinhtrichdan"
+            defaultValue={post?.result?.hinhtrichdan}
           />
         </div>
         <div className="form-group">
@@ -198,6 +207,7 @@ export default function Update() {
             className="form-control"
             id="trichdantin"
             placeholder="Trích dẫn ..."
+            defaultValue={post?.result?.trichdantin}
           />
         </div>
         <div className="form-group">
@@ -231,23 +241,6 @@ export default function Update() {
             ))}
           </select>
         </div>
-        {/* <div className="form-group">
-          <label htmlFor="id_tacgia">Tên của bạn</label>
-          <select
-            onChange={(e) => handle(e)}
-            multiple=""
-            className="form-control"
-            id="id_tacgia"
-          >
-            <option value="Demo">Chọn tác giả</option>
-
-            {dataUser?.result?.map((e) => (
-              <option key={e.id_thanhvien} value={e.id_thanhvien}>
-                {e.hoten}
-              </option>
-            ))}
-          </select>
-        </div> */}
         <div className="form-group">
           <label htmlFor="ngaycapnhat">Ngày cập nhật</label>
           <input
@@ -256,6 +249,7 @@ export default function Update() {
             className="form-control"
             id="ngaycapnhat"
             placeholder="yyyy-mm-dd ..."
+            defaultValue={post?.result?.ngaycapnhat}
           />
         </div>
         <div id="editorjs"></div>

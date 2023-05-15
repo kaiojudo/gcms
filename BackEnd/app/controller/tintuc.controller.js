@@ -198,6 +198,12 @@ exports.search = function (req, res) {
     });
   });
 };
+exports.updatePost = function (req, res) {
+  const data = req.body;
+  Tintuc.updatePost(data, function (data) {
+      res.send({ result: data });
+  })
+}
 
 
 
