@@ -75,7 +75,7 @@ export default function Header() {
                 {localStorage.getItem("UserName") !== "none" && (
                   <p>Hello:{localStorage.getItem("UserName")}</p>
                 )}
-                {level==="0" && <img src="../ayaka.ico" alt="" />}
+                {level === "0" && <img src="../ayaka.ico" alt="" />}
                 {level === "1" && (
                   <Link to={`/yourinfo/${localStorage.getItem("TacGia")}`}>
                     {" "}
@@ -90,13 +90,20 @@ export default function Header() {
                   </Link>
                 )}
               </div>
-              <Link to={"/logsign/register"}>Register</Link>
-              {localStorage.getItem("AccessToken") === "false" && (
-                <Link to={"/logsign/login"}>Sign in</Link>
-              )}
-              {localStorage.getItem("AccessToken") === "true" && (
-                <Link onClick={LogOut}>Log Out</Link>
-              )}
+              <div className="d-flex">
+                {localStorage.getItem("AccessToken") === "false" && (
+                  <>
+                    <Link to={"/logsign/register"}>Register</Link>
+                    <Link to={"/logsign/login"}>Sign in</Link>
+                  </>
+                )}
+                {localStorage.getItem("AccessToken") === "true" && (
+                  <>
+                    <Link to={"/admin"}>Admin</Link>{" "}
+                    <Link onClick={LogOut}>Log Out</Link>{" "}
+                  </>
+                )}
+              </div>
             </div>
           </span>
           <div className="sub-bar js-header-mobile-bar" onClick={ShowMenu}>
