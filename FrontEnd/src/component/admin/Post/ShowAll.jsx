@@ -90,8 +90,8 @@ export const ShowAll = () => {
                   <i className="fa-solid fa-eye"></i>
                 </Link>
               </button>
-              <button type="button" className="btn btn-warning">
-                Sửa
+              <button className="btn btn-warning">
+                <Link to={`/admin/updatepost/${post.idtintuc}`}> Sửa</Link>
               </button>
               {post.isActive === "active" && level === "1" && (
                 <button

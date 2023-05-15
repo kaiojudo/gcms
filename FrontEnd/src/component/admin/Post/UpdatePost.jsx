@@ -7,13 +7,26 @@ import NestedList from "@editorjs/nested-list";
 import LinkTool from "@editorjs/link";
 import Header from "@editorjs/header";
 import Axios from "axios";
+import { useParams } from "react-router-dom";
 
-export default function AddPost() {
+export default function Update() {
   const url = "http://localhost:3030/post/add";
+  const params = useParams();
   const [data, setData] = useState({
     id_tacgia: localStorage.getItem("TacGia"),
   });
-
+  const [post, setPost] = useState({});
+  const urlpost = `http://localhost:3030/post/${params.id}`;
+  console.log(urlpost);
+  useEffect(() => {
+    fetch(urlpost)
+      .then((response) => response.json())
+      .then((data) => {
+        setPost(data);
+        console.log(data);
+      });
+    // eslint-disable-next-line
+  }, []);
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
   const urlChild = "http://localhost:3030/childtheloai/showlist";
   useEffect(() => {
@@ -150,7 +163,7 @@ export default function AddPost() {
   return (
     <>
       <label htmlFor="" className="lable-admin">
-        Đăng bài
+        Sửa bài
       </label>
       <form
         id="form-baiviet"
@@ -165,6 +178,7 @@ export default function AddPost() {
             className="form-control"
             id="tieudetin"
             placeholder="Tên bài viết ..."
+            defaultValue={post?.result?.tieudetin}
           />
         </div>
         <div className="form-group">
