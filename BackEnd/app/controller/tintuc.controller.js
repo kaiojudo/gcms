@@ -191,7 +191,13 @@ exports.deleteItem = function (req, res) {
     });
   });
 };
-
+exports.search = function (req, res) {
+  Tintuc.search(req.params.search, function (item) {
+    res.send({
+      result: item,
+    });
+  });
+};
 
 
 
