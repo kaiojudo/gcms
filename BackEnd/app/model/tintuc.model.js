@@ -385,7 +385,7 @@ Tintuc.remove = function (id, result) {
   });
 };
 Tintuc.search = function (search, result) {
-  const sql = `SELECT * FROM gcms.tintuc where tieudetin like "${search}%";`;
+  const sql = `SELECT * FROM gcms.tintuc where tieudetin like "%${search}%";`;
   db.query(sql, function (err, tintuc) {
     if (err) {
       result(err);

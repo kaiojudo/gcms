@@ -169,7 +169,7 @@ export default function Update() {
       });
   }
   return (
-    <>
+    <div className="container">
       <label htmlFor="" className="lable-admin">
         Sửa bài
       </label>
@@ -262,6 +262,6 @@ export default function Update() {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

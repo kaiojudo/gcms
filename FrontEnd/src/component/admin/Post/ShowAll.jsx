@@ -91,7 +91,7 @@ export const ShowAll = () => {
                 </Link>
               </button>
               <button className="btn btn-warning">
-                <Link to={`/admin/updatepost/${post.idtintuc}`}> Sửa</Link>
+                <Link to={`/updatepost/${post.idtintuc}`}> Sửa</Link>
               </button>
               {post.isActive === "active" && level === "1" && (
                 <button
