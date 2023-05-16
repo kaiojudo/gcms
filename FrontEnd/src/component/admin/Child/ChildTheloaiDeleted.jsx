@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 export default function ChildTheLoaiDeleted() {
   const [theloais, setDataTheloai] = useState([]);
+  const level = localStorage.getItem("AccessLevel");
+
   const url = "http://localhost:3030/childtheloai/getdeleted";
   const refresh = () => window.location.reload(true);
   useEffect(() => {
@@ -16,18 +18,19 @@ export default function ChildTheLoaiDeleted() {
   const handleReturn = async (e) => {
     const returnTheloai = async () => {
       const res = await axios.patch(
-        `http://localhost:3030/childtheloai/return/` + e.target.id.split("delete")[1]
+        `http://localhost:3030/childtheloai/return/` +
+          e.target.id.split("delete")[1]
       );
       return res;
     };
     returnTheloai();
     const returnPost = async () => {
-        const res = await axios.patch(
-          `http://localhost:3030/post/returnc/` + e.target.id.split("delete")[1]
-        );
-        return res;
-      };
-      returnPost();
+      const res = await axios.patch(
+        `http://localhost:3030/post/returnc/` + e.target.id.split("delete")[1]
+      );
+      return res;
+    };
+    returnPost();
     alert("Khôi phục thành công !");
     refresh();
   };
@@ -41,10 +44,14 @@ export default function ChildTheLoaiDeleted() {
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
-        <Link to={"/admin/returnchildtheloai"}>
-          <i className="fa-solid fa-trash fa-2xl"></i>
-          <span className="link-des">Đã xoá</span>
-        </Link>
+        {level === "1" && (
+          <>
+            <Link to={"/admin/returnchildtheloai"}>
+              <i className="fa-solid fa-trash fa-2xl"></i>
+              <span className="link-des">Đã xoá</span>
+            </Link>
+          </>
+        )}
       </div>
       <ul className="list-group">
         {theloais?.result?.map((e) => (
