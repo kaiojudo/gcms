@@ -12,6 +12,7 @@ import FormLog from "./component/Login";
 import Register from "./component/Register";
 import Category from "./component/category/Category_byId";
 import Categorybychild from "./component/category/Category_bychildId";
+import CategorybySearch from "./component/category/Category_bySearch";
 import Notfound from "./component/Notfound";
 import { ShowAll } from "./component/admin/Post/ShowAll";
 import { DuyetBai } from "./component/admin/Post/Duyetbai";
@@ -51,6 +52,7 @@ function App(props) {
         <Route path="post/:id" element={<Post />} />
         <Route path="category/:id" element={<Category />}></Route>
         <Route path="categorybychild/:id" element={<Categorybychild />}></Route>
+        <Route path="catebysearch" element={<CategorybySearch />}></Route>
         {localStorage.getItem("AccessLevel") === "1" && (
           <>
             <Route path="admin" element={<Admin />}>

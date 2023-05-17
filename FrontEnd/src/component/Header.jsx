@@ -34,7 +34,12 @@ export default function Header() {
         setDataChildTheLoai(data);
       });
   }
-
+  function Search(e) {
+    navigate("/catebysearch", { replace: true });
+  }
+  function getSearch(e) {
+    localStorage.setItem("Search",e.target.value);
+  }
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
   let navigate = useNavigate();
   function LogOut() {
@@ -138,9 +143,14 @@ export default function Header() {
             </li>
           ))}
         </ul>
-        <div id="search">
-          <input type="text" name="search" placeholder="Tìm kiếm" />
-        </div>
+        <form id="search" onSubmit={(e) => Search(e)}>
+          <input
+            type="text"
+            name="search"
+            placeholder="Tìm kiếm"
+            onChange={(e) => getSearch(e)}
+          />
+        </form>
       </div>
       <div className="bd-bt" />
     </div>
