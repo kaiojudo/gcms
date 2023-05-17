@@ -394,4 +394,14 @@ Tintuc.search = function (search, result) {
     }
   });
 };
+Tintuc.searchchuaduyet = function (search, result) {
+  const sql = `SELECT * FROM gcms.tintuc where kiemduyet = 0 and tieudetin like "%${search}%";`;
+  db.query(sql, function (err, tintuc) {
+    if (err) {
+      result(err);
+    } else {
+      result(tintuc);
+    }
+  });
+};
 module.exports = Tintuc;

@@ -36,6 +36,7 @@ export default function AddChildTheLoai() {
       .then((res) => {
         console.log(res.data);
         alert("Thêm thành công!");
+        refresh();
       });
   }
   return (

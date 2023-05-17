@@ -38,7 +38,7 @@ export default function Header() {
     navigate("/catebysearch", { replace: true });
   }
   function getSearch(e) {
-    localStorage.setItem("Search",e.target.value);
+    localStorage.setItem("Search", e.target.value);
   }
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
   let navigate = useNavigate();
@@ -47,7 +47,6 @@ export default function Header() {
     localStorage.setItem("UserName", "none");
     localStorage.setItem("AccessLevel", "0");
     localStorage.setItem("TacGia", "0");
-
     navigate("/", { replace: true });
     refresh();
   }
@@ -115,11 +114,12 @@ export default function Header() {
             <i className="fa-solid fa-bars fa-xl" />
           </div>
           <div className="modal-menu">
-            <div className="input-search-modal">
+            <form className="input-search-modal" onSubmit={(e) => Search(e)}>
               <input
                 type="text"
                 className="form-control"
                 placeholder="Search..."
+                onChange={(e) => getSearch(e)}
               />
               {dataTheLoai?.result?.map((e) => (
                 <li key={e.idTheLoai} className="menu-category">
@@ -128,7 +128,7 @@ export default function Header() {
                   </a>
                 </li>
               ))}
-            </div>
+            </form>
           </div>
         </div>
       </div>

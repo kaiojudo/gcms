@@ -87,4 +87,14 @@ Theloai.add_new = function (data, result) {
     }
   });
 };
+Theloai.search = function (search, result) {
+  const sql = `SELECT * FROM gcms.theloai where tenTheLoai like "%${search}%";`;
+  db.query(sql, function (err, item) {
+    if (err) {
+      result(err);
+    } else {
+      result(item);
+    }
+  });
+};
 module.exports = Theloai;

@@ -4,7 +4,7 @@ import axios from "axios";
 export const DuyetBai = () => {
   const [posts, setDataPost] = useState([]);
   const url = "http://localhost:3030/post/showlistchuaduyet";
-  const refresh = () => window.location.reload(true)
+  const refresh = () => window.location.reload(true);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(url);
@@ -19,7 +19,6 @@ export const DuyetBai = () => {
         `http://localhost:3030/post/duyet/` + e.target.id.split("duyet")[1]
       );
       return res;
-      
     };
     duyetPosts();
     alert("Duyệt thành công !");
@@ -36,9 +35,26 @@ export const DuyetBai = () => {
     alert("Xoá thành công !");
     refresh();
   };
+  function handleSearch(e) {
+    const fetchPosts = async () => {
+      var res;
+      if (e.target.value !== "") {
+        res = await axios.get(
+          `http://localhost:3030/searchitemchuaduyet/${e.target.value}`
+        );
+      } else {
+        res = await axios.get(url);
+      }
+
+      setDataPost(res.data);
+    };
+    fetchPosts();
+  }
   return (
     <>
-      <label htmlFor="list-group" className="lable-admin">Duyệt bài</label>
+      <label htmlFor="list-group" className="lable-admin">
+        Duyệt bài
+      </label>
       <div className="post-selection">
         <Link to={"/admin/addpost"}>
           <i className="fa-solid fa-plus fa-2xl"></i>
@@ -58,6 +74,13 @@ export const DuyetBai = () => {
         )}
       </div>
       <ul className="list-group">
+        <div className="input-admin">
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={(e) => handleSearch(e)}
+          />
+        </div>
         {posts?.result?.map((post) => (
           <li
             className="list-group-item d-flex justify-content-between align-items-center"
@@ -66,7 +89,10 @@ export const DuyetBai = () => {
             {post.tieudetin}
             <span className="badge">
               <button type="button" className="btn btn-success">
-                <Link to={`/post/${post.idtintuc}`}> <i className="fa-solid fa-eye"></i></Link>
+                <Link to={`/post/${post.idtintuc}`}>
+                  {" "}
+                  <i className="fa-solid fa-eye"></i>
+                </Link>
               </button>
               <button
                 type="button"

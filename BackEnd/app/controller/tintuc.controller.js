@@ -198,6 +198,13 @@ exports.search = function (req, res) {
     });
   });
 };
+exports.searchchuaduyet = function (req, res) {
+  Tintuc.search(req.params.search, function (item) {
+    res.send({
+      result: item,
+    });
+  });
+};
 exports.updatePost = function (req, res) {
   const data = req.body;
   Tintuc.updatePost(data, function (data) {

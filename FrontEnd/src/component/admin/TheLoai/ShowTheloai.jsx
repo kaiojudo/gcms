@@ -25,11 +25,33 @@ export default function ShowTheloai() {
     alert("Xoá thành công !");
     refresh();
   };
+  function handleSearch(e) {
+    const fetchTheloais = async () => {
+      var res;
+      if (e.target.value !== "") {
+        res = await axios.get(
+          `http://localhost:3030/searchtheloai/${e.target.value}`
+        );
+      } else {
+        res = await axios.get(url);
+      }
+
+      setDataTheloai(res.data);
+    };
+    fetchTheloais();
+  }
   return (
     <>
       <label htmlFor="list-group" className="lable-admin">
         All Thể Loại
       </label>
+      <div className="input-admin">
+        <input
+          type="text"
+          placeholder="Search"
+          onChange={(e) => handleSearch(e)}
+        />
+      </div>
       <div className="post-selection">
         <Link to={"/admin/addtheloai"}>
           <i className="fa-solid fa-plus fa-2xl"></i>

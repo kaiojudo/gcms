@@ -660,7 +660,7 @@ footer {
 .sub-info{
   border: 1px solid #ccc;
 }
-.sub-info div{
+.sub-info .title{
   min-width: 50%;
 }
 .sub-info p{
