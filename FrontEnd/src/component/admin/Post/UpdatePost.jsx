@@ -27,7 +27,6 @@ export default function Update() {
         let content = {};
         try {
           content = { ...JSON.parse(data?.result?.content) };
-          console.log(content.blocks);
         } catch {
           console.log("ERR");
         }
@@ -152,6 +151,13 @@ export default function Update() {
             "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
           );
         }
+        postdata.idtintuc = params.id;
+        postdata.tieudetin = document.getElementById("tieudetin").value;
+        postdata.ID_child_theloai = document.getElementById("ID_child_theloai").value;
+        postdata.id_phanloaitin = document.getElementById("id_phanloaitin").value;
+        postdata.id_tacgia = document.getElementById("id_tacgia").value;
+        postdata.ngaycapnhat = document.getElementById("ngaycapnhat").value;
+        console.log(postdata.tieudetin);
         if (
           !postdata.tieudetin ||
           !postdata.ID_child_theloai ||

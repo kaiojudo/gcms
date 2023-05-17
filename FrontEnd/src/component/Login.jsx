@@ -22,13 +22,20 @@ export default function Login() {
       )
       .then((res) => {
         // console.log(res.data.result);
-        if (res.data.result ) {
+        if (res.data.result) {
           localStorage.setItem("AccessToken", true);
           localStorage.setItem("UserName", data.username);
           localStorage.setItem("AccessLevel", res.data.result.accesslevel);
           localStorage.setItem("TacGia", res.data.result.id_thanhvien);
-          navigate("/admin", { replace: true });
-          refresh();
+          try {
+            if (localStorage.getItem("AccessToken") === "true") {
+            navigate("/admin", { replace: true });
+            refresh();
+          }
+          } catch {
+            console.log("hello");
+          }
+          
         } else {
           alert("Login failed");
         }
