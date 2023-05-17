@@ -68,9 +68,8 @@ function App(props) {
               <Route path="addchildtheloai" element={<AddChildTheLoai />} />
               <Route path="admindelete" element={<ShowDelete />} />
               <Route path="acceptuser" element={<AcceptUser />} />
-              <Route path="updatepost/:id" element={<Update />} />
-
             </Route>
+            <Route path="updatepost/:id" element={<Update />} />
             <Route path="yourinfo/:id" element={<ShowUser />} />
           </>
         )}
@@ -83,8 +82,8 @@ function App(props) {
               <Route path="addtheloai" element={<AddTheLoai />} />
               <Route path="childtheloai" element={<ShowChildTheLoai />} />
               <Route path="addchildtheloai" element={<AddChildTheLoai />} />
-              
-            </Route>{" "}<Route path="updatepost/:id" element={<Update />} />
+            </Route>{" "}
+            <Route path="updatepost/:id" element={<Update />} />
             <Route path="yourinfo" element={<ShowUser />} />
           </>
         )}
