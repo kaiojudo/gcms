@@ -14,21 +14,22 @@ export default function Login() {
     setData(newData);
   }
   let navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
+    await axios
       .get(
         `http://localhost:3030/account/${data.username}/password/${data.password}`
       )
       .then((res) => {
         // console.log(res.data.result);
-        if (res.data.result ) {
+        if (res.data.result) {
           localStorage.setItem("AccessToken", true);
-          localStorage.setItem("UserName", data.username);
+          localStorage.setItem("UserName", res.data.result.hoten);
           localStorage.setItem("AccessLevel", res.data.result.accesslevel);
           localStorage.setItem("TacGia", res.data.result.id_thanhvien);
-          navigate("/admin", { replace: true });
+          navigate("/admin", { replace: false });
           refresh();
+          
         } else {
           alert("Login failed");
         }

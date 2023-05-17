@@ -73,7 +73,7 @@ export default function Header() {
             <div className="modal-log">
               <div className="login-logo">
                 {localStorage.getItem("UserName") !== "none" && (
-                  <p>Hello:{localStorage.getItem("UserName")}</p>
+                  <span>{localStorage.getItem("UserName")}</span>
                 )}
                 {level === "0" && <img src="../ayaka.ico" alt="" />}
                 {level === "1" && (
