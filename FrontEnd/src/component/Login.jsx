@@ -24,18 +24,17 @@ export default function Login() {
         // console.log(res.data.result);
         if (res.data.result) {
           localStorage.setItem("AccessToken", true);
-          localStorage.setItem("UserName", data.username);
+          localStorage.setItem("UserName", res.data.result.hoten);
           localStorage.setItem("AccessLevel", res.data.result.accesslevel);
           localStorage.setItem("TacGia", res.data.result.id_thanhvien);
           try {
             if (localStorage.getItem("AccessToken") === "true") {
-            navigate("/admin", { replace: true });
-            refresh();
-          }
+              navigate("/", { replace: true });
+              refresh();
+            }
           } catch {
             console.log("hello");
           }
-          
         } else {
           alert("Login failed");
         }

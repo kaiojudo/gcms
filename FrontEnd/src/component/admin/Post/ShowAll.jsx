@@ -54,6 +54,21 @@ export const ShowAll = () => {
     alert("Thành công !");
     refresh();
   };
+  function handleSearch(e) {
+    const fetchPosts = async () => {
+      var res;
+      if (e.target.value !== "") {
+        res = await axios.get(
+          `http://localhost:3030/searchitem/${e.target.value}`
+        );
+      } else {
+        res = await axios.get(url);
+      }
+
+      setDataPost(res.data);
+    };
+    fetchPosts();
+  }
   return (
     <>
       <label htmlFor="list-group" className="lable-admin">
@@ -76,6 +91,13 @@ export const ShowAll = () => {
             </Link>
           </>
         )}
+      </div>
+      <div className="input-admin">
+        <input
+          type="text"
+          placeholder="Search"
+          onChange={(e) => handleSearch(e)}
+        />
       </div>
       <ul className="list-group">
         {posts?.result?.map((post) => (
