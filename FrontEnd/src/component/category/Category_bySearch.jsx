@@ -12,13 +12,18 @@ export default function Layout_Category() {
   console.log(
     `http://localhost:3030/searchitem/${localStorage.getItem("Search")}`
   );
-const search = localStorage.getItem("Search");
+  const search = localStorage.getItem("Search");
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      const res = await axios.get(
-        `http://localhost:3030/searchitem/${search}`
-      );
+      var res;
+      if (search === ""){
+        res = await axios.get(`http://localhost:3030/searchitem/${search}`);
+      }
+      else{
+        res = await axios.get(`http://localhost:3030/post/showlist`);
+
+      }  
       setDataPost(res.data);
       setLoading(false);
     };
@@ -37,7 +42,9 @@ const search = localStorage.getItem("Search");
       <div id="container" className="w-80 d-flex layout_post">
         <div id="left-container">
           <div id="game-news">
-            <label className="label label-hot-news">Kết quả tìm kiếm: {search}</label>
+            <label className="label label-hot-news">
+              Kết quả tìm kiếm: {search}
+            </label>
             <Posts posts={currentPosts} loading={loading} />
             <Pagination
               postsPerPage={postsPerPage}
