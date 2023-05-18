@@ -177,14 +177,14 @@ Tintuc.add_new = function (data, result) {
 Tintuc.updatePost = function (data, result) {
   var content = { blocks: data.blocks };
 
-  const sql = `call SP_updatePost(${data.tieudetin}','${data.hinhtrichdan}','${
-    data.trichdantin
-  }',${data.ID_child_theloai},${data.id_phanloaitin},'${
-    data.ngaycapnhat
-  }','${JSON.stringify(content)}),0,0;`;
+  const sql = `call SP_update_post(${data.idtintuc},'${data.tieudetin}','${
+    data.hinhtrichdan
+  }','${data.trichdantin}','${data.ngaycapnhat}','${JSON.stringify(
+    content
+  )}',0,0);`;
   db.query(sql, function (err) {
     if (err) {
-      result(0);
+      result(err);
     } else {
       result(1);
     }
@@ -385,7 +385,7 @@ Tintuc.remove = function (id, result) {
   });
 };
 Tintuc.search = function (search, result) {
-  const sql = `SELECT * FROM gcms.tintuc where tieudetin like "%${search}%";`;
+  const sql = `SELECT * FROM gcms.tintuc where kiemduyet = 1 and isNull = 1 and tieudetin like "%${search}%";`;
   db.query(sql, function (err, tintuc) {
     if (err) {
       result(err);

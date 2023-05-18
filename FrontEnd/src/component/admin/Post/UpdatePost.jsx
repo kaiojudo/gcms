@@ -6,7 +6,6 @@ import Embed from "@editorjs/embed";
 import NestedList from "@editorjs/nested-list";
 import LinkTool from "@editorjs/link";
 import Header from "@editorjs/header";
-import Axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function Update() {
@@ -14,7 +13,7 @@ export default function Update() {
   const params = useParams();
   const [data, setData] = useState({
     id_tacgia: localStorage.getItem("TacGia"),
-    idtintuc:params.id,
+    idtintuc: params.id,
   });
   const [post, setPost] = useState({});
   const urlpost = `http://localhost:3030/post/${params.id}`;
@@ -23,7 +22,6 @@ export default function Update() {
       .then((response) => response.json())
       .then((data) => {
         setPost(data);
-        
         let content = {};
         try {
           content = { ...JSON.parse(data?.result?.content) };
@@ -138,36 +136,31 @@ export default function Update() {
         console.log("Saving failed: ", error);
       });
     const postdata = { ...data, ...content };
-    var myJsonString = JSON.stringify(postdata);
-    console.log(myJsonString);
-    Axios({
-      method: "put",
-      url: url,
-      data: postdata,
-    })
+
+    postdata.idtintuc = params.id;
+    postdata.tieudetin = document.getElementById("tieudetin")?.value;
+    postdata.trichdantin = document.getElementById("trichdantin")?.value;
+    postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.value;
+    postdata.ngaycapnhat = document.getElementById("ngaycapnhat")?.value;
+    console.log(JSON.stringify(postdata));
+
+    fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postdata)
+        })
       .then((e) => {
         if (e.result === 0) {
           alert(
             "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
           );
-        }
-        postdata.idtintuc = params.id;
-        postdata.tieudetin = document.getElementById("tieudetin").value;
-        postdata.ID_child_theloai = document.getElementById("ID_child_theloai").value;
-        postdata.id_phanloaitin = document.getElementById("id_phanloaitin").value;
-        postdata.id_tacgia = document.getElementById("id_tacgia").value;
-        postdata.ngaycapnhat = document.getElementById("ngaycapnhat").value;
-        console.log(postdata.tieudetin);
-        if (
-          !postdata.tieudetin ||
-          !postdata.ID_child_theloai ||
-          !postdata.id_phanloaitin ||
-          !postdata.id_tacgia ||
-          !postdata.ngaycapnhat
-        ) {
+        } else if (!postdata.tieudetin || !postdata.ngaycapnhat) {
           alert("Vui lòng điền đầy đủ thông tin");
         } else {
           alert("Chờ duyệt nhé!");
+          console.log(e.result);
         }
       })
       .catch(() => {
@@ -202,7 +195,7 @@ export default function Update() {
             type="file"
             className="form-control-file"
             id="hinhtrichdan"
-            defaultValue={post?.result?.hinhtrichdan}
+            // defaultValue={post?.result?.hinhtrichdan}
           />
         </div>
         <div className="form-group">
@@ -223,7 +216,9 @@ export default function Update() {
             id="ID_child_theloai"
             onChange={(e) => handle(e)}
           >
-            <option>Chọn thể loại</option>
+            <option value={post?.result?.ID_child_theloai}>
+              Chọn thể loại
+            </option>
             {dataChildTheLoai?.result?.map((e) => (
               <option key={e.ID_child_theloai} value={e.ID_child_theloai}>
                 {e.ten_child_theloai}
@@ -239,7 +234,9 @@ export default function Update() {
             className="form-control"
             id="id_phanloaitin"
           >
-            <option>Chọn phân loại tin</option>
+            <option value={post?.result?.id_phanloaitin}>
+              Lựa chọn phân loại tin
+            </option>
             {dataDanhmuc?.result?.map((e) => (
               <option key={e.id_phanloaitin} value={e.id_phanloaitin}>
                 {e.ten_phanloaitin}
