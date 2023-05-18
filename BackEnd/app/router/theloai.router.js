@@ -7,5 +7,7 @@ module.exports = function (router) {
   router.get("/theloai/details/:id", theloaiController.details);
   router.patch("/theloai/delete/:id", theloaiController.delete);
   router.patch("/theloai/return/:id", theloaiController.return);
+  router.get(`/searchtheloai/:search`, theloaiController.search);
+
 
 };

@@ -660,7 +660,7 @@ footer {
 .sub-info{
   border: 1px solid #ccc;
 }
-.sub-info div{
+.sub-info .title{
   min-width: 50%;
 }
 .sub-info p{
@@ -730,4 +730,12 @@ footer {
 }
 .post-selection a:hover .link-des {
   display: inline-block;
+}
+.input-admin{
+  padding: 1rem 0;
+}
+.input-admin input{
+  padding: 0.5rem;
+  min-width: 20rem;
+  border-radius: 5rem;
 }

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 export default function TheloaiDeleted() {
   const [theloais, setDataTheloai] = useState([]);
+  const level = localStorage.getItem("AccessLevel");
+  
   const url = "http://localhost:3030/theloai/getdeleted";
   const refresh = () => window.location.reload(true);
   useEffect(() => {
@@ -41,10 +43,14 @@ export default function TheloaiDeleted() {
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
-        <Link to={"/admin/theloaideleted"}>
-          <i className="fa-solid fa-trash fa-2xl"></i>
-          <span className="link-des">Đã xoá</span>
-        </Link>
+        {level === "1" && (
+          <>
+            <Link to={"/admin/theloaideleted"}>
+              <i className="fa-solid fa-trash fa-2xl"></i>
+              <span className="link-des">Đã xoá</span>
+            </Link>
+          </>
+        )}
       </div>
       <ul className="list-group">
         {theloais?.result?.map((e) => (

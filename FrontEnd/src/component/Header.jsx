@@ -34,7 +34,12 @@ export default function Header() {
         setDataChildTheLoai(data);
       });
   }
-
+  function Search(e) {
+    navigate("/catebysearch", { replace: true });
+  }
+  function getSearch(e) {
+    localStorage.setItem("Search", e.target.value);
+  }
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
   let navigate = useNavigate();
   function LogOut() {
@@ -42,7 +47,6 @@ export default function Header() {
     localStorage.setItem("UserName", "none");
     localStorage.setItem("AccessLevel", "0");
     localStorage.setItem("TacGia", "0");
-
     navigate("/", { replace: true });
     refresh();
   }
@@ -73,7 +77,8 @@ export default function Header() {
             <div className="modal-log">
               <div className="login-logo">
                 {localStorage.getItem("UserName") !== "none" && (
-                  <span>{localStorage.getItem("UserName")}</span>
+                  <p>{localStorage.getItem("UserName")}</p>
+
                 )}
                 {level === "0" && <img src="../ayaka.ico" alt="" />}
                 {level === "1" && (
@@ -110,11 +115,12 @@ export default function Header() {
             <i className="fa-solid fa-bars fa-xl" />
           </div>
           <div className="modal-menu">
-            <div className="input-search-modal">
+            <form className="input-search-modal" onSubmit={(e) => Search(e)}>
               <input
                 type="text"
                 className="form-control"
                 placeholder="Search..."
+                onChange={(e) => getSearch(e)}
               />
               {dataTheLoai?.result?.map((e) => (
                 <li key={e.idTheLoai} className="menu-category">
@@ -123,7 +129,7 @@ export default function Header() {
                   </a>
                 </li>
               ))}
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -138,9 +144,14 @@ export default function Header() {
             </li>
           ))}
         </ul>
-        <div id="search">
-          <input type="text" name="search" placeholder="Tìm kiếm" />
-        </div>
+        <form id="search" onSubmit={(e) => Search(e)}>
+          <input
+            type="text"
+            name="search"
+            placeholder="Tìm kiếm"
+            onChange={(e) => getSearch(e)}
+          />
+        </form>
       </div>
       <div className="bd-bt" />
     </div>

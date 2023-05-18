@@ -27,5 +27,8 @@ module.exports = function (router) {
   router.get("/post/showlist", postcontroller.showAllTintuc);
   router.get("/postbyadmin/showlistdelete", postcontroller.admindelete);
   router.get("/getnew/:id", postcontroller.shownew);
+  router.get(`/searchitem/:search`, postcontroller.search);
+  router.get(`/searchitemchuaduyet/:search`, postcontroller.searchchuaduyet);
   router.delete("/deletebyadmin/:id", postcontroller.deleteItem);
+  router.put('/post/update', postcontroller.updatePost);
 };
