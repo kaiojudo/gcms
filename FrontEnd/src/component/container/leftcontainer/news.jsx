@@ -11,18 +11,18 @@ export default function News(props) {
   const [dataTheLoai, setDataTheLoai] = useState({});
   const level = localStorage.getItem("AccessLevel");
   if (level === "2" || level === "1") {
-    var urlPost = `http://localhost:3030/postforrv/${params.id}`;
+    var urlPost = `http://192.168.0.103:3030/postforrv/${params.id}`;
   } else {
-    urlPost = `http://localhost:3030/post/${params.id}`;
+    urlPost = `http://192.168.0.103:3030/post/${params.id}`;
   }
 
-  const urlView = `http://localhost:3030/post/solandoc/${params.id}`;
+  const urlView = `http://192.168.0.103:3030/post/solandoc/${params.id}`;
   useEffect(() => {
     let headers = new Headers();
 
     headers.append("Content-Type", "application/json");
     headers.append("Accept", "application/json");
-    headers.append("Origin", "http://localhost:3000");
+    headers.append("Origin", "http://192.168.0.103:3000");
     const updateview = async () => {
       const res = await axios.patch(urlView);
       return res;
@@ -36,14 +36,14 @@ export default function News(props) {
         setDataPost(e);
 
         const urlTacgia =
-          "http://localhost:3030/user/findbyid/" + e.result.id_tacgia;
+          "http://192.168.0.103:3030/user/findbyid/" + e.result.id_tacgia;
         fetch(urlTacgia)
           .then((response) => response.json())
           .then((dataTacgia) => {
             setDataTacgia(dataTacgia);
           });
         const urlchild =
-          "http://localhost:3030/childtheloai/child/" +
+          "http://192.168.0.103:3030/childtheloai/child/" +
           e.result.ID_child_theloai;
         // console.log(urlchild);
         fetch(urlchild)
@@ -51,7 +51,7 @@ export default function News(props) {
           .then((datachild) => {
             setDataChild(datachild);
             const urlTheLoai =
-              "http://localhost:3030/theloai/details/" +
+              "http://192.168.0.103:3030/theloai/details/" +
               datachild.result.idTheLoai;
             // console.log(urlTheLoai);
             fetch(urlTheLoai)

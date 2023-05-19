@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 export const ShowDelete = () => {
   const [posts, setDataPost] = useState([]);
-  const url = "http://localhost:3030/postbyadmin/showlistdelete";
+  const url = "http://192.168.0.103:3030/postbyadmin/showlistdelete";
   const refresh = () => window.location.reload(true);
   useEffect(() => {
     const fetchPosts = async () => {
@@ -17,7 +17,7 @@ export const ShowDelete = () => {
   const handleDelete = async (e) => {
     const deletePosts = async () => {
       const res = await axios.delete(
-        `http://localhost:3030/deletebyadmin/` + e.target.id.split("delete")[1]
+        `http://192.168.0.103:3030/deletebyadmin/` + e.target.id.split("delete")[1]
       );
       return res;
     };

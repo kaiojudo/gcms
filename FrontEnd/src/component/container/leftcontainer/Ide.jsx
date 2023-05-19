@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 export default function Ide() {
     const params = useParams();
   const [posts, setDataPost] = useState();
-  const url = `http://localhost:3030/getnew/${params.id}`;
+  const url = `http://192.168.0.103:3030/getnew/${params.id}`;
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(url);

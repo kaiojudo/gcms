@@ -18,7 +18,7 @@ export default function Login() {
     e.preventDefault();
     await axios
       .get(
-        `http://localhost:3030/account/${data.username}/password/${data.password}`
+        `http://192.168.0.103:3030/account/${data.username}/password/${data.password}`
       )
       .then((res) => {
         // console.log(res.data.result);

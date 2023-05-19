@@ -4,7 +4,7 @@ import { useState,useEffect } from "react";
 
 export default function AddChildTheLoai() {
   const [theloais, setDataTheloai] = useState([]);
-  const urlf = "http://localhost:3030/theloai/all";
+  const urlf = "http://192.168.0.103:3030/theloai/all";
   useEffect(() => {
     const fetchTheloais = async () => {
       const res = await axios.get(urlf);
@@ -13,7 +13,7 @@ export default function AddChildTheLoai() {
     fetchTheloais();
   }, []);
 
-  const url = `http://localhost:3030/childtheloai/add`;
+  const url = `http://192.168.0.103:3030/childtheloai/add`;
   const refresh = () => window.location.reload(true);
   const [data, setData] = useState({
     ten_child_theloai: "",

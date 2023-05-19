@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function TeyvatNews() {
   const [teyvatNews, setDataTeyvatNews] = useState({});
-const url = "http://localhost:3030/post/teyvat/teyvatnews";
+const url = "http://192.168.0.103:3030/post/teyvat/teyvatnews";
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())

@@ -43,7 +43,7 @@ app.post("/upload_image_editorjs", upload.single("image"), (req, res) => {
   res.send({
     success: 1,
     file: {
-      url: `http://localhost:3030/public/images/${res.req.file.filename}`,
+      url: `http://192.168.0.103:3030/public/images/${res.req.file.filename}`,
     },
   });
 });
@@ -57,7 +57,7 @@ app.post("/upload_image", upload.single("image_thumnail"), function (req, res) {
   res.send({
     success: 1,
     file: {
-      url: `http://localhost:3030/public/images/${res.req.file.filename}`,
+      url: `http://192.168.0.103:3030/public/images/${res.req.file.filename}`,
     },
   });
 });

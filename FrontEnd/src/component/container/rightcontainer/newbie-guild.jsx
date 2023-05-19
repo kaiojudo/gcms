@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function NewbieGuild() {
   const [dataguild, setDataGuild] = useState({});
-  const url = "http://localhost:3030/post/newbieguild/showall";
+  const url = "http://192.168.0.103:3030/post/newbieguild/showall";
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
