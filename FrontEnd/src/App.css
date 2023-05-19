@@ -211,6 +211,17 @@ img {
 #container {
   margin-top: 8rem;
 }
+.editor-link{
+  color: blue;
+  font-weight: bold;
+}
+.page-link:hover{
+  background-color: rgb(142, 220, 220);
+}
+.this-page-link{
+  background-color: rgb(142, 220, 220);
+  color: #fff;
+}
 .col-12 select {
   min-width: 12rem;
   padding-right: 1rem;

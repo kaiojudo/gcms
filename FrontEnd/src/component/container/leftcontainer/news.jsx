@@ -105,7 +105,7 @@ export default function News(props) {
       }
 
       case "linkTool":
-        return <Link to={block.data.link}>{block.data.link}</Link>;
+        return <Link to={block.data.link} className="editor-link">Liên kết</Link>;
       case "table": {
         let table = ``;
         block.data.content.map((e) => {
@@ -163,11 +163,11 @@ export default function News(props) {
 
       <div className="post-details">
         <p id="preshow-name">{datapost?.result?.tieudetin}</p>
-        <img
+        {/* <img
           src={"../" + datapost?.result?.hinhtrichdan?.split("C:fakepath")[1]}
           alt=""
           id="prehinhtrichdan"
-        ></img>
+        ></img> */}
         <p id="trichdantin">{datapost?.result?.trichdantin}</p>
         {datapost?.content?.blocks?.map((block) => (
           <div className="col-12 block-content" key={block.id}>

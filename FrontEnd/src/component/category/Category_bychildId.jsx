@@ -38,6 +38,17 @@ export default function Layout_Category() {
     lastIndexofPosts
   );
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const totalPosts = posts?.result?.length;
+  const next = (pageNumber) => {
+    if (currentPage < totalPosts / postsPerPage) {
+      setCurrentPage(pageNumber + 1);
+    }
+  };
+  const previous = (pageNumber) => {
+    if (currentPage > 1) {
+      setCurrentPage(pageNumber - 1);
+    }
+  };
   return (
     <>
       <div id="container" className="w-80 d-flex layout_post">
@@ -51,6 +62,9 @@ export default function Layout_Category() {
               postsPerPage={postsPerPage}
               totalPosts={posts?.result?.length}
               paginate={paginate}
+              next={next}
+              previous={previous}
+              currentPage={currentPage}
             />
           </div>
         </div>

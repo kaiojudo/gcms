@@ -26,7 +26,20 @@ export default function GameNew(props) {
     lastIndexofPosts
   );
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  const totalPosts = posts?.result?.length;
+  const next = (pageNumber) => {
+    if (currentPage < totalPosts / postsPerPage) {
+      setCurrentPage(pageNumber + 1);
+    }
+  };
+  const previous = (pageNumber) => {
+    if (currentPage > 1) {
+      setCurrentPage(pageNumber - 1);
+    }
+  };
   return (
     <>
       <div id="game-news">
@@ -36,6 +49,9 @@ export default function GameNew(props) {
           postsPerPage={postsPerPage}
           totalPosts={posts?.result?.length}
           paginate={paginate}
+          currentPage={currentPage}
+          next={next}
+          previous={previous}
         />
       </div>
     </>
