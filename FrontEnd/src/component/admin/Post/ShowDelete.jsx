@@ -63,6 +63,14 @@ export const ShowDelete = () => {
               </button>
               <button
                 type="button"
+                className="btn btn-primary"
+                id={`delete${post.idtintuc}`}
+                onClick={handleDelete}
+              >
+               Khôi phục
+              </button>
+              <button
+                type="button"
                 className="btn btn-danger"
                 id={`delete${post.idtintuc}`}
                 onClick={handleDelete}

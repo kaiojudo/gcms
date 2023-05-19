@@ -17,7 +17,7 @@ export default function Layout_Category() {
     const fetchPosts = async () => {
       setLoading(true);
       var res;
-      if (search === ""){
+      if (search !== ""){
         res = await axios.get(`http://localhost:3030/searchitem/${search}`);
       }
       else{
