@@ -61,6 +61,11 @@
   #right-container {
     display: none;
   }
+  .lazy {
+    min-height: 250px;
+    min-width: 100%;
+    margin: auto;
+  }
   #left-container {
     display: block;
     width: 100%;
