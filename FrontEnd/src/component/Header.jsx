@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Header() {
   const refresh = () => window.location.reload(true);
   const [dataTheLoai, setDataTheLoai] = useState({});
-  const url = "http://192.168.0.103:3030/theloai/list";
+  const url = "http://localhost:3030/theloai/list";
   const level = localStorage.getItem("AccessLevel");
   useEffect(() => {
     fetch(url)
@@ -26,7 +26,7 @@ export default function Header() {
     const child = document.querySelector(".menu-sub-cat");
     child.classList.add("d-flex");
     const url2 =
-      "http://192.168.0.103:3030/childtheloai/childbyfather/" + e.target.id;
+      "http://localhost:3030/childtheloai/childbyfather/" + e.target.id;
     console.log(url2);
     fetch(url2)
       .then((response) => response.json())

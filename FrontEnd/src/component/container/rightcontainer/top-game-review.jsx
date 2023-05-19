@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 export default function TopGameReview() {
   const [review, setReview] = useState({});
-  const url = "http://192.168.0.103:3030/post/review/showall";
+  const url = "http://localhost:3030/post/review/showall";
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())

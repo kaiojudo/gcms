@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Axios from "axios";
 export default function Register() {
-  const url = "http://192.168.0.103:3030/user/add";
-  const urltinh = "http://192.168.0.103:3030/tinh/showlist";
+  const url = "http://localhost:3030/user/add";
+  const urltinh = "http://localhost:3030/tinh/showlist";
   const [data, setData] = useState({
     id_thanhvien: "",
     hoten: "",

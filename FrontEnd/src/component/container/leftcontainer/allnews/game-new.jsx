@@ -8,7 +8,7 @@ export default function GameNew(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
 
-  const url = "http://192.168.0.103:3030/post/showlist";
+  const url = "http://localhost:3030/post/showlist";
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Giftcode() {
   const [dataGiftcode, setDataGiftcode] = useState({});
-  const urlgiftcode = "http://192.168.0.103:3030/post/giftcode/showall";
+  const urlgiftcode = "http://localhost:3030/post/giftcode/showall";
   useEffect(() => {
     fetch(urlgiftcode)
       .then((response) => response.json())

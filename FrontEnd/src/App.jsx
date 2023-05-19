@@ -30,11 +30,11 @@ import Update from "./component/admin/Post/UpdatePost";
 
 function App(props) {
   const updatePosts = async () => {
-    const res = await axios.patch(`http://192.168.0.103:3030/post/setafterdelete`);
+    const res = await axios.patch(`http://localhost:3030/post/setafterdelete`);
     return res;
   };
   const updatePosts2 = async () => {
-    const res = await axios.patch(`http://192.168.0.103:3030/post/setafterc`);
+    const res = await axios.patch(`http://localhost:3030/post/setafterc`);
     return res;
   };
   updatePosts();

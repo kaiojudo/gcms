@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function SuperHotNews() {
   const [dataSlide, setDataSlide] = useState({});
-  const urlSlide = "http://192.168.0.103:3030/post/slide/showall";
+  const urlSlide = "http://localhost:3030/post/slide/showall";
   useEffect(() => {
     fetch(urlSlide)
       .then((response) => response.json())
@@ -12,7 +12,7 @@ export default function SuperHotNews() {
       });
   }, []);
   const [databtSlide, setDatabtSlide] = useState({});
-  const urlbtSlide = "http://192.168.0.103:3030/post/btslide/showall";
+  const urlbtSlide = "http://localhost:3030/post/btslide/showall";
   useEffect(() => {
     fetch(urlbtSlide)
       .then((response) => response.json())

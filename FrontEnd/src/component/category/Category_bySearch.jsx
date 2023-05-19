@@ -10,7 +10,7 @@ export default function Layout_Category() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   console.log(
-    `http://192.168.0.103:3030/searchitem/${localStorage.getItem("Search")}`
+    `http://localhost:3030/searchitem/${localStorage.getItem("Search")}`
   );
   const search = localStorage.getItem("Search");
   useEffect(() => {
@@ -18,9 +18,9 @@ export default function Layout_Category() {
       setLoading(true);
       var res;
       if (search !== "") {
-        res = await axios.get(`http://192.168.0.103:3030/searchitem/${search}`);
+        res = await axios.get(`http://localhost:3030/searchitem/${search}`);
       } else {
-        res = await axios.get(`http://192.168.0.103:3030/post/showlist`);
+        res = await axios.get(`http://localhost:3030/post/showlist`);
       }
       setDataPost(res.data);
       setLoading(false);
