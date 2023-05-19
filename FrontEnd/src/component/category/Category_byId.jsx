@@ -16,7 +16,7 @@ export default function Layout_Category() {
     const fetchPosts = async () => {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:3030/category/${params.id}`
+        `http://192.168.0.103:3030/category/${params.id}`
       );
       setDataPost(res.data);
       setLoading(false);
@@ -24,7 +24,7 @@ export default function Layout_Category() {
     fetchPosts();
     const fetchtheloais = async () => {
       const res = await axios.get(
-        `http://localhost:3030/theloai/details/${params.id}`
+        `http://192.168.0.103:3030/theloai/details/${params.id}`
       );
       setTheloai(res.data);
     };
