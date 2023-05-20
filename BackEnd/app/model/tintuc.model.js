@@ -181,7 +181,7 @@ Tintuc.updatePost = function (data, result) {
     data.hinhtrichdan
   }','${data.trichdantin}','${data.ngaycapnhat}','${JSON.stringify(
     content
-  )}',0,0);`;
+  )}',0);`;
   db.query(sql, function (err) {
     if (err) {
       result(err);

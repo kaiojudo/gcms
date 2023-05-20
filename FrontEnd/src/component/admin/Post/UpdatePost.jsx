@@ -120,9 +120,7 @@ export default function Update() {
     setData(newdata);
     console.log(newdata);
   }
-
   const editorRef = useRef();
-
   // submit posts
   async function submit(e) {
     e.preventDefault();
@@ -140,17 +138,20 @@ export default function Update() {
     postdata.idtintuc = params.id;
     postdata.tieudetin = document.getElementById("tieudetin")?.value;
     postdata.trichdantin = document.getElementById("trichdantin")?.value;
-    postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.value;
-    postdata.ngaycapnhat = document.getElementById("ngaycapnhat")?.value;
-    console.log(JSON.stringify(postdata));
 
+    postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.alt;
+
+    postdata.ngaycapnhat = document
+      .getElementById("ngaycapnhat")
+      ?.value.split("T17:00:00.000Z")[0];
+    console.log(JSON.stringify(postdata));
     fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postdata)
-        })
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postdata),
+    })
       .then((e) => {
         if (e.result === 0) {
           alert(
@@ -160,7 +161,6 @@ export default function Update() {
           alert("Vui lòng điền đầy đủ thông tin");
         } else {
           alert("Chờ duyệt nhé!");
-          console.log(e.result);
         }
       })
       .catch(() => {
@@ -195,7 +195,13 @@ export default function Update() {
             type="file"
             className="form-control-file"
             id="hinhtrichdan"
-            // defaultValue={post?.result?.hinhtrichdan}
+            alt={post?.result?.hinhtrichdan}
+            // defaultValue=
+          />
+          <img
+            id="default-img"
+            src={"../" + post?.result?.hinhtrichdan.split("C:fakepath")[1]}
+            alt="Ảnh cũ"
           />
         </div>
         <div className="form-group">
