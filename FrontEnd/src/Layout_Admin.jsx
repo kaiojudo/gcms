@@ -14,7 +14,7 @@ export default function Layout_Admin() {
             </Link>
           )}
         </div>
-        <div className="form-add">
+        <div className="form-add admin-container">
           <Outlet />
         </div>
       </div>

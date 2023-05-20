@@ -168,7 +168,7 @@ export default function Update() {
       });
   }
   return (
-    <div className="container">
+    <div className="container ">
       <label htmlFor="" className="lable-admin">
         Sửa bài
       </label>

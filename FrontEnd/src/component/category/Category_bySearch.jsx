@@ -9,9 +9,6 @@ export default function Layout_Category() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
-  console.log(
-    `http://localhost:3030/searchitem/${localStorage.getItem("Search")}`
-  );
   const search = localStorage.getItem("Search");
   useEffect(() => {
     const fetchPosts = async () => {

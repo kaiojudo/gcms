@@ -23,7 +23,7 @@ export const Pagination = ({
         <>
           <li
             className="page-item page-link this-page-link"
-            key={currentPage}
+            key="01"
             onClick={() => paginate(currentPage)}
           >
             {currentPage.toString()}
@@ -45,11 +45,11 @@ export const Pagination = ({
           </li>
         </>
       )}
-      {currentPage === 2 && (
+      {currentPage === 2 && max > 3 && (
         <>
           <li
             className="page-item page-link"
-            key={1}
+            key="02"
             onClick={() => paginate(1)}
           >
             1
@@ -79,11 +79,11 @@ export const Pagination = ({
           </li>
         </>
       )}
-      {currentPage === 3 && (
+      {currentPage === 3 && max > 4 && (
         <>
           <li
             className="page-item page-link"
-            key={1}
+            key="03"
             onClick={() => paginate(1)}
           >
             1
@@ -124,7 +124,7 @@ export const Pagination = ({
         <>
           <li
             className="page-item page-link"
-            key={1}
+            key="0>3"
             onClick={() => paginate(1)}
           >
             1
@@ -161,11 +161,11 @@ export const Pagination = ({
           </li>
         </>
       )}
-      {currentPage === max - 1 && (
+      {currentPage === (max - 1) && (
         <>
           <li
             className="page-item page-link"
-            key={1}
+            key="0>max-1"
             onClick={() => paginate(1)}
           >
             1
@@ -199,7 +199,7 @@ export const Pagination = ({
         <>
           <li
             className="page-item page-link"
-            key={1}
+            key="max"
             onClick={() => paginate(1)}
           >
             1
