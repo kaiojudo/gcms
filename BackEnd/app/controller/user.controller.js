@@ -36,6 +36,13 @@ exports.findbyID = function (req, res) {
   });
 };
 exports.deleteItem = function (req, res) {
+  User.delete(req.params.id, function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
+exports.remove = function (req, res) {
   User.remove(req.params.id, function (data) {
     res.send({
       result: data,

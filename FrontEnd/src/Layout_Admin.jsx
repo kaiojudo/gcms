@@ -9,8 +9,8 @@ export default function Layout_Admin() {
           <Link to={"/admin/theloai"}>Quản lý thể loại</Link>
           <Link to={"/admin/childtheloai"}>Quản lý thể loại con</Link>
           {localStorage.getItem("AccessLevel") === "1" && (
-            <Link to={"/admin/acceptuser"}>
-             Duyệt Người dùng mới
+            <Link to={"/admin/showalluser"}>
+             Quản lý CTV
             </Link>
           )}
         </div>

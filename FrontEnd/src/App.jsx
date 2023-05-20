@@ -27,6 +27,7 @@ import { ShowDelete } from "./component/admin/Post/ShowDelete";
 import { ShowUser } from "./component/admin/User/ShowUser";
 import AcceptUser from "./component/admin/User/AcceptUser";
 import Update from "./component/admin/Post/UpdatePost";
+import ShowAllUser from "./component/admin/User/ShowAllUser";
 
 function App(props) {
   const updatePosts = async () => {
@@ -73,6 +74,7 @@ function App(props) {
               />
               <Route path="addchildtheloai" element={<AddChildTheLoai />} />
               <Route path="admindelete" element={<ShowDelete />} />
+              <Route path="showalluser" element={<ShowAllUser />} />
               <Route path="acceptuser" element={<AcceptUser />} />
             </Route>
             <Route path="updatepost/:id" element={<Update />} />

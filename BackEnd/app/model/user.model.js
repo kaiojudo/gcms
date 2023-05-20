@@ -26,7 +26,7 @@ User.register = function (data, result) {
     });
 }
 User.get_all = function (result) {
-    db.query(`SELECT * FROM thanhvien `, function (err, data) {
+    db.query(`SELECT * FROM thanhvien where active = 1 and accesslevel = 2`, function (err, data) {
         if (err) {
             result(err);
         } else {
@@ -63,7 +63,7 @@ User.get_by_id = function (id_thanhvien, result){
         }
     });
 }
-User.remove = function (id,result) {
+User.delete = function (id,result) {
     db.query(`DELETE from thanhvien where id_thanhvien = ${id}`, function(err, data) {
       if (err) {
         result(err);
@@ -73,6 +73,19 @@ User.remove = function (id,result) {
       }
     });
   }
+  User.remove = function (idtintuc, result) {
+    db.query(
+      `UPDATE gcms.thanhvien SET  active = '0' WHERE (id_thanhvien = ?); `,
+      idtintuc,
+      function (err, data) {
+        if (err) {
+          result(null);
+        } else {
+          result(data);
+        }
+      }
+    );
+  };
   User.accept = function (idtintuc, result) {
     db.query(
       `UPDATE gcms.thanhvien SET accesslevel = '2', active = '1' WHERE (id_thanhvien = ?); `,

@@ -7,4 +7,5 @@ module.exports = function (router) {
     router.get('/user/findbyid/:id', usercontroller.findbyID);
     router.delete('/user/delete/:id', usercontroller.deleteItem);
     router.patch('/user/accept/:id', usercontroller.accept);
+    router.patch('/user/remove/:id', usercontroller.remove);
 };
