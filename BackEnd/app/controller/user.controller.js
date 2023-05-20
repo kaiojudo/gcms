@@ -49,6 +49,13 @@ exports.remove = function (req, res) {
     });
   });
 };
+exports.levelUp = function (req, res) {
+  User.levelUp(req.params.id, function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
 exports.accept = function (req, res) {
   User.accept(req.params.id, function (data) {
     res.send({

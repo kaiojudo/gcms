@@ -27,8 +27,8 @@ export default function Login() {
           localStorage.setItem("UserName", res.data.result.hoten);
           localStorage.setItem("AccessLevel", res.data.result.accesslevel);
           localStorage.setItem("TacGia", res.data.result.id_thanhvien);
-
-          navigate("/admin", { replace: false });
+          alert("Đăng nhập thành công !")
+          navigate("/", { replace: false });
           refresh();
           
 

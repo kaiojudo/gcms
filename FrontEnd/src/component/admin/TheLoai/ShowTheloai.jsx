@@ -69,7 +69,7 @@ export default function ShowTheloai() {
       <ul className="list-group">
         {theloais?.result?.map((e) => (
           <li
-            className="list-group-item d-flex justify-content-between align-items-center"
+            className="list-group-item d-flex align-items-center justify-content-between"
             key={e.idTheLoai}
           >
             {e.tenTheLoai}

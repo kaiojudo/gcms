@@ -24,7 +24,17 @@ export default function ShowAllUser() {
     alert("Xoá thành công !");
     refresh();
   };
-
+  const handleLevelup = async (e) => {
+    const levelUp = async () => {
+      const res = await axios.patch(
+        `http://localhost:3030/user/levelup/` + e.target.id.split("levelup")[1]
+      );
+      return res;
+    };
+    levelUp();
+    alert("Thăng cấp thành công !");
+    refresh();
+  };
   return (
     <>
       <label htmlFor="list-group" className="lable-admin">
@@ -49,7 +59,14 @@ export default function ShowAllUser() {
                   <i className="fa-solid fa-eye"></i>
                 </Link>
               </button>
-
+              <button
+                type="button"
+                className="btn btn-primary"
+                id={`levelup${data.id_thanhvien}`}
+                onClick={handleLevelup}
+              >
+                <i className="fa-solid fa-angles-up"></i>
+              </button>
               <button
                 type="button"
                 className="btn btn-danger"

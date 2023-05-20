@@ -45,7 +45,7 @@ ChildTheLoai.getbyIDCha = function (idTheloai, result) {
   );
 };
 ChildTheLoai.getAll = function (result) {
-  db.query(`SELECT * FROM child_theloai Where isNull_child_theloai = 1`, function (err, child) {
+  db.query(`SELECT * FROM child_theloai Where isNull_child_theloai = 1 order by idTheLoai`, function (err, child) {
     if (err) {
       result(err);
     } else {
@@ -53,7 +53,16 @@ ChildTheLoai.getAll = function (result) {
     }
   });
 };
-
+ChildTheLoai.search = function (search, result) {
+  const sql = `SELECT * FROM gcms.child_theloai where ten_child_theloai like "%${search}%";`;
+  db.query(sql, function (err, item) {
+    if (err) {
+      result(err);
+    } else {
+      result(item);
+    }
+  });
+};
 ChildTheLoai.delete = function (id, result) {
   db.query(
     `UPDATE gcms.child_theloai SET isNull_child_theloai = 0 WHERE ID_child_theloai = ? ;`,

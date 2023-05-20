@@ -355,7 +355,7 @@ Tintuc.setReturnC = function (id, result) {
 Tintuc.get_by_tacgia = function (id, result) {
   db.query(
     `SELECT * FROM gcms.tintuc
-    Where id_tacgia = ? and isNull = 1`,
+    Where id_tacgia = ? and kiemduyet = 1 and isnull = 1`,
     id,
     function (err, tintuc) {
       if (err) {

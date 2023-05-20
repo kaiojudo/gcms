@@ -49,3 +49,10 @@ exports.getdelete = function (req, res) {
     });
   });
 };
+exports.search = function (req, res) {
+  ChildTheloai.search(req.params.search, function (item) {
+    res.send({
+      result: item,
+    });
+  });
+};

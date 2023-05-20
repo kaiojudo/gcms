@@ -53,11 +53,7 @@ function App(props) {
         <Route path="post/:id" element={<Post />} />
         <Route path="category/:id" element={<Category />}></Route>
         <Route path="categorybychild/:id" element={<Categorybychild />}></Route>
-
-        <Route path="admin" element={<Admin />}></Route>
-
         <Route path="catebysearch" element={<CategorybySearch />}></Route>
-
         {localStorage.getItem("AccessLevel") === "1" && (
           <>
             <Route path="admin" element={<Admin />}>
@@ -94,9 +90,9 @@ function App(props) {
             <Route path="updatepost/:id" element={<Update />} />
             <Route path="yourinfo" element={<ShowUser />} />
           </>
-        )}
+        )}{" "}
         <Route path="*" element={<Notfound />} />
-      </Routes>
+      </Routes>{" "}
       <Footer />
     </div>
   );

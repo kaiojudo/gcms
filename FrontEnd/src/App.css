@@ -211,14 +211,14 @@ img {
 #container {
   margin-top: 8rem;
 }
-.editor-link{
+.editor-link {
   color: blue;
   font-weight: bold;
 }
-.page-link:hover{
+.page-link:hover {
   background-color: rgb(142, 220, 220);
 }
-.this-page-link{
+.this-page-link {
   background-color: rgb(142, 220, 220);
   color: #fff;
 }
@@ -255,12 +255,15 @@ img {
   text-align: center;
   position: relative;
 }
-.login-logo span{
-  font-size: 1.5rem;
+.login-logo p {
+  font-size: 1.2rem;
   font-weight: bolder;
   color: var(--color-label);
 }
-.login-logo a{
+.show-all-admin {
+  justify-content: space-between;
+}
+.login-logo a {
   display: inline-block;
   width: 100%;
 }
@@ -381,9 +384,12 @@ img {
   padding: 0.5rem;
 }
 .hot-new-news-2-item p {
+  overflow: hidden;
   font-weight: bold;
   color: #000;
   opacity: 0.8;
+  display: inline-block;
+  max-height: 3rem;
 }
 .hot-new-news-2-item p:hover {
   color: var(--color-label);
@@ -600,10 +606,10 @@ img {
 }
 #preshow-name {
   font-size: 1.5rem;
-  color: #000;
-  display: inline-block;
+  text-align: center;
   overflow: hidden;
   font-weight: bold;
+  color: red;
 }
 .close-modal {
   position: absolute;
@@ -620,6 +626,7 @@ img {
 .post-details #trichdantin {
   font-weight: bold;
   margin-bottom: 1rem;
+  text-align: center;
 }
 .pd-top-bottom {
   margin-top: 1rem;
@@ -627,6 +634,9 @@ img {
 }
 .post-details img {
   margin: 0.5rem 0;
+}
+.post-details{
+  margin-top: 2rem;
 }
 .block-content ~ .block-content {
   padding-bottom: 0.5rem;
@@ -640,45 +650,45 @@ footer {
 }
 
 /* Admin */
-.your-info{
+.your-info {
   margin-top: 1rem;
 }
-.your-info h2{
+.your-info h2 {
   text-align: center;
 }
-.user-img{
+.user-img {
   width: 10rem;
   height: 10rem;
   margin: auto;
   border-radius: 100px;
   overflow: hidden;
-  background-image: url("../public/unknown.jpg")
+  background-image: url("../public/unknown.jpg");
 }
-.user-img img{
+.user-img img {
   height: 100%;
 }
-.info-user{
+.info-user {
   text-align: center;
   margin-top: 1rem;
 }
-.info-id{
+.info-id {
   color: #ccc;
 }
-.info-level{
+.info-level {
   font-weight: bold;
   color: red;
 }
-.sub-info{
+.sub-info {
   border: 1px solid #ccc;
 }
-.sub-info .title{
+.sub-info .title {
   min-width: 50%;
 }
-.sub-info p{
+.sub-info p {
   padding: 1rem 0;
   border-bottom: 1px solid #ccc;
 }
-.sub-info .title{
+.sub-info .title {
   border-right: 1px solid #ccc;
 }
 .lable-admin {
@@ -742,10 +752,10 @@ footer {
 .post-selection a:hover .link-des {
   display: inline-block;
 }
-.input-admin{
+.input-admin {
   padding: 1rem 0;
 }
-.input-admin input{
+.input-admin input {
   padding: 0.5rem;
   min-width: 20rem;
   border-radius: 5rem;

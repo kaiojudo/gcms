@@ -14,8 +14,8 @@ export const ShowUser = () => {
   }
   if (level === "1") {
     url = `http://localhost:3030/user/findbyid/${params.id}`;
-    };
-  
+  }
+
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
@@ -33,29 +33,51 @@ export const ShowUser = () => {
     <div className="your-info container">
       <h2 className="lable-admin">Thông tin cá nhân</h2>
       <div className="user-img">
-        <img srcSet="../unknown.jpg" src="../unknown.jpg" alt="errerrerrerrerrerrerrerr" />
+        <img
+          srcSet="../unknown.jpg"
+          src="../unknown.jpg"
+          alt="errerrerrerrerrerrerrerr"
+        />
       </div>
 
       <div className="info-user">
         <h4 className="info-name">{data?.result?.hoten}</h4>
         <p className="info-id">#{localStorage.getItem("TacGia")}</p>
-        {data?.result?.accesslevel === 2 && <h5 className="info-level">Cộng tác viên</h5>}
-        {data?.result?.accesslevel === 1 && <h5 className="info-level">Quản trị viên</h5>}
+        {data?.result?.accesslevel === 2 && (
+          <h5 className="info-level">Cộng tác viên</h5>
+        )}
+        {data?.result?.accesslevel === 1 && (
+          <h5 className="info-level">Quản trị viên</h5>
+        )}
         <div className="sub-info d-flex">
-          <div className="title">
-            <p>Giới tính</p>
-            <p>Nguyên quán</p>
-            <p>Địa chỉ</p>
-            <p>Email</p>
-            <p>Số điện thoại</p>
-          </div>
-          <div className="data">
-            <p>{data?.result?.sex}</p>
-            <p>{tinh?.result?.tentinh}</p>
-            <p>{data?.result?.address}</p>
-            <p>{data?.result?.email}</p>
-            <p>{data?.result?.phone}</p>
-          </div>
+          <table className="table table-hover">
+            <tbody>
+              <tr>
+                <th scope="row">Tên</th>
+                <td>{data?.result?.hoten}</td>
+              </tr>
+              <tr>
+                <th scope="row">Giới tính</th>
+                <td>{data?.result?.sex}</td>
+              </tr>
+              <tr>
+                <th scope="row">Quê quán</th>
+                <td>{tinh?.result?.tentinh}</td>
+              </tr>
+              <tr>
+                <th scope="row">Địa chỉ</th>
+                <td>{data?.result?.address}</td>
+              </tr>
+              <tr>
+                <th scope="row">Số điện thoại</th>
+                <td>{data?.result?.phone}</td>
+              </tr>
+              <tr>
+                <th scope="row">Email</th>
+                <td>{data?.result?.email}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

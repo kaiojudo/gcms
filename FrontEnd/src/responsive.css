@@ -56,9 +56,33 @@
   .news-decscript {
     line-height: 1.5rem;
   }
+  .d-flex{
+    justify-content: space-between;
+  }
+  .badge span{
+    display: none;
+  }
 }
 @media screen and (max-width: 600px) {
   #right-container {
+    display: none;
+  }
+  .select-form a {
+    display: block;
+    margin: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid #000;
+    font-weight: bolder;
+  }
+  .badge span{
+    display: none;
+  }
+  .w-80 {
+    width: 100%;
+    margin: 0;
+  }
+  .list-group .place {
     display: none;
   }
   .lazy {
@@ -76,7 +100,7 @@
   #hot-new-news {
     width: 100%;
   }
-  .pagination{
+  .pagination {
     overflow: scroll;
   }
   label {
@@ -118,5 +142,8 @@
   .news img {
     width: 100%;
     height: auto;
+  }
+  .d-flex{
+    justify-content: space-between;
   }
 }

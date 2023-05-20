@@ -10,5 +10,5 @@ module.exports = function (router) {
   router.patch("/childtheloai/return/:id", childtheloaiController.return);
   router.get("/childtheloai/showlist", childtheloaiController.get_all);
   router.get("/childtheloai/getdeleted", childtheloaiController.getdelete);
-
+  router.get(`/searchchildtheloai/:search`, childtheloaiController.search);
 };
