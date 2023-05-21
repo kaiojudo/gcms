@@ -18,12 +18,16 @@ export const Pagination = ({
     <ul className="pagination">
       {max > 2 && (
         <>
-          <li
-            className="page-item page-link"
-            onClick={() => previous(currentPage)}
-          >
-            <i className="fa-solid fa-angle-left"></i>
-          </li>
+          {currentPage !== 1 && (
+            <>
+              <li
+                className="page-item page-link"
+                onClick={() => previous(currentPage)}
+              >
+                <i className="fa-solid fa-angle-left"></i>
+              </li>
+            </>
+          )}
           {currentPage === 1 && (
             <>
               <li
@@ -226,9 +230,16 @@ export const Pagination = ({
               </li>
             </>
           )}
-          <li className="page-item page-link" onClick={() => next(currentPage)}>
-            <i className="fa-solid fa-angle-right"></i>
-          </li>
+          {currentPage !== max && (
+            <>
+              <li
+                className="page-item page-link"
+                onClick={() => next(currentPage)}
+              >
+                <i className="fa-solid fa-angle-right"></i>
+              </li>
+            </>
+          )}
         </>
       )}
       {max === 2 && (
@@ -236,9 +247,9 @@ export const Pagination = ({
           <li
             className="page-item page-link"
             key="0122"
-            onClick={() => paginate(max-1)}
+            onClick={() => paginate(max - 1)}
           >
-            {(max-1).toString()}
+            {(max - 1).toString()}
           </li>
           <li
             className="page-item page-link"
@@ -250,6 +261,5 @@ export const Pagination = ({
         </>
       )}
     </ul>
-
   );
 };
