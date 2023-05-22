@@ -97,4 +97,17 @@ Theloai.search = function (search, result) {
     }
   });
 };
+Theloai.update = function (id, data, result) {
+  db.query(
+    `UPDATE theloai SET tenTheLoai = ?, sapxep = ? where idTheLoai = ?`,
+    [data.tenTheLoai, data.sapxep, id],
+    function (err, item) {
+      if (err) {
+        result(0);
+      } else {
+        result(item);
+      }
+    }
+  );
+};
 module.exports = Theloai;

@@ -57,3 +57,11 @@ exports.search = function (req, res) {
     });
   });
 };
+exports.update = function (req, res) {
+  var data = req.body;
+  Theloai.update(req.params.id,data, function (response) {
+    res.send({
+      result: response,
+    });
+  });
+};

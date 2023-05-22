@@ -8,6 +8,8 @@ module.exports = function (router) {
   router.patch("/theloai/delete/:id", theloaiController.delete);
   router.patch("/theloai/return/:id", theloaiController.return);
   router.get(`/searchtheloai/:search`, theloaiController.search);
+  router.put(`/theloai/update/:id`, theloaiController.update);
+
 
 
 };

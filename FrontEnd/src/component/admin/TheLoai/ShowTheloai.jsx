@@ -2,8 +2,10 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 export default function ShowTheloai() {
   const [theloais, setDataTheloai] = useState([]);
+  const params = useParams();
   const level = localStorage.getItem("AccessLevel");
   const url = "http://localhost:3030/theloai/all";
   const refresh = () => window.location.reload(true);
@@ -76,7 +78,7 @@ export default function ShowTheloai() {
             <span className="badge">
               <span>Vị trí số : {e.sapxep}</span>
               <button type="button" className="btn btn-warning">
-                Sửa
+                <Link to={`/updatetheloai/${e.idTheLoai}`}> Sửa</Link>
               </button>
               <button
                 type="button"
