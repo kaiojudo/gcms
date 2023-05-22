@@ -82,10 +82,6 @@ function App(props) {
             <Route path="admin" element={<Admin />}>
               <Route path="" element={<ShowAll />} />
               <Route path="addpost" element={<AdminPost />} />
-              <Route path="theloai" element={<ShowTheloai />} />
-              <Route path="addtheloai" element={<AddTheLoai />} />
-              <Route path="childtheloai" element={<ShowChildTheLoai />} />
-              <Route path="addchildtheloai" element={<AddChildTheLoai />} />
             </Route>{" "}
             <Route path="updatepost/:id" element={<Update />} />
             <Route path="yourinfo" element={<ShowUser />} />
