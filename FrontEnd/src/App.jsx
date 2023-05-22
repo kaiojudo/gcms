@@ -29,6 +29,7 @@ import AcceptUser from "./component/admin/User/AcceptUser";
 import Update from "./component/admin/Post/UpdatePost";
 import ShowAllUser from "./component/admin/User/ShowAllUser";
 import UpdateTheLoai from "./component/admin/TheLoai/UpdateTheLoai";
+import UpdateChild from "./component/admin/Child/UpdateChild";
 
 function App(props) {
   const updatePosts = async () => {
@@ -77,6 +78,7 @@ function App(props) {
             <Route path="updatepost/:id" element={<Update />} />
             <Route path="yourinfo/:id" element={<ShowUser />} />
             <Route path="updatetheloai/:id" element={<UpdateTheLoai />} />
+            <Route path="updatechild/:id" element={<UpdateChild />} />
           </>
         )}
         {localStorage.getItem("AccessLevel") === "2" && (

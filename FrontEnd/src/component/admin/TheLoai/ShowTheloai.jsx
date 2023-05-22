@@ -2,10 +2,10 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 export default function ShowTheloai() {
   const [theloais, setDataTheloai] = useState([]);
-  const params = useParams();
+  // const params = useParams();
   const level = localStorage.getItem("AccessLevel");
   const url = "http://localhost:3030/theloai/all";
   const refresh = () => window.location.reload(true);

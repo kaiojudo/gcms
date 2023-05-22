@@ -45,13 +45,16 @@ ChildTheLoai.getbyIDCha = function (idTheloai, result) {
   );
 };
 ChildTheLoai.getAll = function (result) {
-  db.query(`SELECT * FROM child_theloai Where isNull_child_theloai = 1 order by idTheLoai`, function (err, child) {
-    if (err) {
-      result(err);
-    } else {
-      result(child);
+  db.query(
+    `SELECT * FROM child_theloai Where isNull_child_theloai = 1 order by idTheLoai`,
+    function (err, child) {
+      if (err) {
+        result(err);
+      } else {
+        result(child);
+      }
     }
-  });
+  );
 };
 ChildTheLoai.search = function (search, result) {
   const sql = `SELECT * FROM gcms.child_theloai where ten_child_theloai like "%${search}%";`;
@@ -90,12 +93,28 @@ ChildTheLoai.return = function (id, result) {
   );
 };
 ChildTheLoai.getdelete = function (result) {
-  db.query(`SELECT * FROM child_theloai where isNull_child_theloai = 0`, function (err, child) {
-    if (err) {
-      result(err);
-    } else {
-      result(child);
+  db.query(
+    `SELECT * FROM child_theloai where isNull_child_theloai = 0`,
+    function (err, child) {
+      if (err) {
+        result(err);
+      } else {
+        result(child);
+      }
     }
-  });
+  );
+};
+ChildTheLoai.update = function (id, data, result) {
+  db.query(
+    `UPDATE child_theloai SET ten_child_theloai = ?, sapxep_child_theloai = ? , idTheLoai = ? where ID_child_theloai = ?`,
+    [data.ten_child_theloai, data.sapxep_child_theloai, data.idTheLoai, id],
+    function (err, item) {
+      if (err) {
+        result(err);
+      } else {
+        result(item);
+      }
+    }
+  );
 };
 module.exports = ChildTheLoai;
