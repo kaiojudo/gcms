@@ -66,7 +66,7 @@ export default function News(props) {
   function handleRenderPostData(block) {
     switch (block.type) {
       case "image":
-        return <img src={block.data.file.url} alt="Err" />;
+        return <img className="img-post" src={block.data.file.url} alt="Err" />;
       case "header": {
         if (block.data.level === 2)
           return (
