@@ -30,6 +30,7 @@ import Update from "./component/admin/Post/UpdatePost";
 import ShowAllUser from "./component/admin/User/ShowAllUser";
 import UpdateTheLoai from "./component/admin/TheLoai/UpdateTheLoai";
 import UpdateChild from "./component/admin/Child/UpdateChild";
+import ButtonScollToTop from "./ButtonScrollToTop";
 
 function App(props) {
   const updatePosts = async () => {
@@ -93,6 +94,7 @@ function App(props) {
         )}{" "}
         <Route path="*" element={<Notfound />} />
       </Routes>{" "}
+      <ButtonScollToTop />
       <Footer />
     </div>
   );
