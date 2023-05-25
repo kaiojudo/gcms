@@ -211,6 +211,19 @@ exports.updatePost = function (req, res) {
       res.send({ result: data });
   })
 }
-
+exports.pagination = function (req, res) {
+  Tintuc.pagination(req.params.limit,req.params.offset,function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
+exports.gettoltalpost = function (req, res) {
+  Tintuc.gettotalpost(req.params.id, function (tintuc) {
+    res.send({
+      result: tintuc,
+    });
+  });
+};
 
 

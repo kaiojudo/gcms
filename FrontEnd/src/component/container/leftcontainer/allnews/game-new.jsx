@@ -5,41 +5,57 @@ import axios from "axios";
 export default function GameNew(props) {
   const [posts, setDataPost] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [page, setPage] = useState(1);
+  var currentPage = 1;
 
-  const url = "http://localhost:3030/post/showlist";
+  const [postsPerPage] = useState(5);
+  const [soluong, setSoluong] = useState();
+  const urlsl = `http://localhost:3030/totalpost`;
   useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      const res = await axios.get(url);
-      setDataPost(res.data);
-      setLoading(false);
+    const fetchSoluong = async () => {
+      const res = await axios.get(urlsl);
+      setSoluong(res.data);
     };
+    fetchSoluong();
     fetchPosts();
   }, []);
-  // Get current posts
-  const lastIndexofPosts = currentPage * postsPerPage;
-  const firstIndexOfPosts = lastIndexofPosts - postsPerPage;
-  const currentPosts = posts?.result?.slice(
-    firstIndexOfPosts,
-    lastIndexofPosts
-  );
+  // console.log(currentPage);
+  const fetchPosts = async () => {
+    setLoading(true);
+    const res = await axios.get(
+      `http://localhost:3030/limit/${postsPerPage}/offset/${
+        (currentPage - 1) * postsPerPage
+      }`
+    );
+    setDataPost(res.data);
+    setLoading(false);
+  };
+  const currentPosts = posts?.result;
+  // console.log(currentPosts);
   // Change Page
   const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    currentPage = pageNumber;
+    setPage(currentPage);
+    fetchPosts();
   };
-  const totalPosts = posts?.result?.length;
-  const next = (pageNumber) => {
-    if (currentPage < totalPosts / postsPerPage) {
-      setCurrentPage(pageNumber + 1);
+  // console.log(page);
+  const totalPosts = soluong?.result?.soluong;
+  const next = () => {
+    if (page < totalPosts / postsPerPage) {
+      currentPage = page + 1;
+      setPage(currentPage);
+      // console.log(currentPage);
+      fetchPosts();
     }
   };
-  const previous = (pageNumber) => {
-    if (currentPage > 1) {
-      setCurrentPage(pageNumber - 1);
+  const previous = () => {
+    if (page > 1) {
+      currentPage = page - 1;
+      setPage(currentPage);
+      fetchPosts();
     }
   };
+  // console.log(page);
   return (
     <>
       <div id="game-news">
@@ -47,9 +63,9 @@ export default function GameNew(props) {
         <Posts posts={currentPosts} loading={loading} />
         <Pagination
           postsPerPage={postsPerPage}
-          totalPosts={posts?.result?.length}
+          totalPosts={totalPosts}
           paginate={paginate}
-          currentPage={currentPage}
+          currentPage={page}
           next={next}
           previous={previous}
         />

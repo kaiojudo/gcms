@@ -9,7 +9,6 @@ export const Pagination = ({
   currentPage,
 }) => {
   const pageNumbers = [];
-
   var max = Math.ceil(totalPosts / postsPerPage);
   for (let i = 1; i <= max; i++) {
     pageNumbers.push(i);

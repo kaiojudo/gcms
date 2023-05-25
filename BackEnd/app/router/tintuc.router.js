@@ -30,5 +30,8 @@ module.exports = function (router) {
   router.get(`/searchitem/:search`, postcontroller.search);
   router.get(`/searchitemchuaduyet/:search`, postcontroller.searchchuaduyet);
   router.delete("/deletebyadmin/:id", postcontroller.deleteItem);
-  router.put('/post/update', postcontroller.updatePost);
+  router.put("/post/update", postcontroller.updatePost);
+  router.get(`/limit/:limit/offset/:offset`, postcontroller.pagination);
+  router.get(`/totalpost`, postcontroller.gettoltalpost);
+
 };

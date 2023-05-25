@@ -404,4 +404,27 @@ Tintuc.searchchuaduyet = function (search, result) {
     }
   });
 };
+Tintuc.pagination = function (limit, offset, result) {
+  const sql = `SELECT * FROM gcms.tintuc where kiemduyet = 1 and isNull = 1 limit ${limit} offset ${offset}`;
+  db.query(sql, function (err, tintuc) {
+    if (err) {
+      result(err);
+    } else {
+      result(tintuc);
+    }
+  });
+};
+Tintuc.gettotalpost = function (idtintuc, result) {
+  db.query(
+    `SELECT COUNT(idtintuc) AS soluong from tintuc where isNull = 1 and kiemduyet = 1;`,
+    idtintuc,
+    function (err, data) {
+      if (err) {
+        result(err);
+      } else {
+        result(data[0]);
+      }
+    }
+  );
+};
 module.exports = Tintuc;
