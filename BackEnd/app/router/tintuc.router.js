@@ -22,16 +22,22 @@ module.exports = function (router) {
   router.patch("/post/return/:id", postcontroller.setAfterR);
   router.patch("/post/setafterc", postcontroller.setAfterDC);
   router.patch("/post/returnc/:id", postcontroller.setAfterRC);
-  router.get("/category/:id", postcontroller.get_by_idtheloai);
-  router.get("/childcategory/:id", postcontroller.get_by_idchildtheloai);
+  router.get("/category/:id/:limit/:offset", postcontroller.get_by_idtheloai);
+  // router.get("/childcategory/:id", postcontroller.get_by_idchildtheloai);
   router.get("/post/showlist", postcontroller.showAllTintuc);
   router.get("/postbyadmin/showlistdelete", postcontroller.admindelete);
   router.get("/getnew/:id", postcontroller.shownew);
   router.get(`/searchitem/:search`, postcontroller.search);
+  router.get(`/searchitem/:search/:limit/:offset`, postcontroller.paginationsearch);
   router.get(`/searchitemchuaduyet/:search`, postcontroller.searchchuaduyet);
   router.delete("/deletebyadmin/:id", postcontroller.deleteItem);
   router.put("/post/update", postcontroller.updatePost);
   router.get(`/limit/:limit/offset/:offset`, postcontroller.pagination);
   router.get(`/totalpost`, postcontroller.gettoltalpost);
+  router.get(`/child/:limit/:offset/:id`, postcontroller.paginationbychild);
+
+  router.get(`/totalpostbychild/:id`, postcontroller.gettoltalpostbychild);
+  router.get(`/totalpostbytheloai/:id`, postcontroller.gettoltalpostbytheloai);
+  router.get(`/totalpostbysearch/:search`, postcontroller.gettoltalpostbysearch);
 
 };

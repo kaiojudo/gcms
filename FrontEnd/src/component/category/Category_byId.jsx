@@ -5,22 +5,23 @@ import { Pagination } from "../container/leftcontainer/allnews/gamenew/Paginatio
 import axios from "axios";
 import RightContainer from "../container/rightcontainer/RightContainer";
 export default function Layout_Category() {
-  const [posts, setDataPost] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
   const params = useParams();
-  const [theloai, setTheloai] = useState([]);
+  const [posts, setDataPost] = useState([]);
+  const [theloai, setTheloai] = useState();
 
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  var currentPage = 1;
+
+  const [postsPerPage] = useState(8);
+  const [soluong, setSoluong] = useState();
+  const urlsl = `http://localhost:3030/totalpostbytheloai/${params.id}`;
   useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      const res = await axios.get(
-        `http://localhost:3030/category/${params.id}`
-      );
-      setDataPost(res.data);
-      setLoading(false);
+    const fetchSoluong = async () => {
+      const res = await axios.get(urlsl);
+      setSoluong(res.data);
     };
+    fetchSoluong();
     fetchPosts();
     const fetchtheloais = async () => {
       const res = await axios.get(
@@ -31,23 +32,40 @@ export default function Layout_Category() {
     fetchtheloais();
     // eslint-disable-next-line
   }, []);
-  const lastIndexofPosts = currentPage * postsPerPage;
-  const firstIndexOfPosts = lastIndexofPosts - postsPerPage;
-  const currentPosts = posts?.result?.slice(
-    firstIndexOfPosts,
-    lastIndexofPosts
-  );
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const totalPosts = posts?.result?.length;
-
-  const next = (pageNumber) => {
-    if (currentPage < totalPosts / postsPerPage) {
-      setCurrentPage(pageNumber + 1);
+  // console.log(currentPage);
+  const fetchPosts = async () => {
+    setLoading(true);
+    const res = await axios.get(
+      `http://localhost:3030/category/${params.id}/${postsPerPage}/${
+        (currentPage - 1) * postsPerPage
+      }`
+    );
+    setDataPost(res.data);
+    setLoading(false);
+  };
+  const currentPosts = posts?.result;
+  // console.log(currentPosts);
+  // Change Page
+  const paginate = (pageNumber) => {
+    currentPage = pageNumber;
+    setPage(currentPage);
+    fetchPosts();
+  };
+  // console.log(page);
+  const totalPosts = soluong?.result?.soluong;
+  const next = () => {
+    if (page < totalPosts / postsPerPage) {
+      currentPage = page + 1;
+      setPage(currentPage);
+      // console.log(currentPage);
+      fetchPosts();
     }
   };
-  const previous = (pageNumber) => {
-    if (currentPage > 1) {
-      setCurrentPage(pageNumber - 1);
+  const previous = () => {
+    if (page > 1) {
+      currentPage = page - 1;
+      setPage(currentPage);
+      fetchPosts();
     }
   };
   return (
@@ -61,11 +79,11 @@ export default function Layout_Category() {
             <Posts posts={currentPosts} loading={loading} />
             <Pagination
               postsPerPage={postsPerPage}
-              totalPosts={posts?.result?.length}
+              totalPosts={totalPosts}
               paginate={paginate}
               next={next}
               previous={previous}
-              currentPage={currentPage}
+              currentPage={page}
             />
           </div>
         </div>

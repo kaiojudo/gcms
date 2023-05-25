@@ -8,7 +8,7 @@ export default function GameNew(props) {
   const [page, setPage] = useState(1);
   var currentPage = 1;
 
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(8);
   const [soluong, setSoluong] = useState();
   const urlsl = `http://localhost:3030/totalpost`;
   useEffect(() => {
@@ -18,6 +18,7 @@ export default function GameNew(props) {
     };
     fetchSoluong();
     fetchPosts();
+    // eslint-disable-next-line
   }, []);
   // console.log(currentPage);
   const fetchPosts = async () => {

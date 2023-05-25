@@ -230,11 +230,11 @@ Tintuc.solandoc = function (idtintuc, result) {
     }
   );
 };
-Tintuc.get_by_idtheloai = function (idtheloai, result) {
+Tintuc.get_by_idtheloai = function (idtheloai, limit, offset, result) {
   db.query(
     `SELECT * FROM gcms.tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = ? AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1`,
+    where child_theloai.idTheLoai = ? AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 limit ${limit} offset ${offset}`,
     idtheloai,
     function (err, tintuc) {
       if (err) {
@@ -245,20 +245,7 @@ Tintuc.get_by_idtheloai = function (idtheloai, result) {
     }
   );
 };
-Tintuc.get_by_idchildtheloai = function (idtheloai, result) {
-  db.query(
-    `SELECT * FROM gcms.tintuc
-    where ID_child_theloai = ? AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1`,
-    idtheloai,
-    function (err, tintuc) {
-      if (err) {
-        result(err);
-      } else {
-        result(tintuc);
-      }
-    }
-  );
-};
+
 Tintuc.getnew = function (idtheloai, result) {
   db.query(
     `SELECT * FROM tintuc WHERE kiemduyet = 1 AND isNull = 1 AND id_phanloaitin != 1 AND idtintuc != ? order by ngaycapnhat desc limit 4 `,
@@ -414,10 +401,68 @@ Tintuc.pagination = function (limit, offset, result) {
     }
   });
 };
+Tintuc.paginationsearch = function (search,limit,offset, result) {
+  const sql = `SELECT * FROM gcms.tintuc where kiemduyet = 1 and isNull = 1 and tieudetin like "%${search}%" limit ${limit} offset ${offset};`;
+  db.query(sql, function (err, tintuc) {
+    if (err) {
+      result(err);
+    } else {
+      result(tintuc);
+    }
+  });
+};
 Tintuc.gettotalpost = function (idtintuc, result) {
   db.query(
     `SELECT COUNT(idtintuc) AS soluong from tintuc where isNull = 1 and kiemduyet = 1;`,
     idtintuc,
+    function (err, data) {
+      if (err) {
+        result(err);
+      } else {
+        result(data[0]);
+      }
+    }
+  );
+};
+Tintuc.paginationbychild = function (limit, offset, idchild, result) {
+  const sql = `SELECT * FROM gcms.tintuc where kiemduyet = 1 and isNull = 1 and ID_child_theloai = ${idchild} limit ${limit} offset ${offset} `;
+  db.query(sql, function (err, tintuc) {
+    if (err) {
+      result(err);
+    } else {
+      result(tintuc);
+    }
+  });
+};
+Tintuc.gettotalpostbychild = function (id, result) {
+  db.query(
+    `SELECT COUNT(idtintuc) AS soluong from tintuc where isNull = 1 and kiemduyet = 1 and ID_child_theloai = ?;`,
+    id,
+    function (err, data) {
+      if (err) {
+        result(err);
+      } else {
+        result(data[0]);
+      }
+    }
+  );
+};
+Tintuc.gettotalpostbytheloai = function (id, result) {
+  db.query(
+    `SELECT COUNT(idtintuc) AS soluong from tintuc inner join child_theloai on tintuc.ID_child_theloai = child_theloai.ID_child_theloai where isNull = 1 and kiemduyet = 1 and child_theloai.idTheLoai = ?;`,
+    id,
+    function (err, data) {
+      if (err) {
+        result(err);
+      } else {
+        result(data[0]);
+      }
+    }
+  );
+};
+Tintuc.gettotalpostbysearch = function (search, result) {
+  db.query(
+    `SELECT COUNT(idtintuc) AS soluong from tintuc where isNull = 1 and kiemduyet = 1 and tieudetin like "%${search}%";`,
     function (err, data) {
       if (err) {
         result(err);

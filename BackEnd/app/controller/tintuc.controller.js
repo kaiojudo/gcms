@@ -101,14 +101,7 @@ exports.duyet = function (req, res) {
   });
 };
 exports.get_by_idtheloai = function (req, res) {
-  Tintuc.get_by_idtheloai(req.params.id, function (item) {
-    res.send({
-      result: item,
-    });
-  });
-};
-exports.get_by_idchildtheloai = function (req, res) {
-  Tintuc.get_by_idchildtheloai(req.params.id, function (item) {
+  Tintuc.get_by_idtheloai(req.params.id,req.params.limit,req.params.offset, function (item) {
     res.send({
       result: item,
     });
@@ -218,8 +211,43 @@ exports.pagination = function (req, res) {
     });
   });
 };
+exports.paginationbychild = function (req, res) {
+  Tintuc.paginationbychild(req.params.limit,req.params.offset,req.params.id,function (data) {
+    res.send({
+      result: data,
+    });
+  });
+};
+exports.paginationsearch = function (req, res) {
+  Tintuc.paginationsearch(req.params.search,req.params.limit,req.params.offset, function (item) {
+    res.send({
+      result: item,
+    });
+  });
+};
 exports.gettoltalpost = function (req, res) {
   Tintuc.gettotalpost(req.params.id, function (tintuc) {
+    res.send({
+      result: tintuc,
+    });
+  });
+};
+exports.gettoltalpostbychild = function (req, res) {
+  Tintuc.gettotalpostbychild(req.params.id, function (tintuc) {
+    res.send({
+      result: tintuc,
+    });
+  });
+};
+exports.gettoltalpostbytheloai = function (req, res) {
+  Tintuc.gettotalpostbytheloai(req.params.id, function (tintuc) {
+    res.send({
+      result: tintuc,
+    });
+  });
+};
+exports.gettoltalpostbysearch = function (req, res) {
+  Tintuc.gettotalpostbysearch(req.params.search, function (tintuc) {
     res.send({
       result: tintuc,
     });
