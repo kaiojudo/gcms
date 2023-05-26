@@ -14,6 +14,8 @@ module.exports = function (router) {
   router.get("/post/review/showall", postcontroller.showReview);
   router.get("/post/newgames/showall", postcontroller.showNewGame);
   router.patch("/post/delete/:id", postcontroller.delete);
+  router.patch("/post/returnpost/:id", postcontroller.return);
+
   router.patch("/post/solandoc/:id", postcontroller.luotdoc);
   router.patch("/post/duyet/:id", postcontroller.duyet);
   router.patch("/post/setactive/:id", postcontroller.setActive);

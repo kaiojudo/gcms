@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 
 export const ShowDelete = () => {
   const cookies = new Cookies();
-  const level = cookies.get('level');
+  const level = cookies.get("level");
   const [posts, setDataPost] = useState([]);
   const url = "http://localhost:3030/postbyadmin/showlistdelete";
   const refresh = () => window.location.reload(true);
@@ -29,10 +29,22 @@ export const ShowDelete = () => {
     alert("Xoá thành công !");
     refresh();
   };
+  const handleReturn = async (e) => {
+    const returnPosts = async () => {
+      const res = await axios.patch(
+        `http://localhost:3030/post/returnpost/` +
+          e.target.id.split("delete")[1]
+      );
+      return res;
+    };
+    returnPosts();
+    alert("Xoá thành công !");
+    refresh();
+  };
   return (
     <>
       <label htmlFor="list-group" className="lable-admin">
-       Thùng rác
+        Thùng rác
       </label>
       <div className="post-selection">
         <Link to={"/admin/addpost"}>
@@ -69,9 +81,9 @@ export const ShowDelete = () => {
                 type="button"
                 className="btn btn-primary"
                 id={`delete${post.idtintuc}`}
-                onClick={handleDelete}
+                onClick={handleReturn}
               >
-               Khôi phục
+                Khôi phục
               </button>
               <button
                 type="button"

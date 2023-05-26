@@ -93,6 +93,13 @@ exports.delete = function (req, res) {
     });
   });
 };
+exports.return = function (req, res) {
+  Tintuc.return(req.params.id, function (deleteItem) {
+    res.send({
+      result: deleteItem,
+    });
+  });
+};
 exports.duyet = function (req, res) {
   Tintuc.duyet(req.params.id, function (data) {
     res.send({

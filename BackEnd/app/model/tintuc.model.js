@@ -203,6 +203,19 @@ Tintuc.delete = function (idtintuc, result) {
     }
   );
 };
+Tintuc.return = function (idtintuc, result) {
+  db.query(
+    `UPDATE gcms.tintuc SET isNull = 1 WHERE idtintuc = ? `,
+    idtintuc,
+    function (err, data) {
+      if (err) {
+        result(null);
+      } else {
+        result(data);
+      }
+    }
+  );
+};
 Tintuc.duyet = function (idtintuc, result) {
   db.query(
     `UPDATE gcms.tintuc SET kiemduyet = 1 WHERE idtintuc = ? `,

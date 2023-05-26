@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "universal-cookie";
+
 
 export default function News(props) {
+  const cookie = new Cookies();
+
   const params = useParams();
   const [datapost, setDataPost] = useState({});
   const [dataTacgia, setDataTacgia] = useState({});
   const [dataChild, setDataChild] = useState({});
   const [dataTheLoai, setDataTheLoai] = useState({});
-  const level = localStorage.getItem("AccessLevel");
+  const level = cookie.get("level");
   if (level === "2" || level === "1") {
     var urlPost = `http://localhost:3030/postforrv/${params.id}`;
   } else {
