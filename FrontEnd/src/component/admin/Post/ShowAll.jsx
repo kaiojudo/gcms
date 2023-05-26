@@ -82,7 +82,7 @@ export const ShowAll = () => {
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
-        {localStorage.getItem("AccessLevel") === "1" && (
+        {level === "1" && (
           <>
             <Link to={"/admin/postchuaduyet"}>
               <i className="fa-solid fa-check fa-2xl"></i>

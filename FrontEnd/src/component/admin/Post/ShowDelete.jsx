@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "universal-cookie";
+
 export const ShowDelete = () => {
+  const cookies = new Cookies();
+  const level = cookies.get('level');
   const [posts, setDataPost] = useState([]);
   const url = "http://localhost:3030/postbyadmin/showlistdelete";
   const refresh = () => window.location.reload(true);
@@ -35,14 +39,14 @@ export const ShowDelete = () => {
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
-        {localStorage.getItem("AccessLevel") === "1" && (
+        {level === "1" && (
           <>
             <Link to={"/admin/postchuaduyet"}>
               <i className="fa-solid fa-check fa-2xl"></i>
               <span className="link-des">Duyệt bài</span>
             </Link>
-            <Link to={"/admin/admindelete"}>
-              <i className="fa-solid fa-trash fa-2xl"></i>
+            <Link to={"/admin"}>
+              <i className="fa-solid fa-house fa-2xl"></i>
               <span className="link-des">Bài đã xoá</span>
             </Link>
           </>

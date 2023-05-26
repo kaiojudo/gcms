@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "universal-cookie";
+
 export const DuyetBai = () => {
   const [posts, setDataPost] = useState([]);
+  const cookies = new Cookies();
   const url = "http://localhost:3030/post/showlistchuaduyet";
   const refresh = () => window.location.reload(true);
+  const level = cookies.get('level');
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(url);
@@ -56,11 +60,11 @@ export const DuyetBai = () => {
         Duyệt bài
       </label>
       <div className="post-selection">
-        <Link to={"/admin/addpost"}>
-          <i className="fa-solid fa-plus fa-2xl"></i>
+        <Link to={"/admin"}>
+          <i className="fa-solid fa-house fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
-        {localStorage.getItem("AccessLevel") === "1" && (
+        {level === "1" && (
           <>
             <Link to={"/admin/postchuaduyet"}>
               <i className="fa-solid fa-check fa-2xl"></i>
