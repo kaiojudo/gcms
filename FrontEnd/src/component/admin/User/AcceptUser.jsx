@@ -40,6 +40,12 @@ export default function AcceptUser() {
       <label htmlFor="list-group" className="lable-admin">
         Duyệt tài khoản
       </label>
+      <div className="post-selection">
+        <Link to={"/admin/showalluser"}>
+        <i className="fa-solid fa-house fa-2xl"></i>
+          <span className="link-des">Home</span>
+        </Link>
+      </div>
       <ul className="list-group">
         {data?.result?.map((data) => (
           <li

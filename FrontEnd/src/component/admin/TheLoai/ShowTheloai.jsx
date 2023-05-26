@@ -5,8 +5,6 @@ import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 export default function ShowTheloai() {
   const [theloais, setDataTheloai] = useState([]);
-  // const params = useParams();
-  const level = localStorage.getItem("AccessLevel");
   const url = "http://localhost:3030/theloai/all";
   const refresh = () => window.location.reload(true);
   useEffect(() => {
@@ -59,14 +57,11 @@ export default function ShowTheloai() {
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
-        {level === "1" && (
-          <>
-            <Link to={"/admin/theloaideleted"}>
-              <i className="fa-solid fa-trash fa-2xl"></i>
-              <span className="link-des">Đã xoá</span>
-            </Link>
-          </>
-        )}
+
+        <Link to={"/admin/theloaideleted"}>
+          <i className="fa-solid fa-trash fa-2xl"></i>
+          <span className="link-des">Đã xoá</span>
+        </Link>
       </div>
       <ul className="list-group">
         {theloais?.result?.map((e) => (

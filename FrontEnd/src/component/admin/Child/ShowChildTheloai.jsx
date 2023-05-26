@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 export default function ShowChildTheLoai() {
   const [theloais, setDataTheloai] = useState([]);
-  const level = localStorage.getItem("AccessLevel");
+  // const level = localStorage.getItem("AccessLevel");
 
   const url = "http://localhost:3030/childtheloai/showlist";
   const refresh = () => window.location.reload(true);
@@ -58,15 +58,11 @@ export default function ShowChildTheLoai() {
         <Link to={"/admin/addchildtheloai"}>
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
-        </Link>
-        {level === "1" && (
-          <>
+        </Link>   
             <Link to={"/admin/returnchildtheloai"}>
               <i className="fa-solid fa-trash fa-2xl"></i>
               <span className="link-des">Đã xoá</span>
             </Link>
-          </>
-        )}
       </div>
       <ul className="list-group">
         {theloais?.result?.map((e) => (

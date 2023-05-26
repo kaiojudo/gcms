@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "universal-cookie";
+
 
 import Posts from "../container/leftcontainer/allnews/gamenew/Posts";
 import { Pagination } from "../container/leftcontainer/allnews/gamenew/Pagination";
 import axios from "axios";
 import RightContainer from "../container/rightcontainer/RightContainer";
 export default function Layout_Category() {
-  var search = localStorage.getItem("Search");
+  const cookie = new Cookies();
+  var search = cookie.get("search");
   const [posts, setDataPost] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);

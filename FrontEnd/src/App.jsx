@@ -31,8 +31,10 @@ import ShowAllUser from "./component/admin/User/ShowAllUser";
 import UpdateTheLoai from "./component/admin/TheLoai/UpdateTheLoai";
 import UpdateChild from "./component/admin/Child/UpdateChild";
 import ButtonScollToTop from "./ButtonScrollToTop";
+import Cookies from "universal-cookie";
 
 function App(props) {
+  const cookies = new Cookies();
   const updatePosts = async () => {
     const res = await axios.patch(`http://localhost:3030/post/setafterdelete`);
     return res;
@@ -57,7 +59,7 @@ function App(props) {
         <Route path="category/:id" element={<Category />}></Route>
         <Route path="categorybychild/:id" element={<Categorybychild />}></Route>
         <Route path="catebysearch" element={<CategorybySearch />}></Route>
-        {localStorage.getItem("AccessLevel") === "1" && (
+        {cookies.get("level") === "1" && (
           <>
             <Route path="admin" element={<Admin />}>
               <Route path="" element={<ShowAll />} />
@@ -82,7 +84,7 @@ function App(props) {
             <Route path="updatechild/:id" element={<UpdateChild />} />
           </>
         )}
-        {localStorage.getItem("AccessLevel") === "2" && (
+        {cookies.get("level") === "2" && (
           <>
             <Route path="admin" element={<Admin />}>
               <Route path="" element={<ShowAll />} />

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+
 
 export default function Login() {
   const refresh = () => window.location.reload(true);
+  const cookie = new Cookies();
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -23,15 +26,13 @@ export default function Login() {
       .then((res) => {
         // console.log(res.data.result);
         if (res.data.result) {
-          localStorage.setItem("AccessToken", true);
-          localStorage.setItem("UserName", res.data.result.hoten);
-          localStorage.setItem("AccessLevel", res.data.result.accesslevel);
-          localStorage.setItem("TacGia", res.data.result.id_thanhvien);
+          cookie.set("username", res?.data?.result?.username, { path: "/" });
+          cookie.set("id", res?.data?.result?.id_thanhvien, { path: "/" });
+          cookie.set("hoten", res?.data?.result?.hoten, { path: "/" });
+          cookie.set("level", res?.data?.result?.accesslevel, { path: "/" });
           alert("Đăng nhập thành công !")
           navigate("/", { replace: false });
           refresh();
-          
-
         } else {
           alert("Login failed");
         }

@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "universal-cookie";
+
 export const ShowAll = () => {
   const [posts, setDataPost] = useState([]);
-  const level = localStorage.getItem("AccessLevel");
-  const tacgia = localStorage.getItem("TacGia");
-
+  const cookie = new Cookies();
+  const level = cookie.get('level');
+  const tacgia = cookie.get('id')
+  
   if (level === "2") {
     var url = `http://localhost:3030/postbywriter/${tacgia}`;
   } else {

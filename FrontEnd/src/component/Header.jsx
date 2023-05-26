@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 export default function Header() {
   const refresh = () => window.location.reload(true);
   const [dataTheLoai, setDataTheLoai] = useState({});
   const url = "http://localhost:3030/theloai/list";
-  const level = localStorage.getItem("AccessLevel");
+  const cookies = new Cookies();
+  const level = cookies.get("level");
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
@@ -38,15 +40,15 @@ export default function Header() {
     navigate("/catebysearch", { replace: true });
   }
   function getSearch(e) {
-    localStorage.setItem("Search", e.target.value);
+    cookies.set("search", e.target.value, { path: "/" });
   }
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});
   let navigate = useNavigate();
   function LogOut() {
-    localStorage.setItem("AccessToken", false);
-    localStorage.setItem("UserName", "none");
-    localStorage.setItem("AccessLevel", "0");
-    localStorage.setItem("TacGia", "0");
+    cookies.remove('hoten')
+    cookies.remove('level')
+    cookies.remove('username')
+    cookies.remove('id')
     navigate("/", { replace: true });
     refresh();
   }
@@ -76,11 +78,8 @@ export default function Header() {
             <i className="fa-solid fa-user" />
             <div className="modal-log">
               <div className="login-logo">
-                {localStorage.getItem("UserName") !== "none" && (
-                  <p>{localStorage.getItem("UserName")}</p>
-
-                )}
-                {level === "0" && <img src="../ayaka.ico" alt="" />}
+                {cookies.get("hoten") && <p>{cookies.get("hoten")}</p>}
+                {!level && <img src="../ayaka.ico" alt="" />}
                 {level === "1" && (
                   <Link to={`/yourinfo/${localStorage.getItem("TacGia")}`}>
                     {" "}
@@ -96,13 +95,13 @@ export default function Header() {
                 )}
               </div>
               <div className="d-flex">
-                {localStorage.getItem("AccessToken") === "false" && (
+                {!level && (
                   <>
                     <Link to={"/logsign/register"}>Register</Link>
                     <Link to={"/logsign/login"}>Sign in</Link>
                   </>
                 )}
-                {localStorage.getItem("AccessToken") === "true" && (
+                {level && (
                   <>
                     <Link to={"/admin"}>Admin</Link>{" "}
                     <Link onClick={LogOut}>Log Out</Link>{" "}
