@@ -7,11 +7,17 @@ import NestedList from "@editorjs/nested-list";
 import LinkTool from "@editorjs/link";
 import Header from "@editorjs/header";
 import Axios from "axios";
+import Cookies from "universal-cookie";
+
 
 export default function AddPost() {
+  const cookie = new Cookies();
+
+  const id = cookie.get('id');
+
   const url = "http://localhost:3030/post/add";
   const [data, setData] = useState({
-    id_tacgia: localStorage.getItem("TacGia"),
+    id_tacgia: id,
   });
 
   const [dataChildTheLoai, setDataChildTheLoai] = useState({});

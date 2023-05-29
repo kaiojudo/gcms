@@ -156,11 +156,12 @@ Tintuc.newbieGuild = function (result) {
     }
   );
 };
+
 Tintuc.add_new = function (data, result) {
   var content = { blocks: data.blocks };
 
   // console.log(typeof data.blocks);
-  const sql = `call SP_addPosts('${data.tieudetin}','${data.hinhtrichdan}','${
+  const sql = `call AddPost('${data.tieudetin}','${data.hinhtrichdan}','${
     data.trichdantin
   }',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},'${
     data.ngaycapnhat
@@ -177,14 +178,14 @@ Tintuc.add_new = function (data, result) {
 Tintuc.updatePost = function (data, result) {
   var content = { blocks: data.blocks };
 
-  const sql = `call SP_update_post(${data.idtintuc},'${data.tieudetin}','${
+  const sql = `call UpdatePost(${data.idtintuc},'${data.tieudetin}','${
     data.hinhtrichdan
   }','${data.trichdantin}','${data.ngaycapnhat}','${JSON.stringify(
     content
   )}',0);`;
   db.query(sql, function (err) {
     if (err) {
-      result(err);
+      result(0);
     } else {
       result(1);
     }

@@ -7,13 +7,19 @@ import NestedList from "@editorjs/nested-list";
 import LinkTool from "@editorjs/link";
 import Header from "@editorjs/header";
 import { useParams } from "react-router-dom";
+import Cookies from "universal-cookie";
+
 
 export default function Update() {
   const url = "http://localhost:3030/post/update";
   const params = useParams();
+  const cookie = new Cookies();
+
+  const idtacgia = cookie.get('id');
   const [data, setData] = useState({
-    id_tacgia: localStorage.getItem("TacGia"),
+    id_tacgia: idtacgia,
     idtintuc: params.id,
+    kiemduyet: 0
   });
   const [post, setPost] = useState({});
   const urlpost = `http://localhost:3030/post/${params.id}`;

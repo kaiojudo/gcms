@@ -18,7 +18,7 @@ export default function AddChildTheLoai() {
   const [data, setData] = useState({
     ten_child_theloai: "",
     isNull_child_theloai: "",
-    idTheLoai: "10"
+    idTheLoai: ""
   });
   function handleData(e) {
     const newData = { ...data };
