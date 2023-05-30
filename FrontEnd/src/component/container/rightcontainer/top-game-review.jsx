@@ -13,7 +13,7 @@ export default function TopGameReview() {
   return (
     <div id="top-game-review" className="right-list">
       <label htmlFor="" className="label label-top-review">
-        Top game review
+        Đánh giá game
       </label>
       <ul className="right-content-news-list">
         {review?.result?.map((e) => (
