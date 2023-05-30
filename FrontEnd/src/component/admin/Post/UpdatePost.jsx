@@ -138,7 +138,7 @@ export default function Update() {
       .catch((error) => {
         console.log("Saving failed: ", error);
       });
-    const postdata = { ...data, ...content };
+    const postdata = { ...data.r, ...content };
 
     postdata.idtintuc = params.id;
     postdata.tieudetin = document.getElementById("tieudetin")?.value;

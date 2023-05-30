@@ -20,7 +20,7 @@ export default function NewGame() {
           <li className="tab-game-item" key={e.idtintuc}>
             <Link to={`/post/${e.idtintuc}`}>
               <img
-                src={"../" + e?.hinhtrichdan?.split("C:fakepath")[1]}
+                src={"../" + e?.hinhtrichdan}
                 alt=""
               />
               <div className="gamename">{e.tieudetin.split(" - ")[0]}</div>

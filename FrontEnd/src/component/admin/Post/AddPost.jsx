@@ -124,6 +124,7 @@ export default function AddPost() {
         console.log("Saving failed: ", error);
       });
     const postdata = { ...data, ...content };
+    postdata.hinhtrichdan = postdata.hinhtrichdan.split("C:\\fakepath\\")[1];
     var myJsonString = JSON.stringify(postdata);
     console.log(myJsonString);
     Axios({
@@ -142,7 +143,7 @@ export default function AddPost() {
           alert("Vui lòng điền đầy đủ thông tin");
         } else {
           alert("Chờ duyệt nhé!");
-          console.log(e?.result);
+          // console.log(e?.result);
         }
       })
       .catch(() => {

@@ -20,7 +20,7 @@ export default function Ide() {
       {posts?.result?.map((e) => (
         <li className="news d-flex bd-bt" key={e.idtintuc}>
           <a href={`/post/${e.idtintuc}`} className="img-tieude">
-            <img src={"../" + e.hinhtrichdan.split("C:fakepath")[1]} alt="" />
+            <img src={"../" + e.hinhtrichdan} alt="" />
           </a>
           <div>
             <a href={`/post/${e.idtintuc}`} className="news-title">

@@ -5,7 +5,7 @@ const Posts = ({ posts }) => {
       {posts?.map((e) => (
         <li className="news d-flex bd-bt" key={e.idtintuc}>
           <Link to={`/post/${e.idtintuc}`} className="img-tieude">
-            <img src={"../" + e.hinhtrichdan.split("C:fakepath")[1]} alt="" />
+            <img src={"../" + e.hinhtrichdan} alt="" />
           </Link>
           <div>
             <Link to={`/post/${e.idtintuc}`} className="news-title">

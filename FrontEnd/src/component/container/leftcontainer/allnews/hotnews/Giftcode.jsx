@@ -21,7 +21,7 @@ export default function Giftcode() {
           <Link to={`/post/${e.idtintuc}`} key={e.idtintuc}>
             <li className="giftcode-item">
               <img
-                src={"../" + e.hinhtrichdan?.split("C:fakepath")[1]}
+                src={"../" + e.hinhtrichdan}
                 alt=""
               />
               <div className="giftcode-info">

@@ -176,7 +176,7 @@ export default function News(props) {
       <div className="post-details">
         <p id="preshow-name">{datapost?.result?.tieudetin}</p>
         {/* <img
-          src={"../" + datapost?.result?.hinhtrichdan?.split("C:fakepath")[1]}
+          src={"../" + datapost?.result?.hinhtrichdan}
           alt=""
           id="prehinhtrichdan"
         ></img> */}

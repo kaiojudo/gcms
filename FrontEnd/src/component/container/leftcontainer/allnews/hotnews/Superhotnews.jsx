@@ -49,7 +49,7 @@ export default function SuperHotNews() {
               >
                 <img
                   className="d-block w-100"
-                  src={"../" + e?.hinhtrichdan?.split("C:fakepath")[1]}
+                  src={"../" + e?.hinhtrichdan}
                   alt="First slide"
                 />
                 <div className="description">
@@ -86,7 +86,7 @@ export default function SuperHotNews() {
               <Link to={`/post/${e.idtintuc}`} key={e.idtintuc}>
                 <div className="hot-2-img">
                   <img
-                    src={"../" + e?.hinhtrichdan?.split("C:fakepath")[1]}
+                    src={"../" + e?.hinhtrichdan}
                     alt="Err"
                   />
                 </div>
