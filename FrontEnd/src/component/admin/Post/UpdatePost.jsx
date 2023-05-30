@@ -146,7 +146,7 @@ export default function Update() {
     if (!document.getElementById("hinhtrichdan")?.value) {
       postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.alt;
     } else {
-      postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.value;
+      postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.value.split("C:\\fakepath\\")[1];
     }
     postdata.ngaycapnhat = document
       .getElementById("ngaycapnhat")
@@ -207,7 +207,7 @@ export default function Update() {
           />
           <img
             id="default-img"
-            src={"../" + post?.result?.hinhtrichdan.split("C:fakepath")[1]}
+            src={"../" + post?.result?.hinhtrichdan}
             alt="Ảnh cũ"
           />
         </div>
