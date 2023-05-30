@@ -9,11 +9,10 @@ import Header from "@editorjs/header";
 import Axios from "axios";
 import Cookies from "universal-cookie";
 
-
 export default function AddPost() {
   const cookie = new Cookies();
 
-  const id = cookie.get('id');
+  const id = cookie.get("id");
 
   const url = "http://localhost:3030/post/add";
   const [data, setData] = useState({
@@ -124,7 +123,7 @@ export default function AddPost() {
         console.log("Saving failed: ", error);
       });
     const postdata = { ...data, ...content };
-    postdata.hinhtrichdan = postdata.hinhtrichdan.split("C:\\fakepath\\")[1];
+    postdata.hinhtrichdan = postdata.hinhtrichdan?.split("C:\\fakepath\\")[1];
     var myJsonString = JSON.stringify(postdata);
     console.log(myJsonString);
     Axios({
@@ -141,9 +140,11 @@ export default function AddPost() {
           !postdata.ngaycapnhat
         ) {
           alert("Vui lòng điền đầy đủ thông tin");
+        } else if (e.data.result === 0) {
+          alert("Bạn vừa copy paste hoặc dùng icon nên lỗi");
         } else {
           alert("Chờ duyệt nhé!");
-          // console.log(e?.result);
+          console.log(e);
         }
       })
       .catch(() => {

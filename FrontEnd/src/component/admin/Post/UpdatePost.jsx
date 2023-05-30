@@ -146,7 +146,9 @@ export default function Update() {
     if (!document.getElementById("hinhtrichdan")?.value) {
       postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.alt;
     } else {
-      postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.value.split("C:\\fakepath\\")[1];
+      postdata.hinhtrichdan = document
+        .getElementById("hinhtrichdan")
+        ?.value.split("C:\\fakepath\\")[1];
     }
     postdata.ngaycapnhat = document
       .getElementById("ngaycapnhat")
@@ -160,7 +162,7 @@ export default function Update() {
       body: JSON.stringify(postdata),
     })
       .then((e) => {
-        if (e.result === 0) {
+        if (e.data.result === 0) {
           alert(
             "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
           );
