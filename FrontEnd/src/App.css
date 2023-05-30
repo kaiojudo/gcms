@@ -18,6 +18,7 @@ a:hover {
   max-height: 8rem;
   overflow: hidden;
   min-height: 8rem;
+  border-radius: 10px;
 }
 .page-link {
   cursor: pointer;
@@ -377,7 +378,7 @@ img {
   min-height: 51rem;
 }
 .hot-new-news-2 {
-  margin-top: 1rem;
+  padding-top: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   margin: 0 -0.5rem;
@@ -385,7 +386,10 @@ img {
 .hot-new-news-2-item {
   width: 50%;
   height: 100%;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
+}
+#newbie-guild{
+  min-height: 16.85rem;
 }
 .hot-new-news-2-item p {
   overflow: hidden;

@@ -162,7 +162,7 @@ export default function Update() {
       body: JSON.stringify(postdata),
     })
       .then((e) => {
-        if (e.data.result === 0) {
+        if (!e) {
           alert(
             "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
           );
@@ -170,6 +170,7 @@ export default function Update() {
           alert("Vui lòng điền đầy đủ thông tin");
         } else {
           alert("Chờ duyệt nhé!");
+          // console.log(e);
         }
       })
       .catch(() => {

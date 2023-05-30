@@ -79,7 +79,7 @@ Tintuc.giftcode = function (result) {
   db.query(
     `SELECT * FROM tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 2 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 order by ngaycapnhat limit 6`,
+    where child_theloai.idTheLoai = 8 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 order by ngaycapnhat limit 6`,
     function (err, giftcode) {
       if (err) {
         result(err);
@@ -93,7 +93,7 @@ Tintuc.review = function (result) {
   db.query(
     `SELECT * FROM tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 10 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 order by ngaycapnhat limit 6`,
+    where child_theloai.idTheLoai = 7 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 order by ngaycapnhat limit 6`,
     function (err, review) {
       if (err) {
         result(err);
@@ -131,7 +131,7 @@ Tintuc.slideNews = function (result) {
 };
 Tintuc.bottom_Slide = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 AND isNull = 1 limit 4 offset 3 `,
+    `SELECT * FROM tintuc where id_phanloaitin = 3 AND kiemduyet = 1 AND isNull = 1 limit 4 `,
     function (err, btslidenews) {
       if (err) {
         result(err);
@@ -145,7 +145,7 @@ Tintuc.newbieGuild = function (result) {
   db.query(
     `SELECT * FROM gcms.tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 6 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 limit 4 `,
+    where child_theloai.idTheLoai = 6 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 limit 5 `,
     function (err, newbieGuild) {
       if (err) {
         result(err);

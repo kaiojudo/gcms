@@ -22,7 +22,7 @@ export default function TopGameReview() {
               <span className="tieudetin">{e.tieudetin}</span>
               <div className="img-review">
               <img
-                src={"../" + e.hinhtrichdan?.split("C:fakepath")[1]}
+                src={"../" + e.hinhtrichdan}
                 alt=""
               />
               </div>
