@@ -6,13 +6,14 @@ import Embed from "@editorjs/embed";
 import NestedList from "@editorjs/nested-list";
 import LinkTool from "@editorjs/link";
 import Header from "@editorjs/header";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 export default function Update() {
   const url = "http://localhost:3030/post/update";
   const params = useParams();
   const cookie = new Cookies();
+  let navigate = useNavigate();
 
   const idtacgia = cookie.get("id");
   const [data, setData] = useState({
@@ -170,6 +171,8 @@ export default function Update() {
           alert("Vui lòng điền đầy đủ thông tin");
         } else {
           alert("Chờ duyệt nhé!");
+          navigate("/admin", { replace: false });
+
           // console.log(e);
         }
       })

@@ -13,6 +13,7 @@ export default function AddPost() {
   const cookie = new Cookies();
 
   const id = cookie.get("id");
+  const refresh = () => window.location.reload(true);
 
   const url = "http://localhost:3030/post/add";
   const [data, setData] = useState({
@@ -145,6 +146,7 @@ export default function AddPost() {
         } else {
           alert("Chờ duyệt nhé!");
           console.log(e);
+          refresh();
         }
       })
       .catch(() => {

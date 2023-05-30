@@ -26,7 +26,7 @@ Theloai.get_delete = function (result) {
 };
 Theloai.get_header = function (result) {
   db.query(
-    `SELECT * from theloai WHERE sapxep <= 5 AND isNull = 1`,
+    `SELECT * from theloai  WHERE sapxep <= 5 AND isNull = 1 order by sapxep ;`,
     function (err, theloai) {
       if (err) {
         result(err);
