@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 export default function UpdateChild() {
   const param = useParams();
-  const urlget = `http://localhost:3030/theloai/details/` + param.id;
+  const urlget = `http://localhost:3030/childtheloai/child/` + param.id;
   const url = `http://localhost:3030/updatechildtheloai/` + param.id;
   // const refresh = () => window.location.reload(true);
   const [theloais, setDataTheloai] = useState([]);
@@ -37,20 +37,20 @@ export default function UpdateChild() {
 
   function handleData(e) {
     const newData = { ...data };
-    newData[e.target.id] = e.target.value;
+    newData.result[e.target.id] = e.target.value;
     setData(newData);
     console.log(newData);
   }
-  console.log(data?.result);
+  // console.log(document.querySelector("").alt);
   function submit(e) {
     e.preventDefault();
-    const childtheloai = {};
-    childtheloai.ten_child_theloai =
-      document.getElementById("ten_child_theloai").value;
-    childtheloai.sapxep_child_theloai = document.getElementById(
-      "sapxep_child_theloai"
-    ).value;
-    childtheloai.idTheLoai = document.getElementById("idTheLoai").value;
+    const childtheloai = {...data?.result};
+    // childtheloai.ten_child_theloai =
+    //   document.getElementById("ten_child_theloai").value;
+    // childtheloai.sapxep_child_theloai = document.getElementById(
+    //   "sapxep_child_theloai"
+    // ).value;
+    // // childtheloai.idTheLoai = document.getElementById("idTheLoai").name;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -84,9 +84,10 @@ export default function UpdateChild() {
               type="text"
               className="form-control"
               id="ten_child_theloai"
-              placeholder="Nhập tên thể loại"
+              placeholder="Nhập tên thể loại con"
               onChange={(e) => handleData(e)}
-              defaultValue={data?.result?.tenTheLoai}
+              defaultValue={data?.result?.ten_child_theloai}
+              alt={data?.result?.ID_child_theloai}
             />
           </div>
           <div className="form-group">
@@ -97,9 +98,9 @@ export default function UpdateChild() {
               type="number"
               className="form-control"
               id="sapxep_child_theloai"
-              placeholder="Nhập vị trí sắp xếp"
+              placeholder={data?.result?.sapxep_child_theloai}
               onChange={(e) => handleData(e)}
-              defaultValue={data?.result?.sapxep}
+              // defaultValue={data?.result?.sapxep_child_theloai}
             />
           </div>
           <div className="form-group">
@@ -109,7 +110,7 @@ export default function UpdateChild() {
               id="idTheLoai"
               onChange={(e) => handleData(e)}
             >
-              <option defaultValue={thistheloai?.result?.idTheLoai}>
+              <option value={thistheloai?.result?.idTheLoai}>
                 {thistheloai?.result?.tenTheLoai}
               </option>
               {theloais?.result?.map((e) => (

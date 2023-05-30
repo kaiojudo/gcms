@@ -19,7 +19,7 @@ export default function ShowChildTheLoai() {
     const deletePosts = async () => {
       const res = await axios.patch(
         `http://localhost:3030/childtheloai/delete/` +
-          e.target.id.split("delete")[1]
+        e.target.id.split("delete")[1]
       );
       return res;
     };
@@ -58,11 +58,11 @@ export default function ShowChildTheLoai() {
         <Link to={"/admin/addchildtheloai"}>
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
-        </Link>   
-            <Link to={"/admin/returnchildtheloai"}>
-              <i className="fa-solid fa-trash fa-2xl"></i>
-              <span className="link-des">Đã xoá</span>
-            </Link>
+        </Link>
+        <Link to={"/admin/returnchildtheloai"}>
+          <i className="fa-solid fa-trash fa-2xl"></i>
+          <span className="link-des">Đã xoá</span>
+        </Link>
       </div>
       <ul className="list-group">
         {theloais?.result?.map((e) => (
@@ -74,7 +74,7 @@ export default function ShowChildTheLoai() {
             <span className="badge">
               <span className="place">Vị trí số : {e.sapxep_child_theloai}</span>
               <button type="button" className="btn btn-warning">
-                Sửa
+                <Link to={`/updatechild/${e.ID_child_theloai}`}>Sửa</Link>
               </button>
               <button
                 type="button"
