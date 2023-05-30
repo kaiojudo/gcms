@@ -5,7 +5,6 @@ const Tintuc = function (tintuc) {
   this.hinhtrichdan = tintuc.hinhtrichdan;
   this.trichdantin = tintuc.trichdantin;
   this.ID_child_theloai = tintuc.ID_child_theloai;
-  this.id_nhomtin = tintuc.id_nhomtin;
   this.id_phanloaitin = tintuc.id_phanloaitin;
   this.id_tacgia = tintuc.id_tacgia;
   this.ngaycapnhat = tintuc.ngaycapnhat;
@@ -66,7 +65,7 @@ Tintuc.getchuaduyet = function (result) {
 };
 Tintuc.teyvat = function (result) {
   db.query(
-    `SELECT * from tintuc WHERE ID_child_theloai = 24 AND kiemduyet = 1 AND isNull = 1 order by ngaycapnhat LIMIT 4 `,
+    `SELECT * from tintuc WHERE ID_child_theloai = 1 AND kiemduyet = 1 AND isNull = 1 order by ngaycapnhat LIMIT 5 `,
     function (err, teyvat) {
       if (err) {
         result(err);
@@ -108,7 +107,7 @@ Tintuc.newgame = function (result) {
   db.query(
     `SELECT * FROM tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 4 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 order by ngaycapnhat`,
+    where child_theloai.idTheLoai = 9 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 order by ngaycapnhat`,
     function (err, review) {
       if (err) {
         result(err);
@@ -120,7 +119,7 @@ Tintuc.newgame = function (result) {
 };
 Tintuc.slideNews = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 4 AND kiemduyet = 1 AND isNull = 1 order by isActive limit 3 `,
+    `SELECT * FROM tintuc where id_phanloaitin = 2 AND kiemduyet = 1 AND isNull = 1 order by isActive limit 3 `,
     function (err, slidenews) {
       if (err) {
         result(err);
@@ -146,7 +145,7 @@ Tintuc.newbieGuild = function (result) {
   db.query(
     `SELECT * FROM gcms.tintuc
     INNER JOIN child_theloai ON tintuc.ID_child_theloai = child_theloai.ID_child_theloai 
-    where child_theloai.idTheLoai = 7 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 limit 4 `,
+    where child_theloai.idTheLoai = 6 AND tintuc.kiemduyet = 1 AND tintuc.isNull = 1 limit 4 `,
     function (err, newbieGuild) {
       if (err) {
         result(err);

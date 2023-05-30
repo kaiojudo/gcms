@@ -9,17 +9,16 @@ import Header from "@editorjs/header";
 import { useParams } from "react-router-dom";
 import Cookies from "universal-cookie";
 
-
 export default function Update() {
   const url = "http://localhost:3030/post/update";
   const params = useParams();
   const cookie = new Cookies();
 
-  const idtacgia = cookie.get('id');
+  const idtacgia = cookie.get("id");
   const [data, setData] = useState({
     id_tacgia: idtacgia,
     idtintuc: params.id,
-    kiemduyet: 0
+    kiemduyet: 0,
   });
   const [post, setPost] = useState({});
   const urlpost = `http://localhost:3030/post/${params.id}`;
@@ -101,25 +100,25 @@ export default function Update() {
       }, []);
     // eslint-disable-next-line
   }, []);
-  const [dataChildTheLoai, setDataChildTheLoai] = useState({});
-  const urlChild = "http://localhost:3030/childtheloai/showlist";
-  useEffect(() => {
-    fetch(urlChild)
-      .then((response) => response.json())
-      .then((data) => {
-        setDataChildTheLoai(data);
-      });
-  }, []);
-  const [dataDanhmuc, setDataDanhmuc] = useState({});
+  // const [dataChildTheLoai, setDataChildTheLoai] = useState({});
+  // const urlChild = "http://localhost:3030/childtheloai/showlist";
+  // useEffect(() => {
+  //   fetch(urlChild)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setDataChildTheLoai(data);
+  //     });
+  // }, []);
+  // const [dataDanhmuc, setDataDanhmuc] = useState({});
 
-  const urlphanloaitin = "http://localhost:3030/danhmuc/showlist";
-  useEffect(() => {
-    fetch(urlphanloaitin)
-      .then((response) => response.json())
-      .then((data) => {
-        setDataDanhmuc(data);
-      });
-  }, []);
+  // const urlphanloaitin = "http://localhost:3030/danhmuc/showlist";
+  // useEffect(() => {
+  //   fetch(urlphanloaitin)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setDataDanhmuc(data);
+  //     });
+  // }, []);
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
@@ -144,9 +143,11 @@ export default function Update() {
     postdata.idtintuc = params.id;
     postdata.tieudetin = document.getElementById("tieudetin")?.value;
     postdata.trichdantin = document.getElementById("trichdantin")?.value;
-
-    postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.alt;
-
+    if (!document.getElementById("hinhtrichdan")?.value) {
+      postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.alt;
+    } else {
+      postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.value;
+    }
     postdata.ngaycapnhat = document
       .getElementById("ngaycapnhat")
       ?.value.split("T17:00:00.000Z")[0];
@@ -221,7 +222,7 @@ export default function Update() {
             defaultValue={post?.result?.trichdantin}
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="ID_child_theloai">Lựa chọn thể loại Con</label>
           <select
             className="form-control"
@@ -255,7 +256,7 @@ export default function Update() {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="ngaycapnhat">Ngày cập nhật</label>
           <input

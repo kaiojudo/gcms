@@ -632,6 +632,10 @@ img {
   margin-bottom: 1rem;
   text-align: center;
 }
+.img-caption{
+  text-align: center;
+  color: red;
+}
 .pd-top-bottom {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -645,6 +649,9 @@ img {
 }
 .block-content ~ .block-content {
   padding-bottom: 0.5rem;
+}
+.img-post{
+  max-width: 100%;
 }
 .giftcode-category a:hover {
   color: var(--color-label);

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "universal-cookie";
 
-
 export default function News(props) {
   const cookie = new Cookies();
 
@@ -70,7 +69,12 @@ export default function News(props) {
   function handleRenderPostData(block) {
     switch (block.type) {
       case "image":
-        return <img className="img-post" src={block.data.file.url} alt="Err" />;
+        return (
+          <>
+            <img className="img-post" src={block.data.file.url} alt="Err" />
+            <p className="img-caption">{block.data.caption}</p>
+          </>
+        );
       case "header": {
         if (block.data.level === 2)
           return (
@@ -109,7 +113,11 @@ export default function News(props) {
       }
 
       case "linkTool":
-        return <Link to={block.data.link} className="editor-link">Liên kết</Link>;
+        return (
+          <Link to={block.data.link} className="editor-link">
+            Liên kết
+          </Link>
+        );
       case "table": {
         let table = ``;
         block.data.content.map((e) => {
