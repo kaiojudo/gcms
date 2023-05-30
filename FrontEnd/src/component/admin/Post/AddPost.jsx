@@ -146,7 +146,7 @@ export default function AddPost() {
         } else {
           alert("Chờ duyệt nhé!");
           console.log(e);
-          refresh();
+          // refresh();
         }
       })
       .catch(() => {

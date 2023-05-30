@@ -405,7 +405,7 @@ Tintuc.searchchuaduyet = function (search, result) {
   });
 };
 Tintuc.pagination = function (limit, offset, result) {
-  const sql = `SELECT * FROM gcms.tintuc where kiemduyet = 1 and isNull = 1 limit ${limit} offset ${offset}`;
+  const sql = `SELECT * FROM gcms.tintuc where kiemduyet = 1 and isNull = 1 order by solandoc desc limit ${limit} offset ${offset}`;
   db.query(sql, function (err, tintuc) {
     if (err) {
       result(err);
