@@ -6,9 +6,9 @@ import Cookies from "universal-cookie";
 export const ShowAll = () => {
   const [posts, setDataPost] = useState([]);
   const cookie = new Cookies();
-  const level = cookie.get('level');
-  const tacgia = cookie.get('id')
-  
+  const level = cookie.get("level");
+  const tacgia = cookie.get("id");
+
   if (level === "2") {
     var url = `http://localhost:3030/postbywriter/${tacgia}`;
   } else {
@@ -82,12 +82,12 @@ export const ShowAll = () => {
           <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
+        <Link to={"/admin/postchuaduyet"}>
+          <i className="fa-solid fa-check fa-2xl"></i>
+          <span className="link-des">Duyệt bài</span>
+        </Link>
         {level === "1" && (
           <>
-            <Link to={"/admin/postchuaduyet"}>
-              <i className="fa-solid fa-check fa-2xl"></i>
-              <span className="link-des">Duyệt bài</span>
-            </Link>
             <Link to={"/admin/admindelete"}>
               <i className="fa-solid fa-trash fa-2xl"></i>
               <span className="link-des">Bài đã xoá</span>
@@ -110,15 +110,19 @@ export const ShowAll = () => {
           >
             {post.tieudetin}
             <span className="badge">
-              <button type="button" className="btn btn-success">
-                <Link to={`/post/${post.idtintuc}`}>
-                  <i className="fa-solid fa-eye"></i>
-                </Link>
-              </button>
-              <button className="btn btn-warning">
-                <Link to={`/updatepost/${post.idtintuc}`}> Sửa</Link>
-              </button>
-              {post.isActive === "active" && level === "1" && (
+              {post.isActive === "none" &&
+                post.id_phanloaitin === 3 &&
+                level === "1" && (
+                  <button
+                    type="button"
+                    className="btn outline btn-outline-warning"
+                    id={`active${post.idtintuc}`}
+                    onClick={handleActive}
+                  >
+                    Set Active
+                  </button>
+                )}
+                {post.isActive === "active" && level === "1" && (
                 <button
                   type="button"
                   className="btn outline btn-outline-success"
@@ -128,16 +132,15 @@ export const ShowAll = () => {
                   Active
                 </button>
               )}
-              {post.isActive === "none" && level === "1" && (
-                <button
-                  type="button"
-                  className="btn outline btn-outline-warning"
-                  id={`active${post.idtintuc}`}
-                  onClick={handleActive}
-                >
-                  Set Active
-                </button>
-              )}
+              <button type="button" className="btn btn-success">
+                <Link to={`/post/${post.idtintuc}`}>
+                  <i className="fa-solid fa-eye"></i>
+                </Link>
+              </button>
+              <button className="btn btn-warning">
+                <Link to={`/updatepost/${post.idtintuc}`}> Sửa</Link>
+              </button>
+              
 
               <button
                 type="button"

@@ -8,12 +8,14 @@ import LinkTool from "@editorjs/link";
 import Header from "@editorjs/header";
 import Axios from "axios";
 import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
 
 export default function AddPost() {
   const cookie = new Cookies();
 
   const id = cookie.get("id");
   const refresh = () => window.location.reload(true);
+  const level = cookie.get("level");
 
   const url = "http://localhost:3030/post/add";
   const [data, setData] = useState({
@@ -146,7 +148,7 @@ export default function AddPost() {
         } else {
           alert("Chờ duyệt nhé!");
           console.log(e);
-          // refresh();
+          refresh();
         }
       })
       .catch(() => {
@@ -158,6 +160,26 @@ export default function AddPost() {
       <label htmlFor="" className="lable-admin">
         Đăng bài
       </label>
+      <div className="post-selection">
+        <Link to={"/admin"}>
+          <i className="fa-solid fa-house fa-2xl"></i>
+          <span className="link-des">Home</span>
+        </Link>
+        <Link to={"/admin/postchuaduyet"}>
+          <i className="fa-solid fa-check fa-2xl"></i>
+          <span className="link-des">Duyệt</span>
+        </Link>
+
+        {level === "1" && (
+          <>
+            <Link to={"/admin/admindelete"}>
+              <i className="fa-solid fa-trash fa-2xl"></i>
+              <span className="link-des">Bài đã xoá</span>
+            </Link>
+          </>
+        )}
+      </div>
+
       <form
         id="form-baiviet"
         className="form-baiviet"

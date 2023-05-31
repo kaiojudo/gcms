@@ -6,15 +6,25 @@ import Cookies from "universal-cookie";
 export const DuyetBai = () => {
   const [posts, setDataPost] = useState([]);
   const cookies = new Cookies();
-  const url = "http://localhost:3030/post/showlistchuaduyet";
+  var url;
+
   const refresh = () => window.location.reload(true);
-  const level = cookies.get('level');
+  const level = cookies.get("level");
+  const idtacgia = cookies.get("id");
+
+  if (level === "1") {
+    url = "http://localhost:3030/post/showlistchuaduyet";
+  } else {
+    url = `http://localhost:3030/postchuaduyet/${idtacgia}`;
+  }
+  console.log(url);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(url);
       setDataPost(res.data);
     };
     fetchPosts();
+    // eslint-disable-next-line
   }, []);
 
   const handleDuyet = async (e) => {
@@ -60,16 +70,17 @@ export const DuyetBai = () => {
         Duyệt bài
       </label>
       <div className="post-selection">
-        <Link to={"/admin"}>
-          <i className="fa-solid fa-house fa-2xl"></i>
+        <Link to={"/admin/addpost"}>
+          <i className="fa-solid fa-plus fa-2xl"></i>
           <span className="link-des">Thêm mới</span>
         </Link>
+        <Link to={"/admin"}>
+          <i className="fa-solid fa-house fa-2xl"></i>
+          <span className="link-des">Home</span>
+        </Link>
+
         {level === "1" && (
           <>
-            <Link to={"/admin/postchuaduyet"}>
-              <i className="fa-solid fa-check fa-2xl"></i>
-              <span className="link-des">Duyệt bài</span>
-            </Link>
             <Link to={"/admin/admindelete"}>
               <i className="fa-solid fa-trash fa-2xl"></i>
               <span className="link-des">Bài đã xoá</span>
@@ -98,21 +109,28 @@ export const DuyetBai = () => {
                   <i className="fa-solid fa-eye"></i>
                 </Link>
               </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                id={`duyet${post.idtintuc}`}
-                onClick={handleDuyet}
-              >
-                Duyệt nè
-              </button>
+              {level === "1" && (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  id={`duyet${post.idtintuc}`}
+                  onClick={handleDuyet}
+                >
+                  Duyệt
+                </button>
+              )}
+              {level === "2" && (
+                <button type="button" className="btn btn-primary">
+                  <Link to={`/updatepost/${post.idtintuc}`}>Sửa</Link>
+                </button>
+              )}
               <button
                 type="button"
                 className="btn btn-danger"
                 id={`delete${post.idtintuc}`}
                 onClick={handleDelete}
               >
-                Xoá hoàn toàn
+                Xoá
               </button>
             </span>
           </li>

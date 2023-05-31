@@ -89,6 +89,8 @@ function App(props) {
             <Route path="admin" element={<Admin />}>
               <Route path="" element={<ShowAll />} />
               <Route path="addpost" element={<AdminPost />} />
+              <Route path="postchuaduyet" element={<DuyetBai />} />
+
             </Route>{" "}
             <Route path="updatepost/:id" element={<Update />} />
             <Route path="yourinfo" element={<ShowUser />} />

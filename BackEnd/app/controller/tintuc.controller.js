@@ -30,6 +30,13 @@ exports.getbyId = function (req, res) {
     });
   });
 };
+exports.getchuaduyet = function (req, res) {
+  Tintuc.get_post_chuaduyet(req.params.id, function (tintuc) {
+    res.send({
+      result: tintuc,
+    });
+  });
+};
 exports.getbyId_admin = function (req, res) {
   Tintuc.get_by_id_admin(req.params.id, function (tintuc) {
     res.send({

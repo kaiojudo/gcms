@@ -22,7 +22,7 @@ export default function Update() {
     kiemduyet: 0,
   });
   const [post, setPost] = useState({});
-  const urlpost = `http://localhost:3030/post/${params.id}`;
+  const urlpost = `http://localhost:3030/postforrv/${params.id}`;
   useEffect(() => {
     fetch(urlpost)
       .then((response) => response.json())

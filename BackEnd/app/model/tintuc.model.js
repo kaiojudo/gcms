@@ -26,6 +26,19 @@ Tintuc.get_by_id = function (idtintuc, result) {
     }
   );
 };
+Tintuc.get_post_chuaduyet = function (idtacgia, result) {
+  db.query(
+    `SELECT * from tintuc WHERE kiemduyet = 0 and id_tacgia = ? AND isNull = 1`,
+    idtacgia,
+    function (err, tintuc) {
+      if (err) {
+        result(err);
+      } else {
+        result(tintuc);
+      }
+    }
+  );
+};
 Tintuc.get_by_id_admin = function (idtintuc, result) {
   db.query(
     `SELECT * from tintuc WHERE idtintuc = ?`,
@@ -414,7 +427,7 @@ Tintuc.pagination = function (limit, offset, result) {
     }
   });
 };
-Tintuc.paginationsearch = function (search,limit,offset, result) {
+Tintuc.paginationsearch = function (search, limit, offset, result) {
   const sql = `SELECT * FROM gcms.tintuc where kiemduyet = 1 and isNull = 1 and tieudetin like "%${search}%" limit ${limit} offset ${offset};`;
   db.query(sql, function (err, tintuc) {
     if (err) {
