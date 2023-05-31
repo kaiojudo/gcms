@@ -144,7 +144,7 @@ Tintuc.slideNews = function (result) {
 };
 Tintuc.bottom_Slide = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 3 AND kiemduyet = 1 AND isNull = 1 limit 4 `,
+    `SELECT * FROM tintuc where id_phanloaitin = 2 AND kiemduyet = 1 AND isNull = 1 limit 4 `,
     function (err, btslidenews) {
       if (err) {
         result(err);
