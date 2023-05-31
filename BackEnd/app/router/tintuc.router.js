@@ -43,5 +43,9 @@ module.exports = function (router) {
   router.get(`/totalpostbychild/:id`, postcontroller.gettoltalpostbychild);
   router.get(`/totalpostbytheloai/:id`, postcontroller.gettoltalpostbytheloai);
   router.get(`/totalpostbysearch/:search`, postcontroller.gettoltalpostbysearch);
+  router.get(`/getactive`, postcontroller.getActive);
+  router.patch(`/setnoactive/:id`, postcontroller.setnoActive);
+
+
 
 };

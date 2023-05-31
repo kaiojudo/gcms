@@ -240,7 +240,7 @@ exports.paginationsearch = function (req, res) {
   });
 };
 exports.gettoltalpost = function (req, res) {
-  Tintuc.gettotalpost(req.params.id, function (tintuc) {
+  Tintuc.gettotalpost(function (tintuc) {
     res.send({
       result: tintuc,
     });
@@ -267,5 +267,18 @@ exports.gettoltalpostbysearch = function (req, res) {
     });
   });
 };
-
+exports.getActive = function (req, res) {
+  Tintuc.getActive(function (tintuc) {
+    res.send({
+      result: tintuc,
+    });
+  });
+};
+exports.setnoActive = function (req, res) {
+  Tintuc.setNoActive(req.params.id, function (tintuc) {
+    res.send({
+      result: tintuc,
+    });
+  });
+};
 

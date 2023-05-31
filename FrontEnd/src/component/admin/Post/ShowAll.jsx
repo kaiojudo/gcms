@@ -8,6 +8,8 @@ export const ShowAll = () => {
   const cookie = new Cookies();
   const level = cookie.get("level");
   const tacgia = cookie.get("id");
+  const [active, setactive] = useState();
+  const urlactive = `http://localhost:3030/getactive`;
 
   if (level === "2") {
     var url = `http://localhost:3030/postbywriter/${tacgia}`;
@@ -21,6 +23,11 @@ export const ShowAll = () => {
       setDataPost(res.data);
     };
     fetchPosts();
+    const getActive = async () => {
+      const res = await axios.get(urlactive);
+      setactive(res.data);
+    };
+    getActive();
     // eslint-disable-next-line
   }, []);
 
@@ -36,6 +43,13 @@ export const ShowAll = () => {
     refresh();
   };
   const handleActive = async (e) => {
+    const noactivePosts = async () => {
+      const res = await axios.patch(
+        `http://localhost:3030/setnoactive/` + active?.result?.idActive
+      );
+      return res;
+    };
+    noactivePosts();
     const activePosts = async () => {
       const res = await axios.patch(
         `http://localhost:3030/post/setactive/` + e.target.id.split("active")[1]
@@ -46,17 +60,17 @@ export const ShowAll = () => {
     alert("Thành công !");
     refresh();
   };
-  const handleNone = async (e) => {
-    const noactivePosts = async () => {
-      const res = await axios.patch(
-        `http://localhost:3030/post/setnoactive/` + e.target.id.split("none")[1]
-      );
-      return res;
-    };
-    noactivePosts();
-    alert("Thành công !");
-    refresh();
-  };
+  // const handleNone = async (e) => {
+  //   const noactivePosts = async () => {
+  //     const res = await axios.patch(
+  //       `http://localhost:3030/post/setnoactive/` + e.target.id.split("none")[1]
+  //     );
+  //     return res;
+  //   };
+  //   noactivePosts();
+  //   alert("Thành công !");
+  //   refresh();
+  // };
   function handleSearch(e) {
     const fetchPosts = async () => {
       var res;
@@ -122,12 +136,12 @@ export const ShowAll = () => {
                     Set Active
                   </button>
                 )}
-                {post.isActive === "active" && level === "1" && (
+              {post.isActive === "active" && level === "1" && (
                 <button
                   type="button"
                   className="btn outline btn-outline-success"
                   id={`none${post.idtintuc}`}
-                  onClick={handleNone}
+                  // onClick={handleNone}
                 >
                   Active
                 </button>
@@ -140,7 +154,6 @@ export const ShowAll = () => {
               <button className="btn btn-warning">
                 <Link to={`/updatepost/${post.idtintuc}`}> Sửa</Link>
               </button>
-              
 
               <button
                 type="button"

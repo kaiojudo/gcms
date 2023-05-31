@@ -17,7 +17,7 @@ export const DuyetBai = () => {
   } else {
     url = `http://localhost:3030/postchuaduyet/${idtacgia}`;
   }
-  console.log(url);
+  // console.log(url);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(url);

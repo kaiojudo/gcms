@@ -8,6 +8,7 @@ import LinkTool from "@editorjs/link";
 import Header from "@editorjs/header";
 import { useParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import axios from "axios";
 
 export default function Update() {
   const url = "http://localhost:3030/post/update";
@@ -101,25 +102,25 @@ export default function Update() {
       }, []);
     // eslint-disable-next-line
   }, []);
-  // const [dataChildTheLoai, setDataChildTheLoai] = useState({});
-  // const urlChild = "http://localhost:3030/childtheloai/showlist";
-  // useEffect(() => {
-  //   fetch(urlChild)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setDataChildTheLoai(data);
-  //     });
-  // }, []);
-  // const [dataDanhmuc, setDataDanhmuc] = useState({});
+  const [dataChildTheLoai, setDataChildTheLoai] = useState({});
+  const urlChild = "http://localhost:3030/childtheloai/showlist";
+  useEffect(() => {
+    fetch(urlChild)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataChildTheLoai(data);
+      });
+  }, []);
+  const [dataDanhmuc, setDataDanhmuc] = useState({});
 
-  // const urlphanloaitin = "http://localhost:3030/danhmuc/showlist";
-  // useEffect(() => {
-  //   fetch(urlphanloaitin)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setDataDanhmuc(data);
-  //     });
-  // }, []);
+  const urlphanloaitin = "http://localhost:3030/danhmuc/showlist";
+  useEffect(() => {
+    fetch(urlphanloaitin)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataDanhmuc(data);
+      });
+  }, []);
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
@@ -139,11 +140,17 @@ export default function Update() {
       .catch((error) => {
         console.log("Saving failed: ", error);
       });
-    const postdata = { ...data.r, ...content };
+    const postdata = { ...data, ...content };
 
     postdata.idtintuc = params.id;
     postdata.tieudetin = document.getElementById("tieudetin")?.value;
     postdata.trichdantin = document.getElementById("trichdantin")?.value;
+    if (!postdata.ID_child_theloai) {
+      postdata.ID_child_theloai = post?.result?.ID_child_theloai;
+    }
+    if (!postdata.id_phanloaitin) {
+      postdata.id_phanloaitin = post?.result?.id_phanloaitin;
+    }
     if (!document.getElementById("hinhtrichdan")?.value) {
       postdata.hinhtrichdan = document.getElementById("hinhtrichdan")?.alt;
     } else {
@@ -154,26 +161,29 @@ export default function Update() {
     postdata.ngaycapnhat = document
       .getElementById("ngaycapnhat")
       ?.value.split("T17:00:00.000Z")[0];
-    console.log(JSON.stringify(postdata));
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postdata),
+    // console.log(JSON.stringify(postdata));
+    // fetch(url, {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(postdata),
+    // })
+    axios({
+      method: "put",
+      url: url,
+      data: postdata,
     })
       .then((e) => {
-        if (!e) {
-          alert(
-            "Đăng bài thất bại do trong bài viết bạn có thể có ký tự đặc biệt, biểu cảm. Hoặc do bạn coppy link ( Hãy dùng thẻ link )"
-          );
+        if (e.data.result === 0) {
+          alert("Đăng bài thất bại");
         } else if (!postdata.tieudetin || !postdata.ngaycapnhat) {
           alert("Vui lòng điền đầy đủ thông tin");
         } else {
           alert("Chờ duyệt nhé!");
           navigate("/admin", { replace: false });
 
-          // console.log(e);
+          console.log(e);
         }
       })
       .catch(() => {
@@ -228,7 +238,7 @@ export default function Update() {
             defaultValue={post?.result?.trichdantin}
           />
         </div>
-        {/* <div className="form-group">
+        <div className="form-group">
           <label htmlFor="ID_child_theloai">Lựa chọn thể loại Con</label>
           <select
             className="form-control"
@@ -262,7 +272,7 @@ export default function Update() {
               </option>
             ))}
           </select>
-        </div> */}
+        </div>
         <div className="form-group">
           <label htmlFor="ngaycapnhat">Ngày cập nhật</label>
           <input

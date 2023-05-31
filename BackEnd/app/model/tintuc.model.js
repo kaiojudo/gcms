@@ -132,7 +132,7 @@ Tintuc.newgame = function (result) {
 };
 Tintuc.slideNews = function (result) {
   db.query(
-    `SELECT * FROM tintuc where id_phanloaitin = 2 AND kiemduyet = 1 AND isNull = 1 order by isActive limit 3 `,
+    `SELECT * FROM tintuc where id_phanloaitin = 3 AND kiemduyet = 1 AND isNull = 1 order by isActive limit 3 `,
     function (err, slidenews) {
       if (err) {
         result(err);
@@ -192,9 +192,9 @@ Tintuc.updatePost = function (data, result) {
 
   const sql = `call UpdatePost(${data.idtintuc},'${data.tieudetin}','${
     data.hinhtrichdan
-  }','${data.trichdantin}','${data.ngaycapnhat}','${JSON.stringify(
-    content
-  )}',0);`;
+  }','${data.trichdantin}',${data.ID_child_theloai},${data.id_phanloaitin},'${
+    data.ngaycapnhat
+  }','${JSON.stringify(content)}',0);`;
   db.query(sql, function (err) {
     if (err) {
       result(0);
@@ -437,10 +437,9 @@ Tintuc.paginationsearch = function (search, limit, offset, result) {
     }
   });
 };
-Tintuc.gettotalpost = function (idtintuc, result) {
+Tintuc.gettotalpost = function (result) {
   db.query(
     `SELECT COUNT(idtintuc) AS soluong from tintuc where isNull = 1 and kiemduyet = 1;`,
-    idtintuc,
     function (err, data) {
       if (err) {
         result(err);
@@ -494,6 +493,31 @@ Tintuc.gettotalpostbysearch = function (search, result) {
         result(err);
       } else {
         result(data[0]);
+      }
+    }
+  );
+};
+Tintuc.getActive = function (result) {
+  db.query(
+    `select idtintuc as idActive from gcms.tintuc where isActive = "active";`,
+    function (err, data) {
+      if (err) {
+        result(err);
+      } else {
+        result(data[0]);
+      }
+    }
+  );
+};
+Tintuc.setNoActive = function (idtintuc, result) {
+  db.query(
+    `UPDATE gcms.tintuc SET isActive = 'none' WHERE idtintuc = ?`,
+    idtintuc,
+    function (err) {
+      if (err) {
+        result(err);
+      } else {
+        result(1);
       }
     }
   );
