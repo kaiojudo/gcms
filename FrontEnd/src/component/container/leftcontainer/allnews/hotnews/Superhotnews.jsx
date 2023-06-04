@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loading from "../../../../../Loading";
 
 export default function SuperHotNews() {
   const [dataSlide, setDataSlide] = useState({});
+  const [loading, setLoading] = useState(true);
+
   const urlSlide = "http://localhost:3030/post/slide/showall";
   useEffect(() => {
     fetch(urlSlide)
@@ -18,6 +21,7 @@ export default function SuperHotNews() {
       .then((response) => response.json())
       .then((data) => {
         setDatabtSlide(data);
+        setLoading(false);
       });
   }, []);
   return (
@@ -26,6 +30,7 @@ export default function SuperHotNews() {
         <label htmlFor="" className="label">
           Hot News
         </label>
+        {loading === true && <Loading />}
         <div
           id="carouselExampleIndicators"
           className="carousel slide"
@@ -79,16 +84,13 @@ export default function SuperHotNews() {
             <span className="sr-only">Next</span>
           </a>
         </div>
-
         <div className="hot-new-news-2">
+          
           {databtSlide?.result?.map((e) => (
             <div className="hot-new-news-2-item" key={e.idtintuc}>
               <Link to={`/post/${e.idtintuc}`} key={e.idtintuc}>
                 <div className="hot-2-img">
-                  <img
-                    src={"../" + e?.hinhtrichdan}
-                    alt="Err"
-                  />
+                  <img src={"../" + e?.hinhtrichdan} alt="Err" />
                 </div>
                 <p>{e.tieudetin}</p>
               </Link>

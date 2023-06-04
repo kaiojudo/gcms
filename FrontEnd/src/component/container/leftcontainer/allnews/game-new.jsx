@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Posts from "./gamenew/Posts";
 import { Pagination } from "./gamenew/Pagination";
 import axios from "axios";
+import Loading from "../../../../Loading";
 export default function GameNew(props) {
   const [posts, setDataPost] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   var currentPage = 1;
 
@@ -57,10 +58,12 @@ export default function GameNew(props) {
     }
   };
   // console.log(page);
-  if(loading === true){
+  if (loading === true) {
     return (
-      <></>
-    )
+      <>
+        <Loading />
+      </>
+    );
   }
   return (
     <>

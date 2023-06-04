@@ -3,10 +3,11 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import Loading from "../../../Loading";
 
 export default function News(props) {
   const cookie = new Cookies();
-
+  const [loading, setLoading] = useState(true);
   const params = useParams();
   const [datapost, setDataPost] = useState({});
   const [dataTacgia, setDataTacgia] = useState({});
@@ -37,7 +38,7 @@ export default function News(props) {
         const content = JSON.parse(e.result.content);
         e.content = content;
         setDataPost(e);
-
+        setLoading(false);
         const urlTacgia =
           "http://localhost:3030/user/findbyid/" + e.result.id_tacgia;
         fetch(urlTacgia)
@@ -159,6 +160,7 @@ export default function News(props) {
   }
   return (
     <>
+      {loading === true && <Loading />}
       <div className="linkfrom">
         <Link to={`/`}>
           <i className="fa-solid fa-house"></i>
