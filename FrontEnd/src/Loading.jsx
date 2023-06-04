@@ -3,7 +3,7 @@ import FadeLoader from "react-spinners/FadeLoader";
 function Loading() {
   return (
     <div id="wrap-loading">
-      <div id="spinner-loading">
+      <div className="d-flex loading">
         <FadeLoader />
       </div>
     </div>

@@ -100,9 +100,6 @@
   #hot-new-news {
     width: 100%;
   }
-  .pagination {
-    overflow: scroll;
-  }
   label {
     color: white !important;
     background-color: var(--color-label);

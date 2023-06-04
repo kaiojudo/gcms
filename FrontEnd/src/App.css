@@ -70,7 +70,7 @@ a:hover {
 .input-search-modal::placeholder {
   color: #fff;
 }
-.search-soluong{
+.search-soluong {
   color: red;
   font-weight: bold;
 }
@@ -388,7 +388,7 @@ img {
   height: 100%;
   padding: 0 0.5rem;
 }
-#newbie-guild{
+#newbie-guild {
   min-height: 16.85rem;
 }
 .hot-new-news-2-item p {
@@ -534,6 +534,9 @@ img {
 #pagination li:hover {
   background-color: #ccc;
 }
+.pagination {
+  justify-content: center;
+}
 #right-container {
   width: calc(30% - 2.5rem);
   margin-left: 2.5rem;
@@ -636,7 +639,7 @@ img {
   margin-bottom: 1rem;
   text-align: center;
 }
-.img-caption{
+.img-caption {
   text-align: center;
   color: red;
 }
@@ -648,13 +651,13 @@ img {
   margin: 0.5rem 15%;
   width: 70%;
 }
-.post-details{
+.post-details {
   margin-top: 2rem;
 }
 .block-content ~ .block-content {
   padding-bottom: 0.5rem;
 }
-.img-post{
+.img-post {
   max-width: 100%;
 }
 .giftcode-category a:hover {
@@ -775,4 +778,7 @@ footer {
   padding: 0.5rem;
   min-width: 20rem;
   border-radius: 5rem;
+}
+.loading {
+  justify-content: center;
 }
