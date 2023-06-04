@@ -21,11 +21,11 @@ export default function News(props) {
 
   const urlView = `http://localhost:3030/post/solandoc/${params.id}`;
   useEffect(() => {
-    let headers = new Headers();
+    // let headers = new Headers();
 
-    headers.append("Content-Type", "application/json");
-    headers.append("Accept", "application/json");
-    headers.append("Origin", "http://localhost:3000");
+    // headers.append("Content-Type", "application/json");
+    // headers.append("Accept", "application/json");
+    // headers.append("Origin", "http://localhost:3000");
     const updateview = async () => {
       const res = await axios.patch(urlView);
       return res;
