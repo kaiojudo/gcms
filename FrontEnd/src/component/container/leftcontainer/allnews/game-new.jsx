@@ -57,6 +57,11 @@ export default function GameNew(props) {
     }
   };
   // console.log(page);
+  if(loading === true){
+    return (
+      <></>
+    )
+  }
   return (
     <>
       <div id="game-news">
