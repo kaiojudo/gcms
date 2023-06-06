@@ -34,7 +34,7 @@
     width: 95%;
     margin: auto;
   }
-  #search {
+  #search,.menu-sub-cat li {
     display: none;
   }
   p {

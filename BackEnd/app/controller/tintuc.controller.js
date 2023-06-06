@@ -115,11 +115,16 @@ exports.duyet = function (req, res) {
   });
 };
 exports.get_by_idtheloai = function (req, res) {
-  Tintuc.get_by_idtheloai(req.params.id,req.params.limit,req.params.offset, function (item) {
-    res.send({
-      result: item,
-    });
-  });
+  Tintuc.get_by_idtheloai(
+    req.params.id,
+    req.params.limit,
+    req.params.offset,
+    function (item) {
+      res.send({
+        result: item,
+      });
+    }
+  );
 };
 exports.luotdoc = function (req, res) {
   Tintuc.solandoc(req.params.id, function (DOC) {
@@ -157,7 +162,7 @@ exports.setAfterD = function (req, res) {
   });
 };
 exports.setAfterR = function (req, res) {
-  Tintuc.setReturn(req.params.id,function (guilditem) {
+  Tintuc.setReturn(req.params.id, function (guilditem) {
     res.send({
       result: guilditem,
     });
@@ -171,7 +176,7 @@ exports.setAfterDC = function (req, res) {
   });
 };
 exports.setAfterRC = function (req, res) {
-  Tintuc.setReturnC(req.params.id,function (guilditem) {
+  Tintuc.setReturnC(req.params.id, function (guilditem) {
     res.send({
       result: guilditem,
     });
@@ -192,7 +197,7 @@ exports.admindelete = function (req, res) {
   });
 };
 exports.deleteItem = function (req, res) {
-  Tintuc.remove(req.params.id,function (data) {
+  Tintuc.remove(req.params.id, function (data) {
     res.send({
       result: data,
     });
@@ -215,29 +220,39 @@ exports.searchchuaduyet = function (req, res) {
 exports.updatePost = function (req, res) {
   const data = req.body;
   Tintuc.updatePost(data, function (data) {
-      res.send({ result: data });
-  })
-}
+    res.send({ result: data });
+  });
+};
 exports.pagination = function (req, res) {
-  Tintuc.pagination(req.params.limit,req.params.offset,function (data) {
+  Tintuc.pagination(req.params.limit, req.params.offset, function (data) {
     res.send({
       result: data,
     });
   });
 };
 exports.paginationbychild = function (req, res) {
-  Tintuc.paginationbychild(req.params.limit,req.params.offset,req.params.id,function (data) {
-    res.send({
-      result: data,
-    });
-  });
+  Tintuc.paginationbychild(
+    req.params.limit,
+    req.params.offset,
+    req.params.id,
+    function (data) {
+      res.send({
+        result: data,
+      });
+    }
+  );
 };
 exports.paginationsearch = function (req, res) {
-  Tintuc.paginationsearch(req.params.search,req.params.limit,req.params.offset, function (item) {
-    res.send({
-      result: item,
-    });
-  });
+  Tintuc.paginationsearch(
+    req.params.search,
+    req.params.limit,
+    req.params.offset,
+    function (item) {
+      res.send({
+        result: item,
+      });
+    }
+  );
 };
 exports.gettoltalpost = function (req, res) {
   Tintuc.gettotalpost(function (tintuc) {
@@ -281,4 +296,24 @@ exports.setnoActive = function (req, res) {
     });
   });
 };
-
+exports.getbychildandtacgia = function (req, res) {
+  Tintuc.getbychildandtacgia(
+    req.params.child,
+    req.params.tacgia,
+    function (data) {
+      res.send({
+        result: data,
+      });
+    }
+  );
+};
+exports.gettotalpostbytacgia = function (req, res) {
+  Tintuc.gettotalpostbytacgia(
+    req.params.tacgia,
+    function (data) {
+      res.send({
+        result: data,
+      });
+    }
+  );
+};

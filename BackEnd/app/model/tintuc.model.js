@@ -522,4 +522,22 @@ Tintuc.setNoActive = function (idtintuc, result) {
     }
   );
 };
+Tintuc.getbychildandtacgia = function (child, tacgia, result) {
+  db.query(`SELECT * FROM gcms.tintuc where ID_child_theloai = ${child} and id_tacgia = ${tacgia}`, function (err, tintuc) {
+    if (err) {
+      result(err);
+    } else {
+      result(tintuc);
+    }
+  });
+};
+Tintuc.gettotalpostbytacgia = function (tacgia, result) {
+  db.query(`select count(id_tacgia) as slbaiviet from gcms.tintuc where id_tacgia = ${tacgia}`, function (err, data) {
+    if (err) {
+      result(err);
+    } else {
+      result(data[0]);
+    }
+  });
+};
 module.exports = Tintuc;

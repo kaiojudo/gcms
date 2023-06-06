@@ -10,6 +10,15 @@ export const ShowAll = () => {
   const tacgia = cookie.get("id");
   const [active, setactive] = useState();
   const urlactive = `http://localhost:3030/getactive`;
+  const [dataChildTheLoai, setDataChildTheLoai] = useState({});
+  const urlChild = "http://localhost:3030/childtheloai/showlist";
+  useEffect(() => {
+    fetch(urlChild)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataChildTheLoai(data);
+      });
+  }, []);
 
   if (level === "2") {
     var url = `http://localhost:3030/postbywriter/${tacgia}`;
@@ -60,17 +69,19 @@ export const ShowAll = () => {
     alert("Thành công !");
     refresh();
   };
-  // const handleNone = async (e) => {
-  //   const noactivePosts = async () => {
-  //     const res = await axios.patch(
-  //       `http://localhost:3030/post/setnoactive/` + e.target.id.split("none")[1]
-  //     );
-  //     return res;
-  //   };
-  //   noactivePosts();
-  //   alert("Thành công !");
-  //   refresh();
-  // };
+  function handleChild(e) {
+    // console.log(e.target.value);
+    if (e.target.value !== "none") {
+      url = `http://localhost:3030/ctv/${e.target.value}/${tacgia}`;
+    } else {
+      url = `http://localhost:3030/postbywriter/${tacgia}`;
+    }
+    const fetchPosts = async () => {
+      const res = await axios.get(url);
+      setDataPost(res.data);
+    };
+    fetchPosts();
+  }
   function handleSearch(e) {
     const fetchPosts = async () => {
       var res;
@@ -106,6 +117,24 @@ export const ShowAll = () => {
               <i className="fa-solid fa-trash fa-2xl"></i>
               <span className="link-des">Bài đã xoá</span>
             </Link>
+          </>
+        )}
+        {level === "2" && (
+          <>
+            <div className="form-group form-group-admin">
+              <select
+                className="form-control"
+                id="ID_child_theloai"
+                onChange={(e) => handleChild(e)}
+              >
+                <option value={"none"}>Chọn thể loại</option>
+                {dataChildTheLoai?.result?.map((e) => (
+                  <option key={e.ID_child_theloai} value={e.ID_child_theloai}>
+                    {e.ten_child_theloai}
+                  </option>
+                ))}
+              </select>
+            </div>
           </>
         )}
       </div>

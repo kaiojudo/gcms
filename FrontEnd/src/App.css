@@ -481,9 +481,15 @@ img {
 .news-decscript {
   font-size: 0.8rem;
   font-weight: 500;
-  display: inline-block;
-  max-height: 1.5rem;
+  width: 35rem;
+  /* display: inline-block; */
+  /* max-height: 1.5rem; */
+  /* overflow: hidden; */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #giftcode {
@@ -781,4 +787,7 @@ footer {
 }
 .loading {
   justify-content: center;
+}
+.form-group-admin {
+  display: inline-block;
 }
