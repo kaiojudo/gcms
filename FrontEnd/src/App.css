@@ -283,6 +283,9 @@ img {
 #left-container {
   width: 70%;
 }
+.news {
+  overflow: hidden;
+}
 #left-container .news img {
   height: 100%;
 }
@@ -553,6 +556,8 @@ img {
 }
 .tieudetin {
   width: 60%;
+  display: flex;
+  align-items: center;
 }
 .right-content-news {
   height: 2.5rem;
@@ -804,6 +809,6 @@ footer {
 .table {
   margin: 0;
 }
-.update-user{
+.update-user {
   margin-top: 1rem;
 }

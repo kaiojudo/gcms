@@ -540,4 +540,5 @@ Tintuc.gettotalpostbytacgia = function (tacgia, result) {
     }
   });
 };
+
 module.exports = Tintuc;

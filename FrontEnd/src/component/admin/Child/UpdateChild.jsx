@@ -19,7 +19,7 @@ export default function UpdateChild() {
     };
     fetchTheloais();
   }, []);
-  const [data, setData] = useState({});
+  var [data, setData] = useState({});
   useEffect(() => {
     fetch(urlget)
       .then((response) => response.json())
@@ -64,6 +64,7 @@ export default function UpdateChild() {
         alert("Vui lòng điền đầy đủ thông tin");
       } else {
         alert("Thành công!");
+        console.log(e);
       }
     });
     console.log(JSON.stringify(childtheloai));

@@ -8,5 +8,6 @@ module.exports = function (router) {
     router.delete('/user/delete/:id', usercontroller.deleteItem);
     router.patch('/user/accept/:id', usercontroller.accept);
     router.patch('/user/remove/:id', usercontroller.remove);
-    router.patch('/user/levelup/:id', usercontroller.levelUp);
+    router.patch('/user/remove/:id', usercontroller.remove);
+    router.put('/user/update', usercontroller.update);
 };

@@ -121,5 +121,15 @@ User.accept = function (idtintuc, result) {
     }
   );
 };
+User.update = function (data, result) {
+  const sql = `call UpdateUser(${data.id_thanhvien},'${data.hoten}','${data.sex}',${data.id_nguyenquan},'${data.address}','${data.phone}','${data.email}')`;
+  db.query(sql, function (err) {
+    if (err) {
+      result(1);
+    } else {
+      result(1);
+    }
+  });
+};
 
 module.exports = User;

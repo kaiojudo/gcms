@@ -63,3 +63,9 @@ exports.accept = function (req, res) {
     });
   });
 };
+exports.update = function (req, res) {
+  const data = req.body;
+  User.update(data, function (data) {
+    res.send({ result: data });
+  });
+};
