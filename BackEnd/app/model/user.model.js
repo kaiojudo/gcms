@@ -121,4 +121,5 @@ User.accept = function (idtintuc, result) {
     }
   );
 };
+
 module.exports = User;

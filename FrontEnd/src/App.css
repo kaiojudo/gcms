@@ -791,3 +791,19 @@ footer {
 .form-group-admin {
   display: inline-block;
 }
+.update-user {
+  margin-top: 1rem;
+}
+.update-user button {
+  padding: 5px 1rem;
+}
+.update-user button a {
+  color: #fff;
+  font-weight: bold;
+}
+.table {
+  margin: 0;
+}
+.update-user{
+  margin-top: 1rem;
+}

@@ -28,6 +28,7 @@ import { ShowUser } from "./component/admin/User/ShowUser";
 import AcceptUser from "./component/admin/User/AcceptUser";
 import Update from "./component/admin/Post/UpdatePost";
 import ShowAllUser from "./component/admin/User/ShowAllUser";
+import UpdateUser from "./component/admin/User/UpdateUser";
 import UpdateTheLoai from "./component/admin/TheLoai/UpdateTheLoai";
 import UpdateChild from "./component/admin/Child/UpdateChild";
 import ButtonScollToTop from "./ButtonScrollToTop";
@@ -90,10 +91,10 @@ function App(props) {
               <Route path="" element={<ShowAll />} />
               <Route path="addpost" element={<AdminPost />} />
               <Route path="postchuaduyet" element={<DuyetBai />} />
-
             </Route>{" "}
             <Route path="updatepost/:id" element={<Update />} />
             <Route path="yourinfo" element={<ShowUser />} />
+            <Route path="updateuser" element={<UpdateUser />} />
           </>
         )}{" "}
         <Route path="*" element={<Notfound />} />

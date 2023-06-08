@@ -1,8 +1,7 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-
 
 export const ShowUser = () => {
   const cookies = new Cookies();
@@ -10,9 +9,9 @@ export const ShowUser = () => {
   const [data, setData] = useState({});
   const params = useParams();
   const [tinh, setDatatinh] = useState({});
-  var level = cookies.get('level');
+  var level = cookies.get("level");
   if (level === "2") {
-    var url = `http://localhost:3030/user/findbyid/${cookies.get('id')}`;
+    var url = `http://localhost:3030/user/findbyid/${cookies.get("id")}`;
   }
   if (level === "1") {
     url = `http://localhost:3030/user/findbyid/${params.id}`;
@@ -51,7 +50,7 @@ export const ShowUser = () => {
         {data?.result?.accesslevel === 1 && (
           <h5 className="info-level">Quản trị viên</h5>
         )}
-        <div className="sub-info d-flex">
+        <div className="sub-info">
           <table className="table table-hover">
             <tbody>
               <tr>
@@ -80,6 +79,11 @@ export const ShowUser = () => {
               </tr>
             </tbody>
           </table>
+        </div>
+        <div className="update-user">
+          <button className="btn btn-primary">
+            <Link to={`/updateuser`}>Sửa</Link>
+          </button>
         </div>
       </div>
     </div>

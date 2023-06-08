@@ -29,7 +29,7 @@ export default function Header() {
     child.classList.add("d-flex");
     const url2 =
       "http://localhost:3030/childtheloai/childbyfather/" + e.target.id;
-    console.log(url2);
+    // console.log(url2);
     fetch(url2)
       .then((response) => response.json())
       .then((data) => {
