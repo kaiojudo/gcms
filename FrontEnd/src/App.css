@@ -812,3 +812,19 @@ footer {
 .update-user {
   margin-top: 1rem;
 }
+.update-user button {
+  margin: 1rem 0;
+  left: 50%;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  background-color: #69b03b;
+  padding: 0.5rem;
+}
+.update-user input,
+.update-user select,
+.update-user textarea {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

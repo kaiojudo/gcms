@@ -83,6 +83,7 @@ function App(props) {
             <Route path="yourinfo/:id" element={<ShowUser />} />
             <Route path="updatetheloai/:id" element={<UpdateTheLoai />} />
             <Route path="updatechild/:id" element={<UpdateChild />} />
+            <Route path="updateuser" element={<UpdateUser />} />
           </>
         )}
         {cookies.get("level") === "2" && (

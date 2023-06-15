@@ -61,9 +61,14 @@ function UpdateUser() {
       data: dataUpdate,
     }).then((e) => {
       if (e.data.result === 0) {
-        alert("Đăng bài thất bại");
-        } else if (!dataUpdate.hoten || !dataUpdate.address || !dataUpdate.phone || !dataUpdate.email) {
-          alert("Vui lòng điền đầy đủ thông tin");
+        alert("Thất bại do Email hoặc Số điện thoại đã có người sử dụng");
+      } else if (
+        !dataUpdate.hoten ||
+        !dataUpdate.address ||
+        !dataUpdate.phone ||
+        !dataUpdate.email
+      ) {
+        alert("Vui lòng điền đầy đủ thông tin");
       } else {
         alert("Xong!");
         console.log(e);
@@ -72,91 +77,95 @@ function UpdateUser() {
     });
   }
   return (
-    <form className="container update-user" onSubmit={(e) => UpdateUser(e)}>
-      {" "}
-      <div className="sub-info">
-        <table className="table table-hover">
-          <tbody>
-            <tr>
-              <th scope="row">Tên</th>
-              <td>
-                <input
-                  id="hoten"
-                  type="text"
-                  defaultValue={data?.result?.hoten}
-                  onChange={(e) => handle(e)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Giới tính</th>
-              <td>
-                <select onChange={(e) => handle(e)} id="sex">
-                  <option value={1} disabled="">
-                    {data?.result?.sex}
-                  </option>
-                  <option value={"Nam"}>Nam</option>
-                  <option value={"Nữ"}>Nữ</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Quê quán</th>
-              <td>
-                <select
-                  onChange={(e) => handle(e)}
-                  id="id_nguyenquan"
-                  // className="select form-control-lg w-100"
-                >
-                  <option value={-1} disabled="">
-                    {tinhadmin?.result?.tentinh}
-                  </option>
-                  {tinh?.result?.map((e) => (
-                    <option key={e.idtinh} value={e.idtinh}>
-                      {e.tentinh}
+    <>
+      <form className="container update-user" onSubmit={(e) => UpdateUser(e)}>
+        <label htmlFor="" className="lable-admin">
+          Cập nhật thông tin
+        </label>{" "}
+        <div className="sub-info">
+          <table className="table table-hover">
+            <tbody>
+              <tr>
+                <th scope="row">Tên</th>
+                <td>
+                  <input
+                    id="hoten"
+                    type="text"
+                    defaultValue={data?.result?.hoten}
+                    onChange={(e) => handle(e)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Giới tính</th>
+                <td>
+                  <select onChange={(e) => handle(e)} id="sex">
+                    <option value={1} disabled="">
+                      {data?.result?.sex}
                     </option>
-                  ))}
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Địa chỉ</th>
-              <td>
-                <input
-                  id="address"
-                  type="text"
-                  defaultValue={data?.result?.address}
-                  onChange={(e) => handle(e)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Số điện thoại</th>
-              <td>
-                <input
-                  id="phone"
-                  type="text"
-                  defaultValue={data?.result?.phone}
-                  onChange={(e) => handle(e)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Email</th>
-              <td>
-                <input
-                  id="email"
-                  type="text"
-                  defaultValue={data?.result?.email}
-                  onChange={(e) => handle(e)}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <button type="submit">Cập nhật</button>
-    </form>
+                    <option value={"Nam"}>Nam</option>
+                    <option value={"Nữ"}>Nữ</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Quê quán</th>
+                <td>
+                  <select
+                    onChange={(e) => handle(e)}
+                    id="id_nguyenquan"
+                    // className="select form-control-lg w-100"
+                  >
+                    <option value={-1} disabled="">
+                      {tinhadmin?.result?.tentinh}
+                    </option>
+                    {tinh?.result?.map((e) => (
+                      <option key={e.idtinh} value={e.idtinh}>
+                        {e.tentinh}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Địa chỉ</th>
+                <td>
+                  <textarea
+                    id="address"
+                    defaultValue={data?.result?.address}
+                    onChange={(e) => handle(e)}
+                    cols={50}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Số điện thoại</th>
+                <td>
+                  <input
+                    id="phone"
+                    type="text"
+                    defaultValue={data?.result?.phone}
+                    onChange={(e) => handle(e)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Email</th>
+                <td>
+                  <input
+                    id="email"
+                    type="text"
+                    defaultValue={data?.result?.email}
+                    onChange={(e) => handle(e)}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="submit">Cập nhật</button>
+      </form>
+    </>
   );
 }
 

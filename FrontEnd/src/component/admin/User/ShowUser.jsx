@@ -7,15 +7,11 @@ export const ShowUser = () => {
   const cookies = new Cookies();
 
   const [data, setData] = useState({});
-  const params = useParams();
+  // const params = useParams();
   const [tinh, setDatatinh] = useState({});
-  var level = cookies.get("level");
-  if (level === "2") {
-    var url = `http://localhost:3030/user/findbyid/${cookies.get("id")}`;
-  }
-  if (level === "1") {
-    url = `http://localhost:3030/user/findbyid/${params.id}`;
-  }
+  // var level = cookies.get("level");
+
+  var url = `http://localhost:3030/user/findbyid/${cookies.get("id")}`;
 
   useEffect(() => {
     fetch(url)
