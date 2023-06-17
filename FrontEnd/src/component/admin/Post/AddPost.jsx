@@ -277,9 +277,9 @@ export default function AddPost() {
           <button type="submit" className="btn btn-primary">
             Đăng bài
           </button>
-          <button className="show" type="button">
+          {/* <button className="show" type="button">
             <i className="fa-solid fa-eye"></i>
-          </button>
+          </button> */}
         </div>
       </form>
     </>

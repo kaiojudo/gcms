@@ -69,3 +69,15 @@ exports.update = function (req, res) {
     res.send({ result: data });
   });
 };
+exports.changepass = function (req, res) {
+  const data = req.body;
+  User.changepass(data, function (data) {
+    res.send({ result: data });
+  });
+};
+exports.checkpass = function (req, res) {
+  const data = req.body;
+  User.checkpass(data, function (data) {
+    res.send({ result: data });
+  });
+};

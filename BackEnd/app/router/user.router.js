@@ -10,4 +10,7 @@ module.exports = function (router) {
     router.patch('/user/remove/:id', usercontroller.remove);
     router.patch('/user/remove/:id', usercontroller.remove);
     router.put('/user/update', usercontroller.update);
+    router.put('/user/update', usercontroller.update);
+    router.put('/changepass',usercontroller.changepass)
+    router.get('/checkpass',usercontroller.checkpass)
 };

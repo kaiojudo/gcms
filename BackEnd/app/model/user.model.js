@@ -131,5 +131,28 @@ User.update = function (data, result) {
     }
   });
 };
-
+User.changepass = function (data, result) {
+  db.query(
+    `call ChangePass(${data.id_thanhvien},'${data.password}')`,
+    function (err) {
+      if (err) {
+        result(0);
+      } else {
+        result("Success");
+      }
+    }
+  );
+};
+User.checkpass = function (data, result) {
+  db.query(
+    `call CheckPass(${data.id_thanhvien},'${data.password}')`,
+    function (err,soluong) {
+      if (err) {
+        result(0);
+      } else {
+        result(soluong[0]);
+      }
+    }
+  );
+};
 module.exports = User;
