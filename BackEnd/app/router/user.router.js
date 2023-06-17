@@ -13,4 +13,5 @@ module.exports = function (router) {
     router.put('/user/update', usercontroller.update);
     router.put('/changepass',usercontroller.changepass)
     router.get('/checkpass/:id/:password',usercontroller.checkpass)
+    router.get('/checktotalpost/:id',usercontroller.gettotalpostbyauthor)
 };

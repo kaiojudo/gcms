@@ -151,4 +151,16 @@ User.checkpass = function (id,password, result) {
     }
   });
 };
+User.gettotalpostbyauthor = function (id,result) {
+  db.query(
+    `select count(id_tacgia) as soluong from gcms.tintuc where id_tacgia = ${id} and isNull = 1 and kiemduyet = 1;`,
+    function (err, data) {
+      if (err) {
+        result(err);
+      } else {
+        result(data[0]);
+      }
+    }
+  );
+};
 module.exports = User;

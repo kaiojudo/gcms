@@ -3,7 +3,7 @@
   margin: 0;
   font-size: 16px;
 }
-.container{
+.container {
   min-height: 60vh;
 }
 :root {
@@ -21,7 +21,10 @@ a:hover {
   max-height: 8rem;
   overflow: hidden;
   min-height: 8rem;
+}
+.hot-2-img img {
   border-radius: 10px;
+  min-height: 8rem;
 }
 .page-link {
   cursor: pointer;
@@ -549,7 +552,7 @@ img {
 .pagination {
   justify-content: center;
 }
-.page-item{
+.page-item {
   margin: 0 0.2rem;
   background-color: #fbdc8d;
 }
@@ -844,6 +847,6 @@ footer {
 .change-password label {
   min-width: 9rem;
 }
-.change-password label{
+.change-password label {
   text-align: left;
 }

@@ -80,3 +80,8 @@ exports.checkpass = function (req, res) {
     res.send({ result: data });
   });
 };
+exports.gettotalpostbyauthor = function (req, res) {
+  User.gettotalpostbyauthor(req.params.id, function (data) {
+    res.send({ result: data });
+  });
+};
