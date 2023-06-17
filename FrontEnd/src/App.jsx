@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import "./responsive.css";
+import Cookies from "universal-cookie";
 import Index from "./Layoutindex";
 import Login from "./Layout_Login";
 import Post from "./Layout_Post";
@@ -32,7 +33,7 @@ import UpdateUser from "./component/admin/User/UpdateUser";
 import UpdateTheLoai from "./component/admin/TheLoai/UpdateTheLoai";
 import UpdateChild from "./component/admin/Child/UpdateChild";
 import ButtonScollToTop from "./ButtonScrollToTop";
-import Cookies from "universal-cookie";
+import ChangePassword from "./component/admin/User/ChangePassword";
 
 function App(props) {
   const cookies = new Cookies();
@@ -84,6 +85,7 @@ function App(props) {
             <Route path="updatetheloai/:id" element={<UpdateTheLoai />} />
             <Route path="updatechild/:id" element={<UpdateChild />} />
             <Route path="updateuser" element={<UpdateUser />} />
+            <Route path="changepassword" element={<ChangePassword />} />
           </>
         )}
         {cookies.get("level") === "2" && (
@@ -96,6 +98,7 @@ function App(props) {
             <Route path="updatepost/:id" element={<Update />} />
             <Route path="yourinfo" element={<ShowUser />} />
             <Route path="updateuser" element={<UpdateUser />} />
+            <Route path="changepassword" element={<ChangePassword />} />
           </>
         )}{" "}
         <Route path="*" element={<Notfound />} />

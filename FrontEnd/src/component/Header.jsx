@@ -8,6 +8,8 @@ export default function Header() {
   const url = "http://localhost:3030/theloai/list";
   const cookies = new Cookies();
   const level = cookies.get("level");
+  const id = cookies.get("id");
+
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
@@ -81,7 +83,7 @@ export default function Header() {
                 {cookies.get("hoten") && <p>{cookies.get("hoten")}</p>}
                 {!level && <img src="../ayaka.ico" alt="" />}
                 {level === "1" && (
-                  <Link to={`/yourinfo/${localStorage.getItem("TacGia")}`}>
+                  <Link to={`/yourinfo/${id}`}>
                     {" "}
                     <img src="../ayaka.ico" alt="" />
                   </Link>

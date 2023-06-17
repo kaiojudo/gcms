@@ -10,8 +10,8 @@ export const ShowUser = () => {
   // const params = useParams();
   const [tinh, setDatatinh] = useState({});
   // var level = cookies.get("level");
-
-  var url = `http://localhost:3030/user/findbyid/${cookies.get("id")}`;
+  const id = cookies.get("id");
+  var url = `http://localhost:3030/user/findbyid/${id}`;
 
   useEffect(() => {
     fetch(url)
@@ -39,7 +39,7 @@ export const ShowUser = () => {
 
       <div className="info-user">
         <h4 className="info-name">{data?.result?.hoten}</h4>
-        <p className="info-id">#{localStorage.getItem("TacGia")}</p>
+        <p className="info-id"># 000{id}</p>
         {data?.result?.accesslevel === 2 && (
           <h5 className="info-level">Cộng tác viên</h5>
         )}
@@ -76,9 +76,12 @@ export const ShowUser = () => {
             </tbody>
           </table>
         </div>
-        <div className="update-user">
+        <div className="update-user-button">
           <button className="btn btn-primary">
             <Link to={`/updateuser`}>Sửa</Link>
+          </button>
+          <button className="btn btn-success">
+            <Link to={`/changepassword`}>Đổi mật khẩu</Link>
           </button>
         </div>
       </div>

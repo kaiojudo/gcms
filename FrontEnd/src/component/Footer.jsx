@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="bg-dark text-center text-lg-start">
       {/* Grid container */}
-      <div className="container p-4">
+      <div className="p-4">
         {/*Grid row*/}
         <div className="row">
           {/*Grid column*/}
