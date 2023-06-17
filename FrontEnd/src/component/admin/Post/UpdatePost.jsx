@@ -173,6 +173,7 @@ export default function Update() {
       method: "put",
       url: url,
       data: postdata,
+     
     })
       .then((e) => {
         if (e.data.result === 0) {

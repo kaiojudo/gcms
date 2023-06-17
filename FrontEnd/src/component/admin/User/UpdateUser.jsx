@@ -71,7 +71,7 @@ function UpdateUser() {
         alert("Vui lòng điền đầy đủ thông tin");
       } else {
         alert("Xong!");
-        console.log(e);
+        console.log(e.data);
         // navigate("/admin", { replace: false })
       }
     });

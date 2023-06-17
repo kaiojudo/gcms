@@ -127,32 +127,28 @@ User.update = function (data, result) {
     if (err) {
       result(0);
     } else {
-      result(1);
+      result(sql);
     }
   });
 };
 User.changepass = function (data, result) {
-  db.query(
-    `call ChangePass(${data.id_thanhvien},'${data.password}')`,
-    function (err) {
-      if (err) {
-        result(0);
-      } else {
-        result("Success");
-      }
+  const sql = `call ChangePass(${data.id_thanhvien},'${data.password}')`;
+  db.query(sql, function (err) {
+    if (err) {
+      result(err);
+    } else {
+      result("Success");
     }
-  );
+  });
 };
-User.checkpass = function (data, result) {
-  db.query(
-    `call CheckPass(${data.id_thanhvien},'${data.password}')`,
-    function (err,soluong) {
-      if (err) {
-        result(0);
-      } else {
-        result(soluong[0]);
-      }
+User.checkpass = function (id,password, result) {
+  const sql = `select * from gcms.thanhvien where id_thanhvien = ${id} and password = '${password}';`;
+  db.query(sql, function (err, data) {
+    if (err) {
+      result(err);
+    } else {
+      result(data[0]);
     }
-  );
+  });
 };
 module.exports = User;

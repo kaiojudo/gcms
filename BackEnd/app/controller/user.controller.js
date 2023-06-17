@@ -76,8 +76,7 @@ exports.changepass = function (req, res) {
   });
 };
 exports.checkpass = function (req, res) {
-  const data = req.body;
-  User.checkpass(data, function (data) {
+  User.checkpass(req.params.id, req.params.password, function (data) {
     res.send({ result: data });
   });
 };
