@@ -1,10 +1,12 @@
 import React from "react";
 import Cookies from "universal-cookie";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function UpdateUser() {
   const cookies = new Cookies();
+  let navigate = useNavigate();
   const id = cookies.get("id");
   // console.log(id);
   const [tinhadmin, setDatatinhadmin] = useState({});
@@ -72,7 +74,7 @@ function UpdateUser() {
       } else {
         alert("Xong!");
         console.log(e.data);
-        // navigate("/admin", { replace: false })
+        navigate("/admin", { replace: false })
       }
     });
   }

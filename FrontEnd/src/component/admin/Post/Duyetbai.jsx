@@ -66,9 +66,12 @@ export const DuyetBai = () => {
   }
   return (
     <>
-      <label htmlFor="list-group" className="lable-admin">
+      {level==="1" && <label htmlFor="list-group" className="lable-admin">
         Duyệt bài
-      </label>
+      </label>}
+      {level==="2" && <label htmlFor="list-group" className="lable-admin">
+        Bài chờ duyệt
+      </label>}
       <div className="post-selection">
         <Link to={"/admin/addpost"}>
           <i className="fa-solid fa-plus fa-2xl"></i>

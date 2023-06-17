@@ -109,7 +109,8 @@ export const ShowAll = () => {
         </Link>
         <Link to={"/admin/postchuaduyet"}>
           <i className="fa-solid fa-check fa-2xl"></i>
-          <span className="link-des">Duyệt bài</span>
+          {level === "1" && <span className="link-des">Duyệt bài</span>}
+          {level === "2" && <span className="link-des">Bài chờ duyệt</span>}
         </Link>
         {level === "1" && (
           <>

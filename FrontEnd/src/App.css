@@ -549,6 +549,10 @@ img {
 .pagination {
   justify-content: center;
 }
+.page-item{
+  margin: 0 0.2rem;
+  background-color: #fbdc8d;
+}
 #right-container {
   width: calc(30% - 2.5rem);
   margin-left: 2.5rem;
