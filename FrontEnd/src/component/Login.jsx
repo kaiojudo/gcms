@@ -25,7 +25,7 @@ export default function Login() {
       )
       .then((res) => {
         
-        if (res.data.result != 'ERR') {
+        if (res.data.result !== 'ERR') {
           cookie.set("username", res?.data?.result[0]?.username, { path: "/" });
           cookie.set("id", res?.data?.result[0]?.id_thanhvien, { path: "/" });
           cookie.set("hoten", res?.data?.result[0]?.hoten, { path: "/" });
@@ -33,7 +33,7 @@ export default function Login() {
           alert("Đăng nhập thành công !")
           console.log(`http://localhost:3030/account/${data.username}/password/${data.password}`);
           navigate("/", { replace: false });
-      
+          refresh();
           
         } else {
           alert("Login failed");

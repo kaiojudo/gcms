@@ -19,7 +19,7 @@ export default function News(props) {
   } else {
     urlPost = `http://localhost:3030/post/${params.id}`;
   }
-
+  console.log(urlPost);
   const urlView = `http://localhost:3030/post/solandoc/${params.id}`;
   useEffect(() => {
     // let headers = new Headers();
@@ -35,12 +35,13 @@ export default function News(props) {
     fetch(urlPost)
       .then((response) => response.json())
       .then((e) => {
-        const content = JSON.parse(e.result.content);
+        const content = e.result.content;
         e.content = content;
         setDataPost(e);
         setLoading(false);
         const urlTacgia =
           "http://localhost:3030/user/findbyid/" + e.result.id_tacgia;
+        console.log(urlTacgia);
         fetch(urlTacgia)
           .then((response) => response.json())
           .then((dataTacgia) => {

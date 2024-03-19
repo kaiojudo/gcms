@@ -173,11 +173,11 @@ Tintuc.add_new = function (data, result) {
   var content = { blocks: data.blocks };
 
   // console.log(typeof data.blocks);
-  const sql = `call AddPost('${data.tieudetin}','${data.hinhtrichdan}','${
+  const sql = `call SP_AddPost('${data.tieudetin}','${data.hinhtrichdan}','${
     data.trichdantin
   }',${data.ID_child_theloai},${data.id_phanloaitin},${data.id_tacgia},'${
     data.ngaycapnhat
-  }','${JSON.stringify(content)}',0,0,'none',1);`;
+  }','${JSON.stringify(content)}');`;
   db.query(sql, function (err) {
     if (err) {
       // throw err;
@@ -190,16 +190,16 @@ Tintuc.add_new = function (data, result) {
 Tintuc.updatePost = function (data, result) {
   var content = { blocks: data.blocks };
 
-  const sql = `call UpdatePost(${data.idtintuc},'${data.tieudetin}','${
+  const sql = `call SP_UpdatePost(${data.idtintuc},'${data.tieudetin}','${
     data.hinhtrichdan
   }','${data.trichdantin}',${data.ID_child_theloai},${data.id_phanloaitin},'${
     data.ngaycapnhat
-  }','${JSON.stringify(content)}',0);`;
+  }','${JSON.stringify(content)}');`;
   db.query(sql, function (err) {
     if (err) {
       result(0);
     } else {
-      result(1);
+      result(sql);
     }
   });
 };

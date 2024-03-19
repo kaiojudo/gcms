@@ -184,7 +184,7 @@ export default function Update() {
           alert("Chờ duyệt nhé!");
           navigate("/admin", { replace: false });
 
-          console.log(e);
+          console.log(e.data.result);
         }
       })
       .catch(() => {
