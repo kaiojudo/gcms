@@ -47,9 +47,9 @@ User.get_user_chuaduyet = function (result) {
   });
 };
 User.getUser = function (data, result) {
-  var username = data.account.split('');
+  var username = data.account.split(" ");
   var password = data.password.split(" ");
-  const sql = `select * from thanhvien where username = '${username}' and password = '${password}' and active = 1;`;
+  const sql = `Call Login('${username}','${password}')`;
   db.query(sql, function (err, user) {
     if (err) {
       result("ERR");

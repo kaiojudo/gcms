@@ -24,15 +24,17 @@ export default function Login() {
         `http://localhost:3030/account/${data.username}/password/${data.password}`
       )
       .then((res) => {
-        // console.log(res.data.result);
-        if (res.data.result) {
-          cookie.set("username", res?.data?.result?.username, { path: "/" });
-          cookie.set("id", res?.data?.result?.id_thanhvien, { path: "/" });
-          cookie.set("hoten", res?.data?.result?.hoten, { path: "/" });
-          cookie.set("level", res?.data?.result?.accesslevel, { path: "/" });
+        
+        if (res.data.result != 'ERR') {
+          cookie.set("username", res?.data?.result[0]?.username, { path: "/" });
+          cookie.set("id", res?.data?.result[0]?.id_thanhvien, { path: "/" });
+          cookie.set("hoten", res?.data?.result[0]?.hoten, { path: "/" });
+          cookie.set("level", res?.data?.result[0]?.accesslevel, { path: "/" });
           alert("Đăng nhập thành công !")
+          console.log(`http://localhost:3030/account/${data.username}/password/${data.password}`);
           navigate("/", { replace: false });
-          refresh();
+      
+          
         } else {
           alert("Login failed");
         }
