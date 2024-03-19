@@ -5,10 +5,12 @@ SQL
     import Data bằng file ThisisSQL.sql trong thư mục SQL BACKUP
 
 FrontEnd
+    mở Terminal mới
     cd FrontEnd
     npm i react-scripts
     npm start
 BackEnd
+    mở Terminal mới
     cd BackEnd
     npm i nodemon
     npm start
